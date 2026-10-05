@@ -1,0 +1,14 @@
+{
+  "_comment": "hl = simbol na Hyperliquid (isto tržište kao Liquid). yahoo = druga cena za potvrdu. thr60/thr240 = prag pomaka u procentima. ctx_only = nema sveća, koristi se bafer cena iz ctx-a.",
+  "instruments": [
+    {"key": "BRENT",  "name": "Brent",  "hl": "xyz:BRENTOIL", "dex": "xyz", "yahoo": "BZ=F",     "class": "oil",    "theme": "OIL",    "thr60": 2.5, "thr240": 4.0},
+    {"key": "WTI",    "name": "WTI",    "hl": "xyz:CL",       "dex": "xyz", "yahoo": "CL=F",     "class": "oil",    "theme": "OIL",    "thr60": 2.5, "thr240": 4.0},
+    {"key": "GOLD",   "name": "Zlato",  "hl": "xyz:GOLD",     "dex": "xyz", "yahoo": "GC=F",     "class": "gold",   "theme": "GOLD",   "thr60": 1.2, "thr240": 2.5},
+    {"key": "SP500",  "name": "SP500",  "hl": "xyz:SP500",    "dex": "xyz", "yahoo": "ES=F",     "class": "equity", "theme": "EQUITY", "thr60": 1.2, "thr240": 2.5},
+    {"key": "NASDAQ", "name": "Nasdaq", "hl": "xyz:XYZ100",   "dex": "xyz", "yahoo": "NQ=F",     "class": "equity", "theme": "EQUITY", "thr60": 1.2, "thr240": 2.5},
+    {"key": "BTC",    "name": "BTC",    "hl": "BTC",          "dex": "",    "yahoo": "BTC-USD",  "class": "crypto", "theme": "CRYPTO", "thr60": 4.0, "thr240": 7.0},
+    {"key": "ETH",    "name": "ETH",    "hl": "ETH",          "dex": "",    "yahoo": "ETH-USD",  "class": "crypto", "theme": "CRYPTO", "thr60": 5.0, "thr240": 9.0},
+    {"key": "VIX",    "name": "VIX",    "hl": "xyz:VIX",      "dex": "xyz", "yahoo": "^VIX",     "class": "vol",    "theme": "EQUITY", "thr60": 20.0, "thr240": 40.0, "ctx_only": true, "tradable": false},
+    {"key": "DXY",    "name": "DXY",    "hl": "xyz:DXY",      "dex": "xyz", "yahoo": "DX-Y.NYB", "class": "fx",     "theme": "MACRO",  "thr60": 0.8, "thr240": 1.5, "ctx_only": true, "tradable": false}
+  ]
+}

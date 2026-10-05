@@ -1,0 +1,25 @@
+name: replay
+
+# Rucna kalibracija cenovnih pragova na istoriji (Yahoo 2 god. za robe i indekse, Hyperliquid za kripto).
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m sentinel.replay --out replay_result.md
+      - uses: actions/upload-artifact@v4
+        with:
+          name: replay_result
+          path: replay_result.md
+      - name: Sazetak
+        run: cat replay_result.md >> "$GITHUB_STEP_SUMMARY"

@@ -1,0 +1,64 @@
+name: sentinel
+
+# Straza: svakih ~5 min. Bez AI-ja. Ne trguje. Okidaci su samo schedule i rucno pokretanje
+# (nikad pull_request / pull_request_target, pa tajne ne dobija nijedan fork).
+on:
+  schedule:
+    - cron: "2-59/5 * * * *"
+  workflow_dispatch:
+    inputs:
+      dry:
+        description: "dry = bez Telegram-a i bez okidanja mozga"
+        required: false
+        default: "false"
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: sentinel
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Vrati stanje (grana state)
+        run: bash scripts/restore_state.sh
+
+      - name: Krug straze
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          FIRE_URL: ${{ secrets.FIRE_URL }}
+          FIRE_TOKEN: ${{ secrets.FIRE_TOKEN }}
+          DRY: ${{ github.event.inputs.dry }}
+        run: |
+          ARGS="--state _state --root ."
+          if [ "$DRY" = "true" ]; then ARGS="$ARGS --dry --write-events"; fi
+          python -m sentinel.run $ARGS
+
+      - name: Objavi stanje (grana state)
+        run: bash scripts/publish_state.sh
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+
+      - name: Objavi dogadjaje i dnevni log (main)
+        run: bash scripts/publish_events.sh
+
+      - name: Nedeljno odrzavanje (sprecava gasenje posle 60 dana neaktivnosti)
+        if: github.event_name == 'schedule'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ "$(date -u +%u%H)" = "700" ]; then
+            gh api -X PUT "repos/${GITHUB_REPOSITORY}/actions/workflows/sentinel.yml/enable" || true
+          fi

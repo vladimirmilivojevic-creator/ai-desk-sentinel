@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="sr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Straža tržišta</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+:root{--bg:#0b1014;--panel:#111a20;--panel2:#16222a;--edge:#22333d;--ink:#eef3f6;--ink2:#b6c4cc;--muted:#7d909b;--good:#46d08a;--bad:#ff6b5a;--warn:#ffc233;--accent:#ff7a2f;
+--f-body:"Archivo",system-ui,sans-serif;--f-data:"JetBrains Mono",ui-monospace,monospace}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f3f6f8;--panel:#fff;--panel2:#eef3f6;--edge:#d5dfe5;--ink:#10181d;--ink2:#34454f;--muted:#5d707b;--good:#14804a;--bad:#c4372a;--warn:#946600;--accent:#d85a10}}
+*{box-sizing:border-box}
+html{font-size:16px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);line-height:1.45;padding:18px 16px 40px}
+.wrap{max-width:1180px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+.box{background:var(--panel);border:1px solid var(--edge);border-radius:16px;padding:16px}
+header{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;justify-content:space-between}
+h1{margin:0;font-size:1.5rem;font-stretch:80%;font-weight:900;letter-spacing:.02em}
+h1 span{color:var(--accent)}
+h2{margin:0 0 10px;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--warn);font-weight:800}
+.pill{display:inline-flex;align-items:center;gap:7px;font-family:var(--f-data);font-size:.78rem;padding:5px 11px;border-radius:999px;border:1px solid var(--edge);background:var(--panel2);color:var(--ink2)}
+.led{width:10px;height:10px;border-radius:50%;background:var(--muted)}
+.led.ok{background:var(--good);box-shadow:0 0 0 0 rgba(70,208,138,.6);animation:ring 1.8s ease-out infinite}
+.led.warn{background:var(--warn)}
+.led.bad{background:var(--bad);animation:blink .8s steps(1) infinite}
+@keyframes ring{70%{box-shadow:0 0 0 8px rgba(70,208,138,0)}100%{box-shadow:0 0 0 0 rgba(70,208,138,0)}}
+@keyframes blink{50%{opacity:.25}}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.tile{background:var(--panel2);border-radius:12px;padding:11px 13px;border:1px solid transparent;min-width:0}
+.tile.hot{border-color:var(--bad)}
+.tile.stale{opacity:.55}
+.tile b{display:block;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.px{font-family:var(--f-data);font-size:1.3rem;font-weight:600;font-variant-numeric:tabular-nums}
+.sm{font-family:var(--f-data);font-size:.78rem;font-variant-numeric:tabular-nums;color:var(--ink2)}
+.up{color:var(--good)} .dn{color:var(--bad)}
+.themes{display:flex;flex-wrap:wrap;gap:8px}
+.th{display:flex;align-items:center;gap:8px;background:var(--panel2);border-radius:999px;padding:6px 12px;font-size:.85rem}
+.tier{font-family:var(--f-data);font-weight:600;font-size:.74rem;padding:2px 8px;border-radius:999px;background:var(--edge);color:var(--ink2)}
+.tier.N1{background:var(--panel);border:1px solid var(--edge)}
+.tier.N2{background:var(--warn);color:#201500}
+.tier.N3{background:var(--bad);color:#fff}
+.ev{display:grid;grid-template-columns:auto auto 1fr;gap:4px 12px;padding:9px 0;border-top:1px solid var(--edge);font-size:.88rem}
+.ev:first-child{border-top:0}
+.ev .tier{align-self:start}
+.ev time{font-family:var(--f-data);color:var(--muted);font-size:.78rem}
+.src{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.78rem;color:var(--ink2)}
+.src span{display:inline-flex;align-items:center;gap:6px}
+.src i{width:8px;height:8px;border-radius:50%;background:var(--good);display:inline-block}
+.src i.x{background:var(--bad)}
+.muted{color:var(--muted);font-size:.8rem}
+.two{display:grid;grid-template-columns:1.4fr 1fr;gap:14px}
+@media (max-width:820px){.two{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.led{animation:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="box">
+    <div><h1>STRAŽA <span>TRŽIŠTA</span></h1><div class="muted">Javna tabla. Prati cene i vesti 24/7 bez AI-ja i javlja kad se tržište naglo pomeri. Samo informacija, nije savet. Simulacija.</div></div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px">
+      <span class="pill"><span class="led" id="led"></span><span id="hb">učitavam...</span></span>
+      <span class="pill" id="mode">režim ?</span>
+      <span class="pill" id="upd">-</span>
+    </div>
+  </header>
+
+  <div class="box"><h2>Radar</h2><div class="tiles" id="tiles"></div></div>
+
+  <div class="two">
+    <div class="box"><h2>Poslednji događaji</h2><div id="events"><div class="muted">Nema događaja.</div></div></div>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div class="box"><h2>Teme i nivoi</h2><div class="themes" id="themes"></div>
+        <p class="muted" style="margin:10px 0 0">N1 samo beleška. N2 alarm (više nezavisnih signala i cena). N3 jak alarm. Vest bez cenovnog pomaka ostaje N1.</p></div>
+      <div class="box"><h2>Izvori</h2><div class="src" id="sources"></div><div class="muted" id="sched" style="margin-top:8px"></div></div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+"use strict";
+var OWNER="vladimirmilivojevic-creator",REPO="ai-desk-sentinel";
+(function(){var h=location.hostname.split(".");if(h.length>=3&&h[1]==="github"){OWNER=h[0];var p=location.pathname.split("/")[1];if(p)REPO=p}})();
+var q=new URLSearchParams(location.search),src=q.get("src");
+function url(){
+  if(src&&(src.indexOf("./")===0||src.indexOf("https://raw.githubusercontent.com/")===0))return src;
+  return "https://raw.githubusercontent.com/"+OWNER+"/"+REPO+"/state/status/latest.json?t="+Math.floor(Date.now()/60000);
+}
+function $(i){return document.getElementById(i)}
+function el(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e}
+function pct(x){return x==null?"n/a":(x>=0?"+":"")+x.toFixed(2).replace(".",",")+"%"}
+function num(x){if(x==null)return "n/a";var a=Math.abs(x);return x.toLocaleString("sr-RS",{maximumFractionDigits:a>=1000?1:(a>=100?2:3)})}
+function ago(ts){var m=Math.round((Date.now()-new Date(ts))/60000);if(m<1)return "upravo";if(m<60)return "pre "+m+" min";return "pre "+Math.round(m/60)+" h"}
+function render(d){
+  var age=(Date.now()-new Date(d.heartbeat.ts))/60000,led=$("led");
+  led.className="led "+(age<=15?"ok":(age<=60?"warn":"bad"));
+  $("hb").textContent="puls "+ago(d.heartbeat.ts)+(age>15?" (kasni)":"");
+  $("mode").textContent=d.mode==="shadow"?"režim: senka (mozak se ne okida)":(d.fire_enabled?"režim: uživo":"režim: "+d.mode);
+  $("upd").textContent="ažurirano "+new Date(d.updated).toLocaleTimeString("sr-RS");
+  var t=$("tiles");t.textContent="";
+  d.instruments.forEach(function(i){
+    var c=el("div","tile"+(i.hot?" hot":"")+(i.stale?" stale":""));
+    c.appendChild(el("b",null,i.name));
+    c.appendChild(el("div","px",i.stale?"n/a":num(i.px)));
+    var s=el("div","sm");s.appendChild(el("span",i.ch24>=0?"up":"dn",pct(i.ch24)+" / 24 h"));c.appendChild(s);
+    c.appendChild(el("div","sm","60 min "+pct(i.m60)+(i.stale?" · cena stara":"")));
+    t.appendChild(c);
+  });
+  var th=$("themes");th.textContent="";
+  Object.keys(d.themes||{}).forEach(function(k){var v=d.themes[k],r=el("div","th");r.appendChild(el("span",null,k));r.appendChild(el("span","tier "+(v.tier||""),v.tier||"mirno"));th.appendChild(r)});
+  var ev=$("events");ev.textContent="";
+  if(!d.events||!d.events.length){ev.appendChild(el("div","muted","Nema događaja N2+ u poslednje vreme."))}
+  (d.events||[]).forEach(function(e){var r=el("div","ev");r.appendChild(el("time",null,new Date(e.ts).toLocaleString("sr-RS",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"})));r.appendChild(el("span","tier "+e.tier,e.tier));r.appendChild(el("span",null,e.text));ev.appendChild(r)});
+  var so=$("sources");so.textContent="";
+  Object.keys(d.sources||{}).sort().forEach(function(k){var v=d.sources[k],s=el("span");s.appendChild(el("i",v.fails>=3?"x":""));s.appendChild(document.createTextNode(k.replace(/^hl_candles_|^yahoo_|^hl_ctx_|^gnews_|^rss_|^official_/,function(m){return m.replace("_",":")})));so.appendChild(s)});
+  $("sched").textContent=(d.scheduled&&d.scheduled.length)?"Sada je zakazano: "+d.scheduled.join(", "):"";
+}
+function load(){
+  fetch(url(),{cache:"no-store"}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(render).catch(function(){
+    $("hb").textContent="nema veze sa podacima";$("led").className="led bad";
+  });
+}
+load();setInterval(load,60000);
+})();
+</script>
+</body>
+</html>

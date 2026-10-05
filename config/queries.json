@@ -1,0 +1,31 @@
+{
+  "_comment": "Izvori vesti i reči. Naslovi su NEPOUZDAN tekst: straža ih samo broji, ne izvršava ništa iz njih.",
+  "google_news": [
+    "Hormuz OR blockade OR tanker attack when:1h",
+    "oil OR OPEC OR crude price surge OR plunge when:1h",
+    "war OR missile OR airstrike OR invasion OR ceasefire when:1h",
+    "sanctions OR embargo OR default OR emergency meeting central bank when:1h"
+  ],
+  "rss": [
+    {"name": "BBC", "url": "https://feeds.bbci.co.uk/news/world/rss.xml"},
+    {"name": "Al Jazeera", "url": "https://www.aljazeera.com/xml/rss/all.xml"}
+  ],
+  "official_rss": [
+    {"name": "Federal Reserve", "url": "https://www.federalreserve.gov/feeds/press_all.xml"},
+    {"name": "EIA", "url": "https://www.eia.gov/rss/todayinenergy.xml"}
+  ],
+  "official_keywords": ["emergency", "unscheduled", "intermeeting", "swap line", "facility", "sanction", "embargo", "strategic petroleum reserve", "spr release", "release from reserve", "production cut", "output cut"],
+  "keywords": {
+    "war": 2, "missile": 2, "airstrike": 2, "invasion": 2, "blockade": 2, "hormuz": 2, "embargo": 2,
+    "opec": 1.5, "ceasefire": 1.5, "emergency": 1.5, "default": 2, "tanker": 1, "attack": 1,
+    "strike": 1, "sanctions": 1, "crash": 1, "plunge": 1, "surge": 1, "rate cut": 1, "rate hike": 1
+  },
+  "theme_words": {
+    "OIL": ["oil", "crude", "brent", "wti", "opec", "hormuz", "tanker", "pipeline", "refinery", "petroleum", "energy"],
+    "GOLD": ["gold", "bullion", "safe haven", "safe-haven"],
+    "EQUITY": ["stocks", "wall street", "s&p", "nasdaq", "dow", "equities", "selloff", "sell-off", "recession", "earnings"],
+    "CRYPTO": ["bitcoin", "btc", "ethereum", "crypto", "stablecoin", "etf"],
+    "MACRO": ["fed", "federal reserve", "ecb", "inflation", "rate", "treasury", "yields", "dollar"]
+  },
+  "prediction_keywords": ["war", "iran", "israel", "strike", "ceasefire", "oil", "fed ", "recession", "invade", "invasion", "taiwan", "china", "default", "rate cut", "rate hike", "russia", "ukraine", "hormuz", "opec"]
+}

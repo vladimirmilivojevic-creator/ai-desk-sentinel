@@ -1,0 +1,12 @@
+{
+  "_comment": "Zakazane objave koje oznacavaju dogadjaj kao 'zakazano' (straza ga i dalje beleži, mozak ga tretira oprezno). Pravila su racunata, tacne datume FOMC/CPI dodaje vlasnik ili ih mozak proverava preko Equibles GetEconomicCalendar. Datumi u 'dates' su UTC.",
+  "window_min": 20,
+  "weekly": [
+    {"name": "EIA zalihe nafte", "weekday": 2, "tz": "America/New_York", "hour": 10, "minute": 30}
+  ],
+  "monthly_first_friday": [
+    {"name": "US zaposlenost (NFP)", "tz": "America/New_York", "hour": 8, "minute": 30}
+  ],
+  "quad_witching_months": [3, 6, 9, 12],
+  "dates": []
+}

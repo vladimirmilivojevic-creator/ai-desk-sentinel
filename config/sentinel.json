@@ -1,0 +1,18 @@
+{
+  "_comment": "Pragovi su POCETNI i kalibrišu se u senci (README). Menja ih samo vlasnik repoa.",
+  "mode": "shadow",
+  "fire_enabled": false,
+  "sigma_mult": 4.0,
+  "stale_minutes": 20,
+  "weights": {"P1": 1.0, "P2": 2.0, "X": 1.5, "M": 1.5, "H": 1.0, "O": 1.0, "V": 0.5},
+  "tiers": {"n2_score": 3.0, "n3_score": 4.5, "n3_p_mult": 2.0, "n3_min_families": 3},
+  "fire": {"min_gap_min": 20, "per_hour": 4, "per_day": 3},
+  "episode": {"close_after_min": 120, "cooldown_min": 60, "step_mult": 1.0},
+  "headlines": {"window_min": 30, "min_publishers": 2, "min_score": 6.0},
+  "prediction": {"min_delta": 0.15, "min_volume24h": 50000, "ref_min": 45, "keep_min": 150},
+  "official": {"window_min": 60},
+  "gdelt": {"enabled": false, "every_min": 15, "ratio": 4.0},
+  "cross": {"min_instruments": 3, "min_classes": 2, "min_strength": 0.6, "vix_level": 30.0},
+  "digest_hour_utc": 8,
+  "keep_runlog_lines": 400
+}

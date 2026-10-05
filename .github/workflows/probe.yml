@@ -1,0 +1,24 @@
+name: probe
+
+# Rucna provera svih izvora iz GitHub Actions okruzenja (kasnjenje i dostupnost).
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m sentinel.run --probe | tee probe.txt
+      - name: Sazetak
+        run: |
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+          cat probe.txt >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
