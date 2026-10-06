@@ -123,7 +123,15 @@ def headline_signal(items, now, cfg, q):
         s = sum(q["keywords"][w] for w, rx in kw.items() if rx.search(it["title"]))
         if s <= 0:
             continue
-        themes = tag_themes(it["title"], q["theme_words"]) or ["GEO"]
+        low = it["title"].lower()
+        if any(re.search(r"" + re.escape(ph) + r"", low) for ph in q.get("noise_phrases", [])):
+            continue
+        themes = tag_themes(it["title"], q["theme_words"])
+        if not themes:
+            # opste "war/strike" naslovi se racunaju samo ako imaju geopoliticku rec (inace su sum: igrice, sport, filmovi)
+            if not any(re.search(r"" + re.escape(w) + r"", low) for w in q.get("geo_words", [])):
+                continue
+            themes = ["GEO"]
         scored.append({"title": it["title"], "source": it["source"], "age_min": round(age, 1), "score": s,
                        "themes": themes})
     per = {}
@@ -139,6 +147,22 @@ def headline_signal(items, now, cfg, q):
                    "score": sc, "publishers": sorted(pubs),
                    "items": sorted(use, key=lambda x: -x["score"])[:5]}
     return {"themes": per, "n": len(scored), "top": sorted(scored, key=lambda x: -x["score"])[:5]}
+
+
+def apply_baseline(head, hist, cfg):
+    """Naslovi su stalno prisutni (rat traje), pa signal H pali samo kad je ocena teme znatno iznad uobicajene
+    (medijana poslednjih ~24 h) i tek posle zagrevanja. hist se menja (cuva se u stanju)."""
+    h = cfg["headlines"]
+    mult, add, warm = h.get("anomaly_mult", 2.0), h.get("anomaly_add", 4.0), h.get("warmup", 36)
+    for th, v in head["themes"].items():
+        past = hist.setdefault(th, [])
+        base = statistics.median(past[-288:]) if past else 0.0
+        v["baseline"] = base
+        v["warm"] = len(past) >= warm
+        v["fired"] = bool(v["fired"] and v["warm"] and v["score"] >= mult * base + add)
+        past.append(v["score"])
+        del past[:-288]
+    return head
 
 
 def official_signal(items, now, cfg, q):

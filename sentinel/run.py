@@ -190,6 +190,8 @@ def run(args):
         if (k.startswith("gnews_") or k.startswith("rss_")) and v and health.usable(k):
             items.extend(v)
     head = scoring.headline_signal(items, now, cfg, q)
+    head_hist = S.get("head_hist", {})
+    head = scoring.apply_baseline(head, head_hist, cfg)
     off_items = []
     for k, v in raw.items():
         if k.startswith("official_") and v and health.usable(k):
@@ -320,6 +322,7 @@ def run(args):
     fires[:] = [t for t in fires if now - t < 2 * 86400]
     S.data["firelog"] = {"fires": fires}
     S.data["prices"], S.data["poly"], S.data["meta"], S.data["health"] = prices, hist, meta, health.d
+    S.data["head_hist"] = head_hist
 
     status = {
         "v": 1, "updated": iso(now), "mode": cfg["mode"], "fire_enabled": cfg["fire_enabled"],

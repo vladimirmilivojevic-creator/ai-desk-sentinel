@@ -126,6 +126,38 @@ class TierTests(unittest.TestCase):
         self.assertEqual(scoring.prediction_signal(mk, hist, NOW, CFG, Q), [])
 
 
+class HeadlineCalibrationTests(unittest.TestCase):
+    def test_entertainment_and_noise_are_ignored(self):
+        items = [news("Gears of War: E-Day - Surviving the First Night of war", "XBOX Wire"),
+                 news("Hungary opens Cold War informer files", "Reuters"),
+                 news("Price war erupts between streaming war games", "Variety")]
+        self.assertEqual(scoring.headline_signal(items, NOW, CFG, Q)["n"], 0)
+
+    def test_noise_words_match_whole_words_only(self):
+        # "nfl" je u "inflation": ne sme da odbaci pravu vest
+        items = [news("Inflation fears grow as Iran war pushes oil surge", "Reuters")]
+        self.assertEqual(scoring.headline_signal(items, NOW, CFG, Q)["n"], 1)
+
+    def test_generic_war_headline_needs_a_geopolitical_word(self):
+        items = [news("Strike threat as war of words grows", "Reuters"),
+                 news("Missile strike war escalates near Hormuz", "BBC")]
+        h = scoring.headline_signal(items, NOW, CFG, Q)
+        self.assertEqual(h["n"], 1)
+
+    def test_baseline_suppresses_constant_noise_and_fires_on_spike(self):
+        hist = {}
+        def head(score):
+            return {"themes": {"OIL": {"fired": True, "score": score, "publishers": ["a", "b"], "items": []}}, "n": 1, "top": []}
+        # zagrevanje: nikad ne pali
+        for _ in range(35):
+            self.assertFalse(scoring.apply_baseline(head(10), hist, CFG)["themes"]["OIL"]["fired"])
+        # stalni nivo 10 posle zagrevanja: ne pali
+        self.assertFalse(scoring.apply_baseline(head(10), hist, CFG)["themes"]["OIL"]["fired"])
+        self.assertFalse(scoring.apply_baseline(head(20), hist, CFG)["themes"]["OIL"]["fired"])  # 2x10+4 = 24 > 20
+        # skok
+        self.assertTrue(scoring.apply_baseline(head(40), hist, CFG)["themes"]["OIL"]["fired"])
+
+
 class EpisodeTests(unittest.TestCase):
     def ev(self, tier, m60):
         p = psig("BRENT", 100.0 * (1 + m60 / 100.0), 100.0)
