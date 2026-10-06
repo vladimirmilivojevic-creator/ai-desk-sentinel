@@ -239,7 +239,8 @@ def run(args):
             "scheduled": flags, "mode": cfg["mode"], "brain_fired": will_fire, "fire_gate": why,
             "instruments": [{"key": p["key"], "hl": next(i["hl"] for i in insts if i["key"] == p["key"]),
                              "px": p.get("px"), "m60": p.get("m60"), "m240": p.get("m240"), "ch24": p.get("ch24"),
-                             "confirmed": p.get("confirmed"), "funding": p.get("funding"), "provider": p["provider"]}
+                             "confirmed": p.get("confirmed"), "funding": p.get("funding"), "provider": p["provider"],
+                             "thr60": next(i["thr60"] for i in insts if i["key"] == p["key"]), "eff60": p.get("eff60")}
                             for p in ev["psigs"]],
             "all_moves": {p["key"]: p.get("m60") for p in psigs if not p.get("stale")},
             "untrusted_text": {"headlines": [{"title": x["title"], "source": x["source"]} for x in head["top"]],
