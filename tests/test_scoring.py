@@ -112,6 +112,14 @@ class TierTests(unittest.TestCase):
                  news("War missile strike oil Hormuz blockade", "BBC", 120)]
         self.assertEqual(scoring.headline_signal(items, NOW, CFG, Q)["n"], 0)
 
+    def test_signal_only_instruments_never_make_a_price_trigger(self):
+        vix = dict(INST["VIX"])
+        p = scoring.price_signal(vix, series(30.0, 20.0), "yahoo", None, None, CFG, NOW)  # +50% za 60 min
+        self.assertTrue(p["trig"] and p["signal_only"])
+        out = evaluate([p])
+        self.assertEqual(out["EQUITY"]["tier"], None)
+        self.assertNotIn("P", out["EQUITY"]["families"])
+
     def test_cross_asset(self):
         ps = [psig("BRENT", 97.0, 100.0), psig("GOLD", 4100.0, 4050.0), psig("SP500", 7700.0, 7800.0)]
         self.assertTrue(scoring.cross_signal(ps, CFG)["fired"])

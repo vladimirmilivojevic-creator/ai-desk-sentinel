@@ -45,7 +45,7 @@ def sigma_from_hourly(closes):
 
 def price_signal(inst, series, provider, second_series, sigma60, cfg, now):
     base = {"key": inst["key"], "name": inst["name"], "class": inst["class"], "theme": inst["theme"],
-            "provider": provider, "tradable": inst.get("tradable", True)}
+            "provider": provider, "tradable": inst.get("tradable", True), "signal_only": inst.get("signal_only", False)}
     if not series:
         return dict(base, stale=True, reason="nema serije")
     series = clamp_series(series, now)
@@ -239,7 +239,7 @@ def evaluate_themes(psigs, cross, head, offi, movers, gdelt, cfg):
     themes = sorted({p["theme"] for p in psigs if p["theme"] != "MACRO"})
     out = {}
     for th in themes:
-        mine = [p for p in psigs if p["theme"] == th and not p.get("stale") and p.get("trig")]
+        mine = [p for p in psigs if p["theme"] == th and not p.get("stale") and p.get("trig") and not p.get("signal_only")]
         fams, why = {}, {}
         p_rel = 0.0
         if mine:
