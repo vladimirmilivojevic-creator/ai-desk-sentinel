@@ -3,7 +3,9 @@
 set -euo pipefail
 git config user.name "sentinel-bot"
 git config user.email "sentinel-bot@users.noreply.github.com"
-git add events log 2>/dev/null || true
+for d in events log; do
+  if [ -d "$d" ]; then git add "$d"; fi
+done
 if git diff --cached --quiet; then
   echo "nema novih dogadjaja ili logova"
   exit 0
