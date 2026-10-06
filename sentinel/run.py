@@ -174,8 +174,8 @@ def run(args):
             series, provider, second = ys, "yahoo", None
         sig = scoring.price_signal(i, series, provider, second, (vol.get(key) or {}).get("sigma60"), cfg, now)
         c = ctx.get(i["hl"])
-        if c and c.get("prev_day"):
-            sig["ch24"] = pct(c["mark"], c["prev_day"])
+        if c and c.get("prev_day") and not (i.get("ctx_only") and sig.get("provider") == "yahoo"):
+            sig["ch24"] = pct(c["mark"], c["prev_day"])  # za VIX/DXY sa Yahoo-a ne mesamo skale Hyperliquid-a
         if c:
             sig["funding"] = c.get("funding")
         psigs.append(sig)
