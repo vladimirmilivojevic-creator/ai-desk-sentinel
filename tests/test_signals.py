@@ -54,6 +54,19 @@ class SignalTests(unittest.TestCase):
         self.assertEqual(s["OIL"]["h4"]["n"], 1)
         self.assertFalse(s["OIL"]["h4"]["enough"])
 
+    def test_stats_split_by_news(self):
+        st = {}
+        th_news = {"OIL": {"tier": "N2", "families": {"P": 2.0, "H": 1.0}}}
+        th_none = {"OIL": {"tier": "N1", "families": {"P": 1.0}}}
+        signals.record([psig(d="up", px=100.0)], th_news, {}, NOW, st)
+        signals.record([psig(key="WTI", d="up", px=100.0)], th_none, {}, NOW, st)
+        up = lambda c, i, m: [(NOW + 4 * 3600, 102.0), (NOW + 24 * 3600, 102.0), (NOW + 72 * 3600, 102.0)]
+        signals.update_outcomes(st, NOW + 80 * 3600, up, {"BRENT": "a", "WTI": "b"})
+        s = signals.stats(st)
+        self.assertEqual(s["OIL|sa vescu"]["h4"]["n"], 1)
+        self.assertEqual(s["OIL|bez vesti"]["h4"]["n"], 1)
+        self.assertEqual(s["SVE"]["h4"]["n"], 2)
+
     def test_candle_too_far_from_target_gives_no_outcome(self):
         st = {}
         signals.record([psig()], {"OIL": {"tier": None, "families": {}}}, {}, NOW, st)

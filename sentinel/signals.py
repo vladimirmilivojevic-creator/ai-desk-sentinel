@@ -80,7 +80,10 @@ def stats(store):
     """Agregat po temi i po (tema, potvrdjeno): n, prosek 'follow' povrata po horizontu, udeo pozitivnih."""
     rows = {}
     for sig in store.get("closed", []) + store.get("open", []):
-        for grp in (sig["theme"], "%s|%s" % (sig["theme"], "potvrdjeno" if sig["confirmed"] else "nepotvrdjeno"), "SVE"):
+        news = bool(set(sig.get("families", [])) & {"H", "M"})
+        for grp in (sig["theme"], "%s|%s" % (sig["theme"], "potvrdjeno" if sig["confirmed"] else "nepotvrdjeno"),
+                    "%s|%s" % (sig["theme"], "sa vescu" if news else "bez vesti"), "SVE|sa vescu" if news else "SVE|bez vesti",
+                    "SVE"):
             g = rows.setdefault(grp, {h: [] for h in HORIZONS})
             for h in HORIZONS:
                 v = sig["out"].get(str(h))

@@ -223,6 +223,7 @@ def run(args):
     new_events, messages = [], []
     day = dt.datetime.fromtimestamp(now, dt.timezone.utc).strftime("%Y%m%dT%H%MZ")
 
+    vol_ctx = {p["key"]: round(p["px"], 2) for p in psigs if p["key"] in ("VIX", "OVX", "GVZ") and not p.get("stale")}
     for th, ev in sorted(themes.items()):
         ev["psigs"] = [p for p in psigs if p["key"] in ev["instruments"]]
         ev["scheduled"] = flags
@@ -239,6 +240,7 @@ def run(args):
             "schema": 1, "id": eid, "ts": iso(now), "theme": th, "tier": ev["tier"], "kind": act["kind"],
             "score": ev["score"], "families": ev["families"], "why": ev["why"], "direction": ev["direction"],
             "scheduled": flags, "mode": cfg["mode"], "brain_fired": will_fire, "fire_gate": why,
+            "regime": vol_ctx,
             "instruments": [{"key": p["key"], "hl": next(i["hl"] for i in insts if i["key"] == p["key"]),
                              "px": p.get("px"), "m60": p.get("m60"), "m240": p.get("m240"), "ch24": p.get("ch24"),
                              "confirmed": p.get("confirmed"), "funding": p.get("funding"), "provider": p["provider"],
@@ -262,7 +264,6 @@ def run(args):
 
     # dnevnik signala i ishoda (ucenje bez trejdova): svaki cenovni okidac, makar ostao N1
     sstore = S.get("signals", {"open": [], "closed": [], "last": {}})
-    vol_ctx = {p["key"]: round(p["px"], 2) for p in psigs if p["key"] in ("VIX", "OVX", "GVZ") and not p.get("stale")}
     ev_by_theme = {e["theme"]: e["id"] for e in new_events}
     signals.record(psigs, themes, ev_by_theme, now, sstore, vol_ctx)
     hl_of = {i["key"]: i["hl"] for i in insts if not i.get("ctx_only") and i.get("hl")}
