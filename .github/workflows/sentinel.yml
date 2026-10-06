@@ -42,17 +42,29 @@ jobs:
           FIRE_TOKEN: ${{ secrets.FIRE_TOKEN }}
           DRY: ${{ github.event.inputs.dry }}
         run: |
-          ARGS="--state _state --root ."
+          ARGS="--state _state --root . --defer-fire"
           if [ "$DRY" = "true" ]; then ARGS="$ARGS --dry --write-events"; fi
           python -m sentinel.run $ARGS
+
+      - name: Objavi dogadjaje i dnevni log (main)
+        run: bash scripts/publish_events.sh
+
+      - name: Okini mozak (tek posle objave dogadjaja)
+        env:
+          FIRE_URL: ${{ secrets.FIRE_URL }}
+          FIRE_TOKEN: ${{ secrets.FIRE_TOKEN }}
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          DRY: ${{ github.event.inputs.dry }}
+        run: |
+          ARGS="--state _state"
+          if [ "$DRY" = "true" ]; then ARGS="$ARGS --dry"; fi
+          python -m sentinel.fire $ARGS
 
       - name: Objavi stanje (grana state)
         run: bash scripts/publish_state.sh
         env:
           GITHUB_TOKEN: ${{ github.token }}
-
-      - name: Objavi dogadjaje i dnevni log (main)
-        run: bash scripts/publish_events.sh
 
       - name: Nedeljno odrzavanje (sprecava gasenje posle 60 dana neaktivnosti)
         if: github.event_name == 'schedule'

@@ -159,14 +159,17 @@ def run(args):
     for i in insts:
         key = i["key"]
         series, provider = None, None
-        if raw.get("hl_candles_" + key) and health.usable("hl_candles_" + key):
+        ys = raw.get("yahoo_" + key) if health.usable("yahoo_" + key) else None
+        second = ys
+        if i.get("ctx_only") and ys and now - ys[-1][0] <= cfg["stale_minutes"] * 60:
+            # VIX i DXY: pravi indeks je Yahoo; xyz:VIX i xyz:DXY na Hyperliquid-u imaju drugu skalu
+            series, provider, second = ys, "yahoo", None
+        elif raw.get("hl_candles_" + key) and health.usable("hl_candles_" + key):
             series, provider = list(raw["hl_candles_" + key]), "hl-sveće"
             if ctx.get(i["hl"]):
                 series.append((now, ctx[i["hl"]]["mark"]))
         elif len(prices.get(key, [])) >= 2:
             series, provider = [(t, p) for t, p in prices[key]], "hl-bafer"
-        ys = raw.get("yahoo_" + key) if health.usable("yahoo_" + key) else None
-        second = ys
         if not series and ys:
             series, provider, second = ys, "yahoo", None
         sig = scoring.price_signal(i, series, provider, second, (vol.get(key) or {}).get("sigma60"), cfg, now)
@@ -177,7 +180,9 @@ def run(args):
             sig["funding"] = c.get("funding")
         psigs.append(sig)
 
-    vix = next((p.get("px") for p in psigs if p["key"] == "VIX" and not p.get("stale")), None)
+    # nivo VIX poredi se samo sa pravim VIX-om (Yahoo), nikad sa xyz:VIX iz bafera
+    vix = next((p.get("px") for p in psigs if p["key"] == "VIX" and not p.get("stale") and p.get("provider") == "yahoo"),
+               None)
     cross = scoring.cross_signal(psigs, cfg, vix)
 
     items = []
@@ -259,9 +264,16 @@ def run(args):
         tier = "N3" if any(e["tier"] == "N3" for e in firing) else "N2"
         payload = {"v": 1, "tier": tier, "event_ids": [e["id"] for e in firing],
                    "sha12": {e["id"]: e["sha12"] for e in firing}}
-        fire_result = notify.fire_brain(payload, dry=args.dry)
-        if fire_result[0]:
+        if getattr(args, "defer_fire", False) and not args.dry:
+            # okidanje tek POSLE objave dogadjaja na main (inace mozak moze da stigne pre fajla)
+            write_json(os.path.join(args.state, "pending_fire.json"), {"payload": payload, "created": iso(now),
+                                                                      "attempts": 0})
             fires.append(now)
+            fire_result = (True, "u redu za okidanje")
+        else:
+            fire_result = notify.fire_brain(payload, dry=args.dry)
+            if fire_result[0]:
+                fires.append(now)
         messages.append("FIRE %s: %s" % (tier, fire_result[1]))
         log.append(("fire", fire_result[1]))
     for m in messages:
@@ -390,6 +402,8 @@ def main(argv=None):
     ap.add_argument("--root", default=".")
     ap.add_argument("--dry", action="store_true", help="bez Telegram-a, bez okidanja, bez upisa dnevnog loga")
     ap.add_argument("--write-events", action="store_true")
+    ap.add_argument("--defer-fire", action="store_true",
+                    help="ne okidaj mozak u ovom koraku nego upisi pending_fire.json (okida sentinel.fire posle objave)")
     ap.add_argument("--probe", action="store_true")
     a = ap.parse_args(argv)
     if a.probe:
