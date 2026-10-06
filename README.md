@@ -17,7 +17,7 @@ Porodice signala, svaka je nezavisna: **P** cena (1, a 2 ako druga cena potvrdi 
 | N3 | ocena ≥ 4,5, cena ≥ 2× prag, ≥ 3 porodice | jak alarm, mozak sme da razmotri ulaz |
 
 Vest bez cenovnog pomaka nikad ne prelazi N1. Okidanje mozga: najviše 1 na 20 min, 4 na sat, 3 na dan; u okidaču su samo ID-jevi događaja i `sha12`, nikad tekst vesti.
-Početno je **režim senke** (`config/sentinel.json`: `"fire_enabled": false`): straža beleži i šalje Telegram, ali ne zove mozak.
+Početno je **režim senke** (`config/sentinel.json`: `"fire_enabled": false`): straža beleži i prikazuje, ali ne zove mozak. Događaji tada nose `"mode": "shadow"` i mozak ih nikad ne izvršava; sa `"fire_enabled": true` nose `"mode": "live"`. Vežbe (`drill`) i probe (`test`) se prave ručno i imaju svoja pravila u `ai-desk`.
 
 ## Fajlovi
 

@@ -239,7 +239,8 @@ def run(args):
         event = {
             "schema": 1, "id": eid, "ts": iso(now), "theme": th, "tier": ev["tier"], "kind": act["kind"],
             "score": ev["score"], "families": ev["families"], "why": ev["why"], "direction": ev["direction"],
-            "scheduled": flags, "mode": cfg["mode"], "brain_fired": will_fire, "fire_gate": why,
+            "scheduled": flags, "mode": ("live" if cfg.get("fire_enabled") else "shadow"), "brain_fired": will_fire,
+            "fire_gate": why,
             "regime": vol_ctx,
             "instruments": [{"key": p["key"], "hl": next(i["hl"] for i in insts if i["key"] == p["key"]),
                              "px": p.get("px"), "m60": p.get("m60"), "m240": p.get("m240"), "ch24": p.get("ch24"),
