@@ -10,7 +10,7 @@ import os
 import sys
 import time
 
-from . import calendar_guard, episodes, notify, scoring, sources
+from . import calendar_guard, episodes, notify, scoring, signals, sources
 from .util import SourceError, canon, iso, pct, read_json, sha12, utcnow, write_json
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -260,6 +260,22 @@ def run(args):
         recent.insert(0, {"id": eid, "ts": iso(now), "theme": th, "tier": ev["tier"], "text": messages[-1],
                           "scheduled": bool(flags)})
 
+    # dnevnik signala i ishoda (ucenje bez trejdova): svaki cenovni okidac, makar ostao N1
+    sstore = S.get("signals", {"open": [], "closed": [], "last": {}})
+    vol_ctx = {p["key"]: round(p["px"], 2) for p in psigs if p["key"] in ("VIX", "OVX", "GVZ") and not p.get("stale")}
+    ev_by_theme = {e["theme"]: e["id"] for e in new_events}
+    signals.record(psigs, themes, ev_by_theme, now, sstore, vol_ctx)
+    hl_of = {i["key"]: i["hl"] for i in insts if not i.get("ctx_only") and i.get("hl")}
+    closed_now = signals.update_outcomes(sstore, now, sources.hl_candles, hl_of)
+    if closed_now and (not args.dry or args.write_events):
+        month = dt.datetime.fromtimestamp(now, dt.timezone.utc).strftime("%Y-%m")
+        sp = os.path.join(args.root, "signals", "closed-%s.jsonl" % month)
+        os.makedirs(os.path.dirname(sp), exist_ok=True)
+        with open(sp, "ab") as f:
+            for sg in closed_now:
+                f.write(canon(sg))
+    S.data["signals"] = sstore
+
     # okidanje mozga: jedan poziv za sve nove N2+ dogadjaje ovog kruga
     firing = [e for e in new_events if e["fire"]]
     fire_result = None
@@ -343,6 +359,10 @@ def run(args):
     slim = {k: status[k] for k in ("v", "updated", "mode", "fire_enabled", "instruments", "themes", "scheduled",
                                   "degraded", "headlines_scored", "heartbeat")}
     slim["events"] = recent[:10]
+    slim["signals"] = {"open": len(sstore.get("open", [])), "closed": len(sstore.get("closed", []))}
+    write_json(os.path.join(args.state, "status", "stats.json"),
+               {"updated": iso(now), "open": len(sstore.get("open", [])), "closed": len(sstore.get("closed", [])),
+                "min_n": signals.MIN_N, "stats": signals.stats(sstore)})
     slim["sources_ok"] = sum(1 for v in health.d.values() if v["ok"])
     slim["sources_total"] = len(health.d)
     write_json(os.path.join(args.state, "status", "panel.json"), slim)

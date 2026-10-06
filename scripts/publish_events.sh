@@ -3,7 +3,7 @@
 set -euo pipefail
 git config user.name "sentinel-bot"
 git config user.email "sentinel-bot@users.noreply.github.com"
-for d in events log; do
+for d in events log signals; do
   if [ -d "$d" ]; then git add "$d"; fi
 done
 if git diff --cached --quiet; then
