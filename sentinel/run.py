@@ -323,6 +323,13 @@ def run(args):
     os.makedirs(os.path.join(args.state, "status"), exist_ok=True)
     S.save()
     write_json(os.path.join(args.state, "status", "latest.json"), status)
+    # mali fajl za Desk Park (preko read_link); bez detalja o izvorima
+    slim = {k: status[k] for k in ("v", "updated", "mode", "fire_enabled", "instruments", "themes", "scheduled",
+                                  "degraded", "headlines_scored", "heartbeat")}
+    slim["events"] = recent[:10]
+    slim["sources_ok"] = sum(1 for v in health.d.values() if v["ok"])
+    slim["sources_total"] = len(health.d)
+    write_json(os.path.join(args.state, "status", "panel.json"), slim)
     write_json(os.path.join(args.state, "heartbeat.json"), status["heartbeat"])
     summary(psigs, themes, head, movers, offi, cross, flags, deg, new_events, log, now)
     return 0
