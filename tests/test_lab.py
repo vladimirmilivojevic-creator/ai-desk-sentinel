@@ -285,6 +285,18 @@ class ForwardTests(unittest.TestCase):
             self.assertGreater(x["stop_pct"], 0)
             self.assertGreater(x["tp_pct"], x["stop_pct"])
 
+    def test_governor_demotes_known_losers_and_forward_losers(self):
+        cfg = {"live_variants": [{"id": "A"}, {"id": "B"}, {"id": "C"}, {"id": "D"}],
+               "governor": {"min_n": 30, "t_naive_max": -2.0, "bt_t_known_loser": -3.0}}
+        av = {"A": {"interval": "1h", "backtest": {"E24": {"t": -5.0}}, "tests": {}},
+              "B": {"interval": "1h", "backtest": {"E24": {"t": 0.5}}, "tests": {"E24": {"n": 40, "t_naive": -2.5, "mean": -0.4}}},
+              "C": {"interval": "1h", "backtest": {"E24": {"t": 0.5}}, "tests": {"E24": {"n": 10, "t_naive": -9.0, "mean": -0.4}}},
+              "D": {"interval": "1d", "backtest": {"E7": {"t": 2.9}}, "tests": {"E7": {"n": 50, "t_naive": 1.0, "mean": 0.3}}}}
+        out = forward.governor(cfg, av)
+        self.assertEqual(sorted(out), ["A", "B"])
+        self.assertEqual(out["A"]["reason"], "istorija jasno gubi")
+        self.assertEqual(out["B"]["reason"], "unapred jasno gubi")
+
     def test_failure_never_raises_from_main(self):
         data.fetch_candles = lambda *a, **k: (_ for _ in ()).throw(RuntimeError("mreza"))
         sys.argv = ["lab.forward", "--state", self.tmp.name]

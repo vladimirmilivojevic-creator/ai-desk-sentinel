@@ -193,42 +193,48 @@
   {
    "id": "D_MOM_L7_z0.5",
    "hold_hours": 168,
-   "why": "dnevni momentum 7 d: najbolji istorijski dokaz (E7 t=2,95, slabo; nije potvrdjeno)"
+   "why": "dnevni momentum 7 d: najbolji istorijski dokaz (preko korpe t=2,95, slabo; nije potvrdjeno)"
   },
   {
    "id": "D_CSM_mom_L7",
    "hold_hours": 168,
-   "why": "preseka po grupi, momentum 7 d (E7 t=2,65, slabo)"
+   "why": "poredak unutar grupe, momentum 7 d (preko korpe t=2,65, slabo)"
   },
   {
-   "id": "CSM_rev_L24",
+   "id": "FADE_L24_z2.5",
    "hold_hours": 24,
-   "why": "istrazivanje: obrtanje 24 h unutar grupe (nema dokaza, trosak ucenja)"
+   "why": "obrtanje posle ekstremnog 24 h pomaka: jedino satno pravilo sa pozitivnom sredinom u obe polovine (t=0,94, n=52, ne dokaz)"
   },
   {
-   "id": "RSIFADE_75",
+   "id": "BTCLEAD_z2.0",
    "hold_hours": 24,
-   "why": "istrazivanje: RSI ekstrem (nema dokaza)"
+   "why": "alt koji kasni za BTC skokom (t=0,45, retko)"
+  },
+  {
+   "id": "RSIFADE_80",
+   "hold_hours": 24,
+   "why": "istrazivanje: RSI ekstrem 80/20 (t=-0,54: nema dokaza, ocekivan trosak oko -0,2%)"
+  },
+  {
+   "id": "FADE_L4_z2.5",
+   "hold_hours": 24,
+   "why": "istrazivanje: obrtanje posle ekstremnog 4 h pomaka (t=-1,05)"
+  },
+  {
+   "id": "MOM_L4_z2.5",
+   "hold_hours": 24,
+   "why": "istrazivanje: prati ekstremni 4 h pomak (t=-1,06)"
   },
   {
    "id": "FADE_L24_z1.5",
    "hold_hours": 24,
-   "why": "istrazivanje: obrtanje posle 24 h pomaka (nema dokaza)"
-  },
-  {
-   "id": "DON_fade_24",
-   "hold_hours": 24,
-   "why": "istrazivanje: obrtanje posle probijanja 24 h raspona (nema dokaza)"
-  },
-  {
-   "id": "MOM_L4_z1.5",
-   "hold_hours": 24,
-   "why": "istrazivanje: prati 4 h pomak (nema dokaza)"
+   "why": "istrazivanje: obrtanje posle 24 h pomaka (t=-1,09)"
   }
  ],
  "governor": {
   "min_n": 30,
   "t_naive_max": -2.0,
-  "_comment": "varijanta se automatski gasi za zivo trgovanje ako ima bar min_n ishoda i naivno t <= t_naive_max uz negativnu srednju (E24 ili E7)"
+  "bt_t_known_loser": -3.0,
+  "_comment": "varijanta se gasi za zivo trgovanje (1) ako je istorijski t preko korpe <= bt_t_known_loser (poznat gubitnik, nema informacije u trgovanju njime) ili (2) ako unapred ima bar min_n ishoda, naivno t <= t_naive_max i negativnu sredinu (E24 ili E7)"
  }
 }

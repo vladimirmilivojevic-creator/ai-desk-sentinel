@@ -14,7 +14,7 @@ from .indicators import Series
 HOUR = 3600000
 DAY = 86400000
 WARM = 205
-REV = 3  # povecaj kad se promeni izlaz/logika: laboratorija se tada odmah ponovo racuna u istom satu
+REV = 4  # povecaj kad se promeni izlaz/logika: laboratorija se tada odmah ponovo racuna u istom satu
 HOLD_HOURS_1H = 24
 HOLD_HOURS_1D = 168
 
@@ -142,48 +142,26 @@ def run_interval(cfg, cands, t0, now_ms, interval, log):
 
 
 def governor(cfg, all_vars):
-    """Automatsko gasenje zivih varijanti koje unapred jasno gube. Samo smanjuje rizik; ukljucivanje ide iskljucivo kroz config/lab.json."""
+    """Automatsko gasenje zivih varijanti: (1) istorijski gubitnik (t preko korpe <= bt_t_known_loser): trgovanje njime ne daje novu
+    informaciju; (2) unapred jasno gubi (bar min_n ishoda, naivno t <= t_naive_max, negativna sredina). Samo smanjuje rizik;
+    ukljucivanje ide iskljucivo kroz config/lab.json."""
     g = cfg.get("governor", {})
     min_n, tmax = int(g.get("min_n", 30)), float(g.get("t_naive_max", -2.0))
+    loser = g.get("bt_t_known_loser")
     out = {}
     for x in cfg.get("live_variants", []):
         v = all_vars.get(x["id"])
         if not v:
             continue
         key = "E7" if v.get("interval") == "1d" else "E24"
+        b = v.get("backtest", {}).get(key, {})
+        if loser is not None and b.get("t") is not None and b["t"] <= float(loser):
+            out[x["id"]] = {"reason": "istorija jasno gubi", "bt_t": b["t"], "test": key}
+            continue
         s = v.get("tests", {}).get(key, {})
         if s.get("n", 0) >= min_n and s.get("t_naive") is not None and s["t_naive"] <= tmax and s.get("mean", 0) < 0:
-            out[x["id"]] = {"n": s["n"], "mean": s["mean"], "t_naive": s["t_naive"], "test": key}
+            out[x["id"]] = {"reason": "unapred jasno gubi", "n": s["n"], "mean": s["mean"], "t_naive": s["t_naive"], "test": key}
     return out
-
-
-def panel_summary(cfg, stats_obj, bt):
-    """Mali sazetak (nekoliko KB) za panel: zive varijante, najbolji istorijski dokazi i brojke unapred."""
-    why = {x["id"]: x.get("why", "") for x in cfg.get("live_variants", [])}
-    all_vars = stats_obj["variants"]
-
-    def prim(vid, interval):
-        return "E7" if interval == "1d" else "E24"
-
-    live = []
-    for vid, hold in sorted(live_config(cfg).items()):
-        v = all_vars.get(vid, {})
-        key = prim(vid, v.get("interval"))
-        live.append({"id": vid, "hold_hours": hold, "why": why.get(vid, ""), "bt": v.get("backtest", {}).get(key, {}),
-                     "fwd": v.get("tests", {}).get(key, {}), "signals": v.get("signals", 0), "test": key})
-    ranked = []
-    for vid, tests in bt.items():
-        for test, r in tests.items():
-            if test.startswith("E") and r.get("t") is not None and r.get("n", 0) >= 30:
-                ranked.append({"id": vid, "test": test, "n": r["n"], "mean": r["mean"], "t": r["t"], "t_train": r.get("t_train"),
-                               "t_test": r.get("t_test"), "verdict": r["verdict"]})
-    ranked.sort(key=lambda x: -x["t"])
-    counts = {}
-    for r in ranked:
-        counts[r["verdict"]] = counts.get(r["verdict"], 0) + 1
-    return {"updated_utc": stats_obj["updated_utc"], "t0_utc": stats_obj["t0_utc"], "hours_running": stats_obj["hours_running"],
-            "universe_n": stats_obj["universe_n"], "totals": stats_obj["totals"], "cost_pct": stats_obj["cost_pct"], "live": live,
-            "top_backtest": ranked[:10], "backtest_counts": counts, "demoted": stats_obj.get("demoted", {})}
 
 
 def load_backtest_summary(root):
