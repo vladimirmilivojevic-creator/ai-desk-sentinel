@@ -1,0 +1,58 @@
+[
+ {
+  "id": "HYP-LS-1",
+  "sample": "2022-09-01..2024-11-30",
+  "n_days": 718,
+  "net_sharpe": 0.4,
+  "net_t": 0.56,
+  "ann_return_pct": 8.35,
+  "max_dd_pct": -18.82,
+  "sharpe_taker_cost": 0.724,
+  "by_year": {
+   "2022": {
+    "sharpe": 6.77,
+    "ann_return_pct": 71.25,
+    "n": 18
+   },
+   "2023": {
+    "sharpe": -0.61,
+    "ann_return_pct": -10.55,
+    "n": 365
+   },
+   "2024": {
+    "sharpe": 1.04,
+    "ann_return_pct": 25.57,
+    "n": 335
+   }
+  },
+  "confound": [
+   {
+    "feature": "top_acc_ls",
+    "sign": -1,
+    "H": 7,
+    "alpha_ann_pct": 0.67,
+    "t_alpha": 0.05,
+    "r2": 0.243,
+    "beta": {
+     "nizak_vol": 0.021,
+     "mom30": 0.229,
+     "mom90": 0.186
+    },
+    "days": 718
+   }
+  ],
+  "netted": {
+   "sharpe": 0.754,
+   "t": 1.06,
+   "sharpe_taker_cost": 0.879,
+   "turnover_day": 0.11
+  },
+  "members_active": 44,
+  "checks": {
+   "net_sharpe": false,
+   "net_t": false,
+   "alpha_positive": true
+  },
+  "passed": false
+ }
+]
