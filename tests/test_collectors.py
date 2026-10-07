@@ -161,6 +161,23 @@ class ParseTests(unittest.TestCase):
         self.assertIsNone(r["ETH"])
 
 
+    def test_coinalyze_prefers_aggregated_symbols_and_few_per_call(self):
+        seen = []
+
+        def fake(url, **k):
+            seen.append(url)
+            if "future-markets" in url:
+                return [{"symbol": "BTCUSDT_PERP.A", "base_asset": "BTC", "quote_asset": "USDT", "is_perpetual": True}] +                        [{"symbol": "BTCUSDT_PERP.%s" % c, "base_asset": "BTC", "quote_asset": "USDT", "is_perpetual": True} for c in "BCDEFGH"]
+            if "open-interest" in url or "funding-rate" in url:
+                return [{"symbol": "BTCUSDT_PERP.A", "value": 5.0}]
+            return [{"symbol": "BTCUSDT_PERP.A", "history": [{"t": 1, "l": 1.0, "s": 2.0, "r": 1.5}]}]
+        netutil.get_json = fake
+        r = C.collect_coinalyze("K", NOW, coins=("BTC",), pause=0)
+        calls = [u for u in seen if "symbols=" in u]
+        self.assertTrue(calls and all("symbols=BTCUSDT_PERP.A&" in u or u.endswith("symbols=BTCUSDT_PERP.A") for u in calls), calls)
+        self.assertEqual(r["BTC"]["symbols"], ["BTCUSDT_PERP.A"])
+        self.assertEqual(r["BTC"]["oi_usd"], 5.0)
+
     def test_coinalyze_total_failure_is_a_source_error_without_the_key(self):
         def fake(url, **k):
             if "future-markets" in url:
@@ -249,6 +266,8 @@ class OrchestratorTests(unittest.TestCase):
         self.assertIn("derivs_coinalyze", h)
         self.assertIsNotNone(h["derivs_coinalyze"]["last_error"])  # nema kljuca: zapisano, ne izmisljeno
         self.assertIsNone(h["market"]["last_error"])
+        self.assertEqual(b["key_sources"]["coinalyze"], "ceka kljuc")
+        self.assertIn("cz_btc_lsr", b["scalars"])
 
     def test_new_coinalyze_key_does_not_wait_for_the_next_hour(self):
         collect.run(self.tmp.name, now_ms=NOW, log=lambda *_: None, env={})  # bez kljuca: greska zapisana

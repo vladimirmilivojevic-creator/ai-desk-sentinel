@@ -168,7 +168,7 @@ def collect_okx_lsr(coins=OKX_COINS):
     return out
 
 
-def collect_coinalyze(key, now_ms, coins=COINALYZE_COINS, pause=1.7):
+def collect_coinalyze(key, now_ms, coins=COINALYZE_COINS, pause=2.2):
     """Agregirani OI, fonding, likvidacije i long/short (40 poziva/min). Oblik odgovora je po dokumentaciji; proverava se kad stigne kljuc."""
     if not key:
         raise netutil.NetError("nema kljuca")
@@ -183,11 +183,13 @@ def collect_coinalyze(key, now_ms, coins=COINALYZE_COINS, pause=1.7):
     t1 = int(now_ms / 1000)
     t0 = t1 - 26 * 3600
     for coin in coins:
-        syms = ",".join(by_base.get(coin, [])[:6])
+        allsyms = by_base.get(coin, [])
+        chosen = [x for x in allsyms if x.endswith(".A")] or allsyms  # agregirani simboli (.A) vec sabiraju sve berze: nema dvostrukog racunanja
+        syms = ",".join(chosen[:3])  # manje simbola po pozivu: limit od 40 poziva u minuti se racuna i po simbolu (429 sa 6)
         if not syms:
             out[coin] = None
             continue
-        row = {}
+        row = {"symbols": chosen[:3]}
         try:
             oi = netutil.get_json(base + "/open-interest?symbols=%s&convert_to_usd=true" % syms, headers=hdr, tries=3, pause=pause)
             row["oi_usd"] = round(sum(float(x.get("value") or 0.0) for x in oi), 0)

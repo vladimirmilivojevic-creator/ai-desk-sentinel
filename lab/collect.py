@@ -78,6 +78,9 @@ def scalars(files):
         "vix": g(mac, "yahoo", "VIX", "last"), "vix3m": g(mac, "yahoo", "VIX3M", "last"), "dxy": g(mac, "yahoo", "DXY", "last"),
         "hy_oas": g(mac, "fred", "BAMLH0A0HYM2", "last"), "fear_greed": g(sen, "fear_greed", "last"),
         "stable_chg_7d": g(sen, "stablecoins", "chg_7d_pct"), "btc_smart_net_share": g(sm, "coins", "BTC", "net_share"),
+        "cz_btc_oi_usd": g(dv, "coinalyze", "BTC", "oi_usd"), "cz_btc_funding": g(dv, "coinalyze", "BTC", "funding_mean"),
+        "cz_btc_liq_long_24h": g(dv, "coinalyze", "BTC", "liq_long_24h"), "cz_btc_liq_short_24h": g(dv, "coinalyze", "BTC", "liq_short_24h"),
+        "cz_btc_lsr": g(dv, "coinalyze", "BTC", "lsr_last"),
     }
 
 
@@ -124,6 +127,15 @@ def regime(files):
     return {"label": label, "score": score, "components": comp, "note": "heuristika, ne dokaz"}
 
 
+def _key_status(h):
+    if not h:
+        return "nepoznato"
+    e = h.get("last_error")
+    if not e:
+        return "radi (poslednji uspeh %s)" % (h.get("last_ok_utc") or "-")
+    return "ceka kljuc" if "nema kljuca" in str(e) else "greska: %s" % e
+
+
 def build_briefing(files, z, now_ms, registry=None, health=None):
     cal = (files.get("calendar") or {}).get("data", {})
     mk = (files.get("market") or {}).get("data", {})
@@ -141,7 +153,8 @@ def build_briefing(files, z, now_ms, registry=None, health=None):
           "macro": {k: v for k, v in ((files.get("macro") or {}).get("data", {}).get("yahoo") or {}).items() if v},
           "sentiment": (files.get("sentiment") or {}).get("data", {}), "costliest_to_trade": worst,
           "universe_liquid_n": len(uni.get("liquid", [])) if isinstance(uni, dict) else None,
-          "registry": registry or {}, "source_health_failing": {k: v["last_error"] for k, v in (health or {}).items() if v.get("last_error")}}
+          "registry": registry or {}, "source_health_failing": {k: v["last_error"] for k, v in (health or {}).items() if v.get("last_error")},
+          "key_sources": {"coinalyze": _key_status((health or {}).get("derivs_coinalyze")), "finnhub": cal.get("finnhub") or "nepoznato"}}
     raw = json.dumps(bf, ensure_ascii=False, separators=(",", ":"))
     if len(raw.encode("utf-8")) > BRIEFING_MAX_BYTES:  # skrati najvece sekcije, nikad ne seci usred JSON-a
         bf["sentiment"] = {k: v for k, v in bf["sentiment"].items() if k != "wiki_attention"}
