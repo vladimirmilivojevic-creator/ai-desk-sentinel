@@ -7,11 +7,14 @@ import statistics as st
 import sys
 import time
 
-from . import backtest, collectors as C
+from . import backtest, binance_backfill as bb, collectors as C, collectors2 as C2, featstore
 
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 HOUR = 3600000
 DAY = 86400000
 HISTORY_KEEP = 24 * 45
+RETRY_MS = 3 * HOUR
+HOURLY_ROWS = 24 * 7  # satni redovi samo za poslednjih 7 dana, starije svodimo na jedan red dnevno (ocenjivanje prognoza koristi satne redove)
 BRIEFING_MAX_BYTES = 12_000
 
 
@@ -127,6 +130,17 @@ def regime(files):
     return {"label": label, "score": score, "components": comp, "note": "heuristika, ne dokaz"}
 
 
+def extra_block(files):
+    """Sazetak novih izvora za AI (puna tabela je u data/features.json)."""
+    d = lambda k: ((files.get(k) or {}).get("data") or {})  # noqa: E731
+    kl = d("kalshi")
+    cf_ = {k: v.get("pctl") for k, v in d("cftc").items() if v}
+    ll = d("llama")
+    return {"fed": {k: kl.get(k) for k in ("event", "days_to_meeting", "modal_level", "p_up", "p_down", "expected_rate")} if kl else None,
+            "cftc_pctl_3y": cf_ or None, "dex_vol_chg_7d": (ll.get("dex") or {}).get("chg_7d"), "bn": (d("bn_daily").get("agg") or None),
+            "okx_btc": (d("okx_flow").get("BTC") or None)}
+
+
 def _key_status(h):
     if not h:
         return "nepoznato"
@@ -136,7 +150,18 @@ def _key_status(h):
     return "ceka kljuc" if "nema kljuca" in str(e) else "greska: %s" % e
 
 
-def build_briefing(files, z, now_ms, registry=None, health=None):
+def compact_history(rows, now_ms):
+    """Satni redovi za poslednjih HOURLY_ROWS sati, a starije jedan red po danu (poslednji u danu): istorija ostaje mala, a z-skorovi dugi."""
+    rows = sorted(rows, key=lambda r: r.get("t", 0))
+    cut = (now_ms // HOUR) * HOUR - HOURLY_ROWS * HOUR
+    old, recent = [r for r in rows if r.get("t", 0) < cut], [r for r in rows if r.get("t", 0) >= cut]
+    daily = {}
+    for r in old:
+        daily[iso(r["t"])[:10]] = r  # poslednji red tog dana pobedjuje
+    return list(daily.values())[-(HISTORY_KEEP // 24):] + recent
+
+
+def build_briefing(files, z, now_ms, registry=None, health=None, n_features=None, evidence=None):
     cal = (files.get("calendar") or {}).get("data", {})
     mk = (files.get("market") or {}).get("data", {})
     uni = (files.get("universe") or {}).get("data", {})
@@ -154,9 +179,13 @@ def build_briefing(files, z, now_ms, registry=None, health=None):
           "sentiment": (files.get("sentiment") or {}).get("data", {}), "costliest_to_trade": worst,
           "universe_liquid_n": len(uni.get("liquid", [])) if isinstance(uni, dict) else None,
           "registry": registry or {}, "source_health_failing": {k: v["last_error"] for k, v in (health or {}).items() if v.get("last_error")},
-          "key_sources": {"coinalyze": _key_status((health or {}).get("derivs_coinalyze")), "finnhub": cal.get("finnhub") or "nepoznato"}}
+          "key_sources": {"coinalyze": _key_status((health or {}).get("derivs_coinalyze")), "finnhub": cal.get("finnhub") or "nepoznato"},
+          "n_features": n_features, "extra": extra_block(files), "evidence": evidence}
     raw = json.dumps(bf, ensure_ascii=False, separators=(",", ":"))
     if len(raw.encode("utf-8")) > BRIEFING_MAX_BYTES:  # skrati najvece sekcije, nikad ne seci usred JSON-a
+        bf["extra"] = {k: v for k, v in bf["extra"].items() if k in ("fed",)}
+        if bf.get("evidence"):
+            bf["evidence"] = dict(bf["evidence"], findings=bf["evidence"].get("findings", [])[:6])
         bf["sentiment"] = {k: v for k, v in bf["sentiment"].items() if k != "wiki_attention"}
         bf["macro"] = dict(list(bf["macro"].items())[:8])
         bf["smart_money_top"] = dict(list(bf["smart_money_top"].items())[:4])
@@ -182,7 +211,8 @@ def run(state_dir, now_ms=None, force=False, log=print, env=None):
     cfg, _ = backtest.load_config()
     syms = [u["sym"] for u in cfg["universe"]]
     stocks = [s for s in syms if s.startswith("xyz:")]
-    files = {n: _load(os.path.join(data_dir, n + ".json"), None) for n in ("market", "derivs", "macro", "sentiment", "calendar", "smart_money", "universe")}
+    files = {n: _load(os.path.join(data_dir, n + ".json"), None) for n in ("market", "derivs", "macro", "sentiment", "calendar", "smart_money", "universe",
+                                                                         "cftc", "llama", "kalshi", "okx_flow", "bn_daily", "onchain", "gdelt")}
     # novi kljuc (Coinalyze) ne ceka sledeci sat: ako je zadnja greska bila "nema kljuca", a kljuc sada postoji, odmah ponovo
     key_just_added = bool(env.get("COINALYZE_API_KEY")) and "nema kljuca" in str((health.get("derivs_coinalyze") or {}).get("last_error") or "")
     hourly = force or key_just_added or due(meta, "market", now_ms, HOUR)
@@ -218,6 +248,8 @@ def run(state_dir, now_ms=None, force=False, log=print, env=None):
         files["derivs"] = run_task("derivs", derivs, data_dir, meta, health, now_ms, log)
         yahoo = run_task("macro_yahoo", C.collect_yahoo, data_dir, meta, health, now_ms, log)
         files["calendar"] = run_task("calendar", lambda: C.collect_calendar(now_ms, stocks, env.get("FINNHUB_API_KEY")), data_dir, meta, health, now_ms, log)
+        files["okx_flow"] = run_task("okx_flow", C2.collect_okx_flow, data_dir, meta, health, now_ms, log)
+        files["kalshi"] = run_task("kalshi", lambda: C2.collect_kalshi_fed(now_ms), data_dir, meta, health, now_ms, log)
     else:
         yahoo = _load(os.path.join(data_dir, "macro_yahoo.json"), None)
     fred = None
@@ -232,18 +264,31 @@ def run(state_dir, now_ms=None, force=False, log=print, env=None):
         files["sentiment"] = run_task("sentiment", lambda: C.collect_sentiment(now_ms), data_dir, meta, health, now_ms, log)
     if four_h:
         files["smart_money"] = run_task("smart_money", lambda: C.collect_smart_money(syms), data_dir, meta, health, now_ms, log)
+    # novi izvori (v2): svaki sa sopstvenim ritmom, greska jednog nikad ne smeta ostalima
+    bn_syms = {x: bb.bn_symbol(x) for x in syms if not x.startswith("xyz:") and bb.bn_symbol(x)}
+    for name, every, fn in (("llama", 6 * HOUR, lambda: C2.collect_llama_activity(now_ms)),
+                            ("bn_daily", 6 * HOUR, lambda: C2.collect_binance_daily(bn_syms, os.path.join(data_dir, "bn_raw.json"), now_ms)),
+                            ("cftc", None, lambda: C2.collect_cftc(now_ms)), ("onchain", None, lambda: C2.collect_onchain(now_ms)),
+                            ("gdelt", None, lambda: C2.collect_gdelt(now_ms))):
+        tried = meta.setdefault("tried", {})
+        if force or ((due(meta, name, now_ms, every) if every else due(meta, name, now_ms, daily=True)) and now_ms - tried.get(name, 0) >= RETRY_MS):
+            tried[name] = now_ms  # neuspeh se ponavlja najranije posle 3 h (ne svakih 5 minuta)
+            files[name] = run_task(name, fn, data_dir, meta, health, now_ms, log)
     # istorija skalara (jedan red po satu) i z-skorovi
     hist_path = os.path.join(data_dir, "history.json")
     hist = _load(hist_path, [])
-    row = dict(scalars(files), t=(now_ms // HOUR) * HOUR)
+    feats, fmeta = featstore.flatten(files, scalars(files), now_ms)
+    row = dict(feats, t=(now_ms // HOUR) * HOUR)
     mk = (files.get("market") or {}).get("data", {}) or {}
     # cene (marks) univerzuma po satu: sluze za ocenjivanje AI prognoza bez ikakvog dodatnog poziva
     row["m"] = {s: round(mk[s]["ctx"]["mark"], 6) for s in syms if mk.get(s) and mk[s].get("ctx")}
     prior = [h for h in hist if h.get("t") != row["t"]]
     z = zscores({k: v for k, v in row.items() if k not in ("t", "m")}, prior)
-    hist = (prior + [row])[-HISTORY_KEEP:]
+    hist = compact_history(prior + [row], now_ms)
     _save(hist_path, hist)
-    briefing = build_briefing(files, z, now_ms, registry_summary(state_dir), health)
+    _save(os.path.join(data_dir, "features.json"), {"updated_utc": iso(now_ms), "n": len(feats), "features": {k: {"v": v, "z": z.get(k)} for k, v in feats.items()}, "meta": fmeta})
+    _save(os.path.join(data_dir, "instrument_features.json"), {"updated_utc": iso(now_ms), "instruments": featstore.instrument_features(mk)})
+    briefing = build_briefing(files, z, now_ms, registry_summary(state_dir), health, n_features=len(feats), evidence=_load(os.path.join(ROOT, "config", "evidence.json"), None))
     _save(os.path.join(data_dir, "briefing.json"), briefing)
     _save(os.path.join(data_dir, "health.json"), health)
     _save(os.path.join(data_dir, "meta.json"), meta)

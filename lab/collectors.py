@@ -20,9 +20,11 @@ FRED_SERIES = {
     "DGS2": "prinos 2g", "DGS10": "prinos 10g", "T10Y2Y": "krivulja 10g-2g", "T10Y3M": "krivulja 10g-3m",
     "BAMLH0A0HYM2": "kreditni raspon HY", "NFCI": "finansijski uslovi", "WALCL": "bilans Fed", "RRPONTSYD": "reverse repo",
     "VIXCLS": "VIX", "VXVCLS": "VIX 3m", "DTWEXBGS": "dolar (siroki)", "T5YIE": "ocekivana inflacija 5g",
+    "WTREGEN": "Trezor racun TGA", "STLFSI4": "finansijski stres", "DFII10": "realni prinos 10g", "BAMLC0A0CM": "kreditni raspon IG",
 }
 YAHOO = {"^VIX": "VIX", "^VIX3M": "VIX3M", "^SKEW": "SKEW", "DX-Y.NYB": "DXY", "^TNX": "prinos 10g", "^GSPC": "SP500",
-         "^NDX": "Nasdaq100", "GC=F": "zlato", "CL=F": "WTI", "HG=F": "bakar", "HYG": "HYG", "LQD": "LQD", "TLT": "TLT"}
+         "^NDX": "Nasdaq100", "GC=F": "zlato", "CL=F": "WTI", "HG=F": "bakar", "HYG": "HYG", "LQD": "LQD", "TLT": "TLT",
+         "^MOVE": "MOVE", "^VVIX": "VVIX", "ES=F": "ES_fjucers", "NQ=F": "NQ_fjucers", "JPY=X": "USDJPY", "KRE": "KRE"}
 WIKI = ("Bitcoin", "Ethereum", "Recession", "Inflation", "Stock_market_crash")
 OKX_COINS = ("BTC", "ETH", "SOL", "XRP", "DOGE")
 COINALYZE_COINS = ("BTC", "ETH", "SOL", "XRP", "HYPE", "DOGE", "BNB", "SUI")
@@ -66,10 +68,12 @@ def book_metrics(book, notionals=NOTIONALS):
             tot += px * float(lv["sz"])
         return tot
 
+    bd, ad = depth(bids, -1), depth(asks, 1)
     return {"mid": mid, "spread_bps": round((ba - bb) / mid * 1e4, 3),
             "slip_buy_bps": {str(n): slip(asks, n, 1) for n in notionals},
             "slip_sell_bps": {str(n): slip(bids, n, -1) for n in notionals},
-            "depth_usd_1pct": round(min(depth(asks, 1), depth(bids, -1)), 0)}
+            "depth_usd_1pct": round(min(ad, bd), 0),
+            "imb_1pct": round((bd - ad) / (bd + ad), 4) if (bd + ad) > 0 else None}  # >0: vise kupaca nego prodavaca u 1% od sredine
 
 
 def hl_contexts():

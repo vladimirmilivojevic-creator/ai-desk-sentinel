@@ -1,0 +1,58 @@
+{
+ "generated_utc": "2026-10-07T16:00:48Z",
+ "tests": 117,
+ "fdr_pass": 0,
+ "null_max_abs_t": 2.94,
+ "null_share_gt2": 0.026,
+ "findings": [
+  {
+   "strategy": "csm_mom14",
+   "var": "t5yie",
+   "diff": 0.2087,
+   "t": 2.28,
+   "fdr": false,
+   "high_better": true
+  },
+  {
+   "strategy": "csm_mom7",
+   "var": "t5yie",
+   "diff": 0.1525,
+   "t": 2.24,
+   "fdr": false,
+   "high_better": true
+  },
+  {
+   "strategy": "csm_mom7",
+   "var": "nfci",
+   "diff": -0.1259,
+   "t": -2.23,
+   "fdr": false,
+   "high_better": false
+  },
+  {
+   "strategy": "csm_mom7",
+   "var": "stable_c30",
+   "diff": 0.1338,
+   "t": 2.23,
+   "fdr": false,
+   "high_better": true
+  },
+  {
+   "strategy": "csm_mom14",
+   "var": "stable_c30",
+   "diff": 0.182,
+   "t": 2.19,
+   "fdr": false,
+   "high_better": true
+  },
+  {
+   "strategy": "csm_mom7",
+   "var": "move",
+   "diff": -0.1079,
+   "t": -2.03,
+   "fdr": false,
+   "high_better": false
+  }
+ ],
+ "note": "Nalaz nije dokaz: sum sam daje |t|>2 u udelu null_share_gt2 testova."
+}

@@ -7,7 +7,7 @@ import time
 import unittest
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
-from lab import backtest, collect, collectors as C, netutil  # noqa: E402
+from lab import backtest, collect, collectors as C, collectors2 as C2, netutil  # noqa: E402
 
 NOW = int(time.time() * 1000)
 
@@ -220,6 +220,15 @@ class OrchestratorTests(unittest.TestCase):
         for n in ("hl_contexts", "collect_market", "collect_deribit", "collect_okx_lsr", "collect_coinalyze", "collect_yahoo", "collect_fred",
                   "collect_sentiment", "collect_calendar", "collect_smart_money"):
             self._saved[n] = getattr(C, n)
+        self._saved2 = {n: getattr(C2, n) for n in ("collect_cftc", "collect_llama_activity", "collect_kalshi_fed", "collect_okx_flow", "collect_binance_daily",
+                                                     "collect_onchain", "collect_gdelt")}
+        C2.collect_cftc = lambda *a, **k: {"btc": {"net_pct_oi": -30.0, "pctl": 90.0, "chg_1w": 1.0}}
+        C2.collect_llama_activity = lambda *a, **k: {"dex": {"total24h": 9e9, "chg_1d": 1.0, "chg_7d": -5.0, "chg_1m": 2.0, "hyperliquid_24h": 1e8}, "fees": {"total24h": 7e7, "chg_7d": 1.0, "chg_1m": 2.0}}
+        C2.collect_kalshi_fed = lambda *a, **k: {"modal_level": 3.75, "p_up": 0.17, "p_down": 0.01, "expected_rate": 4.04, "days_to_meeting": 20.0, "event": "KXFED-26OCT"}
+        C2.collect_okx_flow = lambda *a, **k: {"BTC": {"taker_ratio_24h": 0.9, "oi_chg_24h_pct": -1.0, "funding_8h": 0.00001}}
+        C2.collect_binance_daily = lambda *a, **k: {"asof": "2026-10-06", "agg": {"glob_ls_med": 1.6, "oi_chg_7_med": 2.0}, "coins": {"BTC": {"glob_ls": 1.7, "oi_chg_7": 3.0}}}
+        C2.collect_onchain = lambda *a, **k: {"btc_adr_z": 0.1, "btc_tx_z": -0.2, "btc_adr_chg_7d_pct": -3.0}
+        C2.collect_gdelt = lambda *a, **k: (_ for _ in ()).throw(netutil.NetError("limit"))
         self.calls = {}
         ctx = {"BTC": {"mark": 100.0, "funding_h": 0.00001, "oi_usd": 5e8, "premium": 0.0, "vol24": 1e9},
                "xyz:NVDA": {"mark": 200.0, "funding_h": 0.0, "oi_usd": 2e7, "premium": 0.0, "vol24": 5e6}}
@@ -247,6 +256,8 @@ class OrchestratorTests(unittest.TestCase):
         backtest.load_config = self._lc
         for n, f in self._saved.items():
             setattr(C, n, f)
+        for n, f in self._saved2.items():
+            setattr(C2, n, f)
         self.tmp.cleanup()
 
     def test_full_run_writes_files_briefing_and_health(self):
@@ -281,6 +292,16 @@ class OrchestratorTests(unittest.TestCase):
         self.assertIsNone(h["derivs_coinalyze"]["last_error"])
         collect.run(self.tmp.name, now_ms=NOW + 180_000, log=lambda *_: None, env={"COINALYZE_API_KEY": "K"})
         self.assertEqual(self.calls["market"], n + 1)  # greska je ociscena: opet se ceka sat
+
+    def test_failing_daily_source_is_not_retried_every_run(self):
+        n = []
+        C2.collect_gdelt = lambda *a, **k: (n.append(1), (_ for _ in ()).throw(netutil.NetError("limit")))[1]
+        collect.run(self.tmp.name, now_ms=NOW, log=lambda *_: None, env={})
+        collect.run(self.tmp.name, now_ms=NOW + 300_000, log=lambda *_: None, env={})
+        collect.run(self.tmp.name, now_ms=NOW + 600_000, log=lambda *_: None, env={})
+        self.assertEqual(len(n), 1)  # posle neuspeha: pauza 3 h
+        collect.run(self.tmp.name, now_ms=NOW + 3 * 3600_000 + 60_000, log=lambda *_: None, env={})
+        self.assertEqual(len(n), 2)
 
     def test_same_hour_is_skipped_but_force_runs_again(self):
         collect.run(self.tmp.name, now_ms=NOW, log=lambda *_: None, env={})
