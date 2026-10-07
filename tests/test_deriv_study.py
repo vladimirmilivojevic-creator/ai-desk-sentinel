@@ -143,6 +143,36 @@ class StudyTests(unittest.TestCase):
         self.assertTrue(best["fdr_pass"])
         self.assertIn("osobina", ds.to_markdown(res))
 
+    def test_ols_recovers_coefficients(self):
+        rnd = random.Random(3)
+        X = [[rnd.gauss(0, 1), rnd.gauss(0, 1)] for _ in range(600)]
+        y = [0.5 + 2.0 * a - 1.0 * b + rnd.gauss(0, 0.1) for a, b in X]
+        beta, r2, ta = ds.ols(y, X)
+        self.assertAlmostEqual(beta[0], 0.5, delta=0.03)
+        self.assertAlmostEqual(beta[1], 2.0, delta=0.03)
+        self.assertAlmostEqual(beta[2], -1.0, delta=0.03)
+        self.assertGreater(r2, 0.99)
+        self.assertGreater(ta, 20)
+
+    def test_ols_no_alpha_when_pure_factor(self):
+        rnd = random.Random(4)
+        X = [[rnd.gauss(0, 1)] for _ in range(800)]
+        y = [1.5 * a + rnd.gauss(0, 0.5) for (a,) in X]
+        beta, _, ta = ds.ols(y, X)
+        self.assertLess(abs(ta), 3.0)
+
+    def test_confound_check_structure(self):
+        series, bnmap = self.world(n=500)
+        members, tables = ds.build_members(series, bnmap)
+        out = ds.confound_check(members, tables, T0 + 150 * DAY, [("glob_ls", 1, 3), ("oi_chg_3", 1, 3)])
+        self.assertEqual(len(out), 2)
+        for c in out:
+            self.assertEqual(set(c["beta"]), {"nizak_vol", "mom30", "mom90"})
+            self.assertGreater(c["days"], 100)
+        md = ds.to_markdown({"generated_utc": "x", "members": 14, "t_from": "2022-01-01", "cost_pct": 0.23, "k": 5, "tests": 0,
+                             "placebo_sharpe": {}, "results": [], "confound": out})
+        self.assertIn("poznat faktor", md)
+
     def test_random_score_is_deterministic(self):
         f = ds.random_score(3)
         self.assertEqual(f(1, 2, 3), f(1, 2, 3))

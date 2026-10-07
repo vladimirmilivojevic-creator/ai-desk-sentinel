@@ -115,6 +115,71 @@ def run_study(members, tables, t_from, cost_pct=0.23, k=5, min_names=10, n_place
             "tests": len(results), "t_from": day_of(t_from), "placebo_sharpe": placebo, "results": results}
 
 
+def ols(y, X):
+    """Obicna regresija sa slobodnim clanom (Gaussova eliminacija, stdlib). Vraca (koeficijenti [alfa, b1..], R2, t_alfa)."""
+    n, k = len(y), len(X[0]) + 1
+    A = [[1.0] + list(r) for r in X]
+    xtx = [[sum(A[r][i] * A[r][j] for r in range(n)) for j in range(k)] for i in range(k)]
+    xty = [sum(A[r][i] * y[r] for r in range(n)) for i in range(k)]
+
+    def solve(M, v):
+        M = [row[:] + [v[i]] for i, row in enumerate(M)]
+        for c in range(k):
+            p = max(range(c, k), key=lambda r: abs(M[r][c]))
+            M[c], M[p] = M[p], M[c]
+            for r in range(k):
+                if r != c and M[c][c] != 0:
+                    f = M[r][c] / M[c][c]
+                    M[r] = [a - f * b for a, b in zip(M[r], M[c])]
+        return [M[i][k] / M[i][i] for i in range(k)]
+
+    beta = solve(xtx, xty)
+    res = [y[r] - sum(A[r][i] * beta[i] for i in range(k)) for r in range(n)]
+    ss_res, my = sum(e * e for e in res), sum(y) / n
+    ss_tot = sum((v - my) ** 2 for v in y)
+    s2 = ss_res / max(n - k, 1)
+    # var(alfa) = s2 * (X'X)^-1[0][0]; (X'X)^-1 prvi stub resavamo kao sistem sa jedinicnim vektorom
+    inv0 = solve(xtx, [1.0] + [0.0] * (k - 1))[0]
+    t_alpha = beta[0] / math.sqrt(s2 * inv0) if s2 * inv0 > 0 else None
+    return beta, (1.0 - ss_res / ss_tot) if ss_tot > 0 else None, t_alpha
+
+
+def control_scores(members):
+    """Poznati faktori kao kontrole: realizovana vol 30 d, prinos 30 d i 90 d (sve zadnjih dana do svece i)."""
+    rets = [[None] + [m.c[i] / m.c[i - 1] - 1.0 for i in range(1, m.n)] for m in members]
+
+    def vol30(mi, i, t):
+        r = rets[mi][i - 29:i + 1] if i >= 30 else None
+        return st.pstdev(r) if r else None
+
+    def ret(L):
+        return lambda mi, i, t: members[mi].c[i] / members[mi].c[i - L] - 1.0 if i >= L else None
+
+    return {"vol30": vol30, "ret30": ret(30), "ret90": ret(90)}
+
+
+def confound_check(members, tables, t_from, picks, cost_pct=0.23, k=5, min_names=10):
+    """Za izabrane (osobina, znak, H): regresija dnevnih prinosa korpe na korpe kontrolnih faktora (nizak vol, momentum 30 d i 90 d, isto H).
+    Vraca alfu (godisnje %), t alfe, R2 i beta prema kontrolama. Ako alfa nestane, osobina je samo poznat faktor pod drugim imenom."""
+    ctl = control_scores(members)
+    out = []
+    for f, sign, H in picks:
+        y_rows, _ = ps.basket_series(members, lambda mi, i, t, _f=f: tables[mi][_f][i], H, k, sign, cost_pct, min_names)
+        ctl_rows = {}
+        for name, fn, s in (("nizak_vol", ctl["vol30"], -1), ("mom30", ctl["ret30"], 1), ("mom90", ctl["ret90"], 1)):
+            ctl_rows[name] = dict(ps.basket_series(members, fn, H, k, s, cost_pct, min_names)[0])
+        ts = [t for t, _ in y_rows if t >= t_from and all(t in d for d in ctl_rows.values())]
+        if len(ts) < 100:
+            continue
+        ymap = dict(y_rows)
+        y = [ymap[t] for t in ts]
+        X = [[ctl_rows[n][t] for n in ("nizak_vol", "mom30", "mom90")] for t in ts]
+        beta, r2, ta = ols(y, X)
+        out.append({"feature": f, "sign": sign, "H": H, "alpha_ann_pct": round(beta[0] * 365, 2), "t_alpha": None if ta is None else round(ta, 2),
+                    "r2": None if r2 is None else round(r2, 3), "beta": dict(zip(("nizak_vol", "mom30", "mom90"), (round(b, 3) for b in beta[1:]))), "days": len(ts)})
+    return out
+
+
 def to_markdown(res, top=20):
     L = ["# Studija derivatskih osobina (Binance javni arhiv), dnevne svece, kripto grupa", "",
          "Generisano %s. Instrumenata: %d, od %s, trosak po krugu %.2f%%, k=%d, testova (unapred zadat skup): %d, BH-FDR 10%% preko celog skupa." % (
@@ -130,6 +195,17 @@ def to_markdown(res, top=20):
     n_pos = sum(1 for r in res["results"] if (r["t"] or 0) > 0)
     L += ["", "Pozitivan t u %d od %d testova (znaci su ogledalo, pa se oko polovine ocekuje i bez prednosti); prolaze FDR: %d." % (
         n_pos, res["tests"], sum(1 for r in res["results"] if r["fdr_pass"]))]
+    if res.get("confound"):
+        L += ["", "## Da li je to samo poznat faktor? Regresija korpe na kontrole (nizak vol 30 d, momentum 30 d i 90 d, isto H, isti trosak)", "",
+              "| osobina | znak | H | alfa god. % | t alfe | R2 | beta nizak_vol / mom30 / mom90 | dana |", "|---|---|---|---|---|---|---|---|"]
+        for c in res["confound"]:
+            b = c["beta"]
+            L.append("| %s | %+d | %d | %.1f | %s | %s | %s / %s / %s | %d |" % (c["feature"], c["sign"], c["H"], c["alpha_ann_pct"], c["t_alpha"], c["r2"],
+                                                                           b["nizak_vol"], b["mom30"], b["mom90"], c["days"]))
+        L.append("")
+        L.append("Placebo napomena: nasumican poredak placa isti trosak po tranšu, pa mu je Sharpe jako negativan (trosak, ne prednost); poredi se samo neto Sharpe i t, "
+                 "a 'z prema placebu' pokazuje koliko osobina gubi manje od slucajnosti, ne da zaradjuje. Simulacija ne prebija iste pozicije izmedju tranša, pa precenjuje trosak "
+                 "sporo promenljivih osobina.")
     return "\n".join(L) + "\n"
 
 
@@ -152,6 +228,8 @@ def main():
     members, tables = build_members(series, bn)
     print("instrumenata sa derivatskim podacima: %d" % len(members))
     res = run_study(members, tables, t_from)
+    picks = [(r["feature"], r["sign"], r["H"]) for r in res["results"][:6]]
+    res["confound"] = confound_check(members, tables, t_from, picks)
     with open(out_json, "w", encoding="utf-8") as f:
         json.dump(res, f, ensure_ascii=False, indent=1)
     with open(out_md, "w", encoding="utf-8") as f:

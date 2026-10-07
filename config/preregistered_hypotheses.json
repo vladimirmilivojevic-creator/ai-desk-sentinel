@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "registered_utc": "2026-10-07T12:20:00Z",
+  "note": "Hipoteze i kriterijumi su zapisani PRE gledanja rezultata na uzorku za ponavljanje (git commit je dokaz redosleda). Menjaju se samo novim zapisom, nikad naknadno.",
+  "hypotheses": [
+    {
+      "id": "HYP-LS-1",
+      "text": "Kripto instrumenti sa najvecim odnosom dugih prema kratkim nalozima top trgovaca (Binance count_toptrader_long_short_ratio) u narednih 7 dana imaju losiji prinos od onih sa najmanjim odnosom (kontra pozicioniranje).",
+      "feature": "top_acc_ls",
+      "sign": -1,
+      "H": 7,
+      "k": 5,
+      "group": "crypto",
+      "cost_pct": 0.23,
+      "found_in": "2025-01-01..2026-10-06: neto Sharpe 1.21, t 1.61, alfa posle kontrola (nizak vol, momentum 30 d i 90 d) 28.3% godisnje, t 1.54",
+      "replication_sample": "2022-09-01..2024-11-30",
+      "pass": {"net_sharpe_min": 0.5, "net_t_min": 1.5, "alpha_after_controls_positive": true},
+      "fail": "Ako je neto Sharpe u uzorku za ponavljanje manji od 0.5 ili t manji od 1.5, hipoteza ostaje samo kandidat i ne ulazi u zivo trgovanje.",
+      "mirrors_checked_not_independent": ["glob_ls sign -1 H7", "top_pos_ls sign -1 H7"]
+    }
+  ]
+}
