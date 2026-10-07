@@ -18,7 +18,10 @@ WARMUP = 210
 
 
 def load_config():
-    with open(os.path.join(ROOT, "config", "lab.json"), encoding="utf-8") as f:
+    path = os.environ.get("LAB_CONFIG") or os.path.join(ROOT, "config", "lab.json")
+    if not os.path.isabs(path):
+        path = os.path.join(ROOT, path)
+    with open(path, encoding="utf-8") as f:
         cfg = json.load(f)
     cand_path = os.path.join(ROOT, "config", "lab_candidates.json")
     cands = []
@@ -139,15 +142,29 @@ def run(log=print, days=None, interval="1h"):
     t_min, t_max = ref.t[warm], ref.t[-1 - max(horizons)]
     k_tests = sum(1 for v in variants if "PLACEBO" not in v[0]) * len(horizons)  # primarni testovi su "E" (preko korpe); placebo se ne racuna
     results = []
+    day = 86400000
+    wins = [("last270d", t_max - 270 * day, t_max + day), ("last90d", t_max - 90 * day, t_max + day)]
+    for y in (2024, 2025, 2026):
+        wins.append(("y%d" % y, int(time.mktime(time.strptime("%d-01-01" % y, "%Y-%m-%d"))) * 1000, int(time.mktime(time.strptime("%d-01-01" % (y + 1), "%Y-%m-%d"))) * 1000))
     for vid, fam, params in variants:
         sigs = collect_signals(series, ctx, fam, params, warm)
         ev = evaluate(series, sigs, horizons, with_x, ctx["bench"])
         for test, rows in ev.items():
             s = stats.summarize(rows, t_min, t_max)
+            if test.startswith("E"):
+                s["windows"] = stats.summarize_windows(rows, wins)
             results.append({"id": vid, "family": fam, "params": params, "test": test, "stats": s,
                             "verdict": stats.verdict(s, k_tests) if (test.startswith("E") and "PLACEBO" not in vid) else "info",
                             "groups": by_group(series, rows) if s.get("n", 0) else {}})
         log("%-18s signala %6d" % (vid, len(sigs)))
+    pv = [((r["id"], r["test"]), stats.t_to_p(r["stats"]["all"]["t"])) for r in results
+          if r["test"].startswith("E") and "PLACEBO" not in r["id"] and r["stats"].get("n", 0) >= 30 and r["stats"].get("all", {}).get("t") is not None]
+    passed = stats.bh_fdr(pv, 0.10)
+    for r in results:
+        if r["test"].startswith("E") and "PLACEBO" not in r["id"]:
+            r["fdr_pass"] = (r["id"], r["test"]) in passed
+            w = (r["stats"].get("windows") or {}).get("last270d") or {}
+            r["recent_ok"] = bool(w.get("mean") is not None and w["mean"] > 0)
     return {"generated_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()), "interval": interval, "days": days or cfg.get("days"),
             "instruments": sorted(series), "window_ms": [t_min, t_max], "k_tests": k_tests,
             "bonferroni_z": round(stats.bonferroni_z(k_tests), 2), "cost_pct": sim.COST_PCT, "results": results}
@@ -158,13 +175,15 @@ def to_markdown(res):
          "Generisano %s. Instrumenata: %d, dana: %s, testova: %d, Bonferroni z = %.2f, trošak po krugu %.2f%%." % (
              res["generated_utc"], len(res["instruments"]), res["days"], res["k_tests"], res["bonferroni_z"], res["cost_pct"]),
          "Neto posle troška, nepreklapajući uzorci, t po danima (korelisani instrumenti se ne broje kao nezavisni), deo za proveru = poslednjih 40% vremena.", "",
-         "| pravilo | test | n | srednje % | pobede % | t svi | t prvi deo | t drugi deo | presuda |", "|---|---|---|---|---|---|---|---|---|"]
+         "| pravilo | test | n | srednje % | pobede % | t svi | t prvi deo | t drugi deo | poslednjih 270 d (srednje, t) | FDR 10% | presuda |", "|---|---|---|---|---|---|---|---|---|---|---|"]
     rows = [r for r in res["results"] if r["stats"].get("n", 0) >= 30 and r["test"].startswith("E")]
     rows.sort(key=lambda r: -(r["stats"]["all"].get("t") or -99))
     for r in rows[:40]:
         s = r["stats"]
-        L.append("| %s | %s | %d | %+.3f | %.0f | %s | %s | %s | %s |" % (
-            r["id"], r["test"], s["n"], s["mean"], s["win_pct"], s["all"].get("t"), s["train"].get("t"), s["test"].get("t"), r["verdict"]))
+        w = (s.get("windows") or {}).get("last270d") or {}
+        L.append("| %s | %s | %d | %+.3f | %.0f | %s | %s | %s | %s, %s | %s | %s |" % (
+            r["id"], r["test"], s["n"], s["mean"], s["win_pct"], s["all"].get("t"), s["train"].get("t"), s["test"].get("t"),
+            w.get("mean"), w.get("t"), "da" if r.get("fdr_pass") else "ne", r["verdict"]))
     counts = {}
     for r in res["results"]:
         counts[r["verdict"]] = counts.get(r["verdict"], 0) + 1

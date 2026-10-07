@@ -49,6 +49,35 @@ def summarize(trades, t_min, t_max, split=0.6):
     return out
 
 
+def t_to_p(t):
+    """Dvostrana p-vrednost iz t (normalna aproksimacija; broj dana je velik)."""
+    return 2.0 * (1.0 - NormalDist().cdf(abs(t)))
+
+
+def bh_fdr(pvals, q=0.10):
+    """Benjamini-Hochberg: kontrola ocekivanog udela lazno otkrivenih. pvals: lista (kljuc, p). Vraca skup kljuceva koji prolaze."""
+    items = sorted((p, k) for k, p in pvals if p is not None)
+    m = len(items)
+    cut = 0
+    for rank, (p, _) in enumerate(items, start=1):
+        if p <= rank / m * q:
+            cut = rank
+    return {k for _, k in items[:cut]}
+
+
+def summarize_windows(trades, windows):
+    """trades: lista (t_ms, ret%, sym); windows: lista (ime, t_od, t_do). Vraca {ime: {n, mean, t}} (t po danima)."""
+    out = {}
+    for name, a, b in windows:
+        rows = [(t, r) for t, r, _ in trades if a <= t < b]
+        if not rows:
+            out[name] = {"n": 0, "mean": None, "t": None}
+            continue
+        d = daily_t(rows)
+        out[name] = {"n": len(rows), "mean": round(st.mean(r for _, r in rows), 4), "t": d["t"]}
+    return out
+
+
 def bonferroni_z(k, alpha=0.05):
     return NormalDist().inv_cdf(1.0 - alpha / 2.0 / max(k, 1))
 

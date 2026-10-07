@@ -328,6 +328,35 @@ class RandTests(unittest.TestCase):
         self.assertGreater(sum(rets) / len(rets), -1.5)
 
 
+class FdrTests(unittest.TestCase):
+    def test_bh_fdr_basic(self):
+        pv = [("a", 0.001), ("b", 0.02), ("c", 0.07), ("d", 0.5), ("e", 0.9)]
+        self.assertEqual(stats.bh_fdr(pv, 0.10), {"a", "b"})  # c: 0,07 > 3/5*0,10
+        self.assertEqual(stats.bh_fdr([("x", 0.6), ("y", 0.7)], 0.10), set())
+        self.assertEqual(stats.bh_fdr([("x", None)], 0.10), set())
+
+    def test_t_to_p_symmetry_and_scale(self):
+        self.assertAlmostEqual(stats.t_to_p(1.96), 0.05, places=2)
+        self.assertEqual(stats.t_to_p(-2.0), stats.t_to_p(2.0))
+        self.assertLess(stats.t_to_p(5.0), 1e-5)
+
+    def test_summarize_windows(self):
+        day = stats.DAY_MS
+        rows = [(d * day, 1.0 if d < 10 else -1.0, "x") for d in range(20)]
+        w = stats.summarize_windows(rows, [("a", 0, 10 * day), ("b", 10 * day, 20 * day), ("c", 30 * day, 40 * day)])
+        self.assertEqual(w["a"]["mean"], 1.0)
+        self.assertEqual(w["b"]["mean"], -1.0)
+        self.assertEqual(w["c"], {"n": 0, "mean": None, "t": None})
+
+    def test_pure_noise_rarely_survives_fdr(self):
+        """Mnogo nasumicnih pravila: FDR 10% propusta mali udeo (kontrola lazno pozitivnih na lazu)."""
+        import random
+        from statistics import NormalDist
+        rnd = random.Random(5)
+        pv = [(i, 2 * (1 - NormalDist().cdf(abs(rnd.gauss(0, 1))))) for i in range(200)]
+        self.assertLessEqual(len(stats.bh_fdr(pv, 0.10)), 6)
+
+
 class ForwardTests(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
