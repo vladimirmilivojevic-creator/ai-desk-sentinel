@@ -1,24 +1,50 @@
 name: probe
 
-# Rucna provera svih izvora iz GitHub Actions okruzenja (kasnjenje i dostupnost).
+# Provera svih izvora iz GitHub Actions okruzenja (kasnjenje i dostupnost). Rucno ili automatski kad se promeni sam probe.
+# Rezultat se objavljuje na granu `probe` (probe_results.json), a tabela ide u sazetak izvrsenja.
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - "sentinel/probe_sources.py"
+      - ".github/workflows/probe.yml"
 
 permissions:
-  contents: read
+  contents: write
+
+concurrency:
+  group: probe
+  cancel-in-progress: true
 
 jobs:
   probe:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 6
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
       - run: python -m sentinel.run --probe | tee probe.txt
+      - name: Novi izvori podataka
+        env:
+          COINALYZE_API_KEY: ${{ secrets.COINALYZE_API_KEY }}
+          FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
+        run: python -m sentinel.probe_sources probe_results.json | tee probe_sources.txt
       - name: Sazetak
         run: |
           echo '```' >> "$GITHUB_STEP_SUMMARY"
-          cat probe.txt >> "$GITHUB_STEP_SUMMARY"
+          cat probe.txt probe_sources.txt >> "$GITHUB_STEP_SUMMARY"
           echo '```' >> "$GITHUB_STEP_SUMMARY"
+      - name: Objavi rezultat (grana probe)
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p _probe && cp probe_results.json _probe/ && cp probe_sources.txt _probe/
+          cd _probe
+          git init -q -b probe
+          git config user.name "sentinel-bot"
+          git config user.email "sentinel-bot@users.noreply.github.com"
+          git add -A
+          git commit -q -m "probe $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          git push -q --force "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:refs/heads/probe
