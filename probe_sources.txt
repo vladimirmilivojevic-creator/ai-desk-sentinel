@@ -1,0 +1,23 @@
+OK   hl_predicted_fundings        200    209 ms  radi
+OK   hl_l2book                    200    172 ms  radi
+OK   hl_meta_ctx_xyz              200    202 ms  radi
+OK   hl_leaderboard               200    101 ms  radi
+OK   deribit_dvol                 200    228 ms  radi
+OK   deribit_options_summary      200    299 ms  radi
+FAIL binance_fapi_oi_hist         451    223 ms  HTTP 451
+FAIL binance_fapi_top_lsr         451     23 ms  HTTP 451
+FAIL bybit_oi                     403     67 ms  HTTP 403
+OK   okx_lsr                      200    387 ms  radi
+OK   binance_vision_metrics       206    175 ms  radi
+OK   fred_csv                     200    482 ms  radi
+OK   defillama_stablecoins        200   1082 ms  radi
+OK   fear_greed                   200    252 ms  radi
+OK   kalshi_markets               200    111 ms  radi
+OK   wikipedia_pageviews          200    180 ms  radi
+OK   forexfactory_week            200     67 ms  radi
+OK   nasdaq_earnings              200   3117 ms  radi
+FAIL yahoo_vix3m                  429     97 ms  HTTP 429
+OK   coingecko_global             200    147 ms  radi
+SKIP coinalyze_exchanges         None      0 ms  preskoceno: nema kljuca u secrets
+SKIP finnhub_earnings            None      0 ms  preskoceno: nema kljuca u secrets
+ukupno: ok 16, neuspelo 4, preskoceno 2
