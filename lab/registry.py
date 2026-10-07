@@ -121,6 +121,24 @@ def build(results, fwd_stats=None, gates=None, now=None):
             "rules": items}
 
 
+def compact(reg, top=14, live_ids=()):
+    """Mali sazetak za panel i AI (nekoliko KB): brojevi po statusu, najbolja pravila po statusu i sva ziva pravila (bilo kog statusa)."""
+    keep, seen = [], set()
+    for it in reg["rules"]:
+        if len(keep) < top or it["id"] in live_ids:
+            if it["id"] not in seen:
+                keep.append(it)
+                seen.add(it["id"])
+    rules = []
+    for it in keep:
+        b, f = it.get("best") or {}, it.get("fwd") or {}
+        rules.append({"id": it["id"], "interval": it["interval"], "status": it["status"], "test": b.get("test"), "n": b.get("n"), "mean": b.get("mean"),
+                      "t": b.get("t"), "recent_mean": b.get("recent_mean"), "t_train": b.get("t_train"), "t_test": b.get("t_test"),
+                      "edge_groups": b.get("edge_groups"), "unmet": it["unmet"][:2], "live": it["id"] in live_ids,
+                      "fwd_n": f.get("n"), "fwd_mean": f.get("mean")})
+    return {"generated_utc": reg["generated_utc"], "gates_version": reg["gates_version"], "counts": reg["counts"], "rules": rules}
+
+
 def to_markdown(reg, top=25):
     L = ["# Registar dokaza", "",
          "Generisano %s, kapije v%s (config/registry_gates.json). Statusi: %s." % (reg["generated_utc"], reg["gates_version"],

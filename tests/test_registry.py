@@ -73,6 +73,18 @@ class RegistryTests(unittest.TestCase):
         reg = R.build([row("D_A")], stats, G)
         self.assertEqual(reg["rules"][0]["status"], "ziv")
 
+    def test_compact_keeps_top_and_live_rules_and_is_small(self):
+        res = [row("D_R%d" % i, t=3.0 - i * 0.1) for i in range(30)] + [row("D_LIVE", t=0.2, mean=0.1)]
+        reg = R.build(res, None, G, now="2026-10-07T00:00:00Z")
+        c = R.compact(reg, top=5, live_ids={"D_LIVE"})
+        ids = [x["id"] for x in c["rules"]]
+        self.assertEqual(len(ids), 6)
+        self.assertIn("D_LIVE", ids)
+        self.assertTrue([x for x in c["rules"] if x["id"] == "D_LIVE"][0]["live"])
+        self.assertEqual(sum(c["counts"].values()), 31)
+        import json
+        self.assertLess(len(json.dumps(c)), 4000)
+
     def test_no_historical_test_is_candidate(self):
         self.assertEqual(R.classify([], None, None, G)[0], "kandidat")
 

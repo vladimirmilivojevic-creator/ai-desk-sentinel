@@ -179,7 +179,7 @@ def history_point(bar_ms, all_vars, live_ids):
     return [bar_ms, tot, out24, n_tot, round(w / n_tot, 4) if n_tot else None, pl.get("mean")]
 
 
-def panel_summary(cfg, stats_obj, bt, history=None):
+def panel_summary(cfg, stats_obj, bt, history=None, registry=None):
     """Mali sazetak (nekoliko KB) za panel: zive varijante, najbolji istorijski dokazi, placebo, grafik napretka i brojke unapred."""
     why = {x["id"]: x.get("why", "") for x in cfg.get("live_variants", [])}
     all_vars = stats_obj["variants"]
@@ -206,7 +206,7 @@ def panel_summary(cfg, stats_obj, bt, history=None):
     return {"updated_utc": stats_obj["updated_utc"], "t0_utc": stats_obj["t0_utc"], "hours_running": stats_obj["hours_running"],
             "universe_n": stats_obj["universe_n"], "totals": stats_obj["totals"], "cost_pct": stats_obj["cost_pct"], "live": live,
             "top_backtest": ranked[:10], "backtest_counts": counts, "demoted": stats_obj.get("demoted", {}), "placebo": placebo,
-            "history": (history or [])[-168:], "features_rows": stats_obj.get("features_rows")}
+            "history": (history or [])[-168:], "features_rows": stats_obj.get("features_rows"), "registry": registry}
 
 
 def load_backtest_summary(root):
@@ -288,7 +288,17 @@ def run(state_dir, root=None, now_ms=None, force=False, log=print):
     hist = hist[-336:]
     _save(os.path.join(lab_dir, "history.json"), hist)
     _save(os.path.join(lab_dir, "stats.json"), stats_obj)
-    _save(os.path.join(lab_dir, "panel.json"), panel_summary(cfg, stats_obj, bt, hist))
+    reg = None
+    try:  # registar dokaza je pasivan izlaz: nikad ne menja zive varijante i nikad ne sme da obori laboratoriju
+        from . import registry
+        cal = os.path.join(root, "calibration")
+        reg_rows = registry.load_results([os.path.join(cal, "lab_v3_1d.json"), os.path.join(cal, "lab_v3_1h.json")])
+        if reg_rows:
+            reg = registry.compact(registry.build(reg_rows, stats_obj), live_ids=set(live))
+            _save(os.path.join(lab_dir, "registry.json"), reg)
+    except Exception as e:  # noqa: BLE001
+        log("registar nije izracunat: %s" % type(e).__name__)
+    _save(os.path.join(lab_dir, "panel.json"), panel_summary(cfg, stats_obj, bt, hist, reg))
     live_triggers = [x for x in all_triggers if x.get("live")]
     _save(os.path.join(lab_dir, "triggers.json"), {"updated_utc": iso(now_ms), "bar_utc": iso(last_bar), "triggers": live_triggers,
                                                    "other_triggers": len(all_triggers) - len(live_triggers), "live_variants": live,

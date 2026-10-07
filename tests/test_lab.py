@@ -456,6 +456,30 @@ class ForwardTests(unittest.TestCase):
         pj = json.load(open(os.path.join(self.tmp.name, "lab", "panel.json"), encoding="utf-8"))
         self.assertIsNone(pj["features_rows"])
 
+    def test_registry_is_written_and_a_bad_file_is_harmless(self):
+        root = os.path.join(self.tmp.name, "root")
+        os.makedirs(os.path.join(root, "calibration"))
+        path = os.path.join(root, "calibration", "lab_v3_1d.json")
+        row = {"id": "D_MOM_L7_z0.5", "family": "MOM", "test": "E7", "verdict": "obecava", "fdr_pass": True,
+               "stats": {"n": 900, "mean": 0.5, "all": {"days": 300, "t": 3.0}, "train": {"t": 2.0}, "test": {"t": 2.0},
+                         "windows": {"last270d": {"mean": 0.3, "t": 1.0}}}, "groups": {"crypto": {"n": 900, "mean": 0.5}}}
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump({"interval": "1d", "results": [row]}, f)
+        r = forward.run(self.tmp.name, root=root, now_ms=self.now, log=lambda *_: None)
+        self.assertTrue(r["ok"], r)
+        lab = os.path.join(self.tmp.name, "lab")
+        reg = json.load(open(os.path.join(lab, "registry.json"), encoding="utf-8"))
+        self.assertEqual(reg["counts"], {"probni": 1})
+        self.assertTrue(reg["rules"][0]["live"])
+        pj = json.load(open(os.path.join(lab, "panel.json"), encoding="utf-8"))
+        self.assertEqual(pj["registry"]["counts"], {"probni": 1})
+        with open(path, "w", encoding="utf-8") as f:
+            f.write("{pokvaren")
+        r2 = forward.run(self.tmp.name, root=root, now_ms=self.now, force=True, log=lambda *_: None)
+        self.assertTrue(r2["ok"], r2)  # laboratorija prezivljava pokvaren registar
+        pj2 = json.load(open(os.path.join(lab, "panel.json"), encoding="utf-8"))
+        self.assertIsNone(pj2["registry"])
+
     def test_failure_never_raises_from_main(self):
         data.fetch_candles = lambda *a, **k: (_ for _ in ()).throw(RuntimeError("mreza"))
         sys.argv = ["lab.forward", "--state", self.tmp.name]
