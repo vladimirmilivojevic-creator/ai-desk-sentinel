@@ -1,0 +1,234 @@
+{
+ "_comment": "Svet laboratorije: instrumenti za istorijsku proveru i satno hodanje unapred. group: kripto/makro/akcije; cls: klasa za granice stopa. Menja ga samo vlasnik repoa (ili AI preko config/lab_candidates.json za nova PRAVILA, ne za instrumente).",
+ "days": 200,
+ "universe": [
+  {
+   "sym": "BTC",
+   "hl": "BTC",
+   "group": "crypto",
+   "cls": "crypto"
+  },
+  {
+   "sym": "ETH",
+   "hl": "ETH",
+   "group": "crypto",
+   "cls": "crypto"
+  },
+  {
+   "sym": "SOL",
+   "hl": "SOL",
+   "group": "crypto",
+   "cls": "crypto"
+  },
+  {
+   "sym": "XRP",
+   "hl": "XRP",
+   "group": "crypto",
+   "cls": "crypto"
+  },
+  {
+   "sym": "HYPE",
+   "hl": "HYPE",
+   "group": "crypto",
+   "cls": "crypto"
+  },
+  {
+   "sym": "DOGE",
+   "hl": "DOGE",
+   "group": "crypto",
+   "cls": "crypto"
+  },
+  {
+   "sym": "ADA",
+   "hl": "ADA",
+   "group": "crypto",
+   "cls": "crypto"
+  },
+  {
+   "sym": "AVAX",
+   "hl": "AVAX",
+   "group": "crypto",
+   "cls": "crypto"
+  },
+  {
+   "sym": "SUI",
+   "hl": "SUI",
+   "group": "crypto",
+   "cls": "crypto"
+  },
+  {
+   "sym": "BNB",
+   "hl": "BNB",
+   "group": "crypto",
+   "cls": "crypto"
+  },
+  {
+   "sym": "LTC",
+   "hl": "LTC",
+   "group": "crypto",
+   "cls": "crypto"
+  },
+  {
+   "sym": "NEAR",
+   "hl": "NEAR",
+   "group": "crypto",
+   "cls": "crypto"
+  },
+  {
+   "sym": "TAO",
+   "hl": "TAO",
+   "group": "crypto",
+   "cls": "crypto"
+  },
+  {
+   "sym": "ZEC",
+   "hl": "ZEC",
+   "group": "crypto",
+   "cls": "crypto"
+  },
+  {
+   "sym": "xyz:SP500",
+   "hl": "xyz:SP500",
+   "group": "macro",
+   "cls": "index"
+  },
+  {
+   "sym": "xyz:XYZ100",
+   "hl": "xyz:XYZ100",
+   "group": "macro",
+   "cls": "index"
+  },
+  {
+   "sym": "xyz:GOLD",
+   "hl": "xyz:GOLD",
+   "group": "macro",
+   "cls": "metal"
+  },
+  {
+   "sym": "xyz:SILVER",
+   "hl": "xyz:SILVER",
+   "group": "macro",
+   "cls": "metal"
+  },
+  {
+   "sym": "xyz:BRENTOIL",
+   "hl": "xyz:BRENTOIL",
+   "group": "macro",
+   "cls": "oil"
+  },
+  {
+   "sym": "xyz:CL",
+   "hl": "xyz:CL",
+   "group": "macro",
+   "cls": "oil"
+  },
+  {
+   "sym": "xyz:NATGAS",
+   "hl": "xyz:NATGAS",
+   "group": "macro",
+   "cls": "gas"
+  },
+  {
+   "sym": "xyz:NVDA",
+   "hl": "xyz:NVDA",
+   "group": "stock",
+   "cls": "stock"
+  },
+  {
+   "sym": "xyz:TSLA",
+   "hl": "xyz:TSLA",
+   "group": "stock",
+   "cls": "stock"
+  },
+  {
+   "sym": "xyz:AAPL",
+   "hl": "xyz:AAPL",
+   "group": "stock",
+   "cls": "stock"
+  },
+  {
+   "sym": "xyz:AMZN",
+   "hl": "xyz:AMZN",
+   "group": "stock",
+   "cls": "stock"
+  },
+  {
+   "sym": "xyz:GOOGL",
+   "hl": "xyz:GOOGL",
+   "group": "stock",
+   "cls": "stock"
+  },
+  {
+   "sym": "xyz:META",
+   "hl": "xyz:META",
+   "group": "stock",
+   "cls": "stock"
+  },
+  {
+   "sym": "xyz:MSFT",
+   "hl": "xyz:MSFT",
+   "group": "stock",
+   "cls": "stock"
+  },
+  {
+   "sym": "xyz:AMD",
+   "hl": "xyz:AMD",
+   "group": "stock",
+   "cls": "stock"
+  },
+  {
+   "sym": "xyz:MU",
+   "hl": "xyz:MU",
+   "group": "stock",
+   "cls": "stock"
+  },
+  {
+   "sym": "xyz:INTC",
+   "hl": "xyz:INTC",
+   "group": "stock",
+   "cls": "stock"
+  }
+ ],
+ "live_variants": [
+  {
+   "id": "D_MOM_L7_z0.5",
+   "hold_hours": 168,
+   "why": "dnevni momentum 7 d: najbolji istorijski dokaz (E7 t=2,95, slabo; nije potvrdjeno)"
+  },
+  {
+   "id": "D_CSM_mom_L7",
+   "hold_hours": 168,
+   "why": "preseka po grupi, momentum 7 d (E7 t=2,65, slabo)"
+  },
+  {
+   "id": "CSM_rev_L24",
+   "hold_hours": 24,
+   "why": "istrazivanje: obrtanje 24 h unutar grupe (nema dokaza, trosak ucenja)"
+  },
+  {
+   "id": "RSIFADE_75",
+   "hold_hours": 24,
+   "why": "istrazivanje: RSI ekstrem (nema dokaza)"
+  },
+  {
+   "id": "FADE_L24_z1.5",
+   "hold_hours": 24,
+   "why": "istrazivanje: obrtanje posle 24 h pomaka (nema dokaza)"
+  },
+  {
+   "id": "DON_fade_24",
+   "hold_hours": 24,
+   "why": "istrazivanje: obrtanje posle probijanja 24 h raspona (nema dokaza)"
+  },
+  {
+   "id": "MOM_L4_z1.5",
+   "hold_hours": 24,
+   "why": "istrazivanje: prati 4 h pomak (nema dokaza)"
+  }
+ ],
+ "governor": {
+  "min_n": 30,
+  "t_naive_max": -2.0,
+  "_comment": "varijanta se automatski gasi za zivo trgovanje ako ima bar min_n ishoda i naivno t <= t_naive_max uz negativnu srednju (E24 ili E7)"
+ }
+}

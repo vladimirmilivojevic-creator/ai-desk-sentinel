@@ -61,6 +61,11 @@ jobs:
           if [ "$DRY" = "true" ]; then ARGS="$ARGS --dry"; fi
           python -m sentinel.fire $ARGS
 
+      - name: Laboratorija (hodanje unapred, posao se radi jednom po satu)
+        continue-on-error: true
+        timeout-minutes: 5
+        run: python -m lab.forward --state _state
+
       - name: Objavi stanje (grana state)
         run: bash scripts/publish_state.sh
         env:
