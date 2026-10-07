@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "registered_utc": "2026-10-07",
+  "note": "Kapije su upisane PRE gledanja ishoda unapred i menjaju se samo novom verzijom (version+1) uz obrazlozenje u docs. Pravilo ne moze da preskoci status.",
+  "hist": {
+    "min_n": 300,
+    "min_days": 100,
+    "min_t_all": 2.0,
+    "fdr_required": true,
+    "recent_mean_gt": 0.0,
+    "train_t_min": 0.0,
+    "test_t_min": 1.0,
+    "prefer_tests": ["E7", "E14", "E21", "E24"]
+  },
+  "fwd": {
+    "min_n": 30,
+    "min_days": 20,
+    "t_naive_min": 1.5,
+    "beat_placebo_by_pct": 0.1
+  },
+  "demote": {
+    "min_n": 30,
+    "t_naive_max": -2.0
+  },
+  "reject": {
+    "t_all_below": 1.5
+  }
+}
