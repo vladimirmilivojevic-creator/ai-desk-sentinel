@@ -14,7 +14,7 @@ from .indicators import Series
 HOUR = 3600000
 DAY = 86400000
 WARM = 205
-REV = 4  # povecaj kad se promeni izlaz/logika: laboratorija se tada odmah ponovo racuna u istom satu
+REV = 5  # povecaj kad se promeni izlaz/logika: laboratorija se tada odmah ponovo racuna u istom satu
 HOLD_HOURS_1H = 24
 HOLD_HOURS_1D = 168
 
@@ -223,10 +223,10 @@ def run(state_dir, root=None, now_ms=None, force=False, log=print):
     # dnevna pravila: jednom po UTC danu (posle zatvaranja dnevne svece u 00:00)
     day_key = time.strftime("%Y-%m-%d", time.gmtime(now_ms / 1000.0))
     daily = _load(os.path.join(lab_dir, "daily.json"), {})
-    if daily.get("asof") != day_key or force:
+    if daily.get("asof") != day_key or daily.get("rev") != REV or force:
         try:
             dv, dt, dlast, dn, _ = run_interval(cfg, cands, t0, now_ms, "1d", log)
-            daily = {"asof": day_key, "variants": dv, "triggers": dt, "last_bar": dlast, "n": dn}
+            daily = {"asof": day_key, "rev": REV, "variants": dv, "triggers": dt, "last_bar": dlast, "n": dn}
             _save(os.path.join(lab_dir, "daily.json"), daily)
         except Exception as e:  # noqa: BLE001
             log("dnevna pravila nisu uspela: %s" % type(e).__name__)
