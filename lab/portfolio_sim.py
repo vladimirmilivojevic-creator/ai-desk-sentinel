@@ -11,26 +11,28 @@ from . import backtest
 DAY = 86400000
 
 
-def csm_series(series, group="crypto", L=14, H=7, k=5, momentum=True, cost_pct=0.23, min_names=8, delay=0):
-    """Vraca listu (t_ms, dnevni_prinos_kapitala_%) i broj tranša. series: {sym: Series} (dnevne svece)."""
-    members = [s for s in series.values() if s.group == group]
+def basket_series(members, score, H=7, k=5, sign=1, cost_pct=0.23, min_names=8, delay=0):
+    """Opsta korpa: svaki dan poredak instrumenata po skoru, dugo k najvisih i kratko k najnizih (sign=-1: obrnuto), drzanje H dana.
+    score(mi, i, t) vraca broj ili None (i = indeks svece t kod instrumenta mi). Vraca listu (t_ms, dnevni prinos kapitala %) i broj tranša."""
     idx = [{t: i for i, t in enumerate(m.t)} for m in members]
     all_t = sorted(set(t for m in members for t in m.t))
     # tranše: otvaraju se na zatvaranju dana t, traju H dana
     tranches = []  # (t_open, [long_members_idx], [short_members_idx])
     for t in all_t:
         vals = []
-        for mi, (m, ix) in enumerate(zip(members, idx)):
+        for mi, ix in enumerate(idx):
             i = ix.get(t)
-            if i is None or i < L:
+            if i is None:
                 continue
-            vals.append((m.c[i] / m.c[i - L] - 1.0, mi))
+            v = score(mi, i, t)
+            if v is not None:
+                vals.append((v, mi))
         if len(vals) < min_names:
             continue
         vals.sort()
         kk = min(k, len(vals) // 3)
         low, high = [mi for _, mi in vals[:kk]], [mi for _, mi in vals[-kk:]]
-        tranches.append((t + delay * DAY, high if momentum else low, low if momentum else high))  # delay: ulaz kasni delay dana posle signala
+        tranches.append((t + delay * DAY, high if sign > 0 else low, low if sign > 0 else high))  # delay: ulaz kasni delay dana posle signala
     out = {}
     for t_open, longs, shorts in tranches:
         for d in range(1, H + 1):
@@ -54,6 +56,17 @@ def csm_series(series, group="crypto", L=14, H=7, k=5, momentum=True, cost_pct=0
         out[t_open] = out.get(t_open, 0.0) - cost_pct / H
     rows = sorted(out.items())
     return rows, len(tranches)
+
+
+def csm_series(series, group="crypto", L=14, H=7, k=5, momentum=True, cost_pct=0.23, min_names=8, delay=0):
+    """Poredak po prinosu u poslednjih L dana (momentum: dugo najjaci). series: {sym: Series} (dnevne svece)."""
+    members = [s for s in series.values() if s.group == group]
+
+    def score(mi, i, t):
+        m = members[mi]
+        return m.c[i] / m.c[i - L] - 1.0 if i >= L else None
+
+    return basket_series(members, score, H, k, 1 if momentum else -1, cost_pct, min_names, delay)
 
 
 def metrics(rows, t_from=None, t_to=None):

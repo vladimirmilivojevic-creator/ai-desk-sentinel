@@ -1,0 +1,1974 @@
+{
+ "generated_utc": "2026-10-07T11:53:16Z",
+ "gates_version": 1,
+ "counts": {
+  "odbacen": 56,
+  "probni": 5,
+  "kandidat": 5
+ },
+ "rules": [
+  {
+   "id": "D_MOM_L21_z0.5",
+   "family": "MOM",
+   "interval": "1d",
+   "status": "probni",
+   "unmet": [
+    "nema ishoda unapred"
+   ],
+   "best": {
+    "test": "E7",
+    "n": 3421,
+    "days": 1025,
+    "mean": 0.4359,
+    "t": 3.34,
+    "t_train": 2.49,
+    "t_test": 2.3,
+    "recent_mean": 0.2205,
+    "recent_t": 0.96,
+    "fdr": true,
+    "lab_verdict": "obecava",
+    "edge_groups": [
+     "crypto"
+    ],
+    "group_means": {
+     "crypto": 0.49,
+     "macro": -0.1263,
+     "stock": -0.7086
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "D_MOM_L21_z1.0",
+   "family": "MOM",
+   "interval": "1d",
+   "status": "probni",
+   "unmet": [
+    "nema ishoda unapred"
+   ],
+   "best": {
+    "test": "E7",
+    "n": 1031,
+    "days": 471,
+    "mean": 1.1646,
+    "t": 2.91,
+    "t_train": 1.49,
+    "t_test": 2.59,
+    "recent_mean": 0.3875,
+    "recent_t": 1.63,
+    "fdr": true,
+    "lab_verdict": "slabo",
+    "edge_groups": [
+     "crypto"
+    ],
+    "group_means": {
+     "crypto": 1.2781,
+     "stock": -0.6538
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "D_CSM_mom_L30",
+   "family": "CSM",
+   "interval": "1d",
+   "status": "probni",
+   "unmet": [
+    "nema ishoda unapred"
+   ],
+   "best": {
+    "test": "E14",
+    "n": 647,
+    "days": 523,
+    "mean": 2.3044,
+    "t": 2.46,
+    "t_train": 2.06,
+    "t_test": 1.35,
+    "recent_mean": 0.4646,
+    "recent_t": 0.52,
+    "fdr": true,
+    "lab_verdict": "slabo",
+    "edge_groups": [
+     "crypto"
+    ],
+    "group_means": {
+     "crypto": 2.5183,
+     "stock": -0.5571
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "D_MOM_L14_z1.0",
+   "family": "MOM",
+   "interval": "1d",
+   "status": "probni",
+   "unmet": [
+    "nema ishoda unapred"
+   ],
+   "best": {
+    "test": "E7",
+    "n": 1044,
+    "days": 479,
+    "mean": 1.0231,
+    "t": 2.45,
+    "t_train": 1.0,
+    "t_test": 2.64,
+    "recent_mean": 1.2574,
+    "recent_t": 2.29,
+    "fdr": true,
+    "lab_verdict": "slabo",
+    "edge_groups": [
+     "crypto"
+    ],
+    "group_means": {
+     "crypto": 1.1091,
+     "stock": -0.4172
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "D_CSM_mom_L14",
+   "family": "CSM",
+   "interval": "1d",
+   "status": "probni",
+   "unmet": [
+    "nema ishoda unapred"
+   ],
+   "best": {
+    "test": "E14",
+    "n": 800,
+    "days": 624,
+    "mean": 1.6002,
+    "t": 2.13,
+    "t_train": 1.16,
+    "t_test": 1.85,
+    "recent_mean": 0.291,
+    "recent_t": 1.13,
+    "fdr": true,
+    "lab_verdict": "slabo",
+    "edge_groups": [
+     "crypto",
+     "stock"
+    ],
+    "group_means": {
+     "crypto": 1.7211,
+     "stock": 0.1853
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "D_CSM_mom_L7",
+   "family": "CSM",
+   "interval": "1d",
+   "status": "kandidat",
+   "unmet": [
+    "poslednjih 270 d srednje -0.8656 <= 0.0"
+   ],
+   "best": {
+    "test": "E14",
+    "n": 1011,
+    "days": 729,
+    "mean": 1.615,
+    "t": 3.2,
+    "t_train": 2.64,
+    "t_test": 1.84,
+    "recent_mean": -0.8656,
+    "recent_t": -0.07,
+    "fdr": true,
+    "lab_verdict": "slabo",
+    "edge_groups": [
+     "crypto"
+    ],
+    "group_means": {
+     "crypto": 1.808,
+     "stock": -0.7937
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "D_MOM_L7_z0.5",
+   "family": "MOM",
+   "interval": "1d",
+   "status": "kandidat",
+   "unmet": [
+    "t 1.94 < 2.0",
+    "ne prolazi FDR 10%"
+   ],
+   "best": {
+    "test": "E7",
+    "n": 3960,
+    "days": 1021,
+    "mean": 0.3267,
+    "t": 1.94,
+    "t_train": 1.49,
+    "t_test": 1.42,
+    "recent_mean": 0.1933,
+    "recent_t": 1.51,
+    "fdr": false,
+    "lab_verdict": "odbaceno",
+    "edge_groups": [
+     "crypto"
+    ],
+    "group_means": {
+     "crypto": 0.3979,
+     "macro": -0.6227,
+     "stock": -1.091
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "D_MOM_L30_z1.0",
+   "family": "MOM",
+   "interval": "1d",
+   "status": "kandidat",
+   "unmet": [
+    "t 1.74 < 2.0",
+    "ne prolazi FDR 10%",
+    "poslednjih 270 d srednje -0.6136 <= 0.0"
+   ],
+   "best": {
+    "test": "E21",
+    "n": 478,
+    "days": 293,
+    "mean": 1.6051,
+    "t": 1.74,
+    "t_train": 1.21,
+    "t_test": 1.28,
+    "recent_mean": -0.6136,
+    "recent_t": 0.42,
+    "fdr": false,
+    "lab_verdict": "odbaceno",
+    "edge_groups": [
+     "crypto"
+    ],
+    "group_means": {
+     "crypto": 1.8063
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "D_DON_follow_55",
+   "family": "DON",
+   "interval": "1d",
+   "status": "kandidat",
+   "unmet": [
+    "t 1.72 < 2.0",
+    "ne prolazi FDR 10%"
+   ],
+   "best": {
+    "test": "E21",
+    "n": 745,
+    "days": 371,
+    "mean": 1.478,
+    "t": 1.72,
+    "t_train": 0.99,
+    "t_test": 1.49,
+    "recent_mean": 0.2264,
+    "recent_t": 0.46,
+    "fdr": false,
+    "lab_verdict": "odbaceno",
+    "edge_groups": [
+     "crypto"
+    ],
+    "group_means": {
+     "crypto": 1.7022
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "D_MOM_L60_z0.5",
+   "family": "MOM",
+   "interval": "1d",
+   "status": "kandidat",
+   "unmet": [
+    "t 1.56 < 2.0",
+    "ne prolazi FDR 10%",
+    "poslednjih 270 d srednje -0.7361 <= 0.0",
+    "drugi deo t 0.07 < 1.0"
+   ],
+   "best": {
+    "test": "E21",
+    "n": 1292,
+    "days": 689,
+    "mean": 0.7122,
+    "t": 1.56,
+    "t_train": 1.78,
+    "t_test": 0.07,
+    "recent_mean": -0.7361,
+    "recent_t": -0.46,
+    "fdr": false,
+    "lab_verdict": "odbaceno",
+    "edge_groups": [
+     "crypto"
+    ],
+    "group_means": {
+     "crypto": 0.9408,
+     "stock": -5.3706
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "D_DON_follow_100",
+   "family": "DON",
+   "interval": "1d",
+   "status": "odbacen",
+   "unmet": [
+    "t 1.4, srednje 1.7017"
+   ],
+   "best": {
+    "test": "E14",
+    "n": 568,
+    "days": 310,
+    "mean": 1.7017,
+    "t": 1.4,
+    "t_train": 0.37,
+    "t_test": 1.67,
+    "recent_mean": 1.0203,
+    "recent_t": -0.0,
+    "fdr": false,
+    "lab_verdict": "odbaceno",
+    "edge_groups": [
+     "crypto"
+    ],
+    "group_means": {
+     "crypto": 1.8563
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "D_MOM_L60_z1.0",
+   "family": "MOM",
+   "interval": "1d",
+   "status": "odbacen",
+   "unmet": [
+    "t 1.22, srednje 0.2219"
+   ],
+   "best": {
+    "test": "E7",
+    "n": 968,
+    "days": 497,
+    "mean": 0.2219,
+    "t": 1.22,
+    "t_train": 0.16,
+    "t_test": 1.43,
+    "recent_mean": 0.3925,
+    "recent_t": 0.45,
+    "fdr": false,
+    "lab_verdict": "odbaceno",
+    "edge_groups": [
+     "crypto"
+    ],
+    "group_means": {
+     "crypto": 0.2571,
+     "stock": -1.3198
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "D_MOM_L30_z0.5",
+   "family": "MOM",
+   "interval": "1d",
+   "status": "odbacen",
+   "unmet": [
+    "t 1.18, srednje 0.1898"
+   ],
+   "best": {
+    "test": "E7",
+    "n": 3225,
+    "days": 1057,
+    "mean": 0.1898,
+    "t": 1.18,
+    "t_train": 0.06,
+    "t_test": 1.51,
+    "recent_mean": 0.1852,
+    "recent_t": 0.93,
+    "fdr": false,
+    "lab_verdict": "odbaceno",
+    "edge_groups": [
+     "crypto"
+    ],
+    "group_means": {
+     "crypto": 0.2463,
+     "stock": -0.9383
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "D_DON_follow_20",
+   "family": "DON",
+   "interval": "1d",
+   "status": "odbacen",
+   "unmet": [
+    "t 1.17, srednje 0.2055"
+   ],
+   "best": {
+    "test": "E21",
+    "n": 1257,
+    "days": 510,
+    "mean": 0.2055,
+    "t": 1.17,
+    "t_train": 1.01,
+    "t_test": 0.59,
+    "recent_mean": -0.809,
+    "recent_t": -0.32,
+    "fdr": false,
+    "lab_verdict": "odbaceno",
+    "edge_groups": [
+     "crypto"
+    ],
+    "group_means": {
+     "crypto": 0.2529,
+     "stock": -1.2134
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "D_MOM_L90_z1.0",
+   "family": "MOM",
+   "interval": "1d",
+   "status": "odbacen",
+   "unmet": [
+    "t 1.07, srednje -0.0183"
+   ],
+   "best": {
+    "test": "E7",
+    "n": 1025,
+    "days": 524,
+    "mean": -0.0183,
+    "t": 1.07,
+    "t_train": 0.06,
+    "t_test": 1.61,
+    "recent_mean": 1.0384,
+    "recent_t": 1.81,
+    "fdr": false,
+    "lab_verdict": "odbaceno",
+    "edge_groups": [],
+    "group_means": {
+     "crypto": -0.0167,
+     "stock": -0.61
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "SQZ_break",
+   "family": "SQZ",
+   "interval": "1h",
+   "status": "odbacen",
+   "unmet": [
+    "t 1.03, srednje -0.1887"
+   ],
+   "best": {
+    "test": "E72",
+    "n": 1924,
+    "days": 162,
+    "mean": -0.1887,
+    "t": 1.03,
+    "t_train": -0.08,
+    "t_test": 1.49,
+    "recent_mean": -0.1887,
+    "recent_t": 1.03,
+    "fdr": false,
+    "lab_verdict": "odbaceno",
+    "edge_groups": [
+     "crypto"
+    ],
+    "group_means": {
+     "crypto": 0.0323,
+     "macro": -0.5076,
+     "stock": -0.4666
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "D_MOM_L14_z0.5",
+   "family": "MOM",
+   "interval": "1d",
+   "status": "odbacen",
+   "unmet": [
+    "t 0.85, srednje 0.2103"
+   ],
+   "best": {
+    "test": "E7",
+    "n": 3622,
+    "days": 1035,
+    "mean": 0.2103,
+    "t": 0.85,
+    "t_train": 0.01,
+    "t_test": 1.36,
+    "recent_mean": 0.373,
+    "recent_t": 0.93,
+    "fdr": false,
+    "lab_verdict": "odbaceno",
+    "edge_groups": [
+     "crypto"
+    ],
+    "group_means": {
+     "crypto": 0.2461,
+     "macro": -0.5327,
+     "stock": -0.4489
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "D_MOM_L7_z1.0",
+   "family": "MOM",
+   "interval": "1d",
+   "status": "odbacen",
+   "unmet": [
+    "t 0.85, srednje 0.467"
+   ],
+   "best": {
+    "test": "E7",
+    "n": 1267,
+    "days": 505,
+    "mean": 0.467,
+    "t": 0.85,
+    "t_train": 0.14,
+    "t_test": 1.09,
+    "recent_mean": 0.4266,
+    "recent_t": 0.66,
+    "fdr": false,
+    "lab_verdict": "odbaceno",
+    "edge_groups": [
+     "crypto"
+    ],
+    "group_means": {
+     "crypto": 0.5876,
+     "stock": -1.2513
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "MOM_L1_z1.5",
+   "family": "MOM",
+   "interval": "1h",
+   "status": "odbacen",
+   "unmet": [
+    "t 0.77, srednje -0.2456"
+   ],
+   "best": {
+    "test": "E72",
+    "n": 3684,
+    "days": 188,
+    "mean": -0.2456,
+    "t": 0.77,
+    "t_train": 1.21,
+    "t_test": -0.78,
+    "recent_mean": -0.2456,
+    "recent_t": 0.77,
+    "fdr": false,
+    "lab_verdict": "odbaceno",
+    "edge_groups": [],
+    "group_means": {
+     "crypto": -0.1535,
+     "macro": -0.4146,
+     "stock": -0.3369
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "D_TREND_cross",
+   "family": "TREND",
+   "interval": "1d",
+   "status": "odbacen",
+   "unmet": [
+    "t 0.62, srednje 0.3174"
+   ],
+   "best": {
+    "test": "E21",
+    "n": 760,
+    "days": 421,
+    "mean": 0.3174,
+    "t": 0.62,
+    "t_train": 0.73,
+    "t_test": 0.03,
+    "recent_mean": 0.8279,
+    "recent_t": 0.74,
+    "fdr": false,
+    "lab_verdict": "odbaceno",
+    "edge_groups": [
+     "crypto"
+    ],
+    "group_means": {
+     "crypto": 0.4559,
+     "stock": -2.0732
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "FADE_L24_z1.5",
+   "family": "MOM",
+   "interval": "1h",
+   "status": "odbacen",
+   "unmet": [
+    "t 0.58, srednje -0.1392"
+   ],
+   "best": {
+    "test": "E72",
+    "n": 1334,
+    "days": 179,
+    "mean": -0.1392,
+    "t": 0.58,
+    "t_train": 0.67,
+    "t_test": 0.0,
+    "recent_mean": -0.1392,
+    "recent_t": 0.58,
+    "fdr": false,
+    "lab_verdict": "odbaceno",
+    "edge_groups": [],
+    "group_means": {
+     "crypto": -0.2556,
+     "macro": -0.2308,
+     "stock": -0.0207
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "FADE_L24_z2.5",
+   "family": "MOM",
+   "interval": "1h",
+   "status": "odbacen",
+   "unmet": [
+    "t 0.54, srednje 0.1089"
+   ],
+   "best": {
+    "test": "E24",
+    "n": 126,
+    "days": 65,
+    "mean": 0.1089,
+    "t": 0.54,
+    "t_train": 1.0,
+    "t_test": -0.52,
+    "recent_mean": 0.1396,
+    "recent_t": 0.59,
+    "fdr": false,
+    "lab_verdict": "odbaceno",
+    "edge_groups": [],
+    "group_means": {
+     "stock": -0.2206
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "MOM_L24_z2.5",
+   "family": "MOM",
+   "interval": "1h",
+   "status": "odbacen",
+   "unmet": [
+    "t 0.51, srednje 0.0387"
+   ],
+   "best": {
+    "test": "E72",
+    "n": 119,
+    "days": 62,
+    "mean": 0.0387,
+    "t": 0.51,
+    "t_train": -0.55,
+    "t_test": 1.08,
+    "recent_mean": 0.0387,
+    "recent_t": 0.51,
+    "fdr": false,
+    "lab_verdict": "odbaceno",
+    "edge_groups": [
+     "stock"
+    ],
+    "group_means": {
+     "stock": 0.3856
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "D_MOM_L90_z0.5",
+   "family": "MOM",
+   "interval": "1d",
+   "status": "odbacen",
+   "unmet": [
+    "t 0.49, srednje -0.0959"
+   ],
+   "best": {
+    "test": "E7",
+    "n": 3180,
+    "days": 1054,
+    "mean": -0.0959,
+    "t": 0.49,
+    "t_train": 0.26,
+    "t_test": 0.48,
+    "recent_mean": -0.0087,
+    "recent_t": 0.99,
+    "fdr": false,
+    "lab_verdict": "odbaceno",
+    "edge_groups": [],
+    "group_means": {
+     "crypto": -0.0333,
+     "stock": -1.6316
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "BTCLEAD_z2.0",
+   "family": "BTCLEAD",
+   "interval": "1h",
+   "status": "odbacen",
+   "unmet": [
+    "t 0.46, srednje 0.2622"
+   ],
+   "best": {
+    "test": "E24",
+    "n": 302,
+    "days": 48,
+    "mean": 0.2622,
+    "t": 0.46,
+    "t_train": -0.22,
+    "t_test": 1.09,
+    "recent_mean": 0.2622,
+    "recent_t": 0.46,
+    "fdr": false,
+    "lab_verdict": "odbaceno",
+    "edge_groups": [
+     "crypto"
+    ],
+    "group_means": {
+     "crypto": 0.2622
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "RSIFOLLOW_80",
+   "family": "RSIX",
+   "interval": "1h",
+   "status": "odbacen",
+   "unmet": [
+    "t 0.43, srednje 0.0375"
+   ],
+   "best": {
+    "test": "E72",
+    "n": 1164,
+    "days": 173,
+    "mean": 0.0375,
+    "t": 0.43,
+    "t_train": 0.86,
+    "t_test": -0.73,
+    "recent_mean": 0.0375,
+    "recent_t": 0.43,
+    "fdr": false,
+    "lab_verdict": "odbaceno",
+    "edge_groups": [
+     "crypto"
+    ],
+    "group_means": {
+     "crypto": 0.1504,
+     "macro": -0.1143,
+     "stock": -0.0254
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "BTCLEAD_z3.0",
+   "family": "BTCLEAD",
+   "interval": "1h",
+   "status": "odbacen",
+   "unmet": [
+    "t 0.29, srednje 0.4361"
+   ],
+   "best": {
+    "test": "E24",
+    "n": 63,
+    "days": 13,
+    "mean": 0.4361,
+    "t": 0.29,
+    "t_train": 0.45,
+    "t_test": -0.01,
+    "recent_mean": 0.4361,
+    "recent_t": 0.29,
+    "fdr": false,
+    "lab_verdict": "odbaceno",
+    "edge_groups": [
+     "crypto"
+    ],
+    "group_means": {
+     "crypto": 0.4361
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "CSM_mom_L4",
+   "family": "CSM",
+   "interval": "1h",
+   "status": "odbacen",
+   "unmet": [
+    "t 0.27, srednje -0.0099"
+   ],
+   "best": {
+    "test": "E72",
+    "n": 3542,
+    "days": 189,
+    "mean": -0.0099,
+    "t": 0.27,
+    "t_train": 1.13,
+    "t_test": -0.72,
+    "recent_mean": -0.0099,
+    "recent_t": 0.27,
+    "fdr": false,
+    "lab_verdict": "odbaceno",
+    "edge_groups": [
+     "crypto",
+     "stock"
+    ],
+    "group_means": {
+     "crypto": 0.0873,
+     "macro": -0.4919,
+     "stock": 0.0429
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "FADE_L4_z2.5",
+   "family": "MOM",
+   "interval": "1h",
+   "status": "odbacen",
+   "unmet": [
+    "t 0.22, srednje -0.2356"
+   ],
+   "best": {
+    "test": "E24",
+    "n": 814,
+    "days": 167,
+    "mean": -0.2356,
+    "t": 0.22,
+    "t_train": -0.78,
+    "t_test": 2.06,
+    "recent_mean": -0.2407,
+    "recent_t": 0.15,
+    "fdr": false,
+    "lab_verdict": "odbaceno",
+    "edge_groups": [],
+    "group_means": {
+     "crypto": -0.0593,
+     "macro": -0.161,
+     "stock": -0.3604
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "D_BB_fade",
+   "family": "BB",
+   "interval": "1d",
+   "status": "odbacen",
+   "unmet": [
+    "t 0.16, srednje -0.0491"
+   ],
+   "best": {
+    "test": "E21",
+    "n": 1301,
+    "days": 530,
+    "mean": -0.0491,
+    "t": 0.16,
+    "t_train": 0.52,
+    "t_test": -0.45,
+    "recent_mean": 0.711,
+    "recent_t": 0.1,
+    "fdr": false,
+    "lab_verdict": "odbaceno",
+    "edge_groups": [
+     "stock"
+    ],
+    "group_means": {
+     "crypto": -0.067,
+     "stock": 0.8281
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "RSIFOLLOW_75",
+   "family": "RSIX",
+   "interval": "1h",
+   "status": "odbacen",
+   "unmet": [
+    "t -0.5, srednje -0.032"
+   ],
+   "best": {
+    "test": "E72",
+    "n": 2219,
+    "days": 186,
+    "mean": -0.032,
+    "t": -0.5,
+    "t_train": 0.29,
+    "t_test": -1.32,
+    "recent_mean": -0.032,
+    "recent_t": -0.5,
+    "fdr": false,
+    "lab_verdict": "odbaceno",
+    "edge_groups": [],
+    "group_means": {
+     "crypto": -0.0223,
+     "macro": -0.0145,
+     "stock": -0.049
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "BB_follow",
+   "family": "BB",
+   "interval": "1h",
+   "status": "odbacen",
+   "unmet": [
+    "t -0.65, srednje -0.1286"
+   ],
+   "best": {
+    "test": "E72",
+    "n": 4313,
+    "days": 188,
+    "mean": -0.1286,
+    "t": -0.65,
+    "t_train": -0.12,
+    "t_test": -1.08,
+    "recent_mean": -0.1286,
+    "recent_t": -0.65,
+    "fdr": false,
+    "lab_verdict": "odbaceno",
+    "edge_groups": [],
+    "group_means": {
+     "crypto": -0.1472,
+     "macro": -0.3894,
+     "stock": -0.015
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "MOM_L1_z2.5",
+   "family": "MOM",
+   "interval": "1h",
+   "status": "odbacen",
+   "unmet": [
+    "t -0.67, srednje -0.1367"
+   ],
+   "best": {
+    "test": "E24",
+    "n": 2358,
+    "days": 188,
+    "mean": -0.1367,
+    "t": -0.67,
+    "t_train": 0.23,
+    "t_test": -0.78,
+    "recent_mean": -0.1338,
+    "recent_t": -0.61,
+    "fdr": false,
+    "lab_verdict": "odbaceno",
+    "edge_groups": [
+     "stock"
+    ],
+    "group_means": {
+     "crypto": -0.4334,
+     "macro": -0.343,
+     "stock": 0.0967
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "FADE_L1_z2.5",
+   "family": "MOM",
+   "interval": "1h",
+   "status": "odbacen",
+   "unmet": [
+    "t -0.69, srednje -0.1826"
+   ],
+   "best": {
+    "test": "E72",
+    "n": 1721,
+    "days": 184,
+    "mean": -0.1826,
+    "t": -0.69,
+    "t_train": -0.52,
+    "t_test": -0.46,
+    "recent_mean": -0.1826,
+    "recent_t": -0.69,
+    "fdr": false,
+    "lab_verdict": "odbaceno",
+    "edge_groups": [
+     "macro"
+    ],
+    "group_means": {
+     "crypto": -0.0802,
+     "macro": 0.0496,
+     "stock": -0.3224
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "MOM_L4_z2.5",
+   "family": "MOM",
+   "interval": "1h",
+   "status": "odbacen",
+   "unmet": [
+    "t -0.71, srednje -0.163"
+   ],
+   "best": {
+    "test": "E72",
+    "n": 721,
+    "days": 158,
+    "mean": -0.163,
+    "t": -0.71,
+    "t_train": 0.33,
+    "t_test": -1.14,
+    "recent_mean": -0.163,
+    "recent_t": -0.71,
+    "fdr": false,
+    "lab_verdict": "odbaceno",
+    "edge_groups": [],
+    "group_means": {
+     "crypto": -0.1813,
+     "macro": -0.0608,
+     "stock": -0.1679
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "DON_fade_72",
+   "family": "DON",
+   "interval": "1h",
+   "status": "odbacen",
+   "unmet": [
+    "t -0.74, srednje -0.1968"
+   ],
+   "best": {
+    "test": "E72",
+    "n": 3342,
+    "days": 189,
+    "mean": -0.1968,
+    "t": -0.74,
+    "t_train": -1.99,
+    "t_test": 0.86,
+    "recent_mean": -0.1968,
+    "recent_t": -0.74,
+    "fdr": false,
+    "lab_verdict": "odbaceno",
+    "edge_groups": [],
+    "group_means": {
+     "crypto": -0.2614,
+     "macro": -0.1128,
+     "stock": -0.1091
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "D_FADE_L3_z1.0",
+   "family": "MOM",
+   "interval": "1d",
+   "status": "odbacen",
+   "unmet": [
+    "t -0.78, srednje -0.5365"
+   ],
+   "best": {
+    "test": "E7",
+    "n": 1780,
+    "days": 623,
+    "mean": -0.5365,
+    "t": -0.78,
+    "t_train": -0.2,
+    "t_test": -0.99,
+    "recent_mean": 0.0329,
+    "recent_t": -0.04,
+    "fdr": false,
+    "lab_verdict": "odbaceno",
+    "edge_groups": [
+     "stock"
+    ],
+    "group_means": {
+     "crypto": -0.6429,
+     "stock": 1.0591
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "DON_fade_168",
+   "family": "DON",
+   "interval": "1h",
+   "status": "odbacen",
+   "unmet": [
+    "t -0.95, srednje -0.3683"
+   ],
+   "best": {
+    "test": "E72",
+    "n": 2344,
+    "days": 186,
+    "mean": -0.3683,
+    "t": -0.95,
+    "t_train": -2.26,
+    "t_test": 1.29,
+    "recent_mean": -0.3683,
+    "recent_t": -0.95,
+    "fdr": false,
+    "lab_verdict": "odbaceno",
+    "edge_groups": [],
+    "group_means": {
+     "crypto": -0.5727,
+     "macro": -0.1081,
+     "stock": -0.1079
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "MOM_L4_z1.5",
+   "family": "MOM",
+   "interval": "1h",
+   "status": "odbacen",
+   "unmet": [
+    "t -1.0, srednje -0.1554"
+   ],
+   "best": {
+    "test": "E24",
+    "n": 4754,
+    "days": 191,
+    "mean": -0.1554,
+    "t": -1.0,
+    "t_train": -0.08,
+    "t_test": -1.51,
+    "recent_mean": -0.1567,
+    "recent_t": -1.03,
+    "fdr": false,
+    "lab_verdict": "odbaceno",
+    "edge_groups": [],
+    "group_means": {
+     "crypto": -0.203,
+     "macro": -0.195,
+     "stock": -0.0878
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "CSM_mom_L24",
+   "family": "CSM",
+   "interval": "1h",
+   "status": "odbacen",
+   "unmet": [
+    "t -1.21, srednje -0.1736"
+   ],
+   "best": {
+    "test": "E72",
+    "n": 2752,
+    "days": 189,
+    "mean": -0.1736,
+    "t": -1.21,
+    "t_train": -0.76,
+    "t_test": -0.98,
+    "recent_mean": -0.1736,
+    "recent_t": -1.21,
+    "fdr": false,
+    "lab_verdict": "odbaceno",
+    "edge_groups": [
+     "crypto"
+    ],
+    "group_means": {
+     "crypto": 0.2996,
+     "macro": -0.421,
+     "stock": -0.6174
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "D_DON_fade_100",
+   "family": "DON",
+   "interval": "1d",
+   "status": "odbacen",
+   "unmet": [
+    "t -1.4, srednje -2.2638"
+   ],
+   "best": {
+    "test": "E21",
+    "n": 483,
+    "days": 280,
+    "mean": -2.2638,
+    "t": -1.4,
+    "t_train": -0.55,
+    "t_test": -1.56,
+    "recent_mean": -1.7075,
+    "recent_t": 0.03,
+    "fdr": false,
+    "lab_verdict": "odbaceno",
+    "edge_groups": [],
+    "group_means": {
+     "crypto": -2.4245
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "FADE_L4_z1.5",
+   "family": "MOM",
+   "interval": "1h",
+   "status": "odbacen",
+   "unmet": [
+    "t -1.51, srednje -0.2435"
+   ],
+   "best": {
+    "test": "E72",
+    "n": 2887,
+    "days": 188,
+    "mean": -0.2435,
+    "t": -1.51,
+    "t_train": -0.82,
+    "t_test": -1.57,
+    "recent_mean": -0.2435,
+    "recent_t": -1.51,
+    "fdr": false,
+    "lab_verdict": "odbaceno",
+    "edge_groups": [],
+    "group_means": {
+     "crypto": -0.3328,
+     "macro": -0.3279,
+     "stock": -0.097
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "D_DON_fade_20",
+   "family": "DON",
+   "interval": "1d",
+   "status": "odbacen",
+   "unmet": [
+    "t -1.57, srednje -0.6655"
+   ],
+   "best": {
+    "test": "E21",
+    "n": 1257,
+    "days": 510,
+    "mean": -0.6655,
+    "t": -1.57,
+    "t_train": -1.25,
+    "t_test": -0.99,
+    "recent_mean": 0.349,
+    "recent_t": -0.02,
+    "fdr": false,
+    "lab_verdict": "odbaceno",
+    "edge_groups": [
+     "stock"
+    ],
+    "group_means": {
+     "crypto": -0.7129,
+     "stock": 0.7534
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "MOM_L24_z1.5",
+   "family": "MOM",
+   "interval": "1h",
+   "status": "odbacen",
+   "unmet": [
+    "t -1.57, srednje -0.2009"
+   ],
+   "best": {
+    "test": "E24",
+    "n": 1711,
+    "days": 186,
+    "mean": -0.2009,
+    "t": -1.57,
+    "t_train": -0.89,
+    "t_test": -1.86,
+    "recent_mean": -0.2003,
+    "recent_t": -1.54,
+    "fdr": false,
+    "lab_verdict": "odbaceno",
+    "edge_groups": [],
+    "group_means": {
+     "crypto": -0.0479,
+     "macro": -0.3036,
+     "stock": -0.2865
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "TREND_cross",
+   "family": "TREND",
+   "interval": "1h",
+   "status": "odbacen",
+   "unmet": [
+    "t -1.57, srednje -0.1481"
+   ],
+   "best": {
+    "test": "E72",
+    "n": 3363,
+    "days": 189,
+    "mean": -0.1481,
+    "t": -1.57,
+    "t_train": 0.14,
+    "t_test": -3.06,
+    "recent_mean": -0.1481,
+    "recent_t": -1.57,
+    "fdr": false,
+    "lab_verdict": "odbaceno",
+    "edge_groups": [],
+    "group_means": {
+     "crypto": -0.0091,
+     "macro": -0.1223,
+     "stock": -0.4264
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "DON_fade_24",
+   "family": "DON",
+   "interval": "1h",
+   "status": "odbacen",
+   "unmet": [
+    "t -1.71, srednje -0.2391"
+   ],
+   "best": {
+    "test": "E72",
+    "n": 4195,
+    "days": 189,
+    "mean": -0.2391,
+    "t": -1.71,
+    "t_train": -2.33,
+    "t_test": -0.03,
+    "recent_mean": -0.2391,
+    "recent_t": -1.71,
+    "fdr": false,
+    "lab_verdict": "odbaceno",
+    "edge_groups": [
+     "macro"
+    ],
+    "group_means": {
+     "crypto": -0.2766,
+     "macro": 0.1598,
+     "stock": -0.2963
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "RSIFADE_75",
+   "family": "RSIX",
+   "interval": "1h",
+   "status": "odbacen",
+   "unmet": [
+    "t -1.75, srednje -0.428"
+   ],
+   "best": {
+    "test": "E72",
+    "n": 2219,
+    "days": 186,
+    "mean": -0.428,
+    "t": -1.75,
+    "t_train": -1.93,
+    "t_test": -0.29,
+    "recent_mean": -0.428,
+    "recent_t": -1.75,
+    "fdr": false,
+    "lab_verdict": "odbaceno",
+    "edge_groups": [],
+    "group_means": {
+     "crypto": -0.4377,
+     "macro": -0.4455,
+     "stock": -0.411
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "DON_follow_168",
+   "family": "DON",
+   "interval": "1h",
+   "status": "odbacen",
+   "unmet": [
+    "t -1.8, srednje -0.0917"
+   ],
+   "best": {
+    "test": "E72",
+    "n": 2344,
+    "days": 186,
+    "mean": -0.0917,
+    "t": -1.8,
+    "t_train": 0.18,
+    "t_test": -3.16,
+    "recent_mean": -0.0917,
+    "recent_t": -1.8,
+    "fdr": false,
+    "lab_verdict": "odbaceno",
+    "edge_groups": [
+     "crypto"
+    ],
+    "group_means": {
+     "crypto": 0.1127,
+     "macro": -0.3519,
+     "stock": -0.3521
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "D_CSM_rev_L14",
+   "family": "CSM",
+   "interval": "1d",
+   "status": "odbacen",
+   "unmet": [
+    "t -1.82, srednje -2.0827"
+   ],
+   "best": {
+    "test": "E21",
+    "n": 659,
+    "days": 534,
+    "mean": -2.0827,
+    "t": -1.82,
+    "t_train": -1.25,
+    "t_test": -1.35,
+    "recent_mean": 0.0482,
+    "recent_t": -0.27,
+    "fdr": false,
+    "lab_verdict": "odbaceno",
+    "edge_groups": [
+     "stock"
+    ],
+    "group_means": {
+     "crypto": -2.3243,
+     "stock": 0.9251
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "D_CSM_rev_L7",
+   "family": "CSM",
+   "interval": "1d",
+   "status": "odbacen",
+   "unmet": [
+    "t -1.82, srednje -0.5182"
+   ],
+   "best": {
+    "test": "E3",
+    "n": 2100,
+    "days": 1102,
+    "mean": -0.5182,
+    "t": -1.82,
+    "t_train": -0.68,
+    "t_test": -2.05,
+    "recent_mean": -0.244,
+    "recent_t": -0.77,
+    "fdr": false,
+    "lab_verdict": "odbaceno",
+    "edge_groups": [
+     "stock"
+    ],
+    "group_means": {
+     "crypto": -0.606,
+     "stock": 0.3649
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "D_DON_fade_55",
+   "family": "DON",
+   "interval": "1d",
+   "status": "odbacen",
+   "unmet": [
+    "t -1.85, srednje -0.4392"
+   ],
+   "best": {
+    "test": "E3",
+    "n": 1377,
+    "days": 546,
+    "mean": -0.4392,
+    "t": -1.85,
+    "t_train": -0.17,
+    "t_test": -2.24,
+    "recent_mean": -0.4751,
+    "recent_t": -1.97,
+    "fdr": false,
+    "lab_verdict": "odbaceno",
+    "edge_groups": [
+     "stock"
+    ],
+    "group_means": {
+     "crypto": -0.4824,
+     "stock": 0.5255
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "FUND_x0.008",
+   "family": "FUND",
+   "interval": "1h",
+   "status": "odbacen",
+   "unmet": [
+    "t -1.86, srednje -0.3082"
+   ],
+   "best": {
+    "test": "E72",
+    "n": 1426,
+    "days": 185,
+    "mean": -0.3082,
+    "t": -1.86,
+    "t_train": -1.09,
+    "t_test": -1.55,
+    "recent_mean": -0.3082,
+    "recent_t": -1.86,
+    "fdr": false,
+    "lab_verdict": "odbaceno",
+    "edge_groups": [],
+    "group_means": {
+     "crypto": -0.1444,
+     "macro": -0.9041,
+     "stock": -0.2732
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "D_RSI14_fade_70",
+   "family": "RSIX",
+   "interval": "1d",
+   "status": "odbacen",
+   "unmet": [
+    "t -1.9, srednje -1.7803"
+   ],
+   "best": {
+    "test": "E14",
+    "n": 836,
+    "days": 387,
+    "mean": -1.7803,
+    "t": -1.9,
+    "t_train": -0.85,
+    "t_test": -2.13,
+    "recent_mean": -1.5964,
+    "recent_t": -1.23,
+    "fdr": false,
+    "lab_verdict": "odbaceno",
+    "edge_groups": [
+     "stock"
+    ],
+    "group_means": {
+     "crypto": -1.9007,
+     "stock": 1.3591
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "RSIFADE_80",
+   "family": "RSIX",
+   "interval": "1h",
+   "status": "odbacen",
+   "unmet": [
+    "t -1.92, srednje -0.4975"
+   ],
+   "best": {
+    "test": "E72",
+    "n": 1164,
+    "days": 173,
+    "mean": -0.4975,
+    "t": -1.92,
+    "t_train": -1.83,
+    "t_test": -0.66,
+    "recent_mean": -0.4975,
+    "recent_t": -1.92,
+    "fdr": true,
+    "lab_verdict": "odbaceno",
+    "edge_groups": [],
+    "group_means": {
+     "crypto": -0.6104,
+     "macro": -0.3457,
+     "stock": -0.4346
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "CSM_rev_L24",
+   "family": "CSM",
+   "interval": "1h",
+   "status": "odbacen",
+   "unmet": [
+    "t -2.01, srednje -0.2864"
+   ],
+   "best": {
+    "test": "E72",
+    "n": 2752,
+    "days": 189,
+    "mean": -0.2864,
+    "t": -2.01,
+    "t_train": -1.55,
+    "t_test": -1.38,
+    "recent_mean": -0.2864,
+    "recent_t": -2.01,
+    "fdr": true,
+    "lab_verdict": "odbaceno",
+    "edge_groups": [
+     "stock"
+    ],
+    "group_means": {
+     "crypto": -0.7596,
+     "macro": -0.039,
+     "stock": 0.1574
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "D_RSI2_fade_90",
+   "family": "RSIX",
+   "interval": "1d",
+   "status": "odbacen",
+   "unmet": [
+    "t -2.01, srednje -1.257"
+   ],
+   "best": {
+    "test": "E14",
+    "n": 2392,
+    "days": 809,
+    "mean": -1.257,
+    "t": -2.01,
+    "t_train": -1.12,
+    "t_test": -2.15,
+    "recent_mean": -1.0817,
+    "recent_t": -1.76,
+    "fdr": false,
+    "lab_verdict": "odbaceno",
+    "edge_groups": [],
+    "group_means": {
+     "crypto": -1.253,
+     "stock": -1.6912
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "FUND_x0.004",
+   "family": "FUND",
+   "interval": "1h",
+   "status": "odbacen",
+   "unmet": [
+    "t -2.03, srednje -0.3064"
+   ],
+   "best": {
+    "test": "E72",
+    "n": 2341,
+    "days": 189,
+    "mean": -0.3064,
+    "t": -2.03,
+    "t_train": -0.97,
+    "t_test": -2.19,
+    "recent_mean": -0.3064,
+    "recent_t": -2.03,
+    "fdr": true,
+    "lab_verdict": "odbaceno",
+    "edge_groups": [],
+    "group_means": {
+     "crypto": -0.2342,
+     "macro": -0.253,
+     "stock": -0.381
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "D_RSI2_fade_95",
+   "family": "RSIX",
+   "interval": "1d",
+   "status": "odbacen",
+   "unmet": [
+    "t -2.07, srednje -1.1228"
+   ],
+   "best": {
+    "test": "E14",
+    "n": 1866,
+    "days": 653,
+    "mean": -1.1228,
+    "t": -2.07,
+    "t_train": -1.72,
+    "t_test": -1.19,
+    "recent_mean": -0.3188,
+    "recent_t": -0.96,
+    "fdr": false,
+    "lab_verdict": "odbaceno",
+    "edge_groups": [
+     "stock"
+    ],
+    "group_means": {
+     "crypto": -1.2491,
+     "stock": 1.2232
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "D_FADE_L1_z1.0",
+   "family": "MOM",
+   "interval": "1d",
+   "status": "odbacen",
+   "unmet": [
+    "t -2.27, srednje -1.3325"
+   ],
+   "best": {
+    "test": "E21",
+    "n": 1311,
+    "days": 474,
+    "mean": -1.3325,
+    "t": -2.27,
+    "t_train": -1.34,
+    "t_test": -1.84,
+    "recent_mean": -0.7548,
+    "recent_t": -1.18,
+    "fdr": true,
+    "lab_verdict": "odbaceno",
+    "edge_groups": [
+     "stock"
+    ],
+    "group_means": {
+     "crypto": -1.5359,
+     "stock": 2.7758
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "FADE_L1_z1.5",
+   "family": "MOM",
+   "interval": "1h",
+   "status": "odbacen",
+   "unmet": [
+    "t -2.6, srednje -0.2144"
+   ],
+   "best": {
+    "test": "E72",
+    "n": 3684,
+    "days": 188,
+    "mean": -0.2144,
+    "t": -2.6,
+    "t_train": -2.39,
+    "t_test": -1.24,
+    "recent_mean": -0.2144,
+    "recent_t": -2.6,
+    "fdr": true,
+    "lab_verdict": "odbaceno",
+    "edge_groups": [],
+    "group_means": {
+     "crypto": -0.3065,
+     "macro": -0.0454,
+     "stock": -0.1231
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "DON_follow_24",
+   "family": "DON",
+   "interval": "1h",
+   "status": "odbacen",
+   "unmet": [
+    "t -2.65, srednje -0.2209"
+   ],
+   "best": {
+    "test": "E72",
+    "n": 4195,
+    "days": 189,
+    "mean": -0.2209,
+    "t": -2.65,
+    "t_train": -1.08,
+    "t_test": -2.71,
+    "recent_mean": -0.2209,
+    "recent_t": -2.65,
+    "fdr": true,
+    "lab_verdict": "odbaceno",
+    "edge_groups": [],
+    "group_means": {
+     "crypto": -0.1834,
+     "macro": -0.6198,
+     "stock": -0.1637
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "DON_follow_72",
+   "family": "DON",
+   "interval": "1h",
+   "status": "odbacen",
+   "unmet": [
+    "t -2.65, srednje -0.2632"
+   ],
+   "best": {
+    "test": "E72",
+    "n": 3342,
+    "days": 189,
+    "mean": -0.2632,
+    "t": -2.65,
+    "t_train": -0.88,
+    "t_test": -2.82,
+    "recent_mean": -0.2632,
+    "recent_t": -2.65,
+    "fdr": true,
+    "lab_verdict": "odbaceno",
+    "edge_groups": [],
+    "group_means": {
+     "crypto": -0.1986,
+     "macro": -0.3472,
+     "stock": -0.3509
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "D_CSM_rev_L30",
+   "family": "CSM",
+   "interval": "1d",
+   "status": "odbacen",
+   "unmet": [
+    "t -2.78, srednje -3.0283"
+   ],
+   "best": {
+    "test": "E21",
+    "n": 515,
+    "days": 425,
+    "mean": -3.0283,
+    "t": -2.78,
+    "t_train": -2.47,
+    "t_test": -1.66,
+    "recent_mean": 0.1664,
+    "recent_t": -0.55,
+    "fdr": true,
+    "lab_verdict": "odbaceno",
+    "edge_groups": [
+     "stock"
+    ],
+    "group_means": {
+     "crypto": -3.3888,
+     "stock": 2.0716
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "BB_fade",
+   "family": "BB",
+   "interval": "1h",
+   "status": "odbacen",
+   "unmet": [
+    "t -3.02, srednje -0.3314"
+   ],
+   "best": {
+    "test": "E72",
+    "n": 4313,
+    "days": 188,
+    "mean": -0.3314,
+    "t": -3.02,
+    "t_train": -2.39,
+    "t_test": -1.89,
+    "recent_mean": -0.3314,
+    "recent_t": -3.02,
+    "fdr": true,
+    "lab_verdict": "odbaceno",
+    "edge_groups": [],
+    "group_means": {
+     "crypto": -0.3128,
+     "macro": -0.0706,
+     "stock": -0.445
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "CSM_rev_L4",
+   "family": "CSM",
+   "interval": "1h",
+   "status": "odbacen",
+   "unmet": [
+    "t -4.05, srednje -0.1868"
+   ],
+   "best": {
+    "test": "E24",
+    "n": 8183,
+    "days": 191,
+    "mean": -0.1868,
+    "t": -4.05,
+    "t_train": -3.34,
+    "t_test": -2.51,
+    "recent_mean": -0.1891,
+    "recent_t": -4.06,
+    "fdr": true,
+    "lab_verdict": "odbaceno",
+    "edge_groups": [],
+    "group_means": {
+     "crypto": -0.2346,
+     "macro": -0.2835,
+     "stock": -0.0888
+    }
+   },
+   "fwd": null
+  },
+  {
+   "id": "TREND_pullback",
+   "family": "TREND",
+   "interval": "1h",
+   "status": "odbacen",
+   "unmet": [
+    "t -0.0, srednje -0.0263"
+   ],
+   "best": {
+    "test": "E72",
+    "n": 4167,
+    "days": 189,
+    "mean": -0.0263,
+    "t": -0.0,
+    "t_train": 0.08,
+    "t_test": -0.1,
+    "recent_mean": -0.0263,
+    "recent_t": -0.0,
+    "fdr": false,
+    "lab_verdict": "odbaceno",
+    "edge_groups": [
+     "crypto"
+    ],
+    "group_means": {
+     "crypto": 0.1506,
+     "macro": -0.0659,
+     "stock": -0.3384
+    }
+   },
+   "fwd": null
+  }
+ ]
+}
