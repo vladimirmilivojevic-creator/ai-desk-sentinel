@@ -211,6 +211,8 @@ class OrchestratorTests(unittest.TestCase):
         self.assertLess(len(json.dumps(b).encode()), collect.BRIEFING_MAX_BYTES)
         self.assertEqual(b["scalars"]["vix"], 18.0)
         self.assertIn(b["regime"]["label"], ("risk_on", "neutral", "risk_off"))
+        hist = json.load(open(os.path.join(d, "history.json"), encoding="utf-8"))
+        self.assertEqual(hist[-1]["m"]["BTC"], 100.0)  # cene univerzuma za ocenjivanje prognoza
         h = json.load(open(os.path.join(d, "health.json"), encoding="utf-8"))
         self.assertIn("derivs_coinalyze", h)
         self.assertIsNotNone(h["derivs_coinalyze"]["last_error"])  # nema kljuca: zapisano, ne izmisljeno

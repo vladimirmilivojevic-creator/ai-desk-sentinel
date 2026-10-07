@@ -94,7 +94,7 @@ def zscores(row, history, min_rows=48):
     for k, v in row.items():
         if v is None:
             continue
-        past = [h[k] for h in history if h.get(k) is not None]
+        past = [h[k] for h in history if isinstance(h.get(k), (int, float))]
         if len(past) >= min_rows and st.pstdev(past) > 0:
             out[k] = round((v - st.mean(past)) / st.pstdev(past), 2)
     return out
@@ -221,8 +221,11 @@ def run(state_dir, now_ms=None, force=False, log=print, env=None):
     hist_path = os.path.join(data_dir, "history.json")
     hist = _load(hist_path, [])
     row = dict(scalars(files), t=(now_ms // HOUR) * HOUR)
+    mk = (files.get("market") or {}).get("data", {}) or {}
+    # cene (marks) univerzuma po satu: sluze za ocenjivanje AI prognoza bez ikakvog dodatnog poziva
+    row["m"] = {s: round(mk[s]["ctx"]["mark"], 6) for s in syms if mk.get(s) and mk[s].get("ctx")}
     prior = [h for h in hist if h.get("t") != row["t"]]
-    z = zscores({k: v for k, v in row.items() if k != "t"}, prior)
+    z = zscores({k: v for k, v in row.items() if k not in ("t", "m")}, prior)
     hist = (prior + [row])[-HISTORY_KEEP:]
     _save(hist_path, hist)
     briefing = build_briefing(files, z, now_ms, registry_summary(state_dir), health)
