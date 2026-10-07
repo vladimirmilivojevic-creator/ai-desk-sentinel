@@ -13,6 +13,7 @@ from .indicators import Series
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 HORIZONS = (4, 24, 72)
+DAILY_HORIZONS = (1, 3, 7, 14, 21)
 WARMUP = 210
 
 
@@ -128,15 +129,15 @@ def run(log=print, days=None, interval="1h"):
     daily = interval == "1d"
     days = days or (1500 if daily else None)
     series = build_series(cfg, days, log=log, interval=interval, with_funding=not daily)
-    ctx = make_ctx(series, (1, 3, 7) if daily else HORIZONS)
+    ctx = make_ctx(series, DAILY_HORIZONS if daily else HORIZONS)
     if daily:
-        variants, horizons, with_x, warm = rules.daily_variants(), (1, 3, 7), False, 210
+        variants, horizons, with_x, warm = rules.daily_variants(), DAILY_HORIZONS, False, 210
         # makro i akcije nemaju dugu istoriju: dnevni testovi koriste sve sto postoji
     else:
         variants, horizons, with_x, warm = rules.default_variants() + rules.candidate_variants(cands), HORIZONS, True, WARMUP
     ref = series.get("BTC") or next(iter(series.values()))
     t_min, t_max = ref.t[warm], ref.t[-1 - max(horizons)]
-    k_tests = len(variants) * len(horizons)  # primarni testovi su "E" (preko korpe); ostali su informativni
+    k_tests = sum(1 for v in variants if "PLACEBO" not in v[0]) * len(horizons)  # primarni testovi su "E" (preko korpe); placebo se ne racuna
     results = []
     for vid, fam, params in variants:
         sigs = collect_signals(series, ctx, fam, params, warm)
@@ -144,7 +145,7 @@ def run(log=print, days=None, interval="1h"):
         for test, rows in ev.items():
             s = stats.summarize(rows, t_min, t_max)
             results.append({"id": vid, "family": fam, "params": params, "test": test, "stats": s,
-                            "verdict": stats.verdict(s, k_tests) if test.startswith("E") else "info",
+                            "verdict": stats.verdict(s, k_tests) if (test.startswith("E") and "PLACEBO" not in vid) else "info",
                             "groups": by_group(series, rows) if s.get("n", 0) else {}})
         log("%-18s signala %6d" % (vid, len(sigs)))
     return {"generated_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()), "interval": interval, "days": days or cfg.get("days"),

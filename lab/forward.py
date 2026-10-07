@@ -8,13 +8,13 @@ import os
 import sys
 import time
 
-from . import backtest, data, rules, sim, stats
+from . import backtest, data, features, rules, sim, stats
 from .indicators import Series
 
 HOUR = 3600000
 DAY = 86400000
 WARM = 205
-REV = 5  # povecaj kad se promeni izlaz/logika: laboratorija se tada odmah ponovo racuna u istom satu
+REV = 6  # povecaj kad se promeni izlaz/logika: laboratorija se tada odmah ponovo racuna u istom satu
 HOLD_HOURS_1H = 24
 HOLD_HOURS_1D = 168
 
@@ -164,8 +164,23 @@ def governor(cfg, all_vars):
     return out
 
 
-def panel_summary(cfg, stats_obj, bt):
-    """Mali sazetak (nekoliko KB) za panel: zive varijante, najbolji istorijski dokazi i brojke unapred."""
+def history_point(bar_ms, all_vars, live_ids):
+    """Tacka za grafik napretka: [vreme, signala, ishoda +24h, n zivih pravila, tezinska srednja zivih %, srednja placeba %]."""
+    n_tot, w = 0, 0.0
+    for vid in live_ids:
+        v = all_vars.get(vid, {})
+        s = v.get("tests", {}).get("E7" if v.get("interval") == "1d" else "E24", {})
+        if s.get("n"):
+            n_tot += s["n"]
+            w += s["n"] * s["mean"]
+    pl = all_vars.get("PLACEBO_p2", {}).get("tests", {}).get("E24", {})
+    tot = sum(v["signals"] for v in all_vars.values())
+    out24 = sum(v["tests"].get("H24", {}).get("n", 0) for v in all_vars.values() if v.get("interval") == "1h")
+    return [bar_ms, tot, out24, n_tot, round(w / n_tot, 4) if n_tot else None, pl.get("mean")]
+
+
+def panel_summary(cfg, stats_obj, bt, history=None):
+    """Mali sazetak (nekoliko KB) za panel: zive varijante, najbolji istorijski dokazi, placebo, grafik napretka i brojke unapred."""
     why = {x["id"]: x.get("why", "") for x in cfg.get("live_variants", [])}
     all_vars = stats_obj["variants"]
     live = []
@@ -176,6 +191,8 @@ def panel_summary(cfg, stats_obj, bt):
                      "fwd": v.get("tests", {}).get(key, {}), "signals": v.get("signals", 0), "test": key})
     ranked = []
     for vid, tests in bt.items():
+        if "PLACEBO" in vid:
+            continue
         for test, r in tests.items():
             if test.startswith("E") and r.get("t") is not None and r.get("n", 0) >= 30:
                 ranked.append({"id": vid, "test": test, "n": r["n"], "mean": r["mean"], "t": r["t"], "t_train": r.get("t_train"),
@@ -184,9 +201,12 @@ def panel_summary(cfg, stats_obj, bt):
     counts = {}
     for r in ranked:
         counts[r["verdict"]] = counts.get(r["verdict"], 0) + 1
+    placebo = {"hourly_bt": bt.get("PLACEBO_p2", {}).get("E24"), "hourly_fwd": all_vars.get("PLACEBO_p2", {}).get("tests", {}).get("E24"),
+               "daily_bt": bt.get("D_PLACEBO_p5", {}).get("E7")}
     return {"updated_utc": stats_obj["updated_utc"], "t0_utc": stats_obj["t0_utc"], "hours_running": stats_obj["hours_running"],
             "universe_n": stats_obj["universe_n"], "totals": stats_obj["totals"], "cost_pct": stats_obj["cost_pct"], "live": live,
-            "top_backtest": ranked[:10], "backtest_counts": counts, "demoted": stats_obj.get("demoted", {})}
+            "top_backtest": ranked[:10], "backtest_counts": counts, "demoted": stats_obj.get("demoted", {}), "placebo": placebo,
+            "history": (history or [])[-168:], "features_rows": stats_obj.get("features_rows")}
 
 
 def load_backtest_summary(root):
@@ -254,8 +274,21 @@ def run(state_dir, root=None, now_ms=None, force=False, log=print):
     stats_obj = {"updated_utc": iso(now_ms), "t0_utc": meta["t0_utc"], "hours_running": round((now_ms - t0) / HOUR, 1),
                  "universe_n": n_sym, "last_bar_utc": iso(last_bar), "variants": all_vars, "totals": totals,
                  "cost_pct": sim.COST_PCT, "live_variants": sorted(live), "demoted": demoted}
+    feat_rows = None
+    try:
+        feat_rows = features.append(os.path.join(lab_dir, "features.jsonl"), features.collect(cfg["universe"], bar_now))
+    except Exception as e:  # noqa: BLE001  # dodatni podaci nikad ne smeju da obore laboratoriju
+        log("osobine nisu prikupljene: %s" % type(e).__name__)
+    stats_obj["features_rows"] = feat_rows
+    hist = _load(os.path.join(lab_dir, "history.json"), [])
+    if not hist or hist[-1][0] != bar_now:
+        hist.append(history_point(bar_now, all_vars, list(live)))
+    else:
+        hist[-1] = history_point(bar_now, all_vars, list(live))
+    hist = hist[-336:]
+    _save(os.path.join(lab_dir, "history.json"), hist)
     _save(os.path.join(lab_dir, "stats.json"), stats_obj)
-    _save(os.path.join(lab_dir, "panel.json"), panel_summary(cfg, stats_obj, bt))
+    _save(os.path.join(lab_dir, "panel.json"), panel_summary(cfg, stats_obj, bt, hist))
     live_triggers = [x for x in all_triggers if x.get("live")]
     _save(os.path.join(lab_dir, "triggers.json"), {"updated_utc": iso(now_ms), "bar_utc": iso(last_bar), "triggers": live_triggers,
                                                    "other_triggers": len(all_triggers) - len(live_triggers), "live_variants": live,

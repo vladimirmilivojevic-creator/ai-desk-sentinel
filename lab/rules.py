@@ -3,6 +3,8 @@ Signal se racuna iz podataka do ZATVARANJA svece i (indeks i), ulaz je po toj ce
 Pravila su parametrizovana i imaju stabilan id. Novi kandidati (npr. iz nedeljnog pregleda interneta) dodaju se
 u config/lab_candidates.json kao {family, params, source, rationale}: nikad kao kod."""
 
+import hashlib
+
 FAMILIES = {}
 
 
@@ -127,6 +129,16 @@ def btc_lead(S, i, ctx, z=2.0):
     return _side(zb)
 
 
+@family("RAND")
+def placebo(S, i, ctx, p=0.02, seed=7):
+    """Placebo: nasumican ulaz (determinist: iz hesa instrumenta i vremena) sa verovatnocom p po svecici. Nema nikakvu prednost,
+    pa pokazuje sta bi 'pravilo bez znanja' dalo posle troska: svako pravilo treba da pobedi OVO, ne nulu."""
+    d = hashlib.md5(("%s|%d|%d" % (S.sym, S.t[i], seed)).encode()).digest()
+    if int.from_bytes(d[:4], "big") / 4294967296.0 >= p:
+        return None
+    return "long" if (d[4] & 1) else "short"
+
+
 @family("FUND")
 def funding_extreme(S, i, ctx, thr=0.00004):
     f = S.fund(i)
@@ -159,13 +171,14 @@ def default_variants():
         v.append(("BTCLEAD_z%.1f" % z, "BTCLEAD", dict(z=z)))
     for thr in (0.00004, 0.00008):
         v.append(("FUND_x%g" % (thr * 100), "FUND", dict(thr=thr)))
+    v.append(("PLACEBO_p2", "RAND", dict(p=0.02, seed=7)))
     return v
 
 
 def daily_variants():
     """Pravila za DNEVNE svece (horizont u danima): trend i obrtanje na vise dana, gde je trosak mali u odnosu na pomak."""
     v = []
-    for L in (7, 30):
+    for L in (7, 14, 21, 30, 60, 90):
         for z in (0.5, 1.0):
             v.append(("D_MOM_L%d_z%.1f" % (L, z), "MOM", dict(L=L, z=z, fade=False)))
     for L in (1, 3):
@@ -173,13 +186,15 @@ def daily_variants():
     v.append(("D_RSI2_fade_90", "RSIX", dict(hi=90, lo=10, fade=True, p=2)))
     v.append(("D_RSI2_fade_95", "RSIX", dict(hi=95, lo=5, fade=True, p=2)))
     v.append(("D_RSI14_fade_70", "RSIX", dict(hi=70, lo=30, fade=True)))
-    for N in (20, 55):
+    for N in (20, 55, 100):
         v.append(("D_DON_follow_%d" % N, "DON", dict(N=N, fade=False)))
         v.append(("D_DON_fade_%d" % N, "DON", dict(N=N, fade=True)))
     v.append(("D_TREND_cross", "TREND", dict(mode="cross")))
-    v.append(("D_CSM_mom_L7", "CSM", dict(L=7, k=2, momentum=True)))
-    v.append(("D_CSM_rev_L7", "CSM", dict(L=7, k=2, momentum=False)))
+    for L in (7, 14, 30):
+        v.append(("D_CSM_mom_L%d" % L, "CSM", dict(L=L, k=2, momentum=True)))
+        v.append(("D_CSM_rev_L%d" % L, "CSM", dict(L=L, k=2, momentum=False)))
     v.append(("D_BB_fade", "BB", dict(k=2.0, fade=True)))
+    v.append(("D_PLACEBO_p5", "RAND", dict(p=0.05, seed=11)))
     return v
 
 
@@ -196,7 +211,7 @@ def candidate_variants(candidates):
     return out
 
 
-def csm_context(series_by_sym, Ls=(4, 24, 7)):
+def csm_context(series_by_sym, Ls=(4, 24, 7, 14, 30)):
     """Unapred izracunat poredak po grupi i vremenu: {(grupa, L): {t: {sym: (rang od najslabijeg, n)}}}."""
     groups = {}
     for s in series_by_sym.values():

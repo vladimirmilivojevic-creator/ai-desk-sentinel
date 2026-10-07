@@ -196,6 +196,11 @@
    "why": "dnevni momentum 7 d: najbolji istorijski dokaz (preko korpe t=2,95, slabo; nije potvrdjeno)"
   },
   {
+   "id": "D_CSM_mom_L14",
+   "hold_hours": 168,
+   "why": "poredak unutar grupe, momentum 14 d (preko korpe t=3,44 na 7 d, slabo; prvi/drugi deo 1,6/3,3)"
+  },
+  {
    "id": "D_CSM_mom_L7",
    "hold_hours": 168,
    "why": "poredak unutar grupe, momentum 7 d (preko korpe t=2,65, slabo)"

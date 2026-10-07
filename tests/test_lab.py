@@ -8,7 +8,7 @@ import time
 import unittest
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
-from lab import backtest, data, forward, indicators, rules, sim, stats  # noqa: E402
+from lab import backtest, candidates_import, data, features, forward, indicators, rules, sim, stats  # noqa: E402
 
 HOUR = 3600000
 
@@ -216,6 +216,118 @@ class StatsTests(unittest.TestCase):
         self.assertLessEqual(confirmed, 1)
 
 
+class FeatureTests(unittest.TestCase):
+    def test_append_dedupes_and_trims(self):
+        with tempfile.TemporaryDirectory() as d:
+            path = os.path.join(d, "lab", "features.jsonl")
+            self.assertEqual(features.append(path, {"t": 1, "f": {"A": [1, 0, 0, 0, 0]}}), 1)
+            self.assertEqual(features.append(path, {"t": 1, "f": {"A": [2, 0, 0, 0, 0]}}), 1)  # isti sat: nema duplikata
+            self.assertEqual(features.append(path, {"t": 2, "f": {}}), 2)
+            old = features.KEEP_ROWS
+            features.KEEP_ROWS = 3
+            try:
+                for t in range(3, 8):
+                    n = features.append(path, {"t": t, "f": {}})
+                self.assertEqual(n, 3)
+                self.assertEqual([r["t"] for r in features.load(path)], [5, 6, 7])
+            finally:
+                features.KEEP_ROWS = old
+
+    def test_spearman_and_study_detect_planted_signal(self):
+        self.assertAlmostEqual(features.spearman([1, 2, 3, 4, 5], [2, 4, 6, 8, 10]), 1.0)
+        self.assertAlmostEqual(features.spearman([1, 2, 3, 4, 5], [10, 8, 6, 4, 2]), -1.0)
+        self.assertIsNone(features.spearman([1, 2], [1, 2]))
+        rnd = random.Random(3)
+        rows = []
+        syms = ["S%d" % i for i in range(12)]
+        price = {s: 100.0 for s in syms}
+        fund = {}
+        for k in range(24 * 12):
+            t = 1_700_000_000_000 + k * HOUR
+            f = {}
+            for s in syms:
+                fund[s] = rnd.gauss(0, 1)
+                f[s] = [price[s], fund[s] * 1e-5, 1000.0, 0.0, 1e6]
+            rows.append({"t": t, "f": f})
+            for s in syms:  # naredni prinos zavisi od fondinga (planted): visok fonding -> manji prinos
+                price[s] *= 1 + 0.001 * rnd.gauss(0, 1) - 0.0008 * fund[s]
+        res = features.study(rows, horizons=(1,))
+        self.assertLess(res["funding"][1]["mean_ic"], -0.2)
+        self.assertLess(res["funding"][1]["t"], -3)
+        self.assertIn("funding", features.report(res, len(rows)))
+
+    def test_collect_parses_ctx_and_skips_unknown(self):
+        old = data._post
+        try:
+            data._post = lambda body, timeout=40, tries=4: (
+                {"universe": [{"name": "BTC"}, {"name": "WEIRD"}]},
+                [{"markPx": "50000", "funding": "0.0001", "openInterest": "2", "premium": "0.001", "dayNtlVlm": "9"}, {"markPx": "1"}])
+            row = features.collect([{"sym": "BTC", "hl": "BTC"}], 123)
+            self.assertEqual(row["t"], 123)
+            self.assertEqual(row["f"]["BTC"], [50000.0, 0.0001, 100000.0, 0.001, 9.0])
+            self.assertNotIn("WEIRD", row["f"])
+        finally:
+            data._post = old
+
+
+class CandidateImportTests(unittest.TestCase):
+    def test_validate_accepts_only_known_families_and_params(self):
+        v = candidates_import.validate
+        self.assertTrue(v({"family": "MOM", "params": {"L": 48, "z": 2.0, "fade": False}})[0])
+        self.assertTrue(v({"family": "DON", "params": {"N": 100}})[0])
+        self.assertFalse(v({"family": None, "params": {}})[0])
+        self.assertFalse(v({"family": "os.system", "params": {}})[0])
+        self.assertFalse(v({"family": "RAND", "params": {}})[0])
+        self.assertFalse(v({"family": "MOM", "params": {"evil": 1}})[0])
+        self.assertFalse(v({"family": "MOM", "params": {"L": [1, 2]}})[0])
+        self.assertFalse(v({"family": "MOM", "params": {"L": 1e9}})[0])
+        self.assertFalse(v({"family": "MOM", "params": {"fade": "__import__('os')"}})[0])
+        self.assertFalse(v("MOM")[0])
+
+    def test_merge_dedupes_and_caps(self):
+        ex = [{"family": "MOM", "params": {"L": 48, "z": 2.0}, "source": "", "rationale": "", "added": ""}]
+        props = [{"family": "MOM", "params": {"L": 48, "z": 2.0}}, {"family": "MOM", "params": {"L": 96, "z": 2.0}, "source_url": "https://x", "date": "2026-10-07T10:00"},
+                 {"family": "NOPE", "params": {}}]
+        out, n, bad = candidates_import.merge(ex, props)
+        self.assertEqual(n, 1)
+        self.assertEqual(len(out), 2)
+        self.assertEqual(len(bad), 2)
+        self.assertEqual(out[1]["added"], "2026-10-07")
+        old = candidates_import.MAX_CANDIDATES
+        candidates_import.MAX_CANDIDATES = 2
+        try:
+            out2, n2, bad2 = candidates_import.merge(out, [{"family": "MOM", "params": {"L": 12, "z": 1.0}}])
+            self.assertEqual(n2, 0)
+        finally:
+            candidates_import.MAX_CANDIDATES = old
+
+
+class RandTests(unittest.TestCase):
+    def test_placebo_is_deterministic_and_rate_matches(self):
+        S = series(2000, seed=9, sym="BTC")
+        a = [rules.placebo(S, i, {}, p=0.1, seed=1) for i in range(210, 1990)]
+        b = [rules.placebo(S, i, {}, p=0.1, seed=1) for i in range(210, 1990)]
+        self.assertEqual(a, b)
+        rate = sum(1 for x in a if x) / len(a)
+        self.assertTrue(0.07 < rate < 0.13, rate)
+        sides = [x for x in a if x]
+        self.assertTrue(0.35 < sides.count("long") / len(sides) < 0.65)
+
+    def test_placebo_excluded_from_verdict_and_k(self):
+        ids = [v[0] for v in rules.default_variants() + rules.daily_variants()]
+        self.assertIn("PLACEBO_p2", ids)
+        self.assertIn("D_PLACEBO_p5", ids)
+
+    def test_placebo_loses_about_the_cost(self):
+        S = series(3000, seed=21, sym="BTC", vol=0.004)
+        sigs = [("BTC", i, S.t[i], rules.placebo(S, i, {}, p=0.05, seed=3)) for i in range(210, 2900) if rules.placebo(S, i, {}, p=0.05, seed=3)]
+        rets = [sim.fixed_return(S, i, side, 24) for _, i, _, side in stats.thin(sigs, 24)]
+        rets = [r for r in rets if r is not None]
+        self.assertGreater(len(rets), 50)
+        self.assertLess(sum(rets) / len(rets), 0.2)  # bez prednosti: oko -0,23% (trosak), nikad stabilno pozitivno
+        self.assertGreater(sum(rets) / len(rets), -1.5)
+
+
 class ForwardTests(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
@@ -236,6 +348,13 @@ class ForwardTests(unittest.TestCase):
 
         data.fetch_candles = fake_candles
         data.fetch_funding = lambda coin, days=200, now_ms=None: []
+        self._post = data._post
+
+        def fake_post(body, timeout=40, tries=4):
+            names = ["BTC", "ETH", "SOL", "XRP", "DOGE", "ADA", "AVAX", "LTC"] if not body.get("dex") else []
+            return ({"universe": [{"name": n} for n in names]},
+                    [{"markPx": "100", "funding": "0.00001", "openInterest": "1000", "premium": "0.0001", "dayNtlVlm": "5000000"} for _ in names])
+        data._post = fake_post
         self.cfg = {"days": 30, "universe": [
             {"sym": s, "hl": s, "group": "crypto", "cls": "crypto"} for s in ("BTC", "ETH", "SOL", "XRP", "DOGE", "ADA", "AVAX", "LTC")],
             "live_variants": [{"id": "CSM_rev_L24", "hold_hours": 24}, {"id": "D_MOM_L7_z0.5", "hold_hours": 168}]}
@@ -244,6 +363,7 @@ class ForwardTests(unittest.TestCase):
 
     def tearDown(self):
         data.fetch_candles, data.fetch_funding = self._fc, self._ff
+        data._post = self._post
         backtest.load_config = self._lc
         self.tmp.cleanup()
 
@@ -251,7 +371,7 @@ class ForwardTests(unittest.TestCase):
         r = forward.run(self.tmp.name, now_ms=self.now, log=lambda *_: None)
         self.assertTrue(r["ok"], r)
         lab = os.path.join(self.tmp.name, "lab")
-        for f in ("stats.json", "triggers.json", "meta.json", "daily.json", "panel.json"):
+        for f in ("stats.json", "triggers.json", "meta.json", "daily.json", "panel.json", "features.jsonl", "history.json"):
             self.assertTrue(os.path.exists(os.path.join(lab, f)), f)
         meta = json.load(open(os.path.join(lab, "meta.json"), encoding="utf-8"))
         self.assertEqual(meta["t0_ms"], (self.now // HOUR) * HOUR)
@@ -259,6 +379,9 @@ class ForwardTests(unittest.TestCase):
             pj = json.load(f)
         self.assertEqual([x["id"] for x in pj["live"]], ["CSM_rev_L24", "D_MOM_L7_z0.5"])
         self.assertIn("backtest_counts", pj)
+        self.assertEqual(pj["features_rows"], 1)
+        self.assertEqual(len(pj["history"]), 1)
+        self.assertIn("placebo", pj)
         self.assertLess(len(json.dumps(pj)), 20000)
         n_calls = self.calls
         r2 = forward.run(self.tmp.name, now_ms=self.now, log=lambda *_: None)
@@ -296,6 +419,13 @@ class ForwardTests(unittest.TestCase):
         self.assertEqual(sorted(out), ["A", "B"])
         self.assertEqual(out["A"]["reason"], "istorija jasno gubi")
         self.assertEqual(out["B"]["reason"], "unapred jasno gubi")
+
+    def test_features_failure_does_not_break_lab(self):
+        data._post = lambda *a, **k: (_ for _ in ()).throw(RuntimeError("mreza"))
+        r = forward.run(self.tmp.name, now_ms=self.now, log=lambda *_: None)
+        self.assertTrue(r["ok"], r)
+        pj = json.load(open(os.path.join(self.tmp.name, "lab", "panel.json"), encoding="utf-8"))
+        self.assertIsNone(pj["features_rows"])
 
     def test_failure_never_raises_from_main(self):
         data.fetch_candles = lambda *a, **k: (_ for _ in ()).throw(RuntimeError("mreza"))

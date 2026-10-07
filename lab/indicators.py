@@ -97,8 +97,8 @@ class Series:
         self.atr = atr(cs)
         self.ema20, self.ema50, self.ema200 = ema(self.c, 20), ema(self.c, 50), ema(self.c, 200)
         self.bb_m, self.bb_s = rolling_mean_std(self.c, 20)
-        self.hi = {n: rolling_max(self.h, n) for n in (20, 24, 55, 72, 168)}
-        self.lo = {n: rolling_min(self.l, n) for n in (20, 24, 55, 72, 168)}
+        self.hi = {n: rolling_max(self.h, n) for n in (20, 24, 55, 72, 100, 168)}
+        self.lo = {n: rolling_min(self.l, n) for n in (20, 24, 55, 72, 100, 168)}
         self.atr_pct = [None if a is None else a / x for a, x in zip(self.atr, self.c)]
         self.funding = {}
         if funding:
