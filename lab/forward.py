@@ -136,7 +136,8 @@ def run_interval(cfg, cands, t0, now_ms, interval, log):
             hold = live.get(vid, HOLD_HOURS_1D if daily else HOLD_HOURS_1H)
             triggers.append(dict(trigger_row(S, i, vid, fam, side, hold, daily), live=vid in live))
     last_bar = max(S.t[-1] for S in series.values())
-    return out_vars, triggers, last_bar, len(series)
+    marks = {sym: S.c[-1] for sym, S in series.items()}
+    return out_vars, triggers, last_bar, len(series), marks
 
 
 def governor(cfg, all_vars):
@@ -185,13 +186,13 @@ def run(state_dir, root=None, now_ms=None, force=False, log=print):
     if meta.get("last_bar") == bar_now and not force:
         return {"ok": True, "skipped": "nova svecu jos nema"}
     t0 = meta["t0_ms"]
-    variants, triggers, last_bar, n_sym = run_interval(cfg, cands, t0, now_ms, "1h", log)
+    variants, triggers, last_bar, n_sym, marks = run_interval(cfg, cands, t0, now_ms, "1h", log)
     # dnevna pravila: jednom po UTC danu (posle zatvaranja dnevne svece u 00:00)
     day_key = time.strftime("%Y-%m-%d", time.gmtime(now_ms / 1000.0))
     daily = _load(os.path.join(lab_dir, "daily.json"), {})
     if daily.get("asof") != day_key or force:
         try:
-            dv, dt, dlast, dn = run_interval(cfg, cands, t0, now_ms, "1d", log)
+            dv, dt, dlast, dn, _ = run_interval(cfg, cands, t0, now_ms, "1d", log)
             daily = {"asof": day_key, "variants": dv, "triggers": dt, "last_bar": dlast, "n": dn}
             _save(os.path.join(lab_dir, "daily.json"), daily)
         except Exception as e:  # noqa: BLE001
@@ -223,7 +224,8 @@ def run(state_dir, root=None, now_ms=None, force=False, log=print):
     _save(os.path.join(lab_dir, "stats.json"), stats_obj)
     live_triggers = [x for x in all_triggers if x.get("live")]
     _save(os.path.join(lab_dir, "triggers.json"), {"updated_utc": iso(now_ms), "bar_utc": iso(last_bar), "triggers": live_triggers,
-                                                   "other_triggers": len(all_triggers) - len(live_triggers), "live_variants": live})
+                                                   "other_triggers": len(all_triggers) - len(live_triggers), "live_variants": live,
+                                                   "marks": marks, "marks_bar_utc": iso(last_bar)})
     meta["last_bar"] = bar_now
     meta["updated_utc"] = iso(now_ms)
     _save(os.path.join(lab_dir, "meta.json"), meta)
