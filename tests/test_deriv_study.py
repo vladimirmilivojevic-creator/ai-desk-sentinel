@@ -173,6 +173,20 @@ class StudyTests(unittest.TestCase):
                              "placebo_sharpe": {}, "results": [], "confound": out})
         self.assertIn("poznat faktor", md)
 
+    def test_replication_uses_recorded_criteria(self):
+        series, bnmap = self.world(n=520)
+        members, tables = ds.build_members(series, bnmap)
+        hyp = {"id": "H-T", "feature": "glob_ls", "sign": 1, "H": 3, "k": 3, "cost_pct": 0.0, "replication_sample": "2022-03-01..2023-03-01",
+               "pass": {"net_sharpe_min": 0.5, "net_t_min": 1.5, "alpha_after_controls_positive": False}}
+        good = ds.replicate(members, tables, hyp)
+        self.assertTrue(good["passed"], good)
+        self.assertGreater(good["net_sharpe"], 0.5)
+        bad = ds.replicate(members, tables, dict(hyp, sign=-1))
+        self.assertFalse(bad["passed"])
+        self.assertFalse(bad["checks"]["net_sharpe"])
+        short = ds.replicate(members, tables, dict(hyp, replication_sample="2022-01-01..2022-01-10"))
+        self.assertFalse(short["passed"])  # premalo dana nikad ne prolazi
+
     def test_random_score_is_deterministic(self):
         f = ds.random_score(3)
         self.assertEqual(f(1, 2, 3), f(1, 2, 3))

@@ -92,7 +92,9 @@ def run_study(members, tables, t_from, cost_pct=0.23, k=5, min_names=10, n_place
                 if m.get("n_days", 0) < 100:
                     continue
                 m10 = ps.metrics(ps.basket_series(members, score, H, k, sign, 0.10, min_names)[0], t_from)
-                results.append({"feature": f, "sign": sign, "H": H, "tranches": n, "sharpe": m["sharpe"], "t": m["t"], "ann_return_pct": m["ann_return_pct"],
+                rn, _, turn = ps.basket_netted(members, score, H, k, sign, cost_pct, min_names)
+                mn = ps.metrics(rn, t_from)
+                results.append({"sharpe_netted": mn.get("sharpe"), "t_netted": mn.get("t"), "turnover_day": round(turn, 3), "feature": f, "sign": sign, "H": H, "tranches": n, "sharpe": m["sharpe"], "t": m["t"], "ann_return_pct": m["ann_return_pct"],
                                 "max_dd_pct": m["max_dd_pct"], "n_days": m["n_days"], "by_year": m["by_year"], "sharpe_taker_cost": m10.get("sharpe")})
     pv = [((r["feature"], r["sign"], r["H"]), stats.t_to_p(r["t"])) for r in results if r["t"] is not None]
     ok = stats.bh_fdr(pv, 0.10)
@@ -158,7 +160,7 @@ def control_scores(members):
     return {"vol30": vol30, "ret30": ret(30), "ret90": ret(90)}
 
 
-def confound_check(members, tables, t_from, picks, cost_pct=0.23, k=5, min_names=10):
+def confound_check(members, tables, t_from, picks, cost_pct=0.23, k=5, min_names=10, t_to=None):
     """Za izabrane (osobina, znak, H): regresija dnevnih prinosa korpe na korpe kontrolnih faktora (nizak vol, momentum 30 d i 90 d, isto H).
     Vraca alfu (godisnje %), t alfe, R2 i beta prema kontrolama. Ako alfa nestane, osobina je samo poznat faktor pod drugim imenom."""
     ctl = control_scores(members)
@@ -168,7 +170,7 @@ def confound_check(members, tables, t_from, picks, cost_pct=0.23, k=5, min_names
         ctl_rows = {}
         for name, fn, s in (("nizak_vol", ctl["vol30"], -1), ("mom30", ctl["ret30"], 1), ("mom90", ctl["ret90"], 1)):
             ctl_rows[name] = dict(ps.basket_series(members, fn, H, k, s, cost_pct, min_names)[0])
-        ts = [t for t, _ in y_rows if t >= t_from and all(t in d for d in ctl_rows.values())]
+        ts = [t for t, _ in y_rows if t >= t_from and (t_to is None or t < t_to) and all(t in d for d in ctl_rows.values())]
         if len(ts) < 100:
             continue
         ymap = dict(y_rows)
@@ -186,11 +188,12 @@ def to_markdown(res, top=20):
              res["generated_utc"], res["members"], res["t_from"], res["cost_pct"], res["k"], res["tests"]), "",
          "Placebo (nasumican poredak, 20 zrna): " + "; ".join("H%d srednji Sharpe %.2f, sd %.2f, max %.2f" % (h, p["mean"], p["sd"], p["max"])
                                                               for h, p in sorted(res["placebo_sharpe"].items()) if p), "",
-         "| osobina | znak (+ dugo visoko, - kontra) | H | Sharpe | t | god. prinos % | pad % | Sharpe po godinama | Sharpe uz stvarni taker | z prema placebu | FDR |",
-         "|---|---|---|---|---|---|---|---|---|---|---|"]
+         "Sharpe i t su po tranšima (svaki se otvara i zatvara za sebe, konzervativno); 'prebijanje' = jedna pozicija po simbolu, trosak samo na promenu tezine (kako bi stvarno islo na berzi).", "",
+         "| osobina | znak (+ dugo visoko, - kontra) | H | Sharpe | t | Sharpe prebijanje, t | promet dnevno | god. prinos % | pad % | Sharpe po godinama | Sharpe uz stvarni taker | z prema placebu | FDR |",
+         "|---|---|---|---|---|---|---|---|---|---|---|---|---|"]
     for r in res["results"][:top]:
-        L.append("| %s | %+d | %d | %.2f | %.2f | %.1f | %.1f | %s | %s | %s | %s |" % (
-            r["feature"], r["sign"], r["H"], r["sharpe"], r["t"], r["ann_return_pct"], r["max_dd_pct"],
+        L.append("| %s | %+d | %d | %.2f | %.2f | %s, %s | %s | %.1f | %.1f | %s | %s | %s | %s |" % (
+            r["feature"], r["sign"], r["H"], r["sharpe"], r["t"], r.get("sharpe_netted"), r.get("t_netted"), r.get("turnover_day"), r["ann_return_pct"], r["max_dd_pct"],
             {y: v["sharpe"] for y, v in r["by_year"].items()}, r["sharpe_taker_cost"], r["z_vs_placebo"], "da" if r["fdr_pass"] else "ne"))
     n_pos = sum(1 for r in res["results"] if (r["t"] or 0) > 0)
     L += ["", "Pozitivan t u %d od %d testova (znaci su ogledalo, pa se oko polovine ocekuje i bez prednosti); prolaze FDR: %d." % (
@@ -221,7 +224,63 @@ def load_inputs(t_start="2025-01-01"):
     return series, bn, t_from
 
 
+def iso_ms(day):
+    return int(dt.datetime.fromisoformat(day).replace(tzinfo=dt.timezone.utc).timestamp() * 1000)
+
+
+def replicate(members, tables, hyp, min_names=10):
+    """Ponavljanje unapred zapisane hipoteze na uzorku koji nije koriscen za nalaz; kriterijumi dolaze iz zapisa, ne iz koda."""
+    a, b = hyp["replication_sample"].split("..")
+    t_from, t_to = iso_ms(a), iso_ms(b) + 86400000
+    f, sign, H, k = hyp["feature"], hyp["sign"], hyp["H"], hyp.get("k", 5)
+    score = lambda mi, i, t: tables[mi][f][i]  # noqa: E731
+    rows, n = ps.basket_series(members, score, H, k, sign, hyp["cost_pct"], min_names)
+    m = ps.metrics(rows, t_from, t_to)
+    m_taker = ps.metrics(ps.basket_series(members, score, H, k, sign, 0.10, min_names)[0], t_from, t_to)
+    nr, _, turn = ps.basket_netted(members, score, H, k, sign, hyp["cost_pct"], min_names)
+    m_net = ps.metrics(nr, t_from, t_to)
+    m_net10 = ps.metrics(ps.basket_netted(members, score, H, k, sign, 0.10, min_names)[0], t_from, t_to)
+    conf = confound_check(members, tables, t_from, [(f, sign, H)], hyp["cost_pct"], k, min_names, t_to)
+    pas = hyp["pass"]
+    sharpe, t = m.get("sharpe"), m.get("t")
+    alpha = conf[0]["alpha_ann_pct"] if conf else None
+    checks = {"net_sharpe": sharpe is not None and sharpe >= pas["net_sharpe_min"], "net_t": t is not None and t >= pas["net_t_min"],
+              "alpha_positive": (alpha is not None and alpha > 0) if pas.get("alpha_after_controls_positive") else True}
+    return {"id": hyp["id"], "sample": hyp["replication_sample"], "n_days": m.get("n_days"), "net_sharpe": sharpe, "net_t": t, "ann_return_pct": m.get("ann_return_pct"),
+            "max_dd_pct": m.get("max_dd_pct"), "sharpe_taker_cost": m_taker.get("sharpe"), "by_year": m.get("by_year"), "confound": conf,
+            "netted": {"sharpe": m_net.get("sharpe"), "t": m_net.get("t"), "sharpe_taker_cost": m_net10.get("sharpe"), "turnover_day": round(turn, 3)},
+            "members_active": len({s.sym for s, tb in zip(members, tables) if any(x is not None for x in tb[f])}), "checks": checks,
+            "passed": all(checks.values())}
+
+
+def replicate_main():
+    with open(os.path.join(ROOT, "config", "preregistered_hypotheses.json"), encoding="utf-8") as fh:
+        hyps = json.load(fh)["hypotheses"]
+    series, bn, _ = load_inputs()
+    members, tables = build_members(series, bn)
+    out = [replicate(members, tables, h) for h in hyps]
+    md = ["# Ponavljanje unapred zapisanih hipoteza (config/preregistered_hypotheses.json)", ""]
+    for r in out:
+        md += ["## %s na uzorku %s" % (r["id"], r["sample"]), "",
+               "Neto Sharpe %s (uz stvarni taker %s), t %s, godisnji prinos %s%%, najveci pad %s%%, dana %s, aktivnih instrumenata %s." % (
+                   r["net_sharpe"], r["sharpe_taker_cost"], r["net_t"], r["ann_return_pct"], r["max_dd_pct"], r["n_days"], r["members_active"]),
+               "Po godinama: %s" % ({y: v["sharpe"] for y, v in (r["by_year"] or {}).items()}),
+               "Dopuna (nije kriterijum): uz prebijanje pozicija neto Sharpe %s, t %s (uz stvarni taker %s), dnevni promet %s kapitala." % (
+                   r["netted"]["sharpe"], r["netted"]["t"], r["netted"]["sharpe_taker_cost"], r["netted"]["turnover_day"]),
+               "Posle kontrola (nizak vol, momentum 30 d i 90 d): %s" % (r["confound"][0] if r["confound"] else "nema dovoljno dana"),
+               "Kriterijumi (zapisani unapred): %s. **Ishod: %s.**" % (r["checks"], "PROSLO" if r["passed"] else "NIJE PROSLO"), ""]
+    text = "\n".join(md)
+    with open(os.path.join(ROOT, "calibration", "replication.json"), "w", encoding="utf-8") as fh:
+        json.dump(out, fh, ensure_ascii=False, indent=1)
+    with open(os.path.join(ROOT, "calibration", "replication.md"), "w", encoding="utf-8") as fh:
+        fh.write(text)
+    print(text)
+    return 0
+
+
 def main():
+    if sys.argv[1:2] == ["replicate"]:
+        return replicate_main()
     out_json = sys.argv[1] if len(sys.argv) > 1 else os.path.join(ROOT, "calibration", "deriv_study.json")
     out_md = sys.argv[2] if len(sys.argv) > 2 else os.path.join(ROOT, "calibration", "deriv_study.md")
     series, bn, t_from = load_inputs()

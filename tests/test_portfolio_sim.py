@@ -81,6 +81,34 @@ class PortfolioSimTests(unittest.TestCase):
         out2 = ps.vol_managed(rows2, 20.0, win=30)
         self.assertAlmostEqual(out2[100][1] / rows2[100][1], out[100][1] / rows[100][1])
 
+    def test_netted_equals_tranches_at_zero_cost(self):
+        w = world(trending=True)
+        members = [s for s in w.values()]
+        score = lambda mi, i, t: members[mi].c[i] / members[mi].c[i - 14] - 1.0 if i >= 14 else None  # noqa: E731
+        a, _ = ps.basket_series(members, score, 7, 3, 1, 0.0, 8)
+        b, n, _ = ps.basket_netted(members, score, 7, 3, 1, 0.0, 8)
+        self.assertAlmostEqual(sum(x for _, x in a), sum(x for _, x in b), places=6)
+        self.assertGreater(n, 500)
+
+    def test_netting_makes_static_scores_cheap_but_not_random_ones(self):
+        w = world(trending=True)
+        members = [s for s in w.values()]
+        static = lambda mi, i, t: float(mi)  # noqa: E731  (isti poredak svaki dan)
+        rnd = lambda mi, i, t: random.Random(mi * 100003 + t).random()  # noqa: E731
+        _, _, turn_static = ps.basket_netted(members, static, 7, 3, 1, 0.23, 8)
+        _, _, turn_random = ps.basket_netted(members, rnd, 7, 3, 1, 0.23, 8)
+        self.assertLess(turn_static, 0.05)  # posle zagrevanja gotovo nema prometa
+        self.assertGreater(turn_random, 0.15)  # nasumican poredak nema sta da prebije
+        self.assertGreater(turn_random, 5 * turn_static)
+        # trosak sporo promenljive osobine u netiranoj simulaciji je daleko manji od tranš simulacije
+        a, _ = ps.basket_series(members, static, 7, 3, 1, 0.23, 8)
+        b, _, _ = ps.basket_netted(members, static, 7, 3, 1, 0.23, 8)
+        self.assertGreater(ps.metrics(b)["total_pct"], ps.metrics(a)["total_pct"])
+
+    def test_netted_empty_when_not_enough_names(self):
+        w = world(names=5)
+        self.assertEqual(ps.basket_netted(list(w.values()), lambda mi, i, t: 1.0, 7, 3, 1, 0.23, 8), ([], 0, 0.0))
+
     def test_needs_enough_names(self):
         rows, n = ps.csm_series(world(names=5), "crypto", 14, 7, 3, True)
         self.assertEqual((rows, n), ([], 0))

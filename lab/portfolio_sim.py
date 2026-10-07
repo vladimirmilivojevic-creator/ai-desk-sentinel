@@ -58,6 +58,57 @@ def basket_series(members, score, H=7, k=5, sign=1, cost_pct=0.23, min_names=8, 
     return rows, len(tranches)
 
 
+def basket_netted(members, score, H=7, k=5, sign=1, cost_pct=0.23, min_names=8, delay=0):
+    """Isti izbor kao basket_series, ali POZICIJE SE PREBIJAJU: na berzi postoji jedna pozicija po simbolu, pa se trosak placa samo na promenu
+    ukupne tezine (promet) po strani cost_pct/2. Za stalne (sporo promenljive) osobine je to znatno jeftinije od tranša koji se otvaraju i zatvaraju svaki za sebe.
+    Vraca (lista (t_ms, dnevni prinos %), broj dana izbora, srednji dnevni promet kao deo kapitala)."""
+    idx = [{t: i for i, t in enumerate(m.t)} for m in members]
+    all_t = sorted(set(t for m in members for t in m.t))
+    picks = {}  # t_otvaranja -> {mi: tezina tranša (+ dugo, - kratko), zbir noga = 1/2 + 1/2}
+    for t in all_t:
+        vals = []
+        for mi, ix in enumerate(idx):
+            i = ix.get(t)
+            v = None if i is None else score(mi, i, t)
+            if v is not None:
+                vals.append((v, mi))
+        if len(vals) < min_names:
+            continue
+        vals.sort()
+        kk = min(k, len(vals) // 3)
+        low, high = [mi for _, mi in vals[:kk]], [mi for _, mi in vals[-kk:]]
+        longs, shorts = (high, low) if sign > 0 else (low, high)
+        w = {}
+        for mi in longs:
+            w[mi] = w.get(mi, 0.0) + 0.5 / len(longs)
+        for mi in shorts:
+            w[mi] = w.get(mi, 0.0) - 0.5 / len(shorts)
+        picks[t + delay * DAY] = w
+    if not picks:
+        return [], 0, 0.0
+    days = sorted(set(t + d * DAY for t in picks for d in range(0, H + 1)))
+    out, prev_w, turn_sum, turn_n = [], {}, 0.0, 0
+    for t in days:
+        # tezine tokom dana t (od zatvaranja t-1 do zatvaranja t): tranši otvoreni u [t-H, t-1]
+        w = {}
+        for d in range(1, H + 1):
+            for mi, x in picks.get(t - d * DAY, {}).items():
+                w[mi] = w.get(mi, 0.0) + x / H
+        turnover = sum(abs(w.get(mi, 0.0) - prev_w.get(mi, 0.0)) for mi in set(w) | set(prev_w))
+        ret = 0.0
+        for mi, x in w.items():
+            ix = idx[mi]
+            a, b = ix.get(t - DAY), ix.get(t)
+            if a is not None and b is not None:
+                ret += x * (members[mi].c[b] / members[mi].c[a] - 1.0)
+        if w or prev_w:
+            out.append((t, ret * 100.0 - turnover * cost_pct / 2.0))
+            turn_sum += turnover
+            turn_n += 1
+        prev_w = w
+    return out, len(picks), (turn_sum / turn_n if turn_n else 0.0)
+
+
 def csm_series(series, group="crypto", L=14, H=7, k=5, momentum=True, cost_pct=0.23, min_names=8, delay=0):
     """Poredak po prinosu u poslednjih L dana (momentum: dugo najjaci). series: {sym: Series} (dnevne svece)."""
     members = [s for s in series.values() if s.group == group]
