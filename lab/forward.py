@@ -164,6 +164,31 @@ def governor(cfg, all_vars):
     return out
 
 
+def panel_summary(cfg, stats_obj, bt):
+    """Mali sazetak (nekoliko KB) za panel: zive varijante, najbolji istorijski dokazi i brojke unapred."""
+    why = {x["id"]: x.get("why", "") for x in cfg.get("live_variants", [])}
+    all_vars = stats_obj["variants"]
+    live = []
+    for vid, hold in sorted(live_config(cfg).items()):
+        v = all_vars.get(vid, {})
+        key = "E7" if v.get("interval") == "1d" else "E24"
+        live.append({"id": vid, "hold_hours": hold, "why": why.get(vid, ""), "bt": v.get("backtest", {}).get(key, {}),
+                     "fwd": v.get("tests", {}).get(key, {}), "signals": v.get("signals", 0), "test": key})
+    ranked = []
+    for vid, tests in bt.items():
+        for test, r in tests.items():
+            if test.startswith("E") and r.get("t") is not None and r.get("n", 0) >= 30:
+                ranked.append({"id": vid, "test": test, "n": r["n"], "mean": r["mean"], "t": r["t"], "t_train": r.get("t_train"),
+                               "t_test": r.get("t_test"), "verdict": r["verdict"]})
+    ranked.sort(key=lambda x: -x["t"])
+    counts = {}
+    for r in ranked:
+        counts[r["verdict"]] = counts.get(r["verdict"], 0) + 1
+    return {"updated_utc": stats_obj["updated_utc"], "t0_utc": stats_obj["t0_utc"], "hours_running": stats_obj["hours_running"],
+            "universe_n": stats_obj["universe_n"], "totals": stats_obj["totals"], "cost_pct": stats_obj["cost_pct"], "live": live,
+            "top_backtest": ranked[:10], "backtest_counts": counts, "demoted": stats_obj.get("demoted", {})}
+
+
 def load_backtest_summary(root):
     """Sazetak istorijskih rezultata (calibration/lab_backtest_*.json) po varijanti i testu, za panel i Istrazivaca."""
     out = {}
