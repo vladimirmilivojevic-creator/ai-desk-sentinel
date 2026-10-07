@@ -251,10 +251,15 @@ class ForwardTests(unittest.TestCase):
         r = forward.run(self.tmp.name, now_ms=self.now, log=lambda *_: None)
         self.assertTrue(r["ok"], r)
         lab = os.path.join(self.tmp.name, "lab")
-        for f in ("stats.json", "triggers.json", "meta.json", "daily.json"):
+        for f in ("stats.json", "triggers.json", "meta.json", "daily.json", "panel.json"):
             self.assertTrue(os.path.exists(os.path.join(lab, f)), f)
         meta = json.load(open(os.path.join(lab, "meta.json"), encoding="utf-8"))
         self.assertEqual(meta["t0_ms"], (self.now // HOUR) * HOUR)
+        with open(os.path.join(lab, "panel.json"), encoding="utf-8") as f:
+            pj = json.load(f)
+        self.assertEqual([x["id"] for x in pj["live"]], ["CSM_rev_L24", "D_MOM_L7_z0.5"])
+        self.assertIn("backtest_counts", pj)
+        self.assertLess(len(json.dumps(pj)), 20000)
         n_calls = self.calls
         r2 = forward.run(self.tmp.name, now_ms=self.now, log=lambda *_: None)
         self.assertIn("skipped", r2)

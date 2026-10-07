@@ -14,7 +14,7 @@ from .indicators import Series
 HOUR = 3600000
 DAY = 86400000
 WARM = 205
-REV = 2  # povecaj kad se promeni izlaz/logika: laboratorija se tada odmah ponovo racuna u istom satu
+REV = 3  # povecaj kad se promeni izlaz/logika: laboratorija se tada odmah ponovo racuna u istom satu
 HOLD_HOURS_1H = 24
 HOLD_HOURS_1D = 168
 
@@ -157,6 +157,35 @@ def governor(cfg, all_vars):
     return out
 
 
+def panel_summary(cfg, stats_obj, bt):
+    """Mali sazetak (nekoliko KB) za panel: zive varijante, najbolji istorijski dokazi i brojke unapred."""
+    why = {x["id"]: x.get("why", "") for x in cfg.get("live_variants", [])}
+    all_vars = stats_obj["variants"]
+
+    def prim(vid, interval):
+        return "E7" if interval == "1d" else "E24"
+
+    live = []
+    for vid, hold in sorted(live_config(cfg).items()):
+        v = all_vars.get(vid, {})
+        key = prim(vid, v.get("interval"))
+        live.append({"id": vid, "hold_hours": hold, "why": why.get(vid, ""), "bt": v.get("backtest", {}).get(key, {}),
+                     "fwd": v.get("tests", {}).get(key, {}), "signals": v.get("signals", 0), "test": key})
+    ranked = []
+    for vid, tests in bt.items():
+        for test, r in tests.items():
+            if test.startswith("E") and r.get("t") is not None and r.get("n", 0) >= 30:
+                ranked.append({"id": vid, "test": test, "n": r["n"], "mean": r["mean"], "t": r["t"], "t_train": r.get("t_train"),
+                               "t_test": r.get("t_test"), "verdict": r["verdict"]})
+    ranked.sort(key=lambda x: -x["t"])
+    counts = {}
+    for r in ranked:
+        counts[r["verdict"]] = counts.get(r["verdict"], 0) + 1
+    return {"updated_utc": stats_obj["updated_utc"], "t0_utc": stats_obj["t0_utc"], "hours_running": stats_obj["hours_running"],
+            "universe_n": stats_obj["universe_n"], "totals": stats_obj["totals"], "cost_pct": stats_obj["cost_pct"], "live": live,
+            "top_backtest": ranked[:10], "backtest_counts": counts, "demoted": stats_obj.get("demoted", {})}
+
+
 def load_backtest_summary(root):
     """Sazetak istorijskih rezultata (calibration/lab_backtest_*.json) po varijanti i testu, za panel i Istrazivaca."""
     out = {}
@@ -223,6 +252,7 @@ def run(state_dir, root=None, now_ms=None, force=False, log=print):
                  "universe_n": n_sym, "last_bar_utc": iso(last_bar), "variants": all_vars, "totals": totals,
                  "cost_pct": sim.COST_PCT, "live_variants": sorted(live), "demoted": demoted}
     _save(os.path.join(lab_dir, "stats.json"), stats_obj)
+    _save(os.path.join(lab_dir, "panel.json"), panel_summary(cfg, stats_obj, bt))
     live_triggers = [x for x in all_triggers if x.get("live")]
     _save(os.path.join(lab_dir, "triggers.json"), {"updated_utc": iso(now_ms), "bar_utc": iso(last_bar), "triggers": live_triggers,
                                                    "other_triggers": len(all_triggers) - len(live_triggers), "live_variants": live,
