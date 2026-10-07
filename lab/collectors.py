@@ -207,6 +207,10 @@ def collect_coinalyze(key, now_ms, coins=COINALYZE_COINS, pause=1.7):
         except Exception as e:  # noqa: BLE001
             row["error"] = getattr(e, "args", ["greska"])[0] if e.args else "greska"
         out[coin] = row
+    errs = [r["error"] for r in out.values() if r and r.get("error")]
+    if out and not any(r and r.get("oi_usd") is not None for r in out.values()):
+        # nijedna kovanica nije uspela: to je greska izvora (kljuc, oblik odgovora), a ne prazan odgovor; poruka nikad ne sadrzi kljuc
+        raise netutil.NetError("sve kovanice neuspele: %s" % (errs[0] if errs else "nema trzista"))
     return out
 
 
@@ -307,16 +311,22 @@ def collect_calendar(now_ms, stock_syms, finnhub_key=None):
     out["events"].sort(key=lambda x: x["ts"])
     tickers = {s[len(STOCK_PREFIX):]: s for s in stock_syms if s.startswith(STOCK_PREFIX)}
     day = lambda off: time.strftime("%Y-%m-%d", time.gmtime(now_ms / 1000 + off * 86400))  # noqa: E731
+    out["finnhub"] = "nema kljuca"
     try:
         if finnhub_key:
             j = netutil.get_json("https://finnhub.io/api/v1/calendar/earnings?from=%s&to=%s&token=%s" % (day(0), day(14), finnhub_key), tries=3, pause=0.3)
-            for r in j.get("earningsCalendar", []):
+            rows = j.get("earningsCalendar") if isinstance(j, dict) else None
+            if rows is None:
+                raise netutil.NetError("neocekivan oblik odgovora")
+            for r in rows:
                 s = tickers.get(r.get("symbol"))
                 if s:
                     out["earnings"][s] = {"date": r.get("date"), "hour": r.get("hour"), "eps_est": r.get("epsEstimate"), "source": "finnhub"}
+            out["finnhub"] = "ok, %d redova za 14 dana, %d nasih" % (len(rows), len(out["earnings"]))
         else:
             raise netutil.NetError("nema kljuca")
-    except Exception:  # noqa: BLE001
+    except Exception as e:  # noqa: BLE001
+        out["finnhub"] = "%s: %s" % (type(e).__name__, e)
         for off in range(0, 6):  # rezerva: Nasdaq (neslužbeno), jedan poziv po danu
             try:
                 j = netutil.get_json("https://api.nasdaq.com/api/calendar/earnings?date=%s" % day(off), tries=2, pause=0.8, ua=netutil.BROWSER_UA)

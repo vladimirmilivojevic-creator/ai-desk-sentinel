@@ -170,7 +170,9 @@ def run(state_dir, now_ms=None, force=False, log=print, env=None):
     syms = [u["sym"] for u in cfg["universe"]]
     stocks = [s for s in syms if s.startswith("xyz:")]
     files = {n: _load(os.path.join(data_dir, n + ".json"), None) for n in ("market", "derivs", "macro", "sentiment", "calendar", "smart_money", "universe")}
-    hourly = force or due(meta, "market", now_ms, HOUR)
+    # novi kljuc (Coinalyze) ne ceka sledeci sat: ako je zadnja greska bila "nema kljuca", a kljuc sada postoji, odmah ponovo
+    key_just_added = bool(env.get("COINALYZE_API_KEY")) and "nema kljuca" in str((health.get("derivs_coinalyze") or {}).get("last_error") or "")
+    hourly = force or key_just_added or due(meta, "market", now_ms, HOUR)
     four_h = force or due(meta, "smart_money", now_ms, 4 * HOUR)
     daily_new = force or due(meta, "sentiment", now_ms, daily=True)
     ctx_cache = {}

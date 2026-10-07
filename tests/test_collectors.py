@@ -161,6 +161,38 @@ class ParseTests(unittest.TestCase):
         self.assertIsNone(r["ETH"])
 
 
+    def test_coinalyze_total_failure_is_a_source_error_without_the_key(self):
+        def fake(url, **k):
+            if "future-markets" in url:
+                return [{"symbol": "BTCUSDT_PERP.A", "base_asset": "BTC", "quote_asset": "USDT", "is_perpetual": True}]
+            raise netutil.NetError("HTTP 401", 401)
+        netutil.get_json = fake
+        with self.assertRaises(netutil.NetError) as cm:
+            C.collect_coinalyze("SECRETKEY", NOW, coins=("BTC",), pause=0)
+        self.assertIn("HTTP 401", str(cm.exception))
+        self.assertNotIn("SECRETKEY", str(cm.exception))
+
+    def test_calendar_reports_finnhub_status(self):
+        def ok(url, **k):
+            if "faireconomy" in url:
+                return []
+            return {"earningsCalendar": [{"symbol": "NVDA", "date": "2026-10-10"}]}
+        netutil.get_json = ok
+        self.assertIn("ok", C.collect_calendar(NOW, ["xyz:NVDA"], finnhub_key="K")["finnhub"])
+
+        def bad(url, **k):
+            if "faireconomy" in url:
+                return []
+            if "finnhub" in url:
+                raise netutil.NetError("HTTP 403", 403)
+            return {"data": {"rows": []}}
+        netutil.get_json = bad
+        r = C.collect_calendar(NOW, ["xyz:NVDA"], finnhub_key="K")
+        self.assertIn("HTTP 403", r["finnhub"])
+        self.assertNotIn("K\"", json.dumps(r))
+        self.assertEqual(C.collect_calendar(NOW, ["xyz:NVDA"], finnhub_key=None)["finnhub"], "NetError: nema kljuca")
+
+
 class OrchestratorTests(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
@@ -217,6 +249,19 @@ class OrchestratorTests(unittest.TestCase):
         self.assertIn("derivs_coinalyze", h)
         self.assertIsNotNone(h["derivs_coinalyze"]["last_error"])  # nema kljuca: zapisano, ne izmisljeno
         self.assertIsNone(h["market"]["last_error"])
+
+    def test_new_coinalyze_key_does_not_wait_for_the_next_hour(self):
+        collect.run(self.tmp.name, now_ms=NOW, log=lambda *_: None, env={})  # bez kljuca: greska zapisana
+        n = self.calls["market"]
+        collect.run(self.tmp.name, now_ms=NOW + 60_000, log=lambda *_: None, env={})
+        self.assertEqual(self.calls["market"], n)  # i dalje bez kljuca: ceka sat
+        C.collect_coinalyze = lambda *a, **k: {"BTC": {"oi_usd": 1.0}}
+        collect.run(self.tmp.name, now_ms=NOW + 120_000, log=lambda *_: None, env={"COINALYZE_API_KEY": "K"})
+        self.assertEqual(self.calls["market"], n + 1)  # kljuc se pojavio: odmah
+        h = json.load(open(os.path.join(self.tmp.name, "data", "health.json"), encoding="utf-8"))
+        self.assertIsNone(h["derivs_coinalyze"]["last_error"])
+        collect.run(self.tmp.name, now_ms=NOW + 180_000, log=lambda *_: None, env={"COINALYZE_API_KEY": "K"})
+        self.assertEqual(self.calls["market"], n + 1)  # greska je ociscena: opet se ceka sat
 
     def test_same_hour_is_skipped_but_force_runs_again(self):
         collect.run(self.tmp.name, now_ms=NOW, log=lambda *_: None, env={})
