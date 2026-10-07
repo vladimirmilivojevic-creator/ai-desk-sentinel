@@ -64,6 +64,23 @@ class PortfolioSimTests(unittest.TestCase):
         r2, _ = ps.csm_series(w, "crypto", 14, 7, 3, True, cost_pct=0.0, delay=2)
         self.assertEqual(r2[0][0] - r0[0][0], 2 * DAY)
 
+    def test_vol_target_only_reduces_risk_and_uses_past_only(self):
+        rnd = random.Random(7)
+        calm = [(i * DAY, rnd.gauss(0.05, 0.3)) for i in range(60)]
+        wild = [(( 60 + i) * DAY, rnd.gauss(0.05, 3.0)) for i in range(60)]
+        rows = calm + wild
+        out = ps.vol_managed(rows, 20.0, win=30)
+        scales = [b / a for (_, a), (_, b) in zip(rows, out) if a]
+        self.assertTrue(all(s <= 1.0 + 1e-12 for s in scales))  # nikad poluga
+        self.assertTrue(all(abs(b - a) < 1e-12 for (_, a), (_, b) in zip(rows[:30], out[:30])))  # pre prozora: bez skaliranja
+        self.assertAlmostEqual(scales[10], 1.0)  # mirno: cilj iznad realizovane vol, cap 1
+        self.assertLess(scales[-1], 0.6)  # nemirno: smanjeno
+        # skala dana i zavisi samo od prethodnih dana: promena OVOG dana ne menja njegovu skalu
+        rows2 = list(rows)
+        rows2[100] = (rows2[100][0], rows2[100][1] * 5)
+        out2 = ps.vol_managed(rows2, 20.0, win=30)
+        self.assertAlmostEqual(out2[100][1] / rows2[100][1], out[100][1] / rows[100][1])
+
     def test_needs_enough_names(self):
         rows, n = ps.csm_series(world(names=5), "crypto", 14, 7, 3, True)
         self.assertEqual((rows, n), ([], 0))

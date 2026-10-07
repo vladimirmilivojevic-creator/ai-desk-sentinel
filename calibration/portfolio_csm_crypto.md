@@ -1,6 +1,6 @@
 # Portfolio simulacija: dugo/kratko korpa po poretku unutar grupe (CSM), dnevne svece, v3 univerzum
 
-Generisano 2026-10-07T11:44Z, python -m lab.portfolio_sim crypto (LAB_CONFIG=config/lab_v3.json). Izbor L/H/k na ISTOM uzorku je optimisticki; zato test kasnjenja i izbor-pre-2025/test-posle-2025.
+Generisano 2026-10-07T12:00Z, python -m lab.portfolio_sim crypto (LAB_CONFIG=config/lab_v3.json). Izbor L/H/k na ISTOM uzorku je optimisticki; zato test kasnjenja, izbor-pre-2025/test-posle-2025 i ciljana volatilnost sa JEDNIM unapred zadatim prozorom (30 d).
 
 ```
 instrumenata u grupi crypto: 44
@@ -49,6 +49,16 @@ IZBOR PRE 2025, TEST POSLE 2025 (sve 36 kombinacija; Sharpe pre | Sharpe posle |
    0.74 |  0.02 | t  0.03 | L21 H14 k5
    0.74 |  1.55 | t  2.05 | L7 H14 k5
   medijana Sharpe posle 2025 po svim kombinacijama: 0.36; pozitivnih 31/36; korelacija izbor->test: 0.13
+
+CILJANA VOLATILNOST NA NIVOU KORPE (samo smanjenje, cap 1.0, trosak 0.23%; Sharpe | pad % | god. prinos %; medijana preko 36 kombinacija):
+  cilj bez: Sharpe 0.49 | pad -33.3 | prinos 16.7 | pozitivnih 36/36
+  cilj 25%: Sharpe 0.55 | pad -29.6 | prinos 12.7 | pozitivnih 36/36
+  cilj 20%: Sharpe 0.52 | pad -25.5 | prinos 10.8 | pozitivnih 36/36
+  cilj 15%: Sharpe 0.52 | pad -21.3 | prinos 8.5 | pozitivnih 35/36
+  L7 H14 k5: bez {'sharpe': 1.108, 'max_dd_pct': -19.32} -> cilj 20% {'sharpe': 1.062, 'max_dd_pct': -19.19}
+     po godinama (cilj 20%): {2022: -0.12, 2023: -0.91, 2024: 1.98, 2025: 2.19, 2026: 0.61}
+  L14 H7 k5: bez {'sharpe': 0.824, 'max_dd_pct': -32.01} -> cilj 20% {'sharpe': 0.723, 'max_dd_pct': -28.87}
+     po godinama (cilj 20%): {2022: 0.11, 2023: -1.07, 2024: 1.88, 2025: 1.77, 2026: 0.17}
   L14 H7 k5 samo 2026: Sharpe 0.287, t 0.25, prinos 8.4% god., dana 279
   L7 H14 k5 samo 2026: Sharpe 0.552, t 0.48, prinos 11.4% god., dana 279
 ```

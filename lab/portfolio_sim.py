@@ -93,6 +93,21 @@ def metrics(rows, t_from=None, t_to=None):
                             "ann_return_pct": round(st.mean(v) * 365, 2), "n": len(v)} for y, v in sorted(byy.items())}}
 
 
+def vol_managed(rows, target_ann_pct=20.0, win=30, cap=1.0):
+    """Ciljana volatilnost na nivou korpe: skala dana = min(cap, cilj / realizovana vol zadnjih `win` dana) (samo PRETHODNI dani, bez gledanja unapred).
+    cap=1.0 znaci samo smanjenje rizika kad je tržište nemirno, nikad poluga (tvrdo pravilo: 1x)."""
+    out, past = [], []
+    for t, x in rows:
+        if len(past) >= win:
+            sd = st.pstdev(past[-win:]) * math.sqrt(365)
+            scale = cap if sd <= 0 else min(cap, target_ann_pct / sd)
+        else:
+            scale = cap
+        out.append((t, x * scale))
+        past.append(x)  # realizovana vol se meri na NEskaliranom prinosu strategije
+    return out
+
+
 def grid(series, group, Ls=(7, 14, 21, 30), Hs=(3, 7, 14), ks=(3, 5, 8), cost_pct=0.23):
     res = []
     for L in Ls:
@@ -151,6 +166,22 @@ def main():
     print("  medijana Sharpe posle 2025 po svim kombinacijama: %.2f; pozitivnih %d/%d; korelacija izbor->test: %.2f" % (
         st.median([x[1] for x in c]), sum(1 for x in c if x[1] > 0), len(c),
         st.correlation([x[0] for x in c], [x[1] for x in c]) if len(c) > 3 else float("nan")))
+    print("\nCILJANA VOLATILNOST NA NIVOU KORPE (samo smanjenje, cap 1.0, trosak 0.23%; Sharpe | pad % | god. prinos %; medijana preko 36 kombinacija):")
+    allrows = {}
+    for L in (7, 14, 21, 30):
+        for H in (3, 7, 14):
+            for k in (3, 5, 8):
+                allrows[(L, H, k)] = csm_series(series, group, L, H, k, True, 0.23)[0]
+    for target in (None, 25.0, 20.0, 15.0):
+        ms = [metrics(r if target is None else vol_managed(r, target)) for r in allrows.values()]
+        ms = [m for m in ms if m.get("sharpe") is not None]
+        print("  cilj %s: Sharpe %.2f | pad %.1f | prinos %.1f | pozitivnih %d/%d" % (
+            "bez" if target is None else "%.0f%%" % target, st.median([m["sharpe"] for m in ms]), st.median([m["max_dd_pct"] for m in ms]),
+            st.median([m["ann_return_pct"] for m in ms]), sum(1 for m in ms if m["sharpe"] > 0), len(ms)))
+    for key in ((7, 14, 5), (14, 7, 5)):
+        a, b = metrics(allrows[key]), metrics(vol_managed(allrows[key], 20.0))
+        print("  L%d H%d k%d: bez %s -> cilj 20%% %s" % (key + ({k: a[k] for k in ("sharpe", "max_dd_pct")}, {k: b[k] for k in ("sharpe", "max_dd_pct")})))
+        print("     po godinama (cilj 20%%): %s" % {y: v["sharpe"] for y, v in b["by_year"].items()})
     for L, H in ((14, 7), (7, 14)):
         last = metrics(csm_series(series, group, L, H, 5, True, 0.23)[0], ts_ms(2026))
         print("  L%d H%d k5 samo 2026: Sharpe %s, t %s, prinos %s%% god., dana %s" % (L, H, last.get("sharpe"), last.get("t"), last.get("ann_return_pct"), last.get("n_days")))
