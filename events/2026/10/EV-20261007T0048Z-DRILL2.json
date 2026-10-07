@@ -1,0 +1,66 @@
+{
+ "all_moves": {
+  "BRENT": 3.4,
+  "GOLD": 0.2,
+  "SP500": 0.1,
+  "WTI": 3.1
+ },
+ "brain_fired": true,
+ "direction": "up",
+ "families": {
+  "H": 1.0,
+  "M": 1.5,
+  "P": 2.0,
+  "PX": 1.0,
+  "X": 1.5
+ },
+ "fire_gate": "DRILL vezba vlasnika (EVENT_DRILL: ON), nije stvaran dogadjaj",
+ "id": "EV-20261007T0048Z-DRILL2",
+ "instruments": [
+  {
+   "ch24": 0.6177144565109094,
+   "confirmed": true,
+   "eff60": 2.5,
+   "funding": -8.3e-05,
+   "hl": "xyz:BRENTOIL",
+   "key": "BRENT",
+   "m240": 3.9,
+   "m60": 3.4,
+   "provider": "drill",
+   "px": 100.99,
+   "thr60": 2.5
+  },
+  {
+   "ch24": 0.6514001746021014,
+   "confirmed": true,
+   "eff60": 2.5,
+   "funding": -3.8e-05,
+   "hl": "xyz:CL",
+   "key": "WTI",
+   "m240": 3.5,
+   "m60": 3.1,
+   "provider": "drill",
+   "px": 89.928,
+   "thr60": 2.5
+  }
+ ],
+ "kind": "open",
+ "mode": "drill",
+ "regime": {
+  "GVZ": 22.7,
+  "OVX": 48.8,
+  "VIX": 20.0
+ },
+ "scheduled": [],
+ "schema": 1,
+ "score": 7.0,
+ "theme": "OIL",
+ "tier": "N3",
+ "ts": "2026-10-07T00:48:04Z",
+ "untrusted_text": "DRILL: vezba vlasnika, ne stvaran dogadjaj. Naslov 1: Oil jumps as Gulf tensions rise (vezba). Naslov 2: Brent climbs on supply fears (vezba).",
+ "why": {
+  "H": "2 naslova (DRILL)",
+  "M": "DRILL market",
+  "P": "Brent +3,4%/60m (DRILL, vezba)"
+ }
+}
