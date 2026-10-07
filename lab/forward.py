@@ -14,6 +14,7 @@ from .indicators import Series
 HOUR = 3600000
 DAY = 86400000
 WARM = 205
+REV = 2  # povecaj kad se promeni izlaz/logika: laboratorija se tada odmah ponovo racuna u istom satu
 HOLD_HOURS_1H = 24
 HOLD_HOURS_1D = 168
 
@@ -131,7 +132,7 @@ def run_interval(cfg, cands, t0, now_ms, interval, log):
         tests = {name: summarize_rows(rows) for name, rows in ev.items() if rows}
         out_vars[vid] = {"family": fam, "params": params, "interval": interval, "signals": len(sigs), "tests": tests,
                          "live": vid in live}
-        for sym, i, t, side in signals_since(series, ctx, fam, params, t0, last_only=True):
+        for sym, i, t, side in signals_since(series, ctx, fam, params, 0, last_only=True):
             S = series[sym]
             hold = live.get(vid, HOLD_HOURS_1D if daily else HOLD_HOURS_1H)
             triggers.append(dict(trigger_row(S, i, vid, fam, side, hold, daily), live=vid in live))
@@ -183,7 +184,7 @@ def run(state_dir, root=None, now_ms=None, force=False, log=print):
     if not meta.get("t0_ms"):
         meta["t0_ms"] = (now_ms // HOUR) * HOUR
         meta["t0_utc"] = iso(meta["t0_ms"])
-    if meta.get("last_bar") == bar_now and not force:
+    if meta.get("last_bar") == bar_now and meta.get("rev") == REV and not force:
         return {"ok": True, "skipped": "nova svecu jos nema"}
     t0 = meta["t0_ms"]
     variants, triggers, last_bar, n_sym, marks = run_interval(cfg, cands, t0, now_ms, "1h", log)
@@ -227,6 +228,7 @@ def run(state_dir, root=None, now_ms=None, force=False, log=print):
                                                    "other_triggers": len(all_triggers) - len(live_triggers), "live_variants": live,
                                                    "marks": marks, "marks_bar_utc": iso(last_bar)})
     meta["last_bar"] = bar_now
+    meta["rev"] = REV
     meta["updated_utc"] = iso(now_ms)
     _save(os.path.join(lab_dir, "meta.json"), meta)
     return {"ok": True, "signals": totals["signals"], "triggers": len(all_triggers), "live_triggers": len(live_triggers),
