@@ -74,6 +74,11 @@ jobs:
           FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
         run: python -m lab.collect --state _state
 
+      - name: Pakovanje podataka za panel (delovi do 5,4 KB jer read_link odseca na 6000 znakova)
+        continue-on-error: true
+        timeout-minutes: 2
+        run: python -m lab.panelpack --state _state
+
       - name: Objavi stanje (grana state)
         run: bash scripts/publish_state.sh
         env:

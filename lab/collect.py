@@ -14,6 +14,7 @@ HOUR = 3600000
 DAY = 86400000
 HISTORY_KEEP = 24 * 45
 RETRY_MS = 3 * HOUR
+RETIRED = ("gdelt",)
 HOURLY_ROWS = 24 * 7  # satni redovi samo za poslednjih 7 dana, starije svodimo na jedan red dnevno (ocenjivanje prognoza koristi satne redove)
 BRIEFING_MAX_BYTES = 12_000
 
@@ -208,6 +209,8 @@ def run(state_dir, now_ms=None, force=False, log=print, env=None):
     data_dir = os.path.join(state_dir, "data")
     meta = _load(os.path.join(data_dir, "meta.json"), {})
     health = _load(os.path.join(data_dir, "health.json"), {})
+    for k in RETIRED:  # izvori koji vise ne rade ne smeju da ostanu kao lazna greska u zdravlju
+        health.pop(k, None)
     cfg, _ = backtest.load_config()
     syms = [u["sym"] for u in cfg["universe"]]
     stocks = [s for s in syms if s.startswith("xyz:")]
@@ -268,8 +271,7 @@ def run(state_dir, now_ms=None, force=False, log=print, env=None):
     bn_syms = {x: bb.bn_symbol(x) for x in syms if not x.startswith("xyz:") and bb.bn_symbol(x)}
     for name, every, fn in (("llama", 6 * HOUR, lambda: C2.collect_llama_activity(now_ms)),
                             ("bn_daily", 6 * HOUR, lambda: C2.collect_binance_daily(bn_syms, os.path.join(data_dir, "bn_raw.json"), now_ms)),
-                            ("cftc", None, lambda: C2.collect_cftc(now_ms)), ("onchain", None, lambda: C2.collect_onchain(now_ms)),
-                            ("gdelt", None, lambda: C2.collect_gdelt(now_ms))):
+                            ("cftc", None, lambda: C2.collect_cftc(now_ms)), ("onchain", None, lambda: C2.collect_onchain(now_ms))):  # GDELT izbacen: stalno 429 sa Actions adresa
         tried = meta.setdefault("tried", {})
         if force or ((due(meta, name, now_ms, every) if every else due(meta, name, now_ms, daily=True)) and now_ms - tried.get(name, 0) >= RETRY_MS):
             tried[name] = now_ms  # neuspeh se ponavlja najranije posle 3 h (ne svakih 5 minuta)

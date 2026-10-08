@@ -295,13 +295,20 @@ class OrchestratorTests(unittest.TestCase):
 
     def test_failing_daily_source_is_not_retried_every_run(self):
         n = []
-        C2.collect_gdelt = lambda *a, **k: (n.append(1), (_ for _ in ()).throw(netutil.NetError("limit")))[1]
+        C2.collect_cftc = lambda *a, **k: (n.append(1), (_ for _ in ()).throw(netutil.NetError("limit")))[1]
         collect.run(self.tmp.name, now_ms=NOW, log=lambda *_: None, env={})
         collect.run(self.tmp.name, now_ms=NOW + 300_000, log=lambda *_: None, env={})
         collect.run(self.tmp.name, now_ms=NOW + 600_000, log=lambda *_: None, env={})
         self.assertEqual(len(n), 1)  # posle neuspeha: pauza 3 h
         collect.run(self.tmp.name, now_ms=NOW + 3 * 3600_000 + 60_000, log=lambda *_: None, env={})
         self.assertEqual(len(n), 2)
+
+    def test_retired_source_error_is_dropped_from_health(self):
+        os.makedirs(os.path.join(self.tmp.name, "data"))
+        json.dump({"gdelt": {"last_error": "NetError: stari"}}, open(os.path.join(self.tmp.name, "data", "health.json"), "w"))
+        collect.run(self.tmp.name, now_ms=NOW, log=lambda *_: None, env={})
+        h = json.load(open(os.path.join(self.tmp.name, "data", "health.json"), encoding="utf-8"))
+        self.assertNotIn("gdelt", h)
 
     def test_same_hour_is_skipped_but_force_runs_again(self):
         collect.run(self.tmp.name, now_ms=NOW, log=lambda *_: None, env={})
