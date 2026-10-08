@@ -1,0 +1,43 @@
+{
+ "generated_utc": "2026-10-08T15:00Z",
+ "source": "trump_study",
+ "window": [
+  "2025-01-20",
+  "2026-10-07"
+ ],
+ "tests": 354,
+ "raw_t2": 21,
+ "fdr_pass": 0,
+ "placebo_t2_share": 0.0705,
+ "findings": [],
+ "hints_not_evidence": [
+  {
+   "tag": "deal",
+   "ticker": "CL=F",
+   "h": 24,
+   "mode": "lag",
+   "n": 164,
+   "mean_pct": 0.6723,
+   "t": 3.18
+  },
+  {
+   "tag": "tariff",
+   "ticker": "BTC-USD",
+   "h": 1,
+   "mode": "lag",
+   "n": 227,
+   "mean_pct": 0.0963,
+   "t": 3.07
+  },
+  {
+   "tag": "deal",
+   "ticker": "MU",
+   "h": 24,
+   "mode": "lag",
+   "n": 76,
+   "mean_pct": -1.3072,
+   "t": -2.78
+  }
+ ],
+ "note": "Reakcija cena na teme Trumpovih objava (ulaz 60 min posle objave). Bez nalaza koji prolaze placebom kalibrisan FDR znaci: nema dokazane prednosti; sirovi 'hints' su sumnje, ne dokaz."
+}

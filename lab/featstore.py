@@ -5,7 +5,7 @@ import re
 import statistics as st
 
 GROUPS = {"time": "Vreme", "cal": "Kalendar", "hl": "Hyperliquid struktura", "drv": "Derivati", "mac": "Makro", "liq": "Likvidnost", "sent": "Raspolozenje",
-          "pos": "Pozicioniranje", "act": "Aktivnost mreza", "bn": "Binance derivati", "sm": "Pametan novac", "chain": "On-chain", "news": "Vesti"}
+          "pos": "Pozicioniranje", "act": "Aktivnost mreza", "bn": "Binance derivati", "sm": "Pametan novac", "chain": "On-chain", "news": "Vesti", "trump": "Trump objave"}
 
 DESC = {
     "vix": "VIX: strah na akcijama", "vix3m": "VIX na 3 meseca", "dxy": "Dolar indeks", "hy_oas": "Kreditni raspon rizicnih firmi (HY OAS)", "fear_greed": "Kripto strah/pohlepa 0-100",
@@ -203,6 +203,16 @@ def flatten(files, core, now_ms):
         if rec:
             put("gd_%s_tone" % q, rec.get("tone_24h"), "news", "GDELT ton vesti '%s' (negativno = lose vesti)" % q)
             put("gd_%s_tone_chg" % q, rec.get("tone_chg"), "news", "GDELT ton '%s': promena prema prethodnih 6 d" % q)
+    # Trump objave (samo brojevi i imena tema; tekst se nigde ne cuva)
+    tr = data("trump")
+    for k, ds in (("posts_1h", "Trump: broj sopstvenih objava u poslednjih 1 h"), ("posts_4h", "Trump: broj sopstvenih objava u poslednja 4 h"),
+                  ("posts_24h", "Trump: broj sopstvenih objava u poslednja 24 h"), ("rt_24h", "Trump: broj repostova u 24 h"), ("shout_24h", "Trump: objave pisane velikim slovima u 24 h"),
+                  ("company_24h", "Trump: objave koje pominju neku od nasih kompanija u 24 h"), ("last_age_min", "Trump: minuta od poslednje sopstvene objave")):
+        put("tr_" + k, tr.get(k), "trump", ds)
+    for t, n in (tr.get("topics_24h") or {}).items():
+        put("tr_%s_24h" % t, n, "trump", "Trump: objave o temi '%s' u 24 h" % t)
+    for t, n in (tr.get("topics_4h") or {}).items():
+        put("tr_%s_4h" % t, n, "trump", "Trump: objave o temi '%s' u 4 h" % t)
     # vreme
     import time as _t
     tm = _t.gmtime(now_s)

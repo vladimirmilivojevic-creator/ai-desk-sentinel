@@ -7,7 +7,7 @@ import statistics as st
 import sys
 import time
 
-from . import backtest, binance_backfill as bb, collectors as C, collectors2 as C2, featstore
+from . import backtest, binance_backfill as bb, collectors as C, collectors2 as C2, featstore, trump
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 HOUR = 3600000
@@ -137,7 +137,9 @@ def extra_block(files):
     kl = d("kalshi")
     cf_ = {k: v.get("pctl") for k, v in d("cftc").items() if v}
     ll = d("llama")
-    return {"fed": {k: kl.get(k) for k in ("event", "days_to_meeting", "modal_level", "p_up", "p_down", "expected_rate")} if kl else None,
+    tr = d("trump")
+    return {"trump": ({k: tr.get(k) for k in ("posts_1h", "posts_4h", "posts_24h", "shout_24h", "company_24h", "last_age_min", "topics_24h", "n_events")} if tr else None),
+            "fed": {k: kl.get(k) for k in ("event", "days_to_meeting", "modal_level", "p_up", "p_down", "expected_rate")} if kl else None,
             "cftc_pctl_3y": cf_ or None, "dex_vol_chg_7d": (ll.get("dex") or {}).get("chg_7d"), "bn": (d("bn_daily").get("agg") or None),
             "okx_btc": (d("okx_flow").get("BTC") or None)}
 
@@ -193,6 +195,15 @@ def build_briefing(files, z, now_ms, registry=None, health=None, n_features=None
     return bf
 
 
+def _evidence():
+    """Dokazi iz studija (rezim + Trump) za AI; svaka studija zasebno, nedostaje = izostavljena."""
+    ev = _load(os.path.join(ROOT, "config", "evidence.json"), None)
+    tev = _load(os.path.join(ROOT, "config", "events_evidence.json"), None)
+    if tev:
+        ev = dict(ev or {}, trump=tev)
+    return ev
+
+
 def registry_summary(state_dir):
     p = _load(os.path.join(state_dir, "lab", "panel.json"), {})
     if not p:
@@ -215,7 +226,7 @@ def run(state_dir, now_ms=None, force=False, log=print, env=None):
     syms = [u["sym"] for u in cfg["universe"]]
     stocks = [s for s in syms if s.startswith("xyz:")]
     files = {n: _load(os.path.join(data_dir, n + ".json"), None) for n in ("market", "derivs", "macro", "sentiment", "calendar", "smart_money", "universe",
-                                                                         "cftc", "llama", "kalshi", "okx_flow", "bn_daily", "onchain", "gdelt")}
+                                                                         "cftc", "llama", "kalshi", "okx_flow", "bn_daily", "onchain", "gdelt", "trump")}
     # novi kljuc (Coinalyze) ne ceka sledeci sat: ako je zadnja greska bila "nema kljuca", a kljuc sada postoji, odmah ponovo
     key_just_added = bool(env.get("COINALYZE_API_KEY")) and "nema kljuca" in str((health.get("derivs_coinalyze") or {}).get("last_error") or "")
     hourly = force or key_just_added or due(meta, "market", now_ms, HOUR)
@@ -253,6 +264,11 @@ def run(state_dir, now_ms=None, force=False, log=print, env=None):
         files["calendar"] = run_task("calendar", lambda: C.collect_calendar(now_ms, stocks, env.get("FINNHUB_API_KEY")), data_dir, meta, health, now_ms, log)
         files["okx_flow"] = run_task("okx_flow", C2.collect_okx_flow, data_dir, meta, health, now_ms, log)
         files["kalshi"] = run_task("kalshi", lambda: C2.collect_kalshi_fed(now_ms), data_dir, meta, health, now_ms, log)
+        tr_inst = list(trump.load_lexicon()["raw"]["instruments"].values())
+        mk0 = (files.get("market") or {}).get("data", {}) or {}
+        tr_marks = {s: mk0[s]["ctx"]["mark"] for s in tr_inst if mk0.get(s) and mk0[s].get("ctx") and mk0[s]["ctx"].get("mark")}
+        files["trump"] = run_task("trump", lambda: trump.collect_trump(now_ms, store_path=os.path.join(data_dir, "trump_events.json"), instruments=tr_inst, marks=tr_marks),
+                                  data_dir, meta, health, now_ms, log)
     else:
         yahoo = _load(os.path.join(data_dir, "macro_yahoo.json"), None)
     fred = None
@@ -290,7 +306,7 @@ def run(state_dir, now_ms=None, force=False, log=print, env=None):
     _save(hist_path, hist)
     _save(os.path.join(data_dir, "features.json"), {"updated_utc": iso(now_ms), "n": len(feats), "features": {k: {"v": v, "z": z.get(k)} for k, v in feats.items()}, "meta": fmeta})
     _save(os.path.join(data_dir, "instrument_features.json"), {"updated_utc": iso(now_ms), "instruments": featstore.instrument_features(mk)})
-    briefing = build_briefing(files, z, now_ms, registry_summary(state_dir), health, n_features=len(feats), evidence=_load(os.path.join(ROOT, "config", "evidence.json"), None))
+    briefing = build_briefing(files, z, now_ms, registry_summary(state_dir), health, n_features=len(feats), evidence=_evidence())
     _save(os.path.join(data_dir, "briefing.json"), briefing)
     _save(os.path.join(data_dir, "health.json"), health)
     _save(os.path.join(data_dir, "meta.json"), meta)

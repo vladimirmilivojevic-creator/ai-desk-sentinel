@@ -7,7 +7,7 @@ import time
 import unittest
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
-from lab import backtest, collect, collectors as C, collectors2 as C2, netutil  # noqa: E402
+from lab import backtest, collect, collectors as C, collectors2 as C2, netutil, trump  # noqa: E402
 
 NOW = int(time.time() * 1000)
 
@@ -229,6 +229,9 @@ class OrchestratorTests(unittest.TestCase):
         C2.collect_binance_daily = lambda *a, **k: {"asof": "2026-10-06", "agg": {"glob_ls_med": 1.6, "oi_chg_7_med": 2.0}, "coins": {"BTC": {"glob_ls": 1.7, "oi_chg_7": 3.0}}}
         C2.collect_onchain = lambda *a, **k: {"btc_adr_z": 0.1, "btc_tx_z": -0.2, "btc_adr_chg_7d_pct": -3.0}
         C2.collect_gdelt = lambda *a, **k: (_ for _ in ()).throw(netutil.NetError("limit"))
+        self._trump = trump.collect_trump
+        trump.collect_trump = lambda *a, **k: {"posts_1h": 1, "posts_4h": 2, "posts_24h": 9, "rt_24h": 3, "shout_24h": 1, "company_24h": 0, "last_age_min": 12.0,
+                                               "topics_24h": {"tariff": 2}, "topics_4h": {"tariff": 1}, "n_events": 2, "reactions": {}}
         self.calls = {}
         ctx = {"BTC": {"mark": 100.0, "funding_h": 0.00001, "oi_usd": 5e8, "premium": 0.0, "vol24": 1e9},
                "xyz:NVDA": {"mark": 200.0, "funding_h": 0.0, "oi_usd": 2e7, "premium": 0.0, "vol24": 5e6}}
@@ -258,6 +261,7 @@ class OrchestratorTests(unittest.TestCase):
             setattr(C, n, f)
         for n, f in self._saved2.items():
             setattr(C2, n, f)
+        trump.collect_trump = self._trump
         self.tmp.cleanup()
 
     def test_full_run_writes_files_briefing_and_health(self):
