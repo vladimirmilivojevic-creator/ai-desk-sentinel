@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "registered_utc": "2026-10-08T15:00:00Z",
+  "note": "Recnik tema se upisuje PRE nego sto se vide rezultati studije (lab/trump_study.py) i posle toga se ne menja bez nove verzije i novog datuma. Tekst objava ostaje u studiji i u skupljacu; AI i panel vide samo brojeve i imena tema.",
+  "topics": {
+    "tariff":  {"re": "\\btariffs?\\b|\\breciprocal\\b|\\btrade war\\b|\\bduties\\b|\\bliberation day\\b", "desc": "Carine i trgovinski rat"},
+    "china":   {"re": "\\bchina\\b|\\bchinese\\b|\\bxi\\b|\\bbeijing\\b", "desc": "Kina"},
+    "fed":     {"re": "\\bfederal reserve\\b|\\bthe fed\\b|\\bpowell\\b|\\binterest rates?\\b|\\brate cuts?\\b|\\btoo late\\b", "desc": "Fed i kamate"},
+    "crypto":  {"re": "\\bbitcoin\\b|\\bcrypto(currency|currencies)?\\b|\\bstablecoins?\\b|\\bgenius act\\b|\\bdigital assets?\\b", "desc": "Kripto"},
+    "energy":  {"re": "\\boil\\b|\\bdrill\\b|\\bgas(oline)?\\b|\\bopec\\b|\\benergy\\b|\\blng\\b", "desc": "Nafta i energija"},
+    "markets": {"re": "\\bstock market\\b|\\bdow\\b|\\bnasdaq\\b|\\bs&p\\b|\\brecord highs?\\b|\\bgreat time to buy\\b|\\bstocks\\b", "desc": "Berza i akcije"},
+    "war":     {"re": "\\biran\\b|\\bisrael\\b|\\brussia\\b|\\bukraine\\b|\\bputin\\b|\\bmissiles?\\b|\\bnuclear\\b|\\bceasefire\\b|\\bhamas\\b|\\bwar\\b|\\bstrikes?\\b", "desc": "Rat i geopolitika"},
+    "deal":    {"re": "\\bdeal\\b|\\bagreement\\b|\\bsigned\\b|\\btrillion\\b|\\binvest(ment|ments)?\\b", "desc": "Dogovori i ulaganja"}
+  },
+  "shout": {"min_letters": 20, "min_upper_ratio": 0.6, "desc": "Objava pisana velikim slovima"},
+  "companies": {
+    "intel":     {"re": "\\bintel\\b", "ticker": "INTC", "hl": "xyz:INTC"},
+    "nvidia":    {"re": "\\bnvidia\\b", "ticker": "NVDA", "hl": "xyz:NVDA"},
+    "apple":     {"re": "\\bapple\\b", "ticker": "AAPL", "hl": "xyz:AAPL"},
+    "tesla":     {"re": "\\btesla\\b|\\belon\\b", "ticker": "TSLA", "hl": "xyz:TSLA"},
+    "amazon":    {"re": "\\bamazon\\b", "ticker": "AMZN", "hl": "xyz:AMZN"},
+    "microsoft": {"re": "\\bmicrosoft\\b", "ticker": "MSFT", "hl": "xyz:MSFT"},
+    "meta":      {"re": "\\bmeta\\b|\\bfacebook\\b|\\bzuckerberg\\b", "ticker": "META", "hl": "xyz:META"},
+    "google":    {"re": "\\bgoogle\\b|\\balphabet\\b", "ticker": "GOOGL", "hl": "xyz:GOOGL"},
+    "amd":       {"re": "\\bamd\\b", "ticker": "AMD", "hl": "xyz:AMD"},
+    "micron":    {"re": "\\bmicron\\b", "ticker": "MU", "hl": "xyz:MU"}
+  },
+  "instruments": {
+    "ES=F": "xyz:SP500", "NQ=F": "xyz:XYZ100", "CL=F": "xyz:CL", "GC=F": "xyz:GOLD", "BTC-USD": "BTC", "ETH-USD": "ETH",
+    "NVDA": "xyz:NVDA", "AAPL": "xyz:AAPL", "TSLA": "xyz:TSLA", "INTC": "xyz:INTC", "AMZN": "xyz:AMZN", "META": "xyz:META",
+    "MSFT": "xyz:MSFT", "GOOGL": "xyz:GOOGL", "AMD": "xyz:AMD", "MU": "xyz:MU"
+  },
+  "primary_start_utc": "2025-01-20T17:00:00Z",
+  "pre_start_utc": "2024-05-20T00:00:00Z",
+  "design": "Dogadjaj = prva objava teme u UTC danu (bez RT). Ulaz = otvaranje prve svece koja pocinje najranije 60 min posle objave (sto mozemo da stignemo), poredjenje 'instant' (odmah) samo opisno. Horizonti 1 h, 4 h, 24 h. Kontrola = isti sat u danu i vrsta dana (radni/vikend) na danima bez te teme. Dva testa po celiji: potpisani prinos i apsolutni prinos (volatilnost). BH-FDR q=0.10 po porodici. Placebo teme kalibruju lazne pozitivne."
+}
