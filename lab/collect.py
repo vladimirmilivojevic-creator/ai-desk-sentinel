@@ -7,7 +7,7 @@ import statistics as st
 import sys
 import time
 
-from . import backtest, binance_backfill as bb, collectors as C, collectors2 as C2, featstore, trump
+from . import backtest, binance_backfill as bb, collectors as C, collectors2 as C2, featstore, panel_scan, panelstore, trump
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 HOUR = 3600000
@@ -305,7 +305,20 @@ def run(state_dir, now_ms=None, force=False, log=print, env=None):
     hist = compact_history(prior + [row], now_ms)
     _save(hist_path, hist)
     _save(os.path.join(data_dir, "features.json"), {"updated_utc": iso(now_ms), "n": len(feats), "features": {k: {"v": v, "z": z.get(k)} for k, v in feats.items()}, "meta": fmeta})
-    _save(os.path.join(data_dir, "instrument_features.json"), {"updated_utc": iso(now_ms), "instruments": featstore.instrument_features(mk)})
+    inst_feats = featstore.instrument_features(mk)
+    _save(os.path.join(data_dir, "instrument_features.json"), {"updated_utc": iso(now_ms), "instruments": inst_feats})
+    try:  # panel (instrument x sat) za model; greska ovde nikad ne sme da obori skupljanje
+        if hourly or force:
+            panelstore.append_hour(state_dir, row["t"], feats, inst_feats, row["m"])
+        if force or due(meta, "panel_scan", now_ms, 6 * HOUR):
+            _save(os.path.join(state_dir, "lab", "panel_scan.json"), panel_scan.run(state_dir))
+            meta.setdefault("last", {})["panel_scan"] = now_ms
+        health.setdefault("panel", {"last_ok_utc": None, "last_error": None, "consecutive_failures": 0}).update(last_ok_utc=iso(now_ms), last_error=None, consecutive_failures=0)
+    except Exception as e:  # noqa: BLE001
+        h_ = health.setdefault("panel", {"last_ok_utc": None, "last_error": None, "consecutive_failures": 0})
+        h_["last_error"] = "%s: %s" % (type(e).__name__, e)
+        h_["consecutive_failures"] = h_.get("consecutive_failures", 0) + 1
+        log("panel nije upisan: %s" % h_["last_error"])
     briefing = build_briefing(files, z, now_ms, registry_summary(state_dir), health, n_features=len(feats), evidence=_evidence())
     _save(os.path.join(data_dir, "briefing.json"), briefing)
     _save(os.path.join(data_dir, "health.json"), health)
