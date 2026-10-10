@@ -1,5 +1,5 @@
 {
- "updated_utc": "2026-10-10T13:54:04Z",
+ "updated_utc": "2026-10-10T16:25:24Z",
  "rules": {
   "stocks:SPIKE_UP:10d:long": {
    "universe": "stocks",
@@ -12,17 +12,17 @@
    "first_seen_utc": "2026-10-10T13:54:04Z",
    "forward_start": "2026-09-28",
    "study": {
-    "n": 90,
-    "mean": 5.8148,
-    "median": 0.8332,
-    "mean_ex_best": 4.5557,
-    "t": 2.9,
-    "p": 0.00373,
-    "t_train": 2.43,
-    "t_test": 1.56,
-    "recent_mean": -0.4513,
-    "stress_mean": 5.5448,
-    "abs_mean": 8.4577,
+    "n": 89,
+    "mean": 5.695,
+    "median": 0.2178,
+    "mean_ex_best": 4.4236,
+    "t": 2.82,
+    "p": 0.0048,
+    "t_train": 2.31,
+    "t_test": 1.59,
+    "recent_mean": -0.4864,
+    "stress_mean": 5.425,
+    "abs_mean": 8.3865,
     "fdr": true
    },
    "history": [
@@ -38,6 +38,479 @@
     "stress_mean": null,
     "pending": 1
    }
+  },
+  "crypto:BRK20:1w:short": {
+   "universe": "crypto",
+   "family": "BRK20",
+   "kind": "rank",
+   "step": 1,
+   "H": 7,
+   "leg": "short",
+   "status": "kandidat",
+   "first_seen_utc": "2026-10-10T16:25:24Z",
+   "forward_start": "2026-10-04",
+   "study": {
+    "n": 323,
+    "mean": 1.5032,
+    "median": 1.6978,
+    "mean_ex_best": 1.4267,
+    "t": 4.9,
+    "p": 0.0,
+    "t_train": 3.01,
+    "t_test": 4.43,
+    "recent_mean": 2.839,
+    "stress_mean": 1.2332,
+    "abs_mean": 1.328,
+    "fdr": true
+   },
+   "history": [
+    [
+     "2026-10-10T16:25:24Z",
+     "kandidat"
+    ]
+   ],
+   "forward": {
+    "n": 0,
+    "mean": null,
+    "t": null,
+    "stress_mean": null,
+    "pending": 1
+   }
+  },
+  "crypto:BRK20:2w:long": {
+   "universe": "crypto",
+   "family": "BRK20",
+   "kind": "rank",
+   "step": 2,
+   "H": 14,
+   "leg": "long",
+   "status": "kandidat",
+   "first_seen_utc": "2026-10-10T16:25:24Z",
+   "forward_start": "2026-10-04",
+   "study": {
+    "n": 161,
+    "mean": 1.8113,
+    "median": 1.3302,
+    "mean_ex_best": 1.5847,
+    "t": 3.12,
+    "p": 0.00181,
+    "t_train": 2.86,
+    "t_test": 1.32,
+    "recent_mean": 0.8359,
+    "stress_mean": 1.5413,
+    "abs_mean": 2.0984,
+    "fdr": true
+   },
+   "history": [
+    [
+     "2026-10-10T16:25:24Z",
+     "kandidat"
+    ]
+   ],
+   "forward": {
+    "n": 0,
+    "mean": null,
+    "t": null,
+    "stress_mean": null,
+    "pending": 1
+   }
+  },
+  "crypto:BRK20:2w:short": {
+   "universe": "crypto",
+   "family": "BRK20",
+   "kind": "rank",
+   "step": 2,
+   "H": 14,
+   "leg": "short",
+   "status": "kandidat",
+   "first_seen_utc": "2026-10-10T16:25:24Z",
+   "forward_start": "2026-10-04",
+   "study": {
+    "n": 161,
+    "mean": 2.9764,
+    "median": 3.4346,
+    "mean_ex_best": 2.8328,
+    "t": 5.12,
+    "p": 0.0,
+    "t_train": 2.72,
+    "t_test": 5.08,
+    "recent_mean": 5.399,
+    "stress_mean": 2.7064,
+    "abs_mean": 2.6892,
+    "fdr": true
+   },
+   "history": [
+    [
+     "2026-10-10T16:25:24Z",
+     "kandidat"
+    ]
+   ],
+   "forward": {
+    "n": 0,
+    "mean": null,
+    "t": null,
+    "stress_mean": null,
+    "pending": 1
+   }
+  },
+  "crypto:BRK20:4w:short": {
+   "universe": "crypto",
+   "family": "BRK20",
+   "kind": "rank",
+   "step": 4,
+   "H": 28,
+   "leg": "short",
+   "status": "kandidat",
+   "first_seen_utc": "2026-10-10T16:25:24Z",
+   "forward_start": "2026-10-04",
+   "study": {
+    "n": 80,
+    "mean": 5.2193,
+    "median": 4.3084,
+    "mean_ex_best": 4.7663,
+    "t": 4.52,
+    "p": 1e-05,
+    "t_train": 2.12,
+    "t_test": 4.92,
+    "recent_mean": 8.004,
+    "stress_mean": 4.9493,
+    "abs_mean": 4.7212,
+    "fdr": true
+   },
+   "history": [
+    [
+     "2026-10-10T16:25:24Z",
+     "kandidat"
+    ]
+   ],
+   "forward": {
+    "n": 0,
+    "mean": null,
+    "t": null,
+    "stress_mean": null,
+    "pending": 1
+   }
+  },
+  "crypto:LOWVOL:1w:long": {
+   "universe": "crypto",
+   "family": "LOWVOL",
+   "kind": "rank",
+   "step": 1,
+   "H": 7,
+   "leg": "long",
+   "status": "nagovestaj",
+   "first_seen_utc": "2026-10-10T16:25:24Z",
+   "forward_start": "2026-10-04",
+   "study": {
+    "n": 319,
+    "mean": 0.5673,
+    "median": 0.5866,
+    "mean_ex_best": 0.486,
+    "t": 2.08,
+    "p": 0.03753,
+    "t_train": 1.0,
+    "t_test": 2.2,
+    "recent_mean": 0.7376,
+    "stress_mean": 0.2973,
+    "abs_mean": 0.7008,
+    "fdr": false
+   },
+   "history": [
+    [
+     "2026-10-10T16:25:24Z",
+     "nagovestaj"
+    ]
+   ],
+   "forward": {
+    "n": 0,
+    "mean": null,
+    "t": null,
+    "stress_mean": null,
+    "pending": 1
+   }
+  },
+  "crypto:LOWVOL:1w:short": {
+   "universe": "crypto",
+   "family": "LOWVOL",
+   "kind": "rank",
+   "step": 1,
+   "H": 7,
+   "leg": "short",
+   "status": "kandidat",
+   "first_seen_utc": "2026-10-10T16:25:24Z",
+   "forward_start": "2026-10-04",
+   "study": {
+    "n": 319,
+    "mean": 1.4183,
+    "median": 1.593,
+    "mean_ex_best": 1.3501,
+    "t": 3.57,
+    "p": 0.00036,
+    "t_train": 1.89,
+    "t_test": 3.85,
+    "recent_mean": 4.4677,
+    "stress_mean": 1.1483,
+    "abs_mean": 1.2848,
+    "fdr": true
+   },
+   "history": [
+    [
+     "2026-10-10T16:25:24Z",
+     "kandidat"
+    ]
+   ],
+   "forward": {
+    "n": 0,
+    "mean": null,
+    "t": null,
+    "stress_mean": null,
+    "pending": 1
+   }
+  },
+  "crypto:LOWVOL:2w:long": {
+   "universe": "crypto",
+   "family": "LOWVOL",
+   "kind": "rank",
+   "step": 2,
+   "H": 14,
+   "leg": "long",
+   "status": "kandidat",
+   "first_seen_utc": "2026-10-10T16:25:24Z",
+   "forward_start": "2026-10-04",
+   "study": {
+    "n": 159,
+    "mean": 1.3611,
+    "median": 1.5536,
+    "mean_ex_best": 1.2512,
+    "t": 2.95,
+    "p": 0.00318,
+    "t_train": 1.07,
+    "t_test": 4.04,
+    "recent_mean": 2.2205,
+    "stress_mean": 1.0911,
+    "abs_mean": 1.6181,
+    "fdr": true
+   },
+   "history": [
+    [
+     "2026-10-10T16:25:24Z",
+     "kandidat"
+    ]
+   ],
+   "forward": {
+    "n": 0,
+    "mean": null,
+    "t": null,
+    "stress_mean": null,
+    "pending": 1
+   }
+  },
+  "crypto:LOWVOL:2w:short": {
+   "universe": "crypto",
+   "family": "LOWVOL",
+   "kind": "rank",
+   "step": 2,
+   "H": 14,
+   "leg": "short",
+   "status": "kandidat",
+   "first_seen_utc": "2026-10-10T16:25:24Z",
+   "forward_start": "2026-10-04",
+   "study": {
+    "n": 159,
+    "mean": 3.5754,
+    "median": 3.4955,
+    "mean_ex_best": 3.3586,
+    "t": 4.89,
+    "p": 0.0,
+    "t_train": 2.94,
+    "t_test": 4.24,
+    "recent_mean": 10.3796,
+    "stress_mean": 3.3054,
+    "abs_mean": 3.3183,
+    "fdr": true
+   },
+   "history": [
+    [
+     "2026-10-10T16:25:24Z",
+     "kandidat"
+    ]
+   ],
+   "forward": {
+    "n": 0,
+    "mean": null,
+    "t": null,
+    "stress_mean": null,
+    "pending": 1
+   }
+  },
+  "crypto:LOWVOL:4w:long": {
+   "universe": "crypto",
+   "family": "LOWVOL",
+   "kind": "rank",
+   "step": 4,
+   "H": 28,
+   "leg": "long",
+   "status": "kandidat",
+   "first_seen_utc": "2026-10-10T16:25:24Z",
+   "forward_start": "2026-10-04",
+   "study": {
+    "n": 79,
+    "mean": 3.0496,
+    "median": 4.1021,
+    "mean_ex_best": 2.7381,
+    "t": 2.48,
+    "p": 0.01314,
+    "t_train": 0.76,
+    "t_test": 4.19,
+    "recent_mean": 2.5473,
+    "stress_mean": 2.7796,
+    "abs_mean": 4.4381,
+    "fdr": true
+   },
+   "history": [
+    [
+     "2026-10-10T16:25:24Z",
+     "kandidat"
+    ]
+   ],
+   "forward": {
+    "n": 0,
+    "mean": null,
+    "t": null,
+    "stress_mean": null,
+    "pending": 1
+   }
+  },
+  "crypto:LOWVOL:4w:short": {
+   "universe": "crypto",
+   "family": "LOWVOL",
+   "kind": "rank",
+   "step": 4,
+   "H": 28,
+   "leg": "short",
+   "status": "kandidat",
+   "first_seen_utc": "2026-10-10T16:25:24Z",
+   "forward_start": "2026-10-04",
+   "study": {
+    "n": 79,
+    "mean": 4.4454,
+    "median": 4.7566,
+    "mean_ex_best": 3.94,
+    "t": 3.02,
+    "p": 0.00253,
+    "t_train": 1.24,
+    "t_test": 3.87,
+    "recent_mean": 14.6478,
+    "stress_mean": 4.1754,
+    "abs_mean": 3.057,
+    "fdr": true
+   },
+   "history": [
+    [
+     "2026-10-10T16:25:24Z",
+     "kandidat"
+    ]
+   ],
+   "forward": {
+    "n": 0,
+    "mean": null,
+    "t": null,
+    "stress_mean": null,
+    "pending": 1
+   }
+  },
+  "crypto:SPIKE_DN:7d:short": {
+   "universe": "crypto",
+   "family": "SPIKE_DN",
+   "kind": "event",
+   "step": 7,
+   "H": 7,
+   "leg": "short",
+   "status": "kandidat",
+   "first_seen_utc": "2026-10-10T16:25:24Z",
+   "forward_start": "2026-10-03",
+   "study": {
+    "n": 129,
+    "mean": 5.1756,
+    "median": 6.9939,
+    "mean_ex_best": 4.6578,
+    "t": 2.56,
+    "p": 0.01047,
+    "t_train": 0.72,
+    "t_test": 2.9,
+    "recent_mean": 11.1288,
+    "stress_mean": 4.9056,
+    "abs_mean": 3.7934,
+    "fdr": true
+   },
+   "history": [
+    [
+     "2026-10-10T16:25:24Z",
+     "kandidat"
+    ]
+   ]
+  },
+  "crypto:SPIKE_DN:14d:short": {
+   "universe": "crypto",
+   "family": "SPIKE_DN",
+   "kind": "event",
+   "step": 14,
+   "H": 14,
+   "leg": "short",
+   "status": "kandidat",
+   "first_seen_utc": "2026-10-10T16:25:24Z",
+   "forward_start": "2026-09-26",
+   "study": {
+    "n": 69,
+    "mean": 10.9198,
+    "median": 12.8656,
+    "mean_ex_best": 9.9636,
+    "t": 4.03,
+    "p": 6e-05,
+    "t_train": 1.27,
+    "t_test": 5.81,
+    "recent_mean": 23.8974,
+    "stress_mean": 10.6498,
+    "abs_mean": 8.8504,
+    "fdr": true
+   },
+   "history": [
+    [
+     "2026-10-10T16:25:24Z",
+     "kandidat"
+    ]
+   ]
+  },
+  "crypto:SPIKE_DN:28d:short": {
+   "universe": "crypto",
+   "family": "SPIKE_DN",
+   "kind": "event",
+   "step": 28,
+   "H": 28,
+   "leg": "short",
+   "status": "nagovestaj",
+   "first_seen_utc": "2026-10-10T16:25:24Z",
+   "forward_start": "2026-09-12",
+   "study": {
+    "n": 37,
+    "mean": 18.5927,
+    "median": 22.4138,
+    "mean_ex_best": 17.1764,
+    "t": 3.53,
+    "p": 0.00042,
+    "t_train": 1.67,
+    "t_test": 4.64,
+    "recent_mean": 31.1919,
+    "stress_mean": 18.3227,
+    "abs_mean": 11.4983,
+    "fdr": true
+   },
+   "history": [
+    [
+     "2026-10-10T16:25:24Z",
+     "nagovestaj"
+    ]
+   ]
   }
  }
 }

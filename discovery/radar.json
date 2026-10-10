@@ -1,4 +1,625 @@
 {
- "generated_utc": "2026-10-10T13:54:04Z",
- "rules": []
+ "generated_utc": "2026-10-10T16:25:24Z",
+ "rules": [
+  {
+   "rule": "crypto:BRK20:1w:short",
+   "status": "kandidat",
+   "universe": "crypto",
+   "family": "BRK20",
+   "kind": "rank",
+   "side": "short",
+   "signal_date": "2026-10-04",
+   "valid_from_utc": "2026-10-05T00:00:00Z",
+   "valid_until_utc": "2026-10-06T06:00:00Z",
+   "hold_hours": 168,
+   "picks": [
+    {
+     "ticker": "ZECUSDT",
+     "symbol": "ZEC",
+     "score": -0.181929,
+     "px": 1352.37,
+     "atr_pct": 9.74,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
+    },
+    {
+     "ticker": "XPLUSDT",
+     "symbol": "XPL",
+     "score": -0.160286,
+     "px": 0.0963,
+     "atr_pct": 12.72,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
+    },
+    {
+     "ticker": "ONDOUSDT",
+     "symbol": "ONDO",
+     "score": -0.151608,
+     "px": 0.4986,
+     "atr_pct": 10.21,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
+    }
+   ],
+   "forward": {
+    "n": 0,
+    "mean": null,
+    "t": null,
+    "stress_mean": null,
+    "pending": 1
+   },
+   "study": {
+    "n": 323,
+    "mean": 1.5032,
+    "median": 1.6978,
+    "mean_ex_best": 1.4267,
+    "t": 4.9,
+    "p": 0.0,
+    "t_train": 3.01,
+    "t_test": 4.43,
+    "recent_mean": 2.839,
+    "stress_mean": 1.2332,
+    "abs_mean": 1.328,
+    "fdr": true
+   }
+  },
+  {
+   "rule": "crypto:BRK20:2w:long",
+   "status": "kandidat",
+   "universe": "crypto",
+   "family": "BRK20",
+   "kind": "rank",
+   "side": "long",
+   "signal_date": "2026-10-04",
+   "valid_from_utc": "2026-10-05T00:00:00Z",
+   "valid_until_utc": "2026-10-06T06:00:00Z",
+   "hold_hours": 336,
+   "picks": [
+    {
+     "ticker": "PUMPUSDT",
+     "symbol": "PUMP",
+     "score": 0.040032,
+     "px": 0.0065,
+     "atr_pct": 10.61,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
+    },
+    {
+     "ticker": "FETUSDT",
+     "symbol": "FET",
+     "score": 0.022213,
+     "px": 0.2531,
+     "atr_pct": 9.95,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
+    },
+    {
+     "ticker": "ADAUSDT",
+     "symbol": "ADA",
+     "score": 0.003478,
+     "px": 0.2597,
+     "atr_pct": 6.73,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
+    }
+   ],
+   "forward": {
+    "n": 0,
+    "mean": null,
+    "t": null,
+    "stress_mean": null,
+    "pending": 1
+   },
+   "study": {
+    "n": 161,
+    "mean": 1.8113,
+    "median": 1.3302,
+    "mean_ex_best": 1.5847,
+    "t": 3.12,
+    "p": 0.00181,
+    "t_train": 2.86,
+    "t_test": 1.32,
+    "recent_mean": 0.8359,
+    "stress_mean": 1.5413,
+    "abs_mean": 2.0984,
+    "fdr": true
+   }
+  },
+  {
+   "rule": "crypto:BRK20:2w:short",
+   "status": "kandidat",
+   "universe": "crypto",
+   "family": "BRK20",
+   "kind": "rank",
+   "side": "short",
+   "signal_date": "2026-10-04",
+   "valid_from_utc": "2026-10-05T00:00:00Z",
+   "valid_until_utc": "2026-10-06T06:00:00Z",
+   "hold_hours": 336,
+   "picks": [
+    {
+     "ticker": "ZECUSDT",
+     "symbol": "ZEC",
+     "score": -0.181929,
+     "px": 1352.37,
+     "atr_pct": 9.74,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
+    },
+    {
+     "ticker": "XPLUSDT",
+     "symbol": "XPL",
+     "score": -0.160286,
+     "px": 0.0963,
+     "atr_pct": 12.72,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
+    },
+    {
+     "ticker": "ONDOUSDT",
+     "symbol": "ONDO",
+     "score": -0.151608,
+     "px": 0.4986,
+     "atr_pct": 10.21,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
+    }
+   ],
+   "forward": {
+    "n": 0,
+    "mean": null,
+    "t": null,
+    "stress_mean": null,
+    "pending": 1
+   },
+   "study": {
+    "n": 161,
+    "mean": 2.9764,
+    "median": 3.4346,
+    "mean_ex_best": 2.8328,
+    "t": 5.12,
+    "p": 0.0,
+    "t_train": 2.72,
+    "t_test": 5.08,
+    "recent_mean": 5.399,
+    "stress_mean": 2.7064,
+    "abs_mean": 2.6892,
+    "fdr": true
+   }
+  },
+  {
+   "rule": "crypto:BRK20:4w:short",
+   "status": "kandidat",
+   "universe": "crypto",
+   "family": "BRK20",
+   "kind": "rank",
+   "side": "short",
+   "signal_date": "2026-10-04",
+   "valid_from_utc": "2026-10-05T00:00:00Z",
+   "valid_until_utc": "2026-10-06T06:00:00Z",
+   "hold_hours": 672,
+   "picks": [
+    {
+     "ticker": "ZECUSDT",
+     "symbol": "ZEC",
+     "score": -0.181929,
+     "px": 1352.37,
+     "atr_pct": 9.74,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
+    },
+    {
+     "ticker": "XPLUSDT",
+     "symbol": "XPL",
+     "score": -0.160286,
+     "px": 0.0963,
+     "atr_pct": 12.72,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
+    },
+    {
+     "ticker": "ONDOUSDT",
+     "symbol": "ONDO",
+     "score": -0.151608,
+     "px": 0.4986,
+     "atr_pct": 10.21,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
+    }
+   ],
+   "forward": {
+    "n": 0,
+    "mean": null,
+    "t": null,
+    "stress_mean": null,
+    "pending": 1
+   },
+   "study": {
+    "n": 80,
+    "mean": 5.2193,
+    "median": 4.3084,
+    "mean_ex_best": 4.7663,
+    "t": 4.52,
+    "p": 1e-05,
+    "t_train": 2.12,
+    "t_test": 4.92,
+    "recent_mean": 8.004,
+    "stress_mean": 4.9493,
+    "abs_mean": 4.7212,
+    "fdr": true
+   }
+  },
+  {
+   "rule": "crypto:LOWVOL:1w:long",
+   "status": "nagovestaj",
+   "universe": "crypto",
+   "family": "LOWVOL",
+   "kind": "rank",
+   "side": "long",
+   "signal_date": "2026-10-04",
+   "valid_from_utc": "2026-10-05T00:00:00Z",
+   "valid_until_utc": "2026-10-06T06:00:00Z",
+   "hold_hours": 168,
+   "picks": [
+    {
+     "ticker": "TRXUSDT",
+     "symbol": "TRX",
+     "score": -0.008605,
+     "px": 0.3357,
+     "atr_pct": 1.31,
+     "stop_pct": 3.27,
+     "tp_pct": 9.81
+    },
+    {
+     "ticker": "BNBUSDT",
+     "symbol": "BNB",
+     "score": -0.019897,
+     "px": 795.43,
+     "atr_pct": 2.91,
+     "stop_pct": 7.28,
+     "tp_pct": 21.84
+    },
+    {
+     "ticker": "BTCUSDT",
+     "symbol": "BTC",
+     "score": -0.022198,
+     "px": 86530.0,
+     "atr_pct": 2.7,
+     "stop_pct": 6.76,
+     "tp_pct": 20.28
+    }
+   ],
+   "forward": {
+    "n": 0,
+    "mean": null,
+    "t": null,
+    "stress_mean": null,
+    "pending": 1
+   },
+   "study": {
+    "n": 319,
+    "mean": 0.5673,
+    "median": 0.5866,
+    "mean_ex_best": 0.486,
+    "t": 2.08,
+    "p": 0.03753,
+    "t_train": 1.0,
+    "t_test": 2.2,
+    "recent_mean": 0.7376,
+    "stress_mean": 0.2973,
+    "abs_mean": 0.7008,
+    "fdr": false
+   }
+  },
+  {
+   "rule": "crypto:LOWVOL:1w:short",
+   "status": "kandidat",
+   "universe": "crypto",
+   "family": "LOWVOL",
+   "kind": "rank",
+   "side": "short",
+   "signal_date": "2026-10-04",
+   "valid_from_utc": "2026-10-05T00:00:00Z",
+   "valid_until_utc": "2026-10-06T06:00:00Z",
+   "hold_hours": 168,
+   "picks": [
+    {
+     "ticker": "ARBUSDT",
+     "symbol": "ARB",
+     "score": -0.085981,
+     "px": 0.2041,
+     "atr_pct": 9.99,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
+    },
+    {
+     "ticker": "PUMPUSDT",
+     "symbol": "PUMP",
+     "score": -0.081764,
+     "px": 0.0065,
+     "atr_pct": 10.61,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
+    },
+    {
+     "ticker": "ENAUSDT",
+     "symbol": "ENA",
+     "score": -0.075282,
+     "px": 0.2414,
+     "atr_pct": 10.46,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
+    }
+   ],
+   "forward": {
+    "n": 0,
+    "mean": null,
+    "t": null,
+    "stress_mean": null,
+    "pending": 1
+   },
+   "study": {
+    "n": 319,
+    "mean": 1.4183,
+    "median": 1.593,
+    "mean_ex_best": 1.3501,
+    "t": 3.57,
+    "p": 0.00036,
+    "t_train": 1.89,
+    "t_test": 3.85,
+    "recent_mean": 4.4677,
+    "stress_mean": 1.1483,
+    "abs_mean": 1.2848,
+    "fdr": true
+   }
+  },
+  {
+   "rule": "crypto:LOWVOL:2w:long",
+   "status": "kandidat",
+   "universe": "crypto",
+   "family": "LOWVOL",
+   "kind": "rank",
+   "side": "long",
+   "signal_date": "2026-10-04",
+   "valid_from_utc": "2026-10-05T00:00:00Z",
+   "valid_until_utc": "2026-10-06T06:00:00Z",
+   "hold_hours": 336,
+   "picks": [
+    {
+     "ticker": "TRXUSDT",
+     "symbol": "TRX",
+     "score": -0.008605,
+     "px": 0.3357,
+     "atr_pct": 1.31,
+     "stop_pct": 3.27,
+     "tp_pct": 9.81
+    },
+    {
+     "ticker": "BNBUSDT",
+     "symbol": "BNB",
+     "score": -0.019897,
+     "px": 795.43,
+     "atr_pct": 2.91,
+     "stop_pct": 7.28,
+     "tp_pct": 21.84
+    },
+    {
+     "ticker": "BTCUSDT",
+     "symbol": "BTC",
+     "score": -0.022198,
+     "px": 86530.0,
+     "atr_pct": 2.7,
+     "stop_pct": 6.76,
+     "tp_pct": 20.28
+    }
+   ],
+   "forward": {
+    "n": 0,
+    "mean": null,
+    "t": null,
+    "stress_mean": null,
+    "pending": 1
+   },
+   "study": {
+    "n": 159,
+    "mean": 1.3611,
+    "median": 1.5536,
+    "mean_ex_best": 1.2512,
+    "t": 2.95,
+    "p": 0.00318,
+    "t_train": 1.07,
+    "t_test": 4.04,
+    "recent_mean": 2.2205,
+    "stress_mean": 1.0911,
+    "abs_mean": 1.6181,
+    "fdr": true
+   }
+  },
+  {
+   "rule": "crypto:LOWVOL:2w:short",
+   "status": "kandidat",
+   "universe": "crypto",
+   "family": "LOWVOL",
+   "kind": "rank",
+   "side": "short",
+   "signal_date": "2026-10-04",
+   "valid_from_utc": "2026-10-05T00:00:00Z",
+   "valid_until_utc": "2026-10-06T06:00:00Z",
+   "hold_hours": 336,
+   "picks": [
+    {
+     "ticker": "ARBUSDT",
+     "symbol": "ARB",
+     "score": -0.085981,
+     "px": 0.2041,
+     "atr_pct": 9.99,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
+    },
+    {
+     "ticker": "PUMPUSDT",
+     "symbol": "PUMP",
+     "score": -0.081764,
+     "px": 0.0065,
+     "atr_pct": 10.61,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
+    },
+    {
+     "ticker": "ENAUSDT",
+     "symbol": "ENA",
+     "score": -0.075282,
+     "px": 0.2414,
+     "atr_pct": 10.46,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
+    }
+   ],
+   "forward": {
+    "n": 0,
+    "mean": null,
+    "t": null,
+    "stress_mean": null,
+    "pending": 1
+   },
+   "study": {
+    "n": 159,
+    "mean": 3.5754,
+    "median": 3.4955,
+    "mean_ex_best": 3.3586,
+    "t": 4.89,
+    "p": 0.0,
+    "t_train": 2.94,
+    "t_test": 4.24,
+    "recent_mean": 10.3796,
+    "stress_mean": 3.3054,
+    "abs_mean": 3.3183,
+    "fdr": true
+   }
+  },
+  {
+   "rule": "crypto:LOWVOL:4w:long",
+   "status": "kandidat",
+   "universe": "crypto",
+   "family": "LOWVOL",
+   "kind": "rank",
+   "side": "long",
+   "signal_date": "2026-10-04",
+   "valid_from_utc": "2026-10-05T00:00:00Z",
+   "valid_until_utc": "2026-10-06T06:00:00Z",
+   "hold_hours": 672,
+   "picks": [
+    {
+     "ticker": "TRXUSDT",
+     "symbol": "TRX",
+     "score": -0.008605,
+     "px": 0.3357,
+     "atr_pct": 1.31,
+     "stop_pct": 3.27,
+     "tp_pct": 9.81
+    },
+    {
+     "ticker": "BNBUSDT",
+     "symbol": "BNB",
+     "score": -0.019897,
+     "px": 795.43,
+     "atr_pct": 2.91,
+     "stop_pct": 7.28,
+     "tp_pct": 21.84
+    },
+    {
+     "ticker": "BTCUSDT",
+     "symbol": "BTC",
+     "score": -0.022198,
+     "px": 86530.0,
+     "atr_pct": 2.7,
+     "stop_pct": 6.76,
+     "tp_pct": 20.28
+    }
+   ],
+   "forward": {
+    "n": 0,
+    "mean": null,
+    "t": null,
+    "stress_mean": null,
+    "pending": 1
+   },
+   "study": {
+    "n": 79,
+    "mean": 3.0496,
+    "median": 4.1021,
+    "mean_ex_best": 2.7381,
+    "t": 2.48,
+    "p": 0.01314,
+    "t_train": 0.76,
+    "t_test": 4.19,
+    "recent_mean": 2.5473,
+    "stress_mean": 2.7796,
+    "abs_mean": 4.4381,
+    "fdr": true
+   }
+  },
+  {
+   "rule": "crypto:LOWVOL:4w:short",
+   "status": "kandidat",
+   "universe": "crypto",
+   "family": "LOWVOL",
+   "kind": "rank",
+   "side": "short",
+   "signal_date": "2026-10-04",
+   "valid_from_utc": "2026-10-05T00:00:00Z",
+   "valid_until_utc": "2026-10-06T06:00:00Z",
+   "hold_hours": 672,
+   "picks": [
+    {
+     "ticker": "ARBUSDT",
+     "symbol": "ARB",
+     "score": -0.085981,
+     "px": 0.2041,
+     "atr_pct": 9.99,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
+    },
+    {
+     "ticker": "PUMPUSDT",
+     "symbol": "PUMP",
+     "score": -0.081764,
+     "px": 0.0065,
+     "atr_pct": 10.61,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
+    },
+    {
+     "ticker": "ENAUSDT",
+     "symbol": "ENA",
+     "score": -0.075282,
+     "px": 0.2414,
+     "atr_pct": 10.46,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
+    }
+   ],
+   "forward": {
+    "n": 0,
+    "mean": null,
+    "t": null,
+    "stress_mean": null,
+    "pending": 1
+   },
+   "study": {
+    "n": 79,
+    "mean": 4.4454,
+    "median": 4.7566,
+    "mean_ex_best": 3.94,
+    "t": 3.02,
+    "p": 0.00253,
+    "t_train": 1.24,
+    "t_test": 3.87,
+    "recent_mean": 14.6478,
+    "stress_mean": 4.1754,
+    "abs_mean": 3.057,
+    "fdr": true
+   }
+  }
+ ]
 }
