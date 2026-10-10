@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-10-10T16:25:24Z",
+ "generated_utc": "2026-10-10T16:38:04Z",
  "rules": [
   {
    "rule": "crypto:BRK20:1w:short",
@@ -60,7 +60,10 @@
     "recent_mean": 2.839,
     "stress_mean": 1.2332,
     "abs_mean": 1.328,
-    "fdr": true
+    "fdr": true,
+    "exec_n": 323,
+    "exec_mean": 0.3913,
+    "exec_t": 1.24
    }
   },
   {
@@ -122,12 +125,15 @@
     "recent_mean": 0.8359,
     "stress_mean": 1.5413,
     "abs_mean": 2.0984,
-    "fdr": true
+    "fdr": true,
+    "exec_n": 161,
+    "exec_mean": 1.0315,
+    "exec_t": 1.24
    }
   },
   {
    "rule": "crypto:BRK20:2w:short",
-   "status": "kandidat",
+   "status": "nagovestaj",
    "universe": "crypto",
    "family": "BRK20",
    "kind": "rank",
@@ -184,7 +190,10 @@
     "recent_mean": 5.399,
     "stress_mean": 2.7064,
     "abs_mean": 2.6892,
-    "fdr": true
+    "fdr": true,
+    "exec_n": 161,
+    "exec_mean": 0.4719,
+    "exec_t": 0.62
    }
   },
   {
@@ -246,7 +255,10 @@
     "recent_mean": 8.004,
     "stress_mean": 4.9493,
     "abs_mean": 4.7212,
-    "fdr": true
+    "fdr": true,
+    "exec_n": 80,
+    "exec_mean": 2.2199,
+    "exec_t": 1.71
    }
   },
   {
@@ -308,12 +320,15 @@
     "recent_mean": 0.7376,
     "stress_mean": 0.2973,
     "abs_mean": 0.7008,
-    "fdr": false
+    "fdr": false,
+    "exec_n": 319,
+    "exec_mean": -0.1491,
+    "exec_t": -0.44
    }
   },
   {
    "rule": "crypto:LOWVOL:1w:short",
-   "status": "kandidat",
+   "status": "nagovestaj",
    "universe": "crypto",
    "family": "LOWVOL",
    "kind": "rank",
@@ -370,12 +385,15 @@
     "recent_mean": 4.4677,
     "stress_mean": 1.1483,
     "abs_mean": 1.2848,
-    "fdr": true
+    "fdr": true,
+    "exec_n": 319,
+    "exec_mean": -0.237,
+    "exec_t": -0.53
    }
   },
   {
    "rule": "crypto:LOWVOL:2w:long",
-   "status": "kandidat",
+   "status": "nagovestaj",
    "universe": "crypto",
    "family": "LOWVOL",
    "kind": "rank",
@@ -432,12 +450,15 @@
     "recent_mean": 2.2205,
     "stress_mean": 1.0911,
     "abs_mean": 1.6181,
-    "fdr": true
+    "fdr": true,
+    "exec_n": 159,
+    "exec_mean": 0.1046,
+    "exec_t": 0.15
    }
   },
   {
    "rule": "crypto:LOWVOL:2w:short",
-   "status": "kandidat",
+   "status": "nagovestaj",
    "universe": "crypto",
    "family": "LOWVOL",
    "kind": "rank",
@@ -494,12 +515,15 @@
     "recent_mean": 10.3796,
     "stress_mean": 3.3054,
     "abs_mean": 3.3183,
-    "fdr": true
+    "fdr": true,
+    "exec_n": 159,
+    "exec_mean": -0.3432,
+    "exec_t": -0.35
    }
   },
   {
    "rule": "crypto:LOWVOL:4w:long",
-   "status": "kandidat",
+   "status": "nagovestaj",
    "universe": "crypto",
    "family": "LOWVOL",
    "kind": "rank",
@@ -556,12 +580,15 @@
     "recent_mean": 2.5473,
     "stress_mean": 2.7796,
     "abs_mean": 4.4381,
-    "fdr": true
+    "fdr": true,
+    "exec_n": 79,
+    "exec_mean": 1.0511,
+    "exec_t": 0.56
    }
   },
   {
    "rule": "crypto:LOWVOL:4w:short",
-   "status": "kandidat",
+   "status": "nagovestaj",
    "universe": "crypto",
    "family": "LOWVOL",
    "kind": "rank",
@@ -618,7 +645,10 @@
     "recent_mean": 14.6478,
     "stress_mean": 4.1754,
     "abs_mean": 3.057,
-    "fdr": true
+    "fdr": true,
+    "exec_n": 79,
+    "exec_mean": -3.3869,
+    "exec_t": -1.14
    }
   }
  ]
