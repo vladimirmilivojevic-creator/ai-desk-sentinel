@@ -1,0 +1,61 @@
+name: discovery
+
+# Lovac (odluka vlasnika 2026-10-10: sistem sam stalno trazi dobre prilike, bez podsetnika). Bez AI-ja, bez tajni, ne trguje.
+# Dnevno (00:40 UTC): izbor unapred za pracena pravila, merenje ishoda, radar (sta pravila kazu bas sada).
+# Nedeljno (nedelja 03:30 UTC): cela istorijska studija na sirem univerzumu (calibration/discovery.md), FDR, novi nagovestaji.
+# Izmena ovog fajla ili config/discovery.json odmah pokrece celu studiju (nedeljni rezim). Kapije i parametri su u config/discovery.json (unapred upisani, menjaju se samo novom verzijom). Rezultati idu na main; ako preuzimanje cena ne uspe, fajlovi ostaju stari.
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/discovery.yml"
+      - "config/discovery.json"
+  schedule:
+    - cron: "40 0 * * *"
+    - cron: "30 3 * * 0"
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "weekly = cela studija, daily = samo izbor unapred i radar"
+        required: false
+        default: "weekly"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: discovery
+  cancel-in-progress: false
+
+jobs:
+  discovery:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Lovac
+        env:
+          EVENT: ${{ github.event_name }}
+          SCHEDULE: ${{ github.event.schedule }}
+          INPUT_MODE: ${{ github.event.inputs.mode }}
+        run: |
+          MODE=daily
+          if [ "$SCHEDULE" = "30 3 * * 0" ] || [ "$INPUT_MODE" = "weekly" ] || [ "$EVENT" = "push" ]; then MODE=weekly; fi
+          echo "rezim: $MODE"
+          python -m lab.discovery "$MODE"
+      - name: Objavi na main
+        run: |
+          set -e
+          git config user.name "sentinel-bot"
+          git config user.email "sentinel-bot@users.noreply.github.com"
+          git add -A discovery calibration
+          if git diff --cached --quiet; then echo "nema promena"; exit 0; fi
+          git commit -q -m "lovac $(date -u +%Y-%m-%dT%H:%MZ)"
+          for i in 1 2 3; do
+            git pull -q --rebase origin main && git push -q origin HEAD:main && { echo "objavljeno"; exit 0; }
+            sleep $((RANDOM % 5 + 2))
+          done
+          echo "push na main nije uspeo"; exit 1

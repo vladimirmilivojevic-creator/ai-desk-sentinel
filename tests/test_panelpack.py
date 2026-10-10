@@ -79,7 +79,7 @@ class BuildTests(unittest.TestCase):
 
     def test_build_makes_small_parts_that_reassemble(self):
         d = self.state()
-        res = P.build(d)
+        res = P.build(d, root=tempfile.mkdtemp())  # prazan koren: bez Lovca
         self.assertEqual(set(res), {"lab", "brief", "trig", "feat"})
         for f in os.listdir(os.path.join(d, "pf")):
             self.assertLessEqual(os.path.getsize(os.path.join(d, "pf", f)), 6000, f)  # granica alata read_link
@@ -98,10 +98,37 @@ class BuildTests(unittest.TestCase):
         self.assertEqual(feat["rows"][0][0:2], ["f0", "Makro"])
 
     def test_missing_inputs_are_skipped_and_main_never_raises(self):
-        with tempfile.TemporaryDirectory() as d:
-            self.assertEqual(P.build(d), {})
+        with tempfile.TemporaryDirectory() as d, tempfile.TemporaryDirectory() as root:
+            self.assertEqual(P.build(d, root=root), {})
             sys.argv = ["panelpack", "--state", d]
             self.assertEqual(P.main(), 0)
+
+    def test_discovery_document_is_packed_small_and_complete(self):
+        d, root = self.state(), tempfile.mkdtemp()
+        os.makedirs(os.path.join(root, "discovery"))
+        os.makedirs(os.path.join(root, "calibration"))
+        rules = {"stocks:SPIKE_UP:10d:long": {"status": "nagovestaj", "forward_start": "2026-09-28", "study": {"n": 90, "mean": 5.7, "median": -0.9, "mean_ex_best": 3.0, "t": 2.9, "p": 0.004, "recent_mean": -0.4},
+                                              "forward": {"n": 0, "mean": None, "t": None, "sim_mean": None, "mean_ex_best": None, "pending": 1}}}
+        json.dump({"updated_utc": "2026-10-10T00:40:00Z", "rules": rules}, open(os.path.join(root, "discovery", "rules.json"), "w"))
+        json.dump({"generated_utc": "g", "rules": [{"rule": "stocks:SPIKE_UP:10d:long", "status": "nagovestaj", "side": "long", "signal_date": "2026-10-09", "valid_from_utc": "a", "valid_until_utc": "b",
+                                                    "hold_hours": 336, "picks": [{"ticker": "GME", "px": 25.0, "stop_pct": 5.0, "tp_pct": 15.0, "score": 4.0, "symbol": "xyz:GME"}]}]},
+                  open(os.path.join(root, "discovery", "radar.json"), "w"))
+        tests = [{"id": "t%d" % i, "n": 50, "mean": 0.1 * i, "median": 0.0, "mean_ex_best": 0.0, "t": float(i), "status": "odbaceno"} for i in range(60)]
+        json.dump({"generated_utc": "g", "tests": tests, "universes": {"stocks": {"n": 47, "from": "2020", "to": "2026"}}, "cfg_summary": {"fdr_q": 0.1}, "cases": [{"sym": "GME", "entry": "2026-10-03", "profile": {"date": "d", "families": {}, "events": []}}]},
+                  open(os.path.join(root, "calibration", "discovery.json"), "w"))
+        res = P.build(d, root=root)
+        self.assertIn("disc", res)
+        self.assertLessEqual(res["disc"], P.SLOTS["disc"])
+        for f in os.listdir(os.path.join(d, "pf")):
+            self.assertLessEqual(os.path.getsize(os.path.join(d, "pf", f)), 6000, f)
+        m = merge([json.load(open(os.path.join(d, "pf", "disc.%d.json" % i))) for i in range(res["disc"])])
+        self.assertEqual(m["head"]["n_tests"], 60)
+        self.assertEqual(m["head"]["rule_counts"], {"nagovestaj": 1})
+        self.assertEqual(len(m["top"]), 10)
+        self.assertEqual(m["top"][0]["id"], "t59")
+        self.assertEqual(m["radar"][0]["picks"][0]["ticker"], "GME")
+        self.assertEqual(m["rules"][0]["fwd"]["pending"], 1)
+        self.assertEqual(m["cases"][0]["sym"], "GME")
 
 
 if __name__ == "__main__":

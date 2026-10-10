@@ -7,7 +7,8 @@ import os
 import sys
 
 LIMIT = 5400
-SLOTS = {"lab": 6, "brief": 4, "trig": 3, "feat": 8}
+SLOTS = {"lab": 6, "brief": 4, "trig": 3, "feat": 8, "disc": 3}
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 def size(o):
@@ -119,7 +120,34 @@ def feat_sections(f):
     return [("updated_utc", f.get("updated_utc")), ("n", f.get("n")), ("rows", rows)]
 
 
-def build(state_dir):
+def disc_sections(root):
+    """Lovac (lab/discovery.py): sazetak pravila, izbora unapred, radara i najboljih testova. Fajlovi su na main grani (discovery/, calibration/)."""
+    rules = (_load(os.path.join(root, "discovery", "rules.json")) or {}).get("rules")
+    study = _load(os.path.join(root, "calibration", "discovery.json"))
+    if rules is None and not study:
+        return None
+    radar = _load(os.path.join(root, "discovery", "radar.json")) or {}
+    tests = (study or {}).get("tests") or []
+    cnt = {}
+    for t in tests:
+        cnt[t["status"]] = cnt.get(t["status"], 0) + 1
+    rc = {}
+    for r in (rules or {}).values():
+        rc[r["status"]] = rc.get(r["status"], 0) + 1
+    head = {"study_utc": (study or {}).get("generated_utc"), "rules_utc": (_load(os.path.join(root, "discovery", "rules.json")) or {}).get("updated_utc"),
+            "radar_utc": radar.get("generated_utc"), "universes": (study or {}).get("universes"), "n_tests": len(tests), "test_counts": cnt, "rule_counts": rc,
+            "cfg": (study or {}).get("cfg_summary")}
+    keys = ("n", "mean", "median", "mean_ex_best", "t", "p", "recent_mean")
+    rl = [{"id": rid, "status": r["status"], "since": r.get("forward_start"), "promoted": r.get("promoted_utc"),
+           "study": {k: (r.get("study") or {}).get(k) for k in keys},
+           "fwd": {k: (r.get("forward") or {}).get(k) for k in ("n", "mean", "t", "sim_mean", "mean_ex_best", "pending")}} for rid, r in sorted((rules or {}).items())]
+    rd = [{"rule": x["rule"], "status": x["status"], "side": x["side"], "signal_date": x["signal_date"], "from": x["valid_from_utc"], "to": x["valid_until_utc"],
+           "hold_hours": x["hold_hours"], "picks": [{k: p.get(k) for k in ("ticker", "px", "stop_pct", "tp_pct", "score")} for p in x["picks"]]} for x in radar.get("rules", [])]
+    top = [{k: t.get(k) for k in ("id", "n", "mean", "median", "mean_ex_best", "t", "status")} for t in sorted(tests, key=lambda t: -(t["t"] if t.get("t") is not None else -99))[:10]]
+    return [("head", head), ("rules", rl), ("radar", rd), ("top", top), ("cases", (study or {}).get("cases") or [])]
+
+
+def build(state_dir, root=ROOT):
     out = os.path.join(state_dir, "pf")
     res = {}
     panel = _load(os.path.join(state_dir, "lab", "panel.json"))
@@ -134,6 +162,12 @@ def build(state_dir):
     f = _load(os.path.join(state_dir, "data", "features.json"))
     if f:
         res["feat"] = write_parts(out, "feat", pack(feat_sections(f)))
+    try:
+        ds = disc_sections(root)
+    except Exception:  # noqa: BLE001  # Lovac nikad ne obara pakovanje ostalih dokumenata
+        ds = None
+    if ds:
+        res["disc"] = write_parts(out, "disc", pack(ds))
     return res
 
 
