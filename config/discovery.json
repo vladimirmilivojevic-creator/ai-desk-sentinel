@@ -1,7 +1,8 @@
 {
- "version": 1,
- "registered_utc": "2026-10-10T14:10:00Z",
- "note": "Porodice, parametri, horizonti i kapije su upisani PRE prvog pokretanja na stvarnim podacima (git commit je dokaz redosleda). Parametri se NE podesavaju prema rezultatu. Menja se samo novom verzijom (version+1) uz obrazlozenje u docs/. Pravilo ne preskace status: odbaceno < nagovestaj < kandidat < potvrdjen.",
+ "version": 2,
+ "registered_utc": "2026-10-10T14:50:00Z",
+ "note": "Porodice, parametri, horizonti i kapije su upisani PRE gledanja rezultata ovih testova (git commit je dokaz redosleda). Parametri se NE podesavaju prema rezultatu. Menja se samo novom verzijom (version+1) uz obrazlozenje. Pravilo ne preskace status: odbaceno < nagovestaj < kandidat < potvrdjen.",
+ "changes_v2": "Verzija 1 (commit f9311b4) imala je 7 rang-porodica na akcijama i kripto. Prvo pokretanje je pokazalo da kripto podaci sa Yahoo-a nisu upotrebljivi (tuđi tickeri sa istim imenom: skokovi od 31000% do 125000% za dan), pa je kripto izbacen IZ ISPITIVANJA zbog kvaliteta podataka, ne zbog rezultata (kripto vec pokriva laboratorija). Rang-porodice na akcijama su videne: nijedna ne prolazi (najbolja t=1.61, FDR ne). Ova verzija DODAJE tri događaja (nagli skok obima) koji su registrovani pre prvog pokretanja tih testova. Broj testova u FDR-u je zbir svih (rang + događaji).",
  "cost_pct": 0.23,
  "stress_cost_pct": 0.5,
  "weeks": [1, 2, 4],
@@ -19,6 +20,13 @@
   "LOWVOL": {"window": 60, "text": "Niska volatilnost: minus standardna devijacija dnevnih prinosa 60 dana (visoko = mirno)."},
   "ATTN": {"short": 5, "long": 60, "text": "Pažnja: prosecan obim 5 dana / prosecan obim 60 dana (visoko = raste interesovanje)."}
  },
+ "events": {
+  "SPIKE_UP": {"ret_min": 0.06, "vol_ratio_min": 3.0, "vol_window": 20, "text": "Nagli rast uz veliki obim: dnevni prinos od bar +6% i obim bar 3x veci od proseka 20 dana (GME-slicna eksplozija pažnje)."},
+  "SPIKE_DN": {"ret_max": -0.06, "vol_ratio_min": 3.0, "vol_window": 20, "text": "Nagli pad uz veliki obim: dnevni prinos od najvise -6% i obim bar 3x veci od proseka 20 dana."},
+  "HIGH_BRK": {"window": 252, "vol_ratio_min": 2.0, "vol_window": 20, "text": "Novi godisnji maksimum uz obim: zatvaranje iznad svih zatvaranja prethodnih 252 dana i obim bar 2x veci od proseka 20 dana."}
+ },
+ "event_horizons": [5, 10, 20],
+ "event_cooldown_bars": 10,
  "universes": {
   "stocks": {
    "source": "hl_xyz_stocks",
@@ -27,14 +35,6 @@
    "bars_per_week": 5,
    "benchmark": "SPY",
    "text": "Akcije i ETF-ovi koji se trguju na Liquid-u (xyz dex, kategorija stocks), dnevne Yahoo cene sa ispravkama."
-  },
-  "crypto": {
-   "source": "hl_main_crypto",
-   "min_vol24_usd": 5000000,
-   "min_bars": 750,
-   "bars_per_week": 7,
-   "benchmark": "BTC-USD",
-   "text": "Kripto perpetuali glavnog dex-a koji imaju Yahoo istoriju XXX-USD, dnevne cene (7 dana u nedelji)."
   }
  },
  "gates": {
