@@ -1,0 +1,64 @@
+{
+ "version": 1,
+ "registered_utc": "2026-10-10T14:10:00Z",
+ "note": "Porodice, parametri, horizonti i kapije su upisani PRE prvog pokretanja na stvarnim podacima (git commit je dokaz redosleda). Parametri se NE podesavaju prema rezultatu. Menja se samo novom verzijom (version+1) uz obrazlozenje u docs/. Pravilo ne preskace status: odbaceno < nagovestaj < kandidat < potvrdjen.",
+ "cost_pct": 0.23,
+ "stress_cost_pct": 0.5,
+ "weeks": [1, 2, 4],
+ "quantile": 0.2,
+ "min_group": 3,
+ "min_universe": 12,
+ "split_train": 0.6,
+ "pick_k": 3,
+ "families": {
+  "MOM12_1": {"lookback": 252, "skip": 21, "text": "Momentum 12-1: prinos poslednjih 12 meseci bez poslednjeg meseca (visoko = pobednici)."},
+  "HIGH52": {"window": 252, "text": "Blizina godisnjeg maksimuma: cena / najvisa zatvorena cena u 252 dana (visoko = blizu vrha)."},
+  "REV5": {"days": 5, "text": "Kratkorocno obrtanje: minus prinos poslednjih 5 dana (visoko = nedavno pao)."},
+  "VOLUP": {"window": 20, "cap": 10, "text": "Skok obima sa smerom: dnevni prinos puta (obim / prosecan obim 20 dana, najvise 10)."},
+  "BRK20": {"window": 20, "text": "Probijanje: cena / najvisa zatvorena cena prethodnih 20 dana minus 1."},
+  "LOWVOL": {"window": 60, "text": "Niska volatilnost: minus standardna devijacija dnevnih prinosa 60 dana (visoko = mirno)."},
+  "ATTN": {"short": 5, "long": 60, "text": "Pažnja: prosecan obim 5 dana / prosecan obim 60 dana (visoko = raste interesovanje)."}
+ },
+ "universes": {
+  "stocks": {
+   "source": "hl_xyz_stocks",
+   "min_vol24_usd": 250000,
+   "min_bars": 400,
+   "bars_per_week": 5,
+   "benchmark": "SPY",
+   "text": "Akcije i ETF-ovi koji se trguju na Liquid-u (xyz dex, kategorija stocks), dnevne Yahoo cene sa ispravkama."
+  },
+  "crypto": {
+   "source": "hl_main_crypto",
+   "min_vol24_usd": 5000000,
+   "min_bars": 750,
+   "bars_per_week": 7,
+   "benchmark": "BTC-USD",
+   "text": "Kripto perpetuali glavnog dex-a koji imaju Yahoo istoriju XXX-USD, dnevne cene (7 dana u nedelji)."
+  }
+ },
+ "gates": {
+  "candidate": {
+   "min_periods": 40,
+   "fdr_q": 0.10,
+   "mean_net_gt": 0.0,
+   "abs_mean_net_gt": 0.0,
+   "train_t_min": 0.0,
+   "test_t_min": 1.0,
+   "recent_days": 270,
+   "recent_mean_gt": 0.0
+  },
+  "hint": {"min_periods": 30, "p_raw_max": 0.05, "mean_net_gt": 0.0},
+  "promote": {
+   "min_fwd_periods": 8,
+   "fwd_mean_gt": 0.0,
+   "fwd_t_min": 1.0,
+   "stress_mean_gt": -0.5
+  },
+  "demote": {"min_fwd_periods": 8, "fwd_t_max": -1.5}
+ },
+ "radar": {
+  "valid_hours_after_open": 30,
+  "pick_k": 3
+ }
+}
