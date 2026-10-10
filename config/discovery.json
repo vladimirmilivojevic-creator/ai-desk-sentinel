@@ -1,8 +1,9 @@
 {
- "version": 2,
- "registered_utc": "2026-10-10T14:50:00Z",
+ "version": 3,
+ "registered_utc": "2026-10-10T16:00:00Z",
  "note": "Porodice, parametri, horizonti i kapije su upisani PRE gledanja rezultata ovih testova (git commit je dokaz redosleda). Parametri se NE podesavaju prema rezultatu. Menja se samo novom verzijom (version+1) uz obrazlozenje. Pravilo ne preskace status: odbaceno < nagovestaj < kandidat < potvrdjen.",
  "changes_v2": "Verzija 1 (commit f9311b4) imala je 7 rang-porodica na akcijama i kripto. Prvo pokretanje je pokazalo da kripto podaci sa Yahoo-a nisu upotrebljivi (tuđi tickeri sa istim imenom: skokovi od 31000% do 125000% za dan), pa je kripto izbacen IZ ISPITIVANJA zbog kvaliteta podataka, ne zbog rezultata (kripto vec pokriva laboratorija). Rang-porodice na akcijama su videne: nijedna ne prolazi (najbolja t=1.61, FDR ne). Ova verzija DODAJE tri događaja (nagli skok obima) koji su registrovani pre prvog pokretanja tih testova. Broj testova u FDR-u je zbir svih (rang + događaji).",
+ "changes_v3": "Prvo istorijsko pokretanje v2 (pre ikakvog unapred ishoda i bez ijednog pravila u statusu kandidat ili potvrdjen) pokazalo je da jedan test (SPIKE_UP 10d long, t 3.16) drzi nekoliko izuzetnih dogadjaja (GME januar 2021 +408%, GME februar 2021 +121%): medijana je -0.97%, srednja bez 5% krajeva samo +0.63%. Zato se kapijama dodaju: (1) srednja BEZ najboljeg perioda mora biti iznad 0 (kandidat), (2) isto unapred, (3) unapred se meri i trgovanje kakvo je uzivo: stop 2.5 x ATR (3-12%), cilj 3 x stop, ulaz otvaranje sledeceg dana, i srednja tog ishoda posle troska mora biti iznad 0. Dodavanje strozih kapija pre prvog ishoda unapred ne moze nikoga da 'prodje' nezasluzeno.",
  "cost_pct": 0.23,
  "stress_cost_pct": 0.5,
  "weeks": [1, 2, 4],
@@ -46,14 +47,17 @@
    "train_t_min": 0.0,
    "test_t_min": 1.0,
    "recent_days": 270,
-   "recent_mean_gt": 0.0
+   "recent_mean_gt": 0.0,
+   "mean_ex_best_gt": 0.0
   },
   "hint": {"min_periods": 30, "p_raw_max": 0.05, "mean_net_gt": 0.0},
   "promote": {
    "min_fwd_periods": 8,
    "fwd_mean_gt": 0.0,
    "fwd_t_min": 1.0,
-   "stress_mean_gt": -0.5
+   "stress_mean_gt": -0.5,
+   "fwd_mean_ex_best_gt": 0.0,
+   "sim_mean_gt": 0.0
   },
   "demote": {"min_fwd_periods": 8, "fwd_t_max": -1.5}
  },
