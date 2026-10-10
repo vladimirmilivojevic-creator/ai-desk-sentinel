@@ -1,22 +1,48 @@
 {
-  "version": 1,
-  "registered_utc": "2026-10-07T12:20:00Z",
-  "note": "Hipoteze i kriterijumi su zapisani PRE gledanja rezultata na uzorku za ponavljanje (git commit je dokaz redosleda). Menjaju se samo novim zapisom, nikad naknadno.",
-  "hypotheses": [
-    {
-      "id": "HYP-LS-1",
-      "text": "Kripto instrumenti sa najvecim odnosom dugih prema kratkim nalozima top trgovaca (Binance count_toptrader_long_short_ratio) u narednih 7 dana imaju losiji prinos od onih sa najmanjim odnosom (kontra pozicioniranje).",
-      "feature": "top_acc_ls",
-      "sign": -1,
-      "H": 7,
-      "k": 5,
-      "group": "crypto",
-      "cost_pct": 0.23,
-      "found_in": "2025-01-01..2026-10-06: neto Sharpe 1.21, t 1.61, alfa posle kontrola (nizak vol, momentum 30 d i 90 d) 28.3% godisnje, t 1.54",
-      "replication_sample": "2022-09-01..2024-11-30",
-      "pass": {"net_sharpe_min": 0.5, "net_t_min": 1.5, "alpha_after_controls_positive": true},
-      "fail": "Ako je neto Sharpe u uzorku za ponavljanje manji od 0.5 ili t manji od 1.5, hipoteza ostaje samo kandidat i ne ulazi u zivo trgovanje.",
-      "mirrors_checked_not_independent": ["glob_ls sign -1 H7", "top_pos_ls sign -1 H7"]
-    }
-  ]
+ "version": 1,
+ "registered_utc": "2026-10-10T13:20:00Z",
+ "note": "Hipoteze i kriterijumi su zapisani PRE gledanja rezultata na uzorku za ponavljanje (git commit je dokaz redosleda). Menjaju se samo novim zapisom, nikad naknadno.",
+ "hypotheses": [
+  {
+   "id": "HYP-LS-1",
+   "text": "Kripto instrumenti sa najvecim odnosom dugih prema kratkim nalozima top trgovaca (Binance count_toptrader_long_short_ratio) u narednih 7 dana imaju losiji prinos od onih sa najmanjim odnosom (kontra pozicioniranje).",
+   "feature": "top_acc_ls",
+   "sign": -1,
+   "H": 7,
+   "k": 5,
+   "group": "crypto",
+   "cost_pct": 0.23,
+   "found_in": "2025-01-01..2026-10-06: neto Sharpe 1.21, t 1.61, alfa posle kontrola (nizak vol, momentum 30 d i 90 d) 28.3% godisnje, t 1.54",
+   "replication_sample": "2022-09-01..2024-11-30",
+   "pass": {
+    "net_sharpe_min": 0.5,
+    "net_t_min": 1.5,
+    "alpha_after_controls_positive": true
+   },
+   "fail": "Ako je neto Sharpe u uzorku za ponavljanje manji od 0.5 ili t manji od 1.5, hipoteza ostaje samo kandidat i ne ulazi u zivo trgovanje.",
+   "mirrors_checked_not_independent": [
+    "glob_ls sign -1 H7",
+    "top_pos_ls sign -1 H7"
+   ]
+  },
+  {
+   "id": "HYP-INS-1",
+   "registered_utc": "2026-10-10T13:20:00Z",
+   "text": "Insider klaster (bar 2 kupca direktora/funkcionera, bar $100.000 u 30 dana, SEC Form 4 kod P) u kome je otvaranje prvog dana posle prijave ISPOD vrednosno-ponderisane prosecne cene insidera ima pozitivan prinos posle 20 trgovackih dana minus SPY minus trosak 0,23%, i bolji od klastera gde je ulaz iznad te cene.",
+   "feature": "insider_cluster_chase_below_zero",
+   "sign": 1,
+   "H": 20,
+   "group": "stock",
+   "cost_pct": 0.23,
+   "found_in": "2023q1..2026q3 (calibration/insider_study.md): n=858, srednje +1.57%, t 1.97 (1 od oko 22 podgrupa bez korekcije; sve ostalo bez prednosti)",
+   "replication_sample": "SEC Form 4 kvartali 2021q1..2022q4 (nezavisan period, drugaciji rezim), isti kod lab/insider_study.py bez izmena; zatim kvartali posle 2026q3 cim budu objavljeni",
+   "pass": {
+    "mean_net_excess_pct_min": 0.0,
+    "t_min": 1.5,
+    "n_min": 100,
+    "better_than_complement_pp_min": 0.5
+   },
+   "fail": "Ako u uzorku za ponavljanje podgrupa 'cena ulaza ispod proseka insidera' ima srednju vrednost <= 0, ili t < 1.5, ili n < 100, ili nije bar 0.5 procentnih poena bolja od ostatka klastera, hipoteza se odbacuje i insider klasteri ostaju bez ovlascenja da ulaze u desk pravila."
+  }
+ ]
 }
