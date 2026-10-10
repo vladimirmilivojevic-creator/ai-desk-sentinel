@@ -1,9 +1,10 @@
 {
- "version": 3,
- "registered_utc": "2026-10-10T16:00:00Z",
+ "version": 4,
+ "registered_utc": "2026-10-10T16:10:00Z",
  "note": "Porodice, parametri, horizonti i kapije su upisani PRE gledanja rezultata ovih testova (git commit je dokaz redosleda). Parametri se NE podesavaju prema rezultatu. Menja se samo novom verzijom (version+1) uz obrazlozenje. Pravilo ne preskace status: odbaceno < nagovestaj < kandidat < potvrdjen.",
  "changes_v2": "Verzija 1 (commit f9311b4) imala je 7 rang-porodica na akcijama i kripto. Prvo pokretanje je pokazalo da kripto podaci sa Yahoo-a nisu upotrebljivi (tuđi tickeri sa istim imenom: skokovi od 31000% do 125000% za dan), pa je kripto izbacen IZ ISPITIVANJA zbog kvaliteta podataka, ne zbog rezultata (kripto vec pokriva laboratorija). Rang-porodice na akcijama su videne: nijedna ne prolazi (najbolja t=1.61, FDR ne). Ova verzija DODAJE tri događaja (nagli skok obima) koji su registrovani pre prvog pokretanja tih testova. Broj testova u FDR-u je zbir svih (rang + događaji).",
  "changes_v3": "Prvo istorijsko pokretanje v2 (pre ikakvog unapred ishoda i bez ijednog pravila u statusu kandidat ili potvrdjen) pokazalo je da jedan test (SPIKE_UP 10d long, t 3.16) drzi nekoliko izuzetnih dogadjaja (GME januar 2021 +408%, GME februar 2021 +121%): medijana je -0.97%, srednja bez 5% krajeva samo +0.63%. Zato se kapijama dodaju: (1) srednja BEZ najboljeg perioda mora biti iznad 0 (kandidat), (2) isto unapred, (3) unapred se meri i trgovanje kakvo je uzivo: stop 2.5 x ATR (3-12%), cilj 3 x stop, ulaz otvaranje sledeceg dana, i srednja tog ishoda posle troska mora biti iznad 0. Dodavanje strozih kapija pre prvog ishoda unapred ne moze nikoga da 'prodje' nezasluzeno.",
+ "changes_v4": "Odluka vlasnika 2026-10-10: Lovac mora da pokrije i kripto i robe. Dodata dva univerzuma PRE ijednog rezultata na njima (testirani su samo preuzimanje i kvalitet podataka, ne prinosi). Isti porodice, horizonti, kapije i FDR (sada preko 180 testova, 3 x 60) kao za akcije. KRIPTO: Binance spot USDT dnevne svece (data-api.binance.vision), clanstvo je point-in-time: na svaki dan clanovi su prvih 40 po prosecnom prometu poslednjih 30 dana, ukljucujuci i kasnije ugasene kovanice (nema pristrasnosti prezivelih); preuzimanje je ubrzano jeftinim prethodnim izborom (kovanice koje su ikada bile medju prvih 60 po cetvoronedeljnom prometu), sto ne menja clanstvo; akcijski tokeni (npr. CRCLB, SNDKB) i stabilni novci, vezane cene, poluzni tokeni i omotani tokeni su izuzeti; serija se odseca na poslednji prekid podataka (skok preko 25 puta ili rupa preko 4 dana). Studija koristi sve clanove, a izbor za trgovanje samo kovanice koje Liquid sada ima i cija se cena slaze sa Binance-om (+-12%). Dnevne svece traju 7 dana nedeljno, nedeljna kalendarska nedelja je ISO. ROBE: Yahoo futures (20 ugovora: metali, energija, zito, mekani proizvodi, stoka); trguje se samo onim sto xyz dex na Liquid-u ima i sto je sada aktivno (zlato, srebro, bakar, WTI, Brent, prirodni gas, lozivo ulje; kukuruz i psenica ostaju u studiji i postaju dostupni kad ih Liquid ponovo aktivira); platinum, paladijum i aluminijum su izostavljeni jer na Yahoo-u imaju stotine svecâ bez obima. Futures serije nisu ispravljene za zamenu ugovora (to je poznato ogranicenje), pa je robama dodato 0.15% troska, a kripto 0.10% (sporiji ulaz i sire cene kod manjih kovanica). Horizonti dogadjaja u kriptu su 7, 14 i 28 dana (sedmica kripto trguje 7 dana, pa 7 dana odgovara sedmodnevnom drzanju Istrazivaca; akcije i robe ostaju 5, 10, 20 svecâ). Pragovi dogadjaja po univerzumu (nagli skok): kripto +-10% (kripto se krece oko 1.7 puta vise nego akcije), robe +-3.5% (oko 0.6 puta). Ulaz u kripto i robe je 00:00 UTC sledeceg dana (Istrazivac radi svaki sat), akcije kao ranije 14:30 UTC. Nista od ovoga nije podesavano prema prinosima.",
  "cost_pct": 0.23,
  "stress_cost_pct": 0.5,
  "weeks": [1, 2, 4],
@@ -35,7 +36,45 @@
    "min_bars": 400,
    "bars_per_week": 5,
    "benchmark": "SPY",
-   "text": "Akcije i ETF-ovi koji se trguju na Liquid-u (xyz dex, kategorija stocks), dnevne Yahoo cene sa ispravkama."
+   "entry_open_utc": "14:30",
+   "extra_cost_pct": 0.0,
+   "text": "Akcije i ETF-ovi koji se trguju na Liquid-u (xyz dex, kategorija stocks), dnevne Yahoo cene sa ispravkama.",
+   "limits": "spisak je prema SADASNJOJ listi Liquid-a (preziveli i popularni), pa su istorijski rezultati verovatno prelepi."
+  },
+  "crypto": {
+   "source": "binance_pit",
+   "top_n": 40,
+   "rank_window": 30,
+   "prefilter_factor": 1.5,
+   "min_hl_vol24_usd": 1000000,
+   "min_bars": 120,
+   "history_days": 2300,
+   "bars_per_week": 7,
+   "benchmark": "BTCUSDT",
+   "entry_open_utc": "00:00",
+   "extra_cost_pct": 0.10,
+   "events": {"SPIKE_UP": {"ret_min": 0.10}, "SPIKE_DN": {"ret_max": -0.10}},
+   "event_horizons": [7, 14, 28],
+   "exclude_bases": ["USDC", "TUSD", "BUSD", "DAI", "FDUSD", "USDP", "USDD", "USD1", "PYUSD", "RLUSD", "USDE", "XUSD", "BFUSD", "EURI", "EUR", "GBP", "AEUR", "AUD", "TRY", "BRL", "WBTC", "WBETH", "BETH", "PAXG", "XAUT", "USDS", "UST"],
+   "text": "Kripto: Binance spot USDT dnevne svece, prvih 40 po prometu poslednjih 30 dana na dan (point-in-time, sa ugasenim); izbor za trgovanje samo kovanice koje Liquid ima.",
+   "limits": "clanstvo je point-in-time (prvih 40 po prometu na dan, ukljucuje i kasnije ugasene kovanice), ali se trguje samo kovanicama koje Liquid sada ima; podaci su Binance spot, ne Liquid; uzivo se ulazi sat-dva posle otvaranja dnevne svece (dodato 0.10% troska)."
+  },
+  "commodities": {
+   "source": "yahoo_futures",
+   "symbols": {
+    "GC=F": "xyz:GOLD", "SI=F": "xyz:SILVER", "HG=F": "xyz:COPPER", "CL=F": "xyz:CL", "BZ=F": "xyz:BRENTOIL", "NG=F": "xyz:NATGAS",
+    "HO=F": "xyz:HO", "ZC=F": "xyz:CORN", "ZW=F": "xyz:WHEAT",
+    "RB=F": null, "ZS=F": null, "ZM=F": null, "ZL=F": null, "KC=F": null, "SB=F": null, "CC=F": null, "CT=F": null, "LE=F": null, "HE=F": null, "GF=F": null
+   },
+   "min_bars": 400,
+   "bars_per_week": 5,
+   "benchmark": "GC=F",
+   "mark_tol": 0.2,
+   "entry_open_utc": "00:00",
+   "extra_cost_pct": 0.15,
+   "events": {"SPIKE_UP": {"ret_min": 0.035}, "SPIKE_DN": {"ret_max": -0.035}},
+   "text": "Robe: 20 Yahoo futures ugovora (metali, energija, zito, mekani proizvodi, stoka); trguje se samo onim sto xyz dex na Liquid-u ima.",
+   "limits": "Yahoo futures serije NISU ispravljene za zamenu ugovora (skokovi pri roll-u), pa je rezultat zasumljen i dodato je 0.15% troska; platinum, paladijum i aluminijum nisu u studiji (Yahoo nema obim)."
   }
  },
  "gates": {
