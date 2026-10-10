@@ -1,0 +1,1 @@
+{"rule":"stocks:SPIKE_UP:10d:long","signal_date":"2026-10-05","universe":"stocks","family":"SPIKE_UP","kind":"event","step":10,"H":10,"leg":"long","picks":[{"sym":"EWZ","score":7.0594,"rc":42.97999954223633}],"logged_utc":"2026-10-10T13:54:04Z","status_at_log":"nagovestaj"}

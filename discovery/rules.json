@@ -1,0 +1,43 @@
+{
+ "updated_utc": "2026-10-10T13:54:04Z",
+ "rules": {
+  "stocks:SPIKE_UP:10d:long": {
+   "universe": "stocks",
+   "family": "SPIKE_UP",
+   "kind": "event",
+   "step": 10,
+   "H": 10,
+   "leg": "long",
+   "status": "nagovestaj",
+   "first_seen_utc": "2026-10-10T13:54:04Z",
+   "forward_start": "2026-09-28",
+   "study": {
+    "n": 90,
+    "mean": 5.8148,
+    "median": 0.8332,
+    "mean_ex_best": 4.5557,
+    "t": 2.9,
+    "p": 0.00373,
+    "t_train": 2.43,
+    "t_test": 1.56,
+    "recent_mean": -0.4513,
+    "stress_mean": 5.5448,
+    "abs_mean": 8.4577,
+    "fdr": true
+   },
+   "history": [
+    [
+     "2026-10-10T13:54:04Z",
+     "nagovestaj"
+    ]
+   ],
+   "forward": {
+    "n": 0,
+    "mean": null,
+    "t": null,
+    "stress_mean": null,
+    "pending": 1
+   }
+  }
+ }
+}
