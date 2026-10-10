@@ -1,4 +1,4 @@
-"""Lovac: stalno trazenje pravila na SIREM univerzumu (akcije sa Liquid-a), bez AI-ja i bez novca.
+"""Lovac: stalno trazenje pravila na SIREM univerzumu (akcije, kripto i robe sa Liquid-a), bez AI-ja i bez novca.
 Dve vrste pravila: RANG (nedeljni izbor najboljeg/najgoreg dela univerzuma po oceni) i DOGADJAJ (nagli skok obima: GME-slicna eksplozija pazni).
 Nedeljno: istorijska studija (porodice i granice su unapred upisane u config/discovery.json), FDR preko svih testova, provera na zadnjem delu vremena.
 Dnevno: pravilima koja su nagovestaj ili kandidat belezi se izbor unapred (zamrznut u trenutku signala), meri ishod, i tek posle
@@ -9,9 +9,13 @@ import datetime as dt
 import json
 import math
 import os
+import re
 import statistics as st
 import sys
+import threading
 import time
+import urllib.error
+import urllib.parse
 import urllib.request
 from concurrent.futures import ThreadPoolExecutor
 
@@ -97,6 +101,196 @@ def load_prices(syms, cache=None, max_age_h=12):
             if b and len(b["c"]) > 0:
                 out[sym] = b
     return out
+
+
+BINANCE_HOSTS = ("data-api.binance.vision", "api.binance.com", "api1.binance.com")
+BINANCE_S3 = "https://s3-ap-northeast-1.amazonaws.com/data.binance.vision"
+BN_GAP = 0.07  # razmak izmedju poziva (oko 14 u sekundi; limit je 6000 tezine u minuti)
+_BN = {"host": 0, "last": 0.0, "lock": threading.Lock()}
+
+
+def _bn_wait():
+    with _BN["lock"]:
+        t = time.time()
+        wait = _BN["last"] + BN_GAP - t
+        _BN["last"] = max(t, _BN["last"] + BN_GAP)
+    if wait > 0:
+        time.sleep(wait)
+
+
+def binance_get(path, tries=3):
+    """JSON sa javnog Binance spot API-ja (data-api.binance.vision je namenjen javnim podacima) uz rezervne adrese i usporavanje.
+    None = nije uspelo, False = nepoznat simbol."""
+    for k in range(tries):
+        for h in range(len(BINANCE_HOSTS)):
+            i = (_BN["host"] + h) % len(BINANCE_HOSTS)
+            _bn_wait()
+            try:
+                with urllib.request.urlopen(urllib.request.Request("https://%s%s" % (BINANCE_HOSTS[i], path), headers=UA), timeout=30) as r:
+                    j = json.load(r)
+                _BN["host"] = i
+                return j
+            except urllib.error.HTTPError as e:
+                if e.code == 400:
+                    return False
+                if e.code in (418, 429):
+                    time.sleep(5 * (k + 1))
+            except Exception:  # noqa  mreza
+                pass
+        time.sleep(1.0 * (k + 1))
+    return None
+
+
+def fetch_binance(sym, start_ms):
+    """Dnevne svece USDT para od start_ms (obim = promet u USDT) ili None kad preuzimanje ne uspe; prazan skup kad simbola nema."""
+    rows, t = [], int(start_ms)
+    for _ in range(8):
+        j = binance_get("/api/v3/klines?symbol=%s&interval=1d&limit=1000&startTime=%d" % (sym, t))
+        if j is None:
+            return None
+        if j is False or not j:
+            break
+        rows += j
+        if len(j) < 1000:
+            break
+        t = j[-1][0] + 86400000
+    b = {"d": [], "o": [], "h": [], "l": [], "c": [], "v": [], "rc": []}
+    for r in rows:
+        o, h, lo, c, qv = float(r[1]), float(r[2]), float(r[3]), float(r[4]), float(r[7])
+        if min(o, h, lo, c) <= 0:
+            continue
+        d = dt.datetime.fromtimestamp(r[0] / 1000.0, dt.timezone.utc).date().isoformat()
+        if b["d"] and d <= b["d"][-1]:
+            continue
+        for k, x in zip(("d", "o", "h", "l", "c", "v", "rc"), (d, o, h, lo, c, qv, c)):
+            b[k].append(x)
+    return b
+
+
+def binance_symbols(log=print):
+    """Svi USDT parovi koje je Binance ikada imao na spot trzistu (S3 spisak javnih podataka, ukljucujuci ugasene); rezerva: trenutno aktivni."""
+    names, marker = set(), ""
+    try:
+        for _ in range(12):
+            url = BINANCE_S3 + "?delimiter=/&prefix=data/spot/monthly/klines/&max-keys=1000" + ("&marker=" + urllib.parse.quote(marker) if marker else "")
+            with urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=40) as r:
+                x = r.read().decode("utf-8", "replace")
+            names.update(re.findall(r"<Prefix>data/spot/monthly/klines/([A-Z0-9]+)/</Prefix>", x))
+            m = re.search(r"<NextMarker>([^<]+)</NextMarker>", x)
+            if "<IsTruncated>true</IsTruncated>" not in x or not m:
+                break
+            marker = m.group(1)
+    except Exception as e:  # noqa
+        log("Binance S3 spisak nije dostupan (%s)" % str(e)[:80])
+    syms = {s for s in names if s.endswith("USDT")}
+    if len(syms) < 200:
+        j = binance_get("/api/v3/exchangeInfo")
+        if j:
+            syms |= {x["symbol"] for x in j.get("symbols", []) if x.get("quoteAsset") == "USDT" and x.get("status") == "TRADING"}
+    return sorted(syms)
+
+
+def fetch_binance_weekly(sym, start_ms):
+    """{datum otvaranja nedelje: promet u USDT} (samo za jeftin prethodni izbor simbola) ili None kad preuzimanje ne uspe."""
+    j = binance_get("/api/v3/klines?symbol=%s&interval=1w&limit=1000&startTime=%d" % (sym, int(start_ms)))
+    if j is None:
+        return None
+    if j is False or not j:
+        return {}
+    return {dt.datetime.fromtimestamp(r[0] / 1000.0, dt.timezone.utc).date().isoformat(): float(r[7]) for r in j}
+
+
+def binance_superset(syms, start_ms, top_n, factor, cache=None, max_age_h=12):
+    """Jeftin nadskup za dnevno preuzimanje: simboli koji su u BILO KOJOJ nedelji bili medju prvih factor*top_n po prometu poslednje cetiri
+    nedelje (nedeljne svece, jedan poziv po simbolu). Dnevno clanstvo (prvih top_n po 30 dana) je skoro uvek unutar tog nadskupa.
+    Vraca (skup simbola, broj neuspelih)."""
+    def one(sym):
+        p = os.path.join(cache, "bw_%s.json" % sym) if cache else None
+        if p and os.path.exists(p) and time.time() - os.path.getmtime(p) < max_age_h * 3600:
+            return sym, _load(p, None)
+        w = fetch_binance_weekly(sym, start_ms)
+        if w is None:
+            w = fetch_binance_weekly(sym, start_ms)
+        if p and w is not None:
+            os.makedirs(cache, exist_ok=True)
+            with open(p, "w", encoding="utf-8") as f:
+                json.dump(w, f, separators=(",", ":"))
+        return sym, w
+
+    weekly, fails = {}, 0
+    with ThreadPoolExecutor(max_workers=12) as ex:
+        for sym, w in ex.map(one, list(syms)):
+            if w is None:
+                fails += 1
+            elif w:
+                weekly[sym] = w
+    byweek = {}
+    for s, w in weekly.items():
+        ds = sorted(w)
+        for i in range(3, len(ds)):
+            byweek.setdefault(ds[i], []).append((sum(w[d] for d in ds[i - 3:i + 1]), s))
+    keep = set()
+    for rows in byweek.values():
+        rows.sort(key=lambda r: (-r[0], r[1]))
+        keep.update(s for _, s in rows[:int(factor * top_n)])
+    return keep, fails
+
+
+def load_binance(syms, start_ms, cache=None, max_age_h=12):
+    """({sym: svece}, broj_neuspelih). Svaki simbol se pokusa dva puta."""
+    def one(sym):
+        p = os.path.join(cache, "bn_%s.json" % sym) if cache else None
+        if p and os.path.exists(p) and time.time() - os.path.getmtime(p) < max_age_h * 3600:
+            return sym, _load(p, None)
+        b = fetch_binance(sym, start_ms)
+        if b is None:
+            b = fetch_binance(sym, start_ms)
+        if p and b is not None:
+            os.makedirs(cache, exist_ok=True)
+            with open(p, "w", encoding="utf-8") as f:
+                json.dump(b, f, separators=(",", ":"))
+        return sym, b
+
+    out, fails = {}, 0
+    with ThreadPoolExecutor(max_workers=12) as ex:
+        for sym, b in ex.map(one, list(syms)):
+            if b is None:
+                fails += 1
+            elif b["c"]:
+                out[sym] = b
+    return out, fails
+
+
+def clean_series(b, max_jump=25.0, max_gap_days=4):
+    """Odseca istoriju do poslednjeg prekida podataka (skok cene preko max_jump puta u bilo kom smeru = preimenovanje ili promena
+    denominacije; rupa duza od max_gap_days = obustava) i vraca ostatak posle prekida."""
+    cut = 0
+    for i in range(1, len(b["c"])):
+        r = b["c"][i] / b["c"][i - 1]
+        gap = (dt.date.fromisoformat(b["d"][i]) - dt.date.fromisoformat(b["d"][i - 1])).days
+        if r > max_jump or r < 1.0 / max_jump or gap > max_gap_days:
+            cut = i
+    return {k: v[cut:] for k, v in b.items()} if cut else b
+
+
+def pit_membership(px, top_n, win):
+    """{sym: skup datuma}: simbol je clan na dan d ako je medju prvih top_n po prosecnom dnevnom prometu poslednjih `win` svecâ zakljucno sa d.
+    Koristi samo podatke do d, a ukljucuje i simbole koji su kasnije ugaseni (nema pristrasnosti preziveli)."""
+    byday = {}
+    for s, b in px.items():
+        v, ds, run = b["v"], b["d"], 0.0
+        for i in range(len(ds)):
+            run += v[i]
+            if i >= win:
+                run -= v[i - win]
+            if i >= win - 1:
+                byday.setdefault(ds[i], []).append((run / win, s))
+    mem = {}
+    for day, rows in byday.items():
+        rows.sort(key=lambda r: (-r[0], r[1]))
+        for _, s in rows[:top_n]:
+            mem.setdefault(s, set()).add(day)
+    return mem
 
 
 def trim_incomplete(b, now, bars_per_week):
@@ -211,14 +405,32 @@ def rebalance_dates(cal, weeks, bars_per_week, latest=None):
 class Universe:
     """Cene, osobine, dogadjaji i kalendar jednog univerzuma."""
 
-    def __init__(self, name, px, bench, ucfg, cfg):
+    def __init__(self, name, px, bench, ucfg, cfg, mem=None, tradable=None, ex=None):
+        """mem: {sym: skup datuma} clanstvo u univerzumu po danima (None = svi uvek); tradable: simboli koje Liquid ima sada (None = svi);
+        ex: {sym: simbol na Liquid-u}. Studija koristi sve clanove, a izbor za trgovanje samo tradable."""
         self.name, self.px, self.cfg = name, px, cfg
         self.bpw = int(ucfg["bars_per_week"])
         self.cal = list(bench["d"])
+        self.mem, self.tradable, self.ex = mem, tradable, ex or {}
+        self.entry_open = ucfg.get("entry_open_utc", "00:00" if self.bpw == 7 else "14:30")
+        self.event_horizons = ucfg.get("event_horizons") or cfg["event_horizons"]
+        self.cost = cfg["cost_pct"] + ucfg.get("extra_cost_pct", 0.0)
+        ecfg = dict(cfg)
+        ecfg["events"] = {k: dict(v, **ucfg.get("events", {}).get(k, {})) for k, v in cfg["events"].items()}
         self.idx = {s: {d: i for i, d in enumerate(b["d"])} for s, b in px.items()}
         self.feat = {s: features(b, cfg) for s, b in px.items()}
-        self.ev = {s: event_flags(b, cfg) for s, b in px.items()}
+        self.ev = {s: event_flags(b, ecfg) for s, b in px.items()}
         self._um = {}
+
+    def active(self, d):
+        """Simboli koji su clanovi univerzuma i imaju svecu na dan d."""
+        return [s for s in self.px if d in self.idx[s] and (self.mem is None or d in self.mem.get(s, ()))]
+
+    def can(self, sym):
+        return self.tradable is None or sym in self.tradable
+
+    def explorer(self, sym):
+        return self.ex.get(sym) or ("xyz:" + sym if self.name == "stocks" else sym)
 
     def outcome(self, sym, d, H):
         """Prinos u % od otvaranja sledece svece posle d do zatvaranja H svece, ili None. Ulaz je uvek POSLE signala."""
@@ -233,10 +445,8 @@ class Universe:
     def members(self, fam, d):
         """[(sym, ocena)] za rang-porodicu na datum d, sortirano opadajuce po oceni (ravnopravno po imenu)."""
         rows = []
-        for s in self.px:
+        for s in self.active(d):
             i = self.idx[s].get(d)
-            if i is None:
-                continue
             x = self.feat[s][fam][i]
             if x is not None:
                 rows.append((s, x))
@@ -246,10 +456,8 @@ class Universe:
     def flagged(self, fam, d):
         """[(sym, jacina)] simboli sa dogadjajem na datum d, najjaci prvi."""
         rows = []
-        for s in self.px:
+        for s in self.active(d):
             i = self.idx[s].get(d)
-            if i is None:
-                continue
             x = self.ev[s][fam][i]
             if x is not None:
                 rows.append((s, x))
@@ -260,7 +468,7 @@ class Universe:
         """Prosecan ishod svih clanova koji imaju svecu na d (ili None ako ih je premalo)."""
         key = (d, H)
         if key not in self._um:
-            rs = [self.outcome(s, d, H) for s in self.px]
+            rs = [self.outcome(s, d, H) for s in self.active(d)]
             rs = [r for r in rs if r is not None]
             self._um[key] = sum(rs) / len(rs) if len(rs) >= self.cfg["min_universe"] else None
         return self._um[key]
@@ -281,7 +489,7 @@ def tstat(vals):
 
 def run_periods(U, cfg, fam, weeks):
     """RANG: lista perioda (datum, long_excess, long_abs, short_excess, short_abs), svi u % posle troska."""
-    H, cost, out = weeks * U.bpw, cfg["cost_pct"], []
+    H, cost, out = weeks * U.bpw, U.cost, []
     for d in rebalance_dates(U.cal, weeks, U.bpw):
         mem = U.members(fam, d)
         rets = {}
@@ -324,7 +532,7 @@ def thin_weeks(rows, H, bpw):
 
 def event_periods(U, cfg, fam, H):
     """DOGADJAJ: po danu srednji prinos svih simbola sa dogadjajem minus prosek univerzuma, pa po nedelji i bez preklapanja."""
-    cost, daily = cfg["cost_pct"], []
+    cost, daily = U.cost, []
     for d in U.cal:
         fl = U.flagged(fam, d)
         if not fl:
@@ -384,7 +592,7 @@ def run_study(unis, cfg, today_iso):
     rows = []
     for name, U in unis.items():
         jobs = [("rank", fam, w, w * U.bpw, run_periods(U, cfg, fam, w)) for fam in FAMILIES for w in cfg["weeks"]]
-        jobs += [("event", fam, h, h, event_periods(U, cfg, fam, h)) for fam in EVENTS for h in cfg["event_horizons"]]
+        jobs += [("event", fam, h, h, event_periods(U, cfg, fam, h)) for fam in EVENTS for h in U.event_horizons]
         for kind, fam, step, H, per in jobs:
             for leg, ce, ca in (("long", 1, 2), ("short", 3, 4)):
                 r = test_stats(per, ce, cfg, today_iso)
@@ -442,9 +650,10 @@ def pick_for(U, r, d, k, cfg):
         mem = U.members(r["family"], d)
         if len(mem) < cfg["min_universe"]:
             return []
+        mem = [x for x in mem if U.can(x[0])]
         chosen = mem[:k] if r["leg"] == "long" else mem[-k:][::-1]
     else:
-        chosen = U.flagged(r["family"], d)[:k]
+        chosen = [x for x in U.flagged(r["family"], d) if U.can(x[0])][:k]
     return [{"sym": s, "score": round(x, 6), "rc": U.px[s]["rc"][U.idx[s][d]]} for s, x in chosen]
 
 
@@ -492,7 +701,7 @@ def pick_sim(U, p, d, H, leg):
 
 def realized(U, cfg, r, d, picks):
     """Ostvaren neto prinos izbora: (iznad proseka univerzuma, apsolutni, trgovanje sa stopom i ciljem ili None), u %; None dok ishod nije potpun."""
-    H, cost = r["H"], cfg["cost_pct"]
+    H, cost = r["H"], U.cost
     rp = [U.outcome(p["sym"], d, H) for p in picks]
     if not picks or any(x is None for x in rp):
         return None
@@ -645,21 +854,17 @@ def evaluate_log(log, unis, cfg):
 
 # ------------------------------------------------------------------ radar
 def entry_window(U, signal_date, cfg):
-    """(od, do) kad izbor sme da se uzme: otvaranje sledece trgovacke sesije + valid_hours. Kripto: sledece 00:00 UTC."""
+    """(od, do) kad izbor sme da se uzme: sledeci radni dan (kripto: sledeci dan) u satu U.entry_open (akcije 14:30 UTC otvaranje berze,
+    kripto i robe 00:00 UTC) + valid_hours."""
     d = dt.date.fromisoformat(signal_date) + dt.timedelta(days=1)
     if U.bpw == 5:
         while d.weekday() >= 5:
             d += dt.timedelta(days=1)
-        start = dt.datetime(d.year, d.month, d.day, STOCK_OPEN_UTC[0], STOCK_OPEN_UTC[1], tzinfo=dt.timezone.utc)
-    else:
-        start = dt.datetime(d.year, d.month, d.day, tzinfo=dt.timezone.utc)
+    hh, mm = (int(x) for x in U.entry_open.split(":"))
+    start = dt.datetime(d.year, d.month, d.day, hh, mm, tzinfo=dt.timezone.utc)
     end = start + dt.timedelta(hours=cfg["radar"]["valid_hours_after_open"])
     f = "%Y-%m-%dT%H:%M:%SZ"
     return start.strftime(f), end.strftime(f)
-
-
-def explorer_symbol(universe, sym):
-    return "xyz:" + sym if universe == "stocks" else sym.replace("-USD", "")
 
 
 def build_radar(rules, unis, cfg, now_iso):
@@ -683,7 +888,7 @@ def build_radar(rules, unis, cfg, now_iso):
             b, i = U.px[p["sym"]], U.idx[p["sym"]][d]
             a = atr_pct(b, i)
             sp = None if a is None else round(min(max(2.5 * a, 3.0), 12.0), 2)
-            rows.append({"ticker": p["sym"], "symbol": explorer_symbol(r["universe"], p["sym"]), "score": p["score"], "px": round(p["rc"], 4),
+            rows.append({"ticker": p["sym"], "symbol": U.explorer(p["sym"]), "score": p["score"], "px": round(p["rc"], 4),
                          "atr_pct": None if a is None else round(a, 2), "stop_pct": sp, "tp_pct": None if sp is None else round(3.0 * sp, 2)})
         out.append({"rule": rid, "status": r["status"], "universe": r["universe"], "family": r["family"], "kind": r["kind"],
                     "side": "long" if r["leg"] == "long" else "short", "signal_date": d, "valid_from_utc": frm, "valid_until_utc": to,
@@ -700,13 +905,21 @@ def hl_candidates(cfg):
     out = {}
     for name, u in cfg["universes"].items():
         rows = []
-        for s, c in ctx.items():
-            if c["vol24"] < u["min_vol24_usd"]:
-                continue
-            if u["source"] == "hl_xyz_stocks" and s.startswith("xyz:") and (cats.get(s) or "").lower() in ("stocks", "stock"):
-                rows.append({"sym": s, "yahoo": s[4:], "mark": c["mark"], "vol24": c["vol24"]})
-            elif u["source"] == "hl_main_crypto" and ":" not in s:
-                rows.append({"sym": s, "yahoo": s + "-USD", "mark": c["mark"], "vol24": c["vol24"]})
+        src = u["source"]
+        if src == "hl_xyz_stocks":
+            for s, c in ctx.items():
+                if c["vol24"] >= u["min_vol24_usd"] and s.startswith("xyz:") and (cats.get(s) or "").lower() in ("stocks", "stock"):
+                    rows.append({"sym": s, "yahoo": s[4:], "mark": c["mark"], "vol24": c["vol24"]})
+        elif src == "yahoo_futures":
+            for ysym, hl in u["symbols"].items():
+                c = ctx.get(hl) if hl else None
+                rows.append({"sym": hl, "yahoo": ysym, "mark": c["mark"] if c else None, "vol24": c["vol24"] if c else 0})
+        elif src == "binance_pit":
+            for s, c in ctx.items():
+                if ":" in s or c["vol24"] < u["min_hl_vol24_usd"]:
+                    continue
+                k = re.match(r"^k[A-Z0-9]", s) is not None  # k = 1000 jedinica (kPEPE)
+                rows.append({"sym": s, "base": s[1:] if k else s, "scale": 1000.0 if k else 1.0, "mark": c["mark"], "vol24": c["vol24"]})
         out[name] = rows
     return out
 
@@ -740,6 +953,98 @@ def build_universe_prices(cands, ucfg, now, cache=None, log=print):
     return keep, bench, used
 
 
+def build_futures_prices(cands, ucfg, now, cache=None, log=print):
+    """Robe: Yahoo futures (neprekidne serije BEZ ispravke za zamenu ugovora). Svi sa dovoljno istorije su u studiji; trguje se samo onim
+    sto Liquid ima i sto se cenom slaze sa HL oznakom (mark_tol)."""
+    px = load_prices([c["yahoo"] for c in cands], cache)
+    bench = px.get(ucfg["benchmark"])
+    if not bench:
+        return None
+    bench = trim_incomplete(bench, now, ucfg["bars_per_week"])
+    keep, used, tradable, ex = {}, [], set(), {}
+    tol = ucfg.get("mark_tol", 0.2)
+    for c in cands:
+        b = px.get(c["yahoo"])
+        if not b:
+            log("bez Yahoo cena: %s" % c["yahoo"])
+            continue
+        b = trim_incomplete(b, now, ucfg["bars_per_week"])
+        if len(b["c"]) < ucfg["min_bars"]:
+            log("premalo istorije (%d): %s" % (len(b["c"]), c["yahoo"]))
+            continue
+        if (dt.date.fromisoformat(bench["d"][-1]) - dt.date.fromisoformat(b["d"][-1])).days > 7:
+            log("zastarelo: %s" % c["yahoo"])
+            continue
+        keep[c["yahoo"]] = b
+        ok = bool(c["sym"] and c["mark"] and (1 - tol) <= c["mark"] / b["rc"][-1] <= (1 + tol))
+        if c["sym"] and not ok:
+            log("cena se ne slaze (HL %s, Yahoo %.4g): %s ostaje u studiji, ne trguje se" % (c["mark"], b["rc"][-1], c["yahoo"]))
+        if ok:
+            tradable.add(c["yahoo"])
+            ex[c["yahoo"]] = c["sym"]
+        used.append({"sym": c["yahoo"], "ex": c["sym"], "tradable": ok, "bars": len(b["c"])})
+    return {"px": keep, "bench": bench, "used": used, "mem": None, "tradable": tradable, "ex": ex}
+
+
+def build_crypto_prices(cands, ucfg, now, cache=None, log=print, extra_exclude=()):
+    """Kripto: svi Binance USDT parovi (i ugaseni), clanstvo na dan = prvih top_n po prometu poslednjih rank_window dana (point-in-time).
+    Studija koristi sve clanove; trguje se samo kovanicama koje Liquid ima i cijom se cenom HL oznaka slaze sa Binance-om."""
+    allsyms = binance_symbols(log)
+    start_ms = int((now - dt.timedelta(days=ucfg["history_days"])).timestamp() * 1000)
+    if not allsyms or fetch_binance(ucfg["benchmark"], int((now - dt.timedelta(days=10)).timestamp() * 1000)) is None:
+        log("Binance nije dostupan: kripto se preskace")
+        return None
+    sset = set(allsyms)
+    excl = set(ucfg.get("exclude_bases", [])) | set(extra_exclude)
+
+    def allowed(s):
+        base = s[:-4]
+        if base in excl:
+            return False
+        return not any(base.endswith(x) and base[:-len(x)] + "USDT" in sset for x in ("UP", "DOWN", "BULL", "BEAR"))
+
+    syms = [s for s in allsyms if allowed(s)]
+    sup, wf = binance_superset(syms, start_ms, ucfg["top_n"], ucfg.get("prefilter_factor", 1.5), cache)
+    if wf > max(5, int(0.03 * len(syms))):
+        log("Binance: %d od %d simbola (nedeljne svece) nije preuzeto: kripto se preskace" % (wf, len(syms)))
+        return None
+    sup.add(ucfg["benchmark"])
+    raw, fails = load_binance(sorted(sup), start_ms, cache)
+    if fails > max(3, int(0.03 * len(sup))):
+        log("Binance: %d od %d simbola nije preuzeto: kripto se preskace" % (fails, len(sup)))
+        return None
+    log("kripto: %d simbola u nadskupu od %d" % (len(sup), len(syms)))
+    px = {}
+    for s, b in raw.items():
+        b = clean_series(b)
+        if len(b["c"]) < ucfg["min_bars"]:
+            continue
+        if len(b["c"]) >= 100 and max(b["c"]) / min(b["c"]) < 1.35:
+            continue  # stabilan novac ili vezana cena
+        px[s] = trim_incomplete(b, now, 7)
+    bench = px.get(ucfg["benchmark"])
+    if not bench:
+        return None
+    mem = pit_membership(px, ucfg["top_n"], ucfg["rank_window"])
+    px = {s: b for s, b in px.items() if s in mem}
+    tradable, ex = set(), {}
+    for c in cands:
+        s = c["base"] + "USDT"
+        b = px.get(s)
+        if b is None:
+            continue
+        if (dt.date.fromisoformat(bench["d"][-1]) - dt.date.fromisoformat(b["d"][-1])).days > 3:
+            continue
+        if not 0.88 <= c["mark"] / (b["rc"][-1] * c["scale"]) <= 1.12:
+            log("cena se ne slaze (HL %.4g, Binance %.4g): %s se ne trguje" % (c["mark"], b["rc"][-1] * c["scale"], c["sym"]))
+            continue
+        tradable.add(s)
+        ex[s] = c["sym"]
+    last = bench["d"][-1]
+    used = [{"sym": s, "ex": ex.get(s), "tradable": s in tradable, "bars": len(px[s]["c"])} for s in sorted(px) if last in mem[s]]
+    return {"px": px, "bench": bench, "used": used, "mem": mem, "tradable": tradable, "ex": ex}
+
+
 # ------------------------------------------------------------------ izvestaj
 def to_markdown(res):
     cfg, tests = res["cfg_summary"], res["tests"]
@@ -752,9 +1057,12 @@ def to_markdown(res):
     for r in tests:
         cnt[r["status"]] = cnt.get(r["status"], 0) + 1
     L.append("Status: " + ", ".join("%s %d" % (k, v) for k, v in sorted(cnt.items())) + ".")
-    L += ["", "Ogranicenja (cita se pre brojeva): univerzum je izabran prema SADASNJOJ listi Liquid-a (preziveli i popularni), pa su istorijski rezultati verovatno prelepi; "
-          "nema stopova u testu; ulaz je otvaranje sledeceg dana, a uzivo se ulazi sat-dva kasnije. Zato jedino 'potvrdjen' (posle prolaska unapred) ima ikakvu tezinu.", "",
-          "## Svi testovi, poredjani po t", "",
+    L += ["", "Ogranicenja (cita se pre brojeva): nema stopova u testu; ulaz je otvaranje sledece svece, a uzivo se ulazi sat-dva kasnije. "
+          "Zato jedino 'potvrdjen' (posle prolaska unapred) ima ikakvu tezinu."]
+    for k, v in res["universes"].items():
+        if v.get("limits"):
+            L.append("- %s: %s" % (k, v["limits"]))
+    L += ["", "## Svi testovi, poredjani po t", "",
           "| pravilo | n | neto % | apsolutno % | t | p | t prvi deo | t zadnji deo | zadnjih 270 d % | strogi trosak % | FDR | status |", "|---|---|---|---|---|---|---|---|---|---|---|---|"]
     for r in sorted(tests, key=lambda r: -(r["t"] if r.get("t") is not None else -99)):
         L.append("| %s | %s | %s | %s | %s | %s | %s | %s | %s | %s | %s | %s |" % (
@@ -777,16 +1085,24 @@ def prepare(cfg, now, cache, log=print, hl=None):
     cands = hl if hl is not None else hl_candidates(cfg)
     unis, used = {}, {}
     for name, ucfg in cfg["universes"].items():
-        px, bench, u = build_universe_prices(cands.get(name, []), ucfg, now, cache, log)
-        if not px or len(px) < cfg["min_universe"]:
-            log("univerzum %s preskocen: premalo instrumenata" % name)
+        src, rows = ucfg["source"], cands.get(name, [])
+        if src == "yahoo_futures":
+            r = build_futures_prices(rows, ucfg, now, cache, log)
+        elif src == "binance_pit":
+            tokens = {c["yahoo"] + "B" for c in cands.get("stocks", []) if c.get("yahoo")}  # Binance akcijski tokeni (CRCLB, SNDKB...) nisu kripto
+            r = build_crypto_prices(rows, ucfg, now, cache, log, tokens)
+        else:
+            px, bench, u = build_universe_prices(rows, ucfg, now, cache, log)
+            r = {"px": px, "bench": bench, "used": u, "mem": None, "tradable": None, "ex": None} if px else None
+        if not r or not r["px"] or len(r["px"]) < cfg["min_universe"]:
+            log("univerzum %s preskocen: premalo instrumenata ili nema podataka" % name)
             continue
-        unis[name] = Universe(name, px, bench, ucfg, cfg)
-        used[name] = u
+        unis[name] = Universe(name, r["px"], r["bench"], ucfg, cfg, mem=r["mem"], tradable=r["tradable"], ex=r["ex"])
+        used[name] = r["used"]
     return unis, used
 
 
-def run(mode, cache=None, write=True, root=None, log=print, now=None, hl=None):
+def run(mode, cache=None, write=True, root=None, log=print, now=None, hl=None, strict=True):
     root = root or ROOT
     cfg = load_cfg(os.path.join(root, "config", "discovery.json"))
     now = now or dt.datetime.now(dt.timezone.utc)
@@ -796,13 +1112,17 @@ def run(mode, cache=None, write=True, root=None, log=print, now=None, hl=None):
     if not unis:
         log("nema nijednog univerzuma: ne diram stare fajlove")
         return 1
+    if mode == "weekly" and strict and set(unis) != set(cfg["universes"]):
+        log("nedeljna studija trazi SVE univerzume (nedostaje: %s): ne diram stare fajlove" % ", ".join(sorted(set(cfg["universes"]) - set(unis))))
+        return 1
     rules = _load(os.path.join(d_dir, "rules.json"), {}).get("rules", {})
     res = None
     if mode == "weekly":
         tests = run_study(unis, cfg, now_iso[:10])
         rules = apply_study(rules, tests, now_iso, unis)
         res = {"generated_utc": now_iso, "tests": tests,
-               "universes": {k: {"n": len(U.px), "from": min(b["d"][0] for b in U.px.values()), "to": U.cal[-1]} for k, U in unis.items()},
+               "universes": {k: {"n": len(U.px), "from": min(b["d"][0] for b in U.px.values()), "to": U.cal[-1], "limits": cfg["universes"][k].get("limits")}
+                             for k, U in unis.items()},
                "cfg_summary": {"fdr_q": cfg["gates"]["candidate"]["fdr_q"], "cost_pct": cfg["cost_pct"], "stress_cost_pct": cfg["stress_cost_pct"]},
                "cases": []}
         for tk, entry in CASES:

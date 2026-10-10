@@ -9,6 +9,7 @@ from lab import discovery as D
 
 CFG = D.load_cfg()
 UCFG = CFG["universes"]["stocks"]
+TCFG = dict(CFG, universes={"stocks": UCFG})  # samo akcije: testovi ne smeju da zovu mrezu za kripto i robe
 
 
 def weekdays(start="2023-01-02", n=900):
@@ -373,7 +374,7 @@ class RunTests(unittest.TestCase):
             with tempfile.TemporaryDirectory() as root:
                 os.makedirs(os.path.join(root, "config"))
                 with open(os.path.join(root, "config", "discovery.json"), "w", encoding="utf-8") as f:
-                    json.dump(CFG, f)
+                    json.dump(TCFG, f)
                 self.assertEqual(D.run("weekly", write=True, root=root, now=now, hl=cands, log=lambda m: None), 0)
                 for fn in ("discovery/rules.json", "discovery/radar.json", "discovery/universe.json", "calibration/discovery.json", "calibration/discovery.md"):
                     self.assertTrue(os.path.exists(os.path.join(root, fn)), fn)
@@ -395,11 +396,254 @@ class RunTests(unittest.TestCase):
             with tempfile.TemporaryDirectory() as root:
                 os.makedirs(os.path.join(root, "config"))
                 with open(os.path.join(root, "config", "discovery.json"), "w", encoding="utf-8") as f:
-                    json.dump(CFG, f)
+                    json.dump(TCFG, f)
                 self.assertEqual(D.run("weekly", write=True, root=root, hl={"stocks": []}, log=lambda m: None), 1)
                 self.assertFalse(os.path.exists(os.path.join(root, "discovery", "rules.json")))
         finally:
             D.load_prices = orig
+
+
+def alldays(end="2026-10-11", n=800):
+    d1 = dt.date.fromisoformat(end)
+    return [(d1 - dt.timedelta(days=n - 1 - k)).isoformat() for k in range(n)]
+
+
+UC = CFG["universes"]["crypto"]
+UM = CFG["universes"]["commodities"]
+
+
+class UniverseV4Tests(unittest.TestCase):
+    def test_membership_limits_members_and_universe_mean(self):
+        px, bench = mk_universe(seed=3, n_sym=16, days=400)
+        d = bench["d"][350]
+        syms = sorted(px)
+        mem = {s: ({d} if k < 13 else set()) for k, s in enumerate(syms)}
+        U = D.Universe("crypto", px, bench, UC, CFG, mem=mem)
+        self.assertEqual(len(U.members("MOM12_1", d)), 13)
+        self.assertEqual(len(U.active(d)), 13)
+        self.assertIsNotNone(U.universe_mean(d, 5))
+        mem2 = {s: ({d} if k < 8 else set()) for k, s in enumerate(syms)}
+        self.assertIsNone(D.Universe("crypto", px, bench, UC, CFG, mem=mem2).universe_mean(d, 5))  # ispod min_universe
+
+    def test_picks_only_tradable_and_explorer_symbol(self):
+        px, bench = mk_universe(seed=4, n_sym=16, days=400, drift=[0.001 * (k - 8) for k in range(16)])
+        d = bench["d"][350]
+        r = {"universe": "crypto", "family": "MOM12_1", "kind": "rank", "step": 1, "H": 7, "leg": "long"}
+        U_all = D.Universe("crypto", px, bench, UC, CFG)
+        top = [x[0] for x in U_all.members("MOM12_1", d)][:3]
+        low = U_all.members("MOM12_1", d)[-1][0]
+        U = D.Universe("crypto", px, bench, UC, CFG, tradable={top[1], low}, ex={top[1]: "k" + top[1]})
+        got = [p["sym"] for p in D.pick_for(U, r, d, 3, CFG)]
+        self.assertEqual(got, [top[1], low])  # samo tradable, po redu ocene
+        self.assertNotIn(top[0], got)
+        self.assertEqual(U.explorer(top[1]), "k" + top[1])
+        self.assertEqual(D.Universe("stocks", px, bench, UCFG, CFG).explorer("S03"), "xyz:S03")
+
+    def test_event_thresholds_and_cost_per_universe(self):
+        days = weekdays(n=120)
+        rets, vols = [0.0] * 120, [1e6] * 120
+        rets[60], vols[60] = 0.08, 5e6
+        rets[90], vols[90] = 0.04, 5e6
+        b = mk_bars(days, rets, vols)
+        bench = mk_bars(days, [0.0] * 120)
+        us = D.Universe("stocks", {"X": b}, bench, UCFG, CFG)
+        uc = D.Universe("crypto", {"X": b}, bench, UC, CFG)
+        um = D.Universe("commodities", {"X": b}, bench, UM, CFG)
+        self.assertIsNotNone(us.ev["X"]["SPIKE_UP"][60])
+        self.assertIsNone(uc.ev["X"]["SPIKE_UP"][60])  # 8% nije dovoljno za kripto (prag 10%)
+        self.assertIsNotNone(um.ev["X"]["SPIKE_UP"][60])
+        self.assertIsNotNone(um.ev["X"]["SPIKE_UP"][90])  # 4% je preko praga robe (3.5%)
+        self.assertIsNone(us.ev["X"]["SPIKE_UP"][90])
+        self.assertAlmostEqual(us.cost, CFG["cost_pct"])
+        self.assertAlmostEqual(uc.cost, CFG["cost_pct"] + 0.10)
+        self.assertAlmostEqual(um.cost, CFG["cost_pct"] + 0.15)
+
+    def test_entry_windows(self):
+        px, bench = mk_universe(seed=5, n_sym=3, days=50)
+        uc = D.Universe("crypto", px, bench, UC, CFG)
+        frm, to = D.entry_window(uc, "2026-10-11", CFG)  # nedelja
+        self.assertEqual((frm, to), ("2026-10-12T00:00:00Z", "2026-10-13T06:00:00Z"))
+        um = D.Universe("commodities", px, bench, UM, CFG)
+        frm, to = D.entry_window(um, "2026-10-09", CFG)  # petak: robe ulaze u ponedeljak 00:00
+        self.assertEqual(frm, "2026-10-12T00:00:00Z")
+        us = D.Universe("stocks", px, bench, UCFG, CFG)
+        self.assertEqual(D.entry_window(us, "2026-10-09", CFG)[0], "2026-10-12T14:30:00Z")
+
+
+class DataQualityTests(unittest.TestCase):
+    def test_clean_series_cuts_at_last_break(self):
+        days = alldays(n=120)
+        b = mk_bars(days, [0.0] * 120)
+        for k in ("o", "h", "l", "c", "rc"):
+            for i in range(50, 120):
+                b[k][i] *= 100.0  # promena denominacije u svecu 50
+        out = D.clean_series(b)
+        self.assertEqual(len(out["c"]), 70)
+        self.assertEqual(out["d"][0], days[50])
+        days2 = days[:60] + days[66:]  # rupa od 6 dana
+        b2 = mk_bars(days2, [0.0] * len(days2))
+        self.assertEqual(len(D.clean_series(b2)["c"]), len(days2) - 60)
+        self.assertEqual(len(D.clean_series(mk_bars(days, [0.01] * 120))["c"]), 120)  # cist niz se ne dira
+
+    def test_pit_membership_is_point_in_time_and_keeps_dead_symbols(self):
+        days = alldays(n=12)
+        def bars(vol, n):
+            b = mk_bars(days[:n], [0.0] * n)
+            b["v"] = [float(vol)] * n
+            return b
+        px = {"A": bars(300, 12), "B": bars(200, 12), "C": bars(100, 12), "DEAD": bars(400, 6)}
+        mem = D.pit_membership(px, 2, 3)
+        self.assertIn(days[4], mem["DEAD"])
+        self.assertNotIn(days[8], mem["DEAD"])  # posle gasenja nije clan
+        self.assertIn(days[8], mem["A"])
+        self.assertIn(days[8], mem["B"])
+        self.assertNotIn("C", mem)
+        self.assertEqual(sorted(s for s in mem if days[4] in mem[s]), ["A", "DEAD"])
+        # nema gledanja unapred: promena kasnijih podataka ne menja clanstvo ranijih dana
+        px2 = {k: dict(v, v=list(v["v"])) for k, v in px.items()}
+        for i in range(8, 12):
+            px2["C"]["v"][i] = 9000.0
+        mem2 = D.pit_membership(px2, 2, 3)
+        for day in days[:8]:
+            self.assertEqual({s for s in mem if day in mem[s]}, {s for s in mem2 if day in mem2[s]})
+
+    def test_fetch_binance_pages_and_failure_modes(self):
+        t0 = int(dt.datetime(2023, 1, 1, tzinfo=dt.timezone.utc).timestamp() * 1000)
+        def row(i, c=10.0):
+            return [t0 + i * 86400000, "10", "11", "9", str(c), "5", 0, str(c * 1000)]
+        pages = [[row(i) for i in range(1000)], [row(i) for i in range(1000, 1003)] + [row(1002)]]
+        calls = []
+        def fake(path, tries=3):
+            calls.append(path)
+            return pages[len(calls) - 1]
+        orig = D.binance_get
+        try:
+            D.binance_get = fake
+            b = D.fetch_binance("XUSDT", t0)
+            self.assertEqual(len(b["c"]), 1003)  # duplikat poslednje svece je odbacen
+            self.assertAlmostEqual(b["v"][0], 10000.0)  # obim je promet u USDT
+            self.assertEqual(b["d"][0], "2023-01-01")
+            self.assertEqual(len(calls), 2)
+            D.binance_get = lambda path, tries=3: False
+            self.assertEqual(D.fetch_binance("NOPE", t0)["c"], [])
+            D.binance_get = lambda path, tries=3: None
+            self.assertIsNone(D.fetch_binance("XUSDT", t0))
+        finally:
+            D.binance_get = orig
+
+    def test_binance_superset_keeps_every_symbol_that_was_ever_near_the_top(self):
+        weeks = [(dt.date(2023, 1, 2) + dt.timedelta(days=7 * i)).isoformat() for i in range(8)]
+        vol = {"A": [100] * 8, "B": [50] * 8, "C": [10] * 8, "D": [5] * 8, "LATE": [0, 0, 0, 0, 0, 0, 500, 500]}
+        orig = D.fetch_binance_weekly
+        try:
+            D.fetch_binance_weekly = lambda sym, start_ms: dict(zip(weeks, map(float, vol[sym])))
+            keep, fails = D.binance_superset(sorted(vol), 0, 1, 2)  # 1 x 2 = dva mesta po nedelji
+            self.assertEqual((keep, fails), ({"A", "B", "LATE"}, 0))
+            D.fetch_binance_weekly = lambda sym, start_ms: None
+            self.assertEqual(D.binance_superset(["A", "B"], 0, 1, 2), (set(), 2))
+        finally:
+            D.fetch_binance_weekly = orig
+
+    def test_binance_symbols_lists_dead_and_falls_back(self):
+        xml1 = ("<ListBucketResult><IsTruncated>true</IsTruncated><NextMarker>data/spot/monthly/klines/BTCUSDT/</NextMarker><Prefix>data/spot/monthly/klines/</Prefix>"
+                "<CommonPrefixes><Prefix>data/spot/monthly/klines/BTCUSDT/</Prefix></CommonPrefixes><CommonPrefixes><Prefix>data/spot/monthly/klines/ETHBTC/</Prefix></CommonPrefixes></ListBucketResult>")
+        xml2 = ("<ListBucketResult><IsTruncated>false</IsTruncated><CommonPrefixes><Prefix>data/spot/monthly/klines/LUNAUSDT/</Prefix></CommonPrefixes></ListBucketResult>")
+        seen = []
+        class R:
+            def __init__(self, x):
+                self.x = x
+            def __enter__(self):
+                return self
+            def __exit__(self, *a):
+                return False
+            def read(self):
+                return self.x.encode()
+        def fake_open(req, timeout=0):
+            seen.append(req.full_url)
+            return R(xml1 if "marker=" not in req.full_url else xml2)
+        o_open, o_get = D.urllib.request.urlopen, D.binance_get
+        try:
+            D.urllib.request.urlopen = fake_open
+            D.binance_get = lambda path, tries=3: {"symbols": [{"symbol": "NEWUSDT", "quoteAsset": "USDT", "status": "TRADING"},
+                                                              {"symbol": "OLDUSDT", "quoteAsset": "USDT", "status": "BREAK"}]}
+            syms = D.binance_symbols(log=lambda m: None)
+        finally:
+            D.urllib.request.urlopen, D.binance_get = o_open, o_get
+        self.assertEqual(syms, ["BTCUSDT", "LUNAUSDT", "NEWUSDT"])
+        self.assertEqual(len(seen), 2)
+
+
+def read_text(path):
+    with open(path, encoding="utf-8") as f:
+        return f.read()
+
+
+class ThreeUniverseRunTests(unittest.TestCase):
+    def setUp(self):
+        self.now = dt.datetime(2026, 10, 12, 0, 40, tzinfo=dt.timezone.utc)
+        cal5 = [d for d in weekdays("2023-01-02", 1500) if d <= "2026-10-09"][-800:]
+        cal7 = alldays("2026-10-11", 800)
+        self.px_s, self.bench_s = mk_universe(seed=9, drift=[0.002 - 0.00025 * k for k in range(16)], cal=cal5)
+        px_c, bench_c = mk_universe(seed=11, n_sym=17, noise=0.03, cal=cal7)
+        self.px_c = {"%sUSDT" % k: v for k, v in px_c.items()}
+        rb = random.Random(77)
+        self.px_c["S00BUSDT"] = px_c["S01"]  # akcijski token (S00 je akcija): ne sme u kripto
+        self.px_c["BTCUSDT"] = mk_bars(cal7, [rb.gauss(0, 0.03) for _ in cal7], vols=[1e6] * len(cal7))
+        px_m, bench_m = mk_universe(seed=13, n_sym=14, cal=cal5)
+        self.px_m = {"M%02d=F" % int(k[1:]): v for k, v in px_m.items()}
+        self.px_m["G0=F"] = bench_m
+        ucr = dict(UC, top_n=14, min_hl_vol24_usd=0)
+        umm = dict(UM, symbols=dict({s: ("xyz:M%s" % s[1:3]) if k < 6 else None for k, s in enumerate(sorted(self.px_m))}), benchmark="G0=F")
+        self.cfg = dict(CFG, universes={"stocks": UCFG, "crypto": ucr, "commodities": umm})
+        self.cands = {
+            "stocks": [{"sym": "xyz:" + s, "yahoo": s, "mark": b["rc"][-1], "vol24": 1e7} for s, b in self.px_s.items()],
+            "crypto": [{"sym": s[:-4], "base": s[:-4], "scale": 1.0, "mark": b["rc"][-1], "vol24": 1e7} for s, b in self.px_c.items() if s != "BTCUSDT"] +
+                      [{"sym": "BTC", "base": "BTC", "scale": 1.0, "mark": self.px_c["BTCUSDT"]["rc"][-1], "vol24": 1e7}],
+            "commodities": [{"sym": umm["symbols"][s], "yahoo": s, "mark": self.px_m[s]["rc"][-1], "vol24": 1e7} for s in sorted(self.px_m)]}
+        self.orig = (D.load_prices, D.binance_symbols, D.fetch_binance, D.binance_superset)
+        data = dict(self.px_s, SPY=self.bench_s, **self.px_m)
+        D.load_prices = lambda syms, cache=None, max_age_h=12: {s: data[s] for s in syms if s in data}
+        D.binance_symbols = lambda log=print: sorted(self.px_c)
+        D.binance_superset = lambda syms, start_ms, top_n, factor, cache=None, max_age_h=12: (set(syms), 0)
+        D.fetch_binance = lambda sym, start_ms: self.px_c.get(sym, {"d": [], "o": [], "h": [], "l": [], "c": [], "v": [], "rc": []})
+
+    def tearDown(self):
+        D.load_prices, D.binance_symbols, D.fetch_binance, D.binance_superset = self.orig
+
+    def test_weekly_runs_all_three_universes_then_daily(self):
+        with tempfile.TemporaryDirectory() as root:
+            os.makedirs(os.path.join(root, "config"))
+            with open(os.path.join(root, "config", "discovery.json"), "w", encoding="utf-8") as f:
+                json.dump(self.cfg, f)
+            self.assertEqual(D.run("weekly", write=True, root=root, now=self.now, hl=self.cands, log=lambda m: None), 0)
+            res = json.loads(read_text(os.path.join(root, "calibration", "discovery.json")))
+            self.assertEqual(set(res["universes"]), {"stocks", "crypto", "commodities"})
+            self.assertEqual(len(res["tests"]), 180)
+            self.assertTrue(any(r["id"] == "crypto:SPIKE_UP:7d:long" for r in res["tests"]))
+            self.assertTrue(any(r["id"] == "stocks:SPIKE_UP:5d:long" for r in res["tests"]))
+            self.assertEqual({r["universe"] for r in res["tests"]}, {"stocks", "crypto", "commodities"})
+            uni = json.loads(read_text(os.path.join(root, "discovery", "universe.json")))["universes"]
+            self.assertTrue(any(x["tradable"] for x in uni["crypto"]))
+            self.assertTrue(any(x["tradable"] for x in uni["commodities"]))
+            self.assertTrue(any(not x["tradable"] for x in uni["commodities"]))
+            md = read_text(os.path.join(root, "calibration", "discovery.md"))
+            self.assertIn("roll", md)
+            self.assertEqual(D.run("daily", write=True, root=root, now=self.now, hl=self.cands, log=lambda m: None), 0)
+
+    def test_stock_tokens_are_not_crypto(self):
+        unis, _ = D.prepare(self.cfg, self.now, None, log=lambda m: None, hl=self.cands)
+        self.assertNotIn("S00BUSDT", unis["crypto"].px)
+        self.assertIn("S01USDT", unis["crypto"].px)
+
+    def test_weekly_refuses_when_a_universe_is_missing_but_daily_goes_on(self):
+        D.binance_symbols = lambda log=print: []
+        with tempfile.TemporaryDirectory() as root:
+            os.makedirs(os.path.join(root, "config"))
+            with open(os.path.join(root, "config", "discovery.json"), "w", encoding="utf-8") as f:
+                json.dump(self.cfg, f)
+            self.assertEqual(D.run("weekly", write=True, root=root, now=self.now, hl=self.cands, log=lambda m: None), 1)
+            self.assertFalse(os.path.exists(os.path.join(root, "discovery", "rules.json")))
+            self.assertEqual(D.run("daily", write=True, root=root, now=self.now, hl=self.cands, log=lambda m: None), 0)
 
 
 if __name__ == "__main__":
