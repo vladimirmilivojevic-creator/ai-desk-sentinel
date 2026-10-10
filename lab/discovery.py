@@ -5,6 +5,7 @@ Dnevno: pravilima koja su nagovestaj ili kandidat belezi se izbor unapred (zamrz
 unapred zadatih kapija pravilo postaje 'potvrdjen'. Samo 'potvrdjen' sme da ode Istrazivacu (desk), i to samo ako to vlasnik dozvoli.
 Izlaz: calibration/discovery.{json,md}, discovery/{rules.json, forward.jsonl, radar.json, universe.json}.
 Upotreba: python -m lab.discovery weekly|daily [--cache DIR] [--no-write]"""
+import copy
 import datetime as dt
 import json
 import math
@@ -412,6 +413,7 @@ class Universe:
         self.bpw = int(ucfg["bars_per_week"])
         self.cal = list(bench["d"])
         self.mem, self.tradable, self.ex = mem, tradable, ex or {}
+        self.only_trad = False
         self.entry_open = ucfg.get("entry_open_utc", "00:00" if self.bpw == 7 else "14:30")
         self.event_horizons = ucfg.get("event_horizons") or cfg["event_horizons"]
         self.cost = cfg["cost_pct"] + ucfg.get("extra_cost_pct", 0.0)
@@ -424,7 +426,16 @@ class Universe:
 
     def active(self, d):
         """Simboli koji su clanovi univerzuma i imaju svecu na dan d."""
-        return [s for s in self.px if d in self.idx[s] and (self.mem is None or d in self.mem.get(s, ()))]
+        return [s for s in self.px if d in self.idx[s] and (self.mem is None or d in self.mem.get(s, ())) and (not self.only_trad or self.can(s))]
+
+    def tradable_view(self):
+        """Isti univerzum, ali samo sa simbolima koje Liquid ima (izvedivost). None kad je sve trgovacko. Pristrasno prema preziveloj listi,
+        pa se koristi samo kao DODATNI uslov (nikad umesto studije na celom univerzumu)."""
+        if self.tradable is None:
+            return None
+        v = copy.copy(self)
+        v.only_trad, v._um = True, {}
+        return v
 
     def can(self, sym):
         return self.tradable is None or sym in self.tradable
@@ -576,6 +587,8 @@ def classify(r, fdr_pass, cfg):
           and (r.get("t_test") if r.get("t_test") is not None else -9) >= c["test_t_min"]
           and r.get("recent_mean") is not None and r["recent_mean"] > c["recent_mean_gt"]
           and r.get("mean_ex_best") is not None and r["mean_ex_best"] > c["mean_ex_best_gt"])
+    if ok and c.get("exec_min_periods") and r.get("exec_n", 0) >= c["exec_min_periods"]:  # izvedivost: i na simbolima koje Liquid ima
+        ok = r.get("exec_mean") is not None and r["exec_mean"] > c["exec_mean_gt"] and (r.get("exec_t") if r.get("exec_t") is not None else -9) >= c["exec_t_min"]
     if ok:
         return "kandidat"
     if r.get("p") is not None and r["p"] <= h["p_raw_max"] and r["mean"] > h["mean_net_gt"]:
@@ -591,14 +604,19 @@ def run_study(unis, cfg, today_iso):
     """unis: {ime: Universe}. Vraca listu testova sa statusom (FDR preko SVIH testova svih univerzuma i obe vrste)."""
     rows = []
     for name, U in unis.items():
-        jobs = [("rank", fam, w, w * U.bpw, run_periods(U, cfg, fam, w)) for fam in FAMILIES for w in cfg["weeks"]]
-        jobs += [("event", fam, h, h, event_periods(U, cfg, fam, h)) for fam in EVENTS for h in U.event_horizons]
-        for kind, fam, step, H, per in jobs:
+        V = U.tradable_view()
+        spec = [("rank", fam, w, w * U.bpw) for fam in FAMILIES for w in cfg["weeks"]] + [("event", fam, h, h) for fam in EVENTS for h in U.event_horizons]
+        for kind, fam, step, H in spec:
+            per = run_periods(U, cfg, fam, step) if kind == "rank" else event_periods(U, cfg, fam, H)
+            perx = None if V is None else (run_periods(V, cfg, fam, step) if kind == "rank" else event_periods(V, cfg, fam, H))
             for leg, ce, ca in (("long", 1, 2), ("short", 3, 4)):
                 r = test_stats(per, ce, cfg, today_iso)
                 ab = test_stats(per, ca, cfg, today_iso)
                 r.update({"id": rule_id(name, fam, kind, step, leg), "universe": name, "family": fam, "kind": kind, "step": step, "H": H,
                           "leg": leg, "abs_mean": ab.get("mean"), "abs_t": ab.get("t")})
+                if perx is not None:
+                    x = test_stats(perx, ce, cfg, today_iso)
+                    r.update({"exec_n": x["n"], "exec_mean": x.get("mean"), "exec_t": x.get("t")})
                 rows.append(r)
     pv = [(r["id"], r["p"]) for r in rows if r.get("p") is not None]
     passed = S.bh_fdr(pv, cfg["gates"]["candidate"]["fdr_q"])
@@ -768,7 +786,7 @@ def apply_study(rules, tests, now_iso, unis=None):
     for r in tests:
         rid, new = r["id"], r["status"]
         cur = rules.get(rid)
-        snap = {k: r.get(k) for k in ("n", "mean", "median", "mean_ex_best", "t", "p", "t_train", "t_test", "recent_mean", "stress_mean", "abs_mean", "fdr")}
+        snap = {k: r.get(k) for k in ("n", "mean", "median", "mean_ex_best", "t", "p", "t_train", "t_test", "recent_mean", "stress_mean", "abs_mean", "fdr", "exec_n", "exec_mean", "exec_t")}
         if cur is None:
             if new in ("nagovestaj", "kandidat"):
                 rules[rid] = dict(make_rule(r), status=new, first_seen_utc=now_iso, forward_start=fstart(r), study=snap, history=[[now_iso, new]])
@@ -1057,17 +1075,18 @@ def to_markdown(res):
     for r in tests:
         cnt[r["status"]] = cnt.get(r["status"], 0) + 1
     L.append("Status: " + ", ".join("%s %d" % (k, v) for k, v in sorted(cnt.items())) + ".")
-    L += ["", "Ogranicenja (cita se pre brojeva): nema stopova u testu; ulaz je otvaranje sledece svece, a uzivo se ulazi sat-dva kasnije. "
+    L += ["", "Izvedivost: kolone 'izvedivo' su isti test samo na simbolima koje Liquid ima SADA (pristrasno prema preziveloj listi); kandidat mora da bude pozitivan i tamo (t >= 1).",
+          "", "Ogranicenja (cita se pre brojeva): nema stopova u testu; ulaz je otvaranje sledece svece, a uzivo se ulazi sat-dva kasnije. "
           "Zato jedino 'potvrdjen' (posle prolaska unapred) ima ikakvu tezinu."]
     for k, v in res["universes"].items():
         if v.get("limits"):
             L.append("- %s: %s" % (k, v["limits"]))
     L += ["", "## Svi testovi, poredjani po t", "",
-          "| pravilo | n | neto % | apsolutno % | t | p | t prvi deo | t zadnji deo | zadnjih 270 d % | strogi trosak % | FDR | status |", "|---|---|---|---|---|---|---|---|---|---|---|---|"]
+          "| pravilo | n | neto % | medijana % | bez najboljeg % | t | p | t prvi deo | t zadnji deo | zadnjih 270 d % | strogi trosak % | izvedivo n | izvedivo neto % | izvedivo t | FDR | status |", "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|"]
     for r in sorted(tests, key=lambda r: -(r["t"] if r.get("t") is not None else -99)):
-        L.append("| %s | %s | %s | %s | %s | %s | %s | %s | %s | %s | %s | %s |" % (
-            r["id"], r["n"], r.get("mean"), r.get("abs_mean"), r.get("t"), r.get("p"), r.get("t_train"), r.get("t_test"), r.get("recent_mean"),
-            r.get("stress_mean"), "da" if r.get("fdr") else "ne", r["status"]))
+        L.append("| %s | %s | %s | %s | %s | %s | %s | %s | %s | %s | %s | %s | %s | %s | %s | %s |" % (
+            r["id"], r["n"], r.get("mean"), r.get("median"), r.get("mean_ex_best"), r.get("t"), r.get("p"), r.get("t_train"), r.get("t_test"), r.get("recent_mean"),
+            r.get("stress_mean"), r.get("exec_n", "-"), r.get("exec_mean", "-"), r.get("exec_t", "-"), "da" if r.get("fdr") else "ne", r["status"]))
     for c in res.get("cases", []):
         pr = c["profile"]
         L += ["", "## Opisni slucaj: %s (vlasnikov ulaz %s)" % (c["sym"], c["entry"]), "",

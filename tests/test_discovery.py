@@ -198,6 +198,15 @@ class StudyTests(unittest.TestCase):
         self.assertEqual(D.classify(dict(base, n=20), True, CFG), "premalo")
         self.assertEqual(D.classify(dict(base, mean=-1.0), True, CFG), "odbaceno")  # negativan prosek nikad nije nagovestaj
 
+    def test_executability_gate_needs_positive_result_on_tradable_symbols(self):
+        xb = dict({"n": 80, "t": 3.5, "p": 0.001, "mean": 1.2, "abs_mean": 1.0, "t_train": 2.0, "t_test": 2.0, "recent_mean": 0.5, "mean_ex_best": 0.8},
+                  exec_n=100, exec_mean=0.4, exec_t=1.5)
+        self.assertEqual(D.classify(xb, True, CFG), "kandidat")
+        self.assertEqual(D.classify(dict(xb, exec_t=0.4), True, CFG), "nagovestaj")  # trag je u simbolima koje Liquid nema
+        self.assertEqual(D.classify(dict(xb, exec_mean=-0.2), True, CFG), "nagovestaj")
+        self.assertEqual(D.classify(dict(xb, exec_t=None), True, CFG), "nagovestaj")
+        self.assertEqual(D.classify(dict(xb, exec_n=10, exec_mean=-1.0, exec_t=-2.0), True, CFG), "kandidat")  # premalo perioda: uslov se ne primenjuje
+
     def test_thin_weeks_averages_within_week_and_skips_overlapping_weeks(self):
         rows = [("2026-01-05", 1.0, 2.0, None), ("2026-01-06", 3.0, 4.0, None), ("2026-01-12", 9.0, 9.0, None), ("2026-01-19", 5.0, 6.0, 1.0),
                 ("2026-01-26", 7.0, 8.0, 2.0)]
@@ -286,9 +295,9 @@ class ForwardTests(unittest.TestCase):
         self.assertGreater(sfs["mean"], 0.0)  # kratka noga = poslednji u rangu = trajni gubitnici: kratka pozicija zaradjuje
 
     def test_promotion_requires_all_forward_gates_and_demotion(self):
-        good = {"n": 10, "mean": 0.8, "t": 1.4, "stress_mean": 0.5, "mean_ex_best": 0.3, "sim_mean": 0.4}
+        good = {"n": 12, "mean": 0.8, "t": 1.8, "stress_mean": 0.5, "mean_ex_best": 0.3, "sim_mean": 0.4}
         self.assertTrue(D.forward_gate(good, CFG))
-        for k, v in (("n", 7), ("mean", -0.1), ("t", 0.5), ("stress_mean", -0.9), ("mean_ex_best", -0.1), ("sim_mean", -0.2), ("sim_mean", None)):
+        for k, v in (("n", 9), ("mean", -0.1), ("t", 1.2), ("stress_mean", -0.9), ("mean_ex_best", -0.1), ("sim_mean", -0.2), ("sim_mean", None)):
             self.assertFalse(D.forward_gate(dict(good, **{k: v}), CFG), k)
         rules = self.rules()
         D.apply_forward(rules, {"stocks:MOM12_1:1w:long": good}, CFG, "2026-11-01T00:00:00Z")
@@ -620,6 +629,9 @@ class ThreeUniverseRunTests(unittest.TestCase):
             self.assertEqual(set(res["universes"]), {"stocks", "crypto", "commodities"})
             self.assertEqual(len(res["tests"]), 180)
             self.assertTrue(any(r["id"] == "crypto:SPIKE_UP:7d:long" for r in res["tests"]))
+            self.assertTrue(all("exec_n" in r for r in res["tests"] if r["universe"] != "stocks"))  # izvedivost samo gde nije sve trgovacko
+            self.assertTrue(all("exec_n" not in r for r in res["tests"] if r["universe"] == "stocks"))
+            self.assertTrue(any(r.get("exec_n", 0) > 30 for r in res["tests"] if r["universe"] == "crypto"))
             self.assertTrue(any(r["id"] == "stocks:SPIKE_UP:5d:long" for r in res["tests"]))
             self.assertEqual({r["universe"] for r in res["tests"]}, {"stocks", "crypto", "commodities"})
             uni = json.loads(read_text(os.path.join(root, "discovery", "universe.json")))["universes"]
