@@ -1,11 +1,11 @@
 # Biranje strane prati / suprotno prema nedavnom ucinku
 
-Dogadjaja: 30140 u 191 dana, trosak 0.23%. Fiksno 'prati': -0.1691% (t -3.13); fiksno 'suprotno': -0.2909% (t -3.26). Autokorelacija dnevnog prosecnog 'prati' ishoda (lag 1): 0.148.
+Dogadjaja: 30096 u 191 dana, trosak 0.23%. Fiksno 'prati': -0.164% (t -3.11); fiksno 'suprotno': -0.296% (t -3.43). Autokorelacija dnevnog prosecnog 'prati' ishoda (lag 1): 0.159.
 
 | prozor W (dana) | n | neto % | t | udeo 'prati' | nulta srednja % | nulta 95. percentil % | p | prolazi FDR |
 |---|---|---|---|---|---|---|---|---|
-| 3 | 29916 | -0.125 | -2.46 | 0.42 | -0.245 | -0.077 | 0.102 | ne |
-| 5 | 29916 | -0.091 | -2.05 | 0.41 | -0.234 | -0.038 | 0.116 | ne |
-| 7 | 29916 | -0.229 | -3.68 | 0.44 | -0.229 | -0.020 | 0.417 | ne |
-| 10 | 29916 | -0.265 | -3.84 | 0.44 | -0.222 | +0.086 | 0.565 | ne |
-| 14 | 29916 | -0.257 | -4.26 | 0.49 | -0.222 | +0.056 | 0.565 | ne |
+| 3 | 29988 | -0.144 | -2.64 | 0.43 | -0.242 | -0.073 | 0.152 | ne |
+| 5 | 29988 | -0.113 | -2.28 | 0.42 | -0.232 | -0.025 | 0.160 | ne |
+| 7 | 29988 | -0.226 | -3.86 | 0.45 | -0.229 | -0.006 | 0.413 | ne |
+| 10 | 29988 | -0.276 | -3.98 | 0.45 | -0.221 | +0.067 | 0.587 | ne |
+| 14 | 29988 | -0.269 | -4.42 | 0.49 | -0.224 | +0.056 | 0.583 | ne |
