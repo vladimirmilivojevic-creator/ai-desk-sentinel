@@ -3,6 +3,8 @@ name: discovery
 # Lovac (odluka vlasnika 2026-10-10: sistem sam stalno trazi dobre prilike, bez podsetnika). Bez AI-ja, bez tajni, ne trguje.
 # Dnevno (00:40 UTC): izbor unapred za pracena pravila, merenje ishoda, radar (sta pravila kazu bas sada).
 # Nedeljno (nedelja 03:30 UTC): cela istorijska studija na sirem univerzumu (calibration/discovery.md), FDR, novi nagovestaji.
+# GitHub zakazane pokrete kasni i do nekoliko sati (2026-10-11: 00:40 je krenulo u 06:25), pa strazar (sentinel.yml, na ~5 min) poziva lab/lovac_watchdog.py
+# koji sam pokrece ovaj workflow kad je radar stariji od 25 h ili nedeljna studija starija od 8 dana (bez petlje: najvise jednom u 90 min, stop posle 3 pada).
 # Izmena ovog fajla ili config/discovery.json odmah pokrece celu studiju (nedeljni rezim). Kapije i parametri su u config/discovery.json (unapred upisani, menjaju se samo novom verzijom). Rezultati idu na main; ako preuzimanje cena ne uspe, fajlovi ostaju stari.
 on:
   push:

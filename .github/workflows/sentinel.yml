@@ -84,6 +84,14 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
 
+      - name: Cuvar Lovca (GitHub kasni ili preskace zakazane pokrete; ovde se krug ponovo pokrece ako je radar stariji od 25 h)
+        if: github.event.inputs.dry != 'true'
+        continue-on-error: true
+        timeout-minutes: 2
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python -m lab.lovac_watchdog
+
       - name: Nedeljno odrzavanje (sprecava gasenje posle 60 dana neaktivnosti)
         if: github.event_name == 'schedule'
         env:

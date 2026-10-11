@@ -294,6 +294,30 @@ class ForwardTests(unittest.TestCase):
         sfs = D.evaluate_log(slog, {"stocks": self.U}, CFG)["stocks:MOM12_1:1w:short"]
         self.assertGreater(sfs["mean"], 0.0)  # kratka noga = poslednji u rangu = trajni gubitnici: kratka pozicija zaradjuje
 
+    def test_picks_that_left_the_universe_are_still_measured(self):
+        """Pad 2026-10-11 (KeyError 'EWZ'): zamrznut izbor cija je akcija ispala iz univerzuma mora da se meri, ne da obori run ni da tiho ispadne."""
+        rules = self.rules()
+        log = D.log_signals(rules, {"stocks": self.U}, CFG, [], "t")
+        rid = "stocks:MOM12_1:1w:long"
+        victim, d = log[0]["picks"][0]["sym"], log[0]["signal_date"]
+        U2 = uni({s: b for s, b in self.px.items() if s != victim}, self.bench)
+        self.assertIsNone(U2.outcome(victim, d, 5))  # nema KeyError
+        before = D.evaluate_log(log, {"stocks": U2}, CFG)[rid]
+        self.assertGreater(before["pending"], 0)  # bez cena ishod ceka
+        orig, msgs = D.load_prices, []
+        D.load_prices = lambda syms, cache=None, max_age_h=12: {s: self.px[s] for s in syms if s in self.px}
+        try:
+            D.load_aux({"stocks": U2}, log, TCFG, dt.datetime(2026, 10, 12, tzinfo=dt.timezone.utc), None, msgs.append)
+        finally:
+            D.load_prices = orig
+        self.assertIn(victim, U2.aux)
+        self.assertEqual(U2.outcome(victim, d, 5), self.U.outcome(victim, d, 5))
+        after = D.evaluate_log(log, {"stocks": U2}, CFG)[rid]
+        self.assertGreater(after["n"], before["n"])  # izbor je ponovo u statistici
+        self.assertLess(after["pending"], before["pending"])
+        self.assertNotIn(victim, U2.px)  # a nije postao clan univerzuma
+        self.assertNotIn(victim, [s for s in U2.active(d)])
+
     def test_promotion_requires_all_forward_gates_and_demotion(self):
         good = {"n": 12, "mean": 0.8, "t": 1.8, "stress_mean": 0.5, "mean_ex_best": 0.3, "sim_mean": 0.4}
         self.assertTrue(D.forward_gate(good, CFG))
@@ -360,6 +384,22 @@ class ForwardTests(unittest.TestCase):
         self.assertEqual(radar2["rules"], [])  # stari dogadjaj nije svez
 
 
+class HysteresisTests(unittest.TestCase):
+    def test_member_stays_by_open_interest_not_by_weekend_volume(self):
+        from lab import collectors as C
+        ctx = {"xyz:AAA": {"mark": 1.0, "vol24": 20000.0, "oi_usd": 3e6}, "xyz:BBB": {"mark": 1.0, "vol24": 20000.0, "oi_usd": 3e6},
+               "xyz:CCC": {"mark": 1.0, "vol24": 20000.0, "oi_usd": 50000.0}, "xyz:DDD": {"mark": 1.0, "vol24": 300000.0, "oi_usd": 3e6}}
+        o1, o2 = C.hl_contexts, C.hl_post
+        C.hl_contexts, C.hl_post = (lambda: ctx), (lambda body: [[s, "stocks"] for s in ctx])
+        try:
+            fresh = {r["sym"] for r in D.hl_candidates(TCFG)["stocks"]}
+            kept = {r["sym"] for r in D.hl_candidates(TCFG, {"stocks": {"xyz:AAA", "xyz:CCC"}})["stocks"]}
+        finally:
+            C.hl_contexts, C.hl_post = o1, o2
+        self.assertEqual(fresh, {"xyz:DDD"})  # novi ulaze samo po prometu (prag 250000)
+        self.assertEqual(kept, {"xyz:AAA", "xyz:DDD"})  # AAA ostaje (OI iznad 200000), BBB ne ulazi, CCC ispada (OI 50000)
+
+
 class RunTests(unittest.TestCase):
     @staticmethod
     def text_of(root, rel):
@@ -395,6 +435,34 @@ class RunTests(unittest.TestCase):
                 lines1 = self.text_of(root, "discovery/forward.jsonl")
                 D.run("daily", write=True, root=root, now=now, hl=cands, log=lambda m: None)
                 self.assertEqual(lines1, self.text_of(root, "discovery/forward.jsonl"))
+        finally:
+            D.load_prices = orig
+
+    def test_daily_survives_when_a_picked_symbol_left_the_universe(self):
+        drift = [0.002 - 0.00025 * k for k in range(16)]
+        now = dt.datetime(2026, 10, 12, 0, 40, tzinfo=dt.timezone.utc)
+        cal = [d for d in weekdays("2023-01-02", 1500) if d <= "2026-10-09"][-800:]
+        px, bench = mk_universe(seed=9, drift=drift, cal=cal)
+        data = dict(px)
+        data["SPY"] = bench
+        cands = {"stocks": [{"sym": "xyz:" + s, "yahoo": s, "mark": b["rc"][-1], "vol24": 1e7} for s, b in px.items()]}
+        orig = D.load_prices
+        D.load_prices = lambda syms, cache=None, max_age_h=12: {s: data[s] for s in syms if s in data}
+        try:
+            with tempfile.TemporaryDirectory() as root:
+                os.makedirs(os.path.join(root, "config"))
+                with open(os.path.join(root, "config", "discovery.json"), "w", encoding="utf-8") as f:
+                    json.dump(TCFG, f)
+                self.assertEqual(D.run("weekly", write=True, root=root, now=now, hl=cands, log=lambda m: None), 0)
+                rows = [json.loads(x) for x in self.text_of(root, "discovery/forward.jsonl").splitlines() if x.strip()]
+                self.assertTrue(rows)
+                victim = rows[0]["picks"][0]["sym"]
+                gone = {"stocks": [c for c in cands["stocks"] if c["yahoo"] != victim]}
+                msgs = []
+                self.assertEqual(D.run("daily", write=True, root=root, now=now, hl=gone, log=msgs.append), 0)
+                self.assertTrue(any(victim in m and "merenje ishoda" in m for m in msgs))
+                self.assertEqual(rows[0], json.loads(self.text_of(root, "discovery/forward.jsonl").splitlines()[0]))  # izbor je ostao zamrznut
+                self.assertTrue(json.loads(self.text_of(root, "discovery/radar.json"))["generated_utc"])
         finally:
             D.load_prices = orig
 

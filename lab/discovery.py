@@ -423,6 +423,7 @@ class Universe:
         self.feat = {s: features(b, cfg) for s, b in px.items()}
         self.ev = {s: event_flags(b, ecfg) for s, b in px.items()}
         self._um = {}
+        self.aux, self.aux_idx = {}, {}  # cene izabranih simbola koji su izasli iz univerzuma: SAMO za merenje ishoda
 
     def active(self, d):
         """Simboli koji su clanovi univerzuma i imaju svecu na dan d."""
@@ -440,15 +441,28 @@ class Universe:
     def can(self, sym):
         return self.tradable is None or sym in self.tradable
 
+    def add_aux(self, sym, b):
+        """Zamrznut izbor mora da se meri i kad simbol vise nije clan univerzuma (npr. promet pao ispod praga): inace bi ispao iz statistike
+        (pristrasnost preziveleih) ili srusio run. Pomocne cene nikad ne ulaze u studiju, clanstvo ni nove izbore."""
+        self.aux[sym] = b
+        self.aux_idx[sym] = {d: i for i, d in enumerate(b["d"])}
+
+    def bars(self, sym):
+        return self.px.get(sym) or self.aux.get(sym)
+
+    def ix(self, sym):
+        return self.idx.get(sym) or self.aux_idx.get(sym)
+
     def explorer(self, sym):
         return self.ex.get(sym) or ("xyz:" + sym if self.name == "stocks" else sym)
 
     def outcome(self, sym, d, H):
         """Prinos u % od otvaranja sledece svece posle d do zatvaranja H svece, ili None. Ulaz je uvek POSLE signala."""
-        i = self.idx[sym].get(d)
+        ix = self.ix(sym)
+        i = ix.get(d) if ix else None
         if i is None:
             return None
-        b, e = self.px[sym], i + 1
+        b, e = self.bars(sym), i + 1
         if e + H - 1 >= len(b["c"]) or not b["o"][e]:
             return None
         return (b["c"][e + H - 1] / b["o"][e] - 1.0) * 100.0
@@ -707,8 +721,9 @@ def sim_trade(b, e, H, side, sp, tp):
 
 def pick_sim(U, p, d, H, leg):
     """Ishod trgovanja (stop 2.5 x ATR u opsegu 3-12%, cilj 3 x stop) za jedan izbor, ili None."""
-    b, i = U.px[p["sym"]], U.idx[p["sym"]].get(d)
-    if i is None:
+    b, ix = U.bars(p["sym"]), U.ix(p["sym"])
+    i = ix.get(d) if ix else None
+    if b is None or i is None:
         return None
     a = atr_pct(b, i)
     if a is None:
@@ -915,8 +930,11 @@ def build_radar(rules, unis, cfg, now_iso):
 
 
 # ------------------------------------------------------------------ univerzum sa Hyperliquid-a
-def hl_candidates(cfg):
-    """{ime univerzuma: [{sym, yahoo, mark, vol24}]} sa Hyperliquid-a (isto trziste kao Liquid), pre provere cena na Yahoo-u."""
+def hl_candidates(cfg, prev=None):
+    """{ime univerzuma: [{sym, yahoo, mark, vol24}]} sa Hyperliquid-a (isto trziste kao Liquid), pre provere cena na Yahoo-u.
+    prev: {ime univerzuma: skup simbola iz proslog pokretanja}. Ulazi se po prometu za 24 h (min_vol24_usd), ali se ostaje po otvorenoj
+    poziciji (keep_min_oi_usd): promet za 24 h vikendom padne na 2-40% radnog (GME u nedelju 8%), pa bi spisak i izbori unapred nestajali
+    iz dana u dan, a nedeljna studija bi uvek videla najmanji univerzum."""
     from . import collectors as C
     ctx = C.hl_contexts()
     cats = {c[0]: c[1] for c in C.hl_post({"type": "perpCategories"})}
@@ -926,7 +944,8 @@ def hl_candidates(cfg):
         src = u["source"]
         if src == "hl_xyz_stocks":
             for s, c in ctx.items():
-                if c["vol24"] >= u["min_vol24_usd"] and s.startswith("xyz:") and (cats.get(s) or "").lower() in ("stocks", "stock"):
+                keep = s in (prev or {}).get(name, ()) and (c.get("oi_usd") or 0) >= u.get("keep_min_oi_usd", float("inf"))
+                if (c["vol24"] >= u["min_vol24_usd"] or keep) and s.startswith("xyz:") and (cats.get(s) or "").lower() in ("stocks", "stock"):
                     rows.append({"sym": s, "yahoo": s[4:], "mark": c["mark"], "vol24": c["vol24"]})
         elif src == "yahoo_futures":
             for ysym, hl in u["symbols"].items():
@@ -1100,8 +1119,8 @@ def to_markdown(res):
 
 
 # ------------------------------------------------------------------ glavni tok
-def prepare(cfg, now, cache, log=print, hl=None):
-    cands = hl if hl is not None else hl_candidates(cfg)
+def prepare(cfg, now, cache, log=print, hl=None, prev=None):
+    cands = hl if hl is not None else hl_candidates(cfg, prev)
     unis, used = {}, {}
     for name, ucfg in cfg["universes"].items():
         src, rows = ucfg["source"], cands.get(name, [])
@@ -1121,13 +1140,40 @@ def prepare(cfg, now, cache, log=print, hl=None):
     return unis, used
 
 
+def load_aux(unis, rows, cfg, now, cache=None, log=print):
+    """Cene simbola iz zamrznutih izbora koji vise nisu u univerzumu, povucene posebno samo za merenje ishoda. Ako cene ne stignu, ishod ostaje
+    na cekanju (nikad se ne racuna kao nula ni ne ispada iz statistike tiho)."""
+    need = {}
+    for x in rows:
+        U = unis.get(x["universe"])
+        for p in (x["picks"] if U is not None else ()):
+            if p["sym"] not in U.px and p["sym"] not in U.aux:
+                need.setdefault(x["universe"], set()).add(p["sym"])
+    for name, syms in sorted(need.items()):
+        U, ucfg = unis[name], cfg["universes"][name]
+        if ucfg["source"] == "binance_pit":
+            raw, _ = load_binance(sorted(syms), int((now - dt.timedelta(days=ucfg["history_days"])).timestamp() * 1000), cache)
+            got = {s: clean_series(b) for s, b in raw.items()}
+        else:
+            got = load_prices(sorted(syms), cache)
+        for s in sorted(syms):
+            b = got.get(s)
+            if not b or not b["c"]:
+                log("izbor %s je izasao iz univerzuma %s i cene se ne mogu preuzeti: ishod ceka" % (s, name))
+                continue
+            U.add_aux(s, trim_incomplete(b, now, U.bpw))
+            log("izbor %s je izasao iz univerzuma %s: cene povucene samo za merenje ishoda" % (s, name))
+
+
 def run(mode, cache=None, write=True, root=None, log=print, now=None, hl=None, strict=True):
     root = root or ROOT
     cfg = load_cfg(os.path.join(root, "config", "discovery.json"))
     now = now or dt.datetime.now(dt.timezone.utc)
     now_iso = now.strftime("%Y-%m-%dT%H:%M:%SZ")
     d_dir = os.path.join(root, "discovery")
-    unis, used = prepare(cfg, now, cache, log, hl)
+    prev = {k: {x["sym"] for x in v if isinstance(x, dict) and x.get("sym")}
+            for k, v in _load(os.path.join(d_dir, "universe.json"), {}).get("universes", {}).items()}
+    unis, used = prepare(cfg, now, cache, log, hl, prev)
     if not unis:
         log("nema nijednog univerzuma: ne diram stare fajlove")
         return 1
@@ -1154,6 +1200,7 @@ def run(mode, cache=None, write=True, root=None, log=print, now=None, hl=None, s
     if os.path.exists(log_path):
         with open(log_path, encoding="utf-8") as f:
             log_rows = [json.loads(x) for x in f if x.strip()]
+    load_aux(unis, log_rows, cfg, now, cache, log)
     new = log_signals(rules, unis, cfg, log_rows, now_iso)
     log_rows += new
     fst = evaluate_log(log_rows, unis, cfg)
