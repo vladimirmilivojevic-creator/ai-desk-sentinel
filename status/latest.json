@@ -1,0 +1,395 @@
+{
+ "v": 1,
+ "updated": "2026-10-11T00:40:28Z",
+ "mode": "shadow",
+ "fire_enabled": false,
+ "instruments": [
+  {
+   "key": "BRENT",
+   "name": "Brent",
+   "px": 102.35,
+   "ch24": 0.5106550132573773,
+   "m60": 0.01954461057362966,
+   "m240": 0.35297578193940193,
+   "stale": false,
+   "hot": false,
+   "provider": "hl-sveće"
+  },
+  {
+   "key": "WTI",
+   "name": "WTI",
+   "px": 91.185,
+   "ch24": 0.39194530381267967,
+   "m60": 0.0680399021103284,
+   "m240": 0.3775786530459513,
+   "stale": false,
+   "hot": false,
+   "provider": "hl-sveće"
+  },
+  {
+   "key": "GOLD",
+   "name": "Zlato",
+   "px": 4190.8,
+   "ch24": -0.03577988216492134,
+   "m60": -0.004772130756380832,
+   "m240": 0.011932319881635678,
+   "stale": false,
+   "hot": false,
+   "provider": "hl-sveće"
+  },
+  {
+   "key": "SP500",
+   "name": "SP500",
+   "px": 7808.7,
+   "ch24": -0.0844497332156191,
+   "m60": 0.035870303232177214,
+   "m240": -0.016645326504483027,
+   "stale": false,
+   "hot": false,
+   "provider": "hl-sveće"
+  },
+  {
+   "key": "NASDAQ",
+   "name": "Nasdaq",
+   "px": 30917.0,
+   "ch24": -0.0711076634668184,
+   "m60": 0.0,
+   "m240": 0.02911867477675134,
+   "stale": false,
+   "hot": false,
+   "provider": "hl-sveće"
+  },
+  {
+   "key": "BTC",
+   "name": "BTC",
+   "px": 82927.0,
+   "ch24": 0.5187941672020191,
+   "m60": -0.10239483448176712,
+   "m240": -0.11683368664482385,
+   "stale": false,
+   "hot": false,
+   "provider": "hl-sveće"
+  },
+  {
+   "key": "ETH",
+   "name": "ETH",
+   "px": 2503.7,
+   "ch24": 0.610809724733774,
+   "m60": -0.09576633015442315,
+   "m240": -0.09177972865124229,
+   "stale": false,
+   "hot": false,
+   "provider": "hl-sveće"
+  },
+  {
+   "key": "VIX",
+   "name": "VIX",
+   "px": 20.0,
+   "ch24": 0.0,
+   "m60": 0.0,
+   "m240": 0.0,
+   "stale": false,
+   "hot": false,
+   "provider": "hl-bafer"
+  },
+  {
+   "key": "DXY",
+   "name": "DXY",
+   "px": 97.15,
+   "ch24": 0.0,
+   "m60": 0.0,
+   "m240": 0.0,
+   "stale": false,
+   "hot": false,
+   "provider": "hl-bafer"
+  },
+  {
+   "key": "OVX",
+   "name": "OVX",
+   "px": 48.900001525878906,
+   "ch24": null,
+   "m60": null,
+   "m240": null,
+   "stale": true,
+   "hot": false,
+   "provider": "yahoo"
+  },
+  {
+   "key": "GVZ",
+   "name": "GVZ",
+   "px": 22.790000915527344,
+   "ch24": null,
+   "m60": null,
+   "m240": null,
+   "stale": true,
+   "hot": false,
+   "provider": "yahoo"
+  }
+ ],
+ "themes": {
+  "CRYPTO": {
+   "tier": null,
+   "score": 0,
+   "families": []
+  },
+  "EQUITY": {
+   "tier": null,
+   "score": 0,
+   "families": []
+  },
+  "GOLD": {
+   "tier": null,
+   "score": 0,
+   "families": []
+  },
+  "OIL": {
+   "tier": null,
+   "score": 0,
+   "families": []
+  }
+ },
+ "events": [
+  {
+   "id": "EV-20261008T1725Z-EQUITY",
+   "ts": "2026-10-08T17:25:24Z",
+   "theme": "EQUITY",
+   "tier": "N2",
+   "text": "N2 EQUITY | Nasdaq -1,2%/60m | ocena 4,5 (P 2,0, H 1,0, M 1,5) | mozak se NE okida (fire_enabled=false (senka))",
+   "scheduled": false
+  }
+ ],
+ "sources": {
+  "hl_ctx_main": {
+   "ok": true,
+   "fails": 0,
+   "last_ok": "2026-10-11T00:40:28Z"
+  },
+  "hl_ctx_xyz": {
+   "ok": true,
+   "fails": 0,
+   "last_ok": "2026-10-11T00:40:28Z"
+  },
+  "hl_candles_BRENT": {
+   "ok": true,
+   "fails": 0,
+   "last_ok": "2026-10-11T00:40:28Z"
+  },
+  "yahoo_BRENT": {
+   "ok": true,
+   "fails": 0,
+   "last_ok": "2026-10-11T00:40:28Z"
+  },
+  "hl_candles_WTI": {
+   "ok": true,
+   "fails": 0,
+   "last_ok": "2026-10-11T00:40:28Z"
+  },
+  "yahoo_WTI": {
+   "ok": true,
+   "fails": 0,
+   "last_ok": "2026-10-11T00:40:28Z"
+  },
+  "hl_candles_GOLD": {
+   "ok": true,
+   "fails": 0,
+   "last_ok": "2026-10-11T00:40:28Z"
+  },
+  "yahoo_GOLD": {
+   "ok": true,
+   "fails": 0,
+   "last_ok": "2026-10-11T00:40:28Z"
+  },
+  "hl_candles_SP500": {
+   "ok": true,
+   "fails": 0,
+   "last_ok": "2026-10-11T00:40:28Z"
+  },
+  "yahoo_SP500": {
+   "ok": true,
+   "fails": 0,
+   "last_ok": "2026-10-11T00:40:28Z"
+  },
+  "hl_candles_NASDAQ": {
+   "ok": true,
+   "fails": 0,
+   "last_ok": "2026-10-11T00:40:28Z"
+  },
+  "yahoo_NASDAQ": {
+   "ok": true,
+   "fails": 0,
+   "last_ok": "2026-10-11T00:40:28Z"
+  },
+  "hl_candles_BTC": {
+   "ok": true,
+   "fails": 0,
+   "last_ok": "2026-10-11T00:40:28Z"
+  },
+  "yahoo_BTC": {
+   "ok": true,
+   "fails": 0,
+   "last_ok": "2026-10-11T00:40:28Z"
+  },
+  "hl_candles_ETH": {
+   "ok": true,
+   "fails": 0,
+   "last_ok": "2026-10-11T00:40:28Z"
+  },
+  "yahoo_ETH": {
+   "ok": true,
+   "fails": 0,
+   "last_ok": "2026-10-11T00:40:28Z"
+  },
+  "yahoo_VIX": {
+   "ok": true,
+   "fails": 0,
+   "last_ok": "2026-10-11T00:40:28Z"
+  },
+  "yahoo_DXY": {
+   "ok": true,
+   "fails": 0,
+   "last_ok": "2026-10-11T00:40:28Z"
+  },
+  "gnews_0": {
+   "ok": true,
+   "fails": 0,
+   "last_ok": "2026-10-11T00:40:29Z"
+  },
+  "gnews_1": {
+   "ok": true,
+   "fails": 0,
+   "last_ok": "2026-10-11T00:40:29Z"
+  },
+  "gnews_2": {
+   "ok": true,
+   "fails": 0,
+   "last_ok": "2026-10-11T00:40:29Z"
+  },
+  "gnews_3": {
+   "ok": true,
+   "fails": 0,
+   "last_ok": "2026-10-11T00:40:29Z"
+  },
+  "rss_BBC": {
+   "ok": true,
+   "fails": 0,
+   "last_ok": "2026-10-11T00:40:29Z"
+  },
+  "rss_Al Jazeera": {
+   "ok": true,
+   "fails": 0,
+   "last_ok": "2026-10-11T00:40:29Z"
+  },
+  "official_Federal Reserve": {
+   "ok": true,
+   "fails": 0,
+   "last_ok": "2026-10-11T00:40:29Z"
+  },
+  "official_EIA": {
+   "ok": true,
+   "fails": 0,
+   "last_ok": "2026-10-11T00:40:38Z"
+  },
+  "polymarket": {
+   "ok": true,
+   "fails": 0,
+   "last_ok": "2026-10-11T00:40:38Z"
+  },
+  "hl_vol_BRENT": {
+   "ok": true,
+   "fails": 0,
+   "last_ok": "2026-10-10T11:45:35Z"
+  },
+  "hl_vol_WTI": {
+   "ok": true,
+   "fails": 0,
+   "last_ok": "2026-10-10T11:45:35Z"
+  },
+  "hl_vol_GOLD": {
+   "ok": true,
+   "fails": 0,
+   "last_ok": "2026-10-10T11:45:36Z"
+  },
+  "hl_vol_SP500": {
+   "ok": true,
+   "fails": 0,
+   "last_ok": "2026-10-10T11:45:36Z"
+  },
+  "hl_vol_NASDAQ": {
+   "ok": true,
+   "fails": 0,
+   "last_ok": "2026-10-10T11:45:36Z"
+  },
+  "hl_vol_BTC": {
+   "ok": true,
+   "fails": 0,
+   "last_ok": "2026-10-10T11:45:36Z"
+  },
+  "hl_vol_ETH": {
+   "ok": true,
+   "fails": 0,
+   "last_ok": "2026-10-10T11:45:36Z"
+  },
+  "yahoo_OVX": {
+   "ok": true,
+   "fails": 0,
+   "last_ok": "2026-10-11T00:40:28Z"
+  },
+  "yahoo_GVZ": {
+   "ok": true,
+   "fails": 0,
+   "last_ok": "2026-10-11T00:40:28Z"
+  },
+  "rss_Guardian": {
+   "ok": true,
+   "fails": 0,
+   "last_ok": "2026-10-11T00:40:29Z"
+  },
+  "rss_France 24": {
+   "ok": true,
+   "fails": 0,
+   "last_ok": "2026-10-11T00:40:29Z"
+  },
+  "rss_CNBC": {
+   "ok": true,
+   "fails": 0,
+   "last_ok": "2026-10-11T00:40:29Z"
+  },
+  "rss_OilPrice": {
+   "ok": true,
+   "fails": 0,
+   "last_ok": "2026-10-11T00:40:29Z"
+  },
+  "rss_NPR": {
+   "ok": true,
+   "fails": 0,
+   "last_ok": "2026-10-11T00:40:29Z"
+  },
+  "rss_Kyiv Independent": {
+   "ok": true,
+   "fails": 0,
+   "last_ok": "2026-10-11T00:40:29Z"
+  },
+  "rss_MarketWatch": {
+   "ok": true,
+   "fails": 0,
+   "last_ok": "2026-10-11T00:40:29Z"
+  },
+  "official_State Department": {
+   "ok": true,
+   "fails": 0,
+   "last_ok": "2026-10-11T00:40:38Z"
+  },
+  "official_Bank of England": {
+   "ok": true,
+   "fails": 0,
+   "last_ok": "2026-10-11T00:40:38Z"
+  }
+ },
+ "heartbeat": {
+  "ts": "2026-10-11T00:40:28Z",
+  "interval_min": 5
+ },
+ "scheduled": [],
+ "degraded": [],
+ "headlines_scored": 0
+}

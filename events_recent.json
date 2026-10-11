@@ -1,0 +1,12 @@
+{
+ "events": [
+  {
+   "id": "EV-20261008T1725Z-EQUITY",
+   "ts": "2026-10-08T17:25:24Z",
+   "theme": "EQUITY",
+   "tier": "N2",
+   "text": "N2 EQUITY | Nasdaq -1,2%/60m | ocena 4,5 (P 2,0, H 1,0, M 1,5) | mozak se NE okida (fire_enabled=false (senka))",
+   "scheduled": false
+  }
+ ]
+}
