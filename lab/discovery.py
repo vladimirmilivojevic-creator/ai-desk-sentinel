@@ -201,17 +201,22 @@ def fetch_binance_weekly(sym, start_ms):
     return {dt.datetime.fromtimestamp(r[0] / 1000.0, dt.timezone.utc).date().isoformat(): float(r[7]) for r in j}
 
 
-def binance_superset(syms, start_ms, top_n, factor, cache=None, max_age_h=12):
+def binance_superset(syms, start_ms, top_n, factor, cache=None, max_age_h=12, memo=None):
     """Jeftin nadskup za dnevno preuzimanje: simboli koji su u BILO KOJOJ nedelji bili medju prvih factor*top_n po prometu poslednje cetiri
     nedelje (nedeljne svece, jedan poziv po simbolu). Dnevno clanstvo (prvih top_n po 30 dana) je skoro uvek unutar tog nadskupa.
     Vraca (skup simbola, broj neuspelih)."""
     def one(sym):
+        mk = ("w", sym, int(start_ms))
+        if memo is not None and mk in memo:
+            return sym, memo[mk]
         p = os.path.join(cache, "bw_%s.json" % sym) if cache else None
         if p and os.path.exists(p) and time.time() - os.path.getmtime(p) < max_age_h * 3600:
             return sym, _load(p, None)
         w = fetch_binance_weekly(sym, start_ms)
         if w is None:
             w = fetch_binance_weekly(sym, start_ms)
+        if memo is not None and w is not None:
+            memo[mk] = w
         if p and w is not None:
             os.makedirs(cache, exist_ok=True)
             with open(p, "w", encoding="utf-8") as f:
@@ -237,15 +242,20 @@ def binance_superset(syms, start_ms, top_n, factor, cache=None, max_age_h=12):
     return keep, fails
 
 
-def load_binance(syms, start_ms, cache=None, max_age_h=12):
-    """({sym: svece}, broj_neuspelih). Svaki simbol se pokusa dva puta."""
+def load_binance(syms, start_ms, cache=None, max_age_h=12, memo=None):
+    """({sym: svece}, broj_neuspelih). Svaki simbol se pokusa dva puta. memo: recnik za jedan krug (dva univerzuma ne preuzimaju isto dvaput)."""
     def one(sym):
+        mk = ("d", sym, int(start_ms))
+        if memo is not None and mk in memo:
+            return sym, memo[mk]
         p = os.path.join(cache, "bn_%s.json" % sym) if cache else None
         if p and os.path.exists(p) and time.time() - os.path.getmtime(p) < max_age_h * 3600:
             return sym, _load(p, None)
         b = fetch_binance(sym, start_ms)
         if b is None:
             b = fetch_binance(sym, start_ms)
+        if memo is not None and b is not None:
+            memo[mk] = b
         if p and b is not None:
             os.makedirs(cache, exist_ok=True)
             with open(p, "w", encoding="utf-8") as f:
@@ -274,8 +284,9 @@ def clean_series(b, max_jump=25.0, max_gap_days=4):
     return {k: v[cut:] for k, v in b.items()} if cut else b
 
 
-def pit_membership(px, top_n, win):
-    """{sym: skup datuma}: simbol je clan na dan d ako je medju prvih top_n po prosecnom dnevnom prometu poslednjih `win` svecâ zakljucno sa d.
+def pit_membership(px, top_n, win, rank_from=0):
+    """{sym: skup datuma}: simbol je clan na dan d ako je medju prvih top_n po prosecnom dnevnom prometu poslednjih `win` svecâ zakljucno sa d
+    (a ne medju prvih rank_from: tako se univerzum manjih kovanica ne preklapa sa velikim).
     Koristi samo podatke do d, a ukljucuje i simbole koji su kasnije ugaseni (nema pristrasnosti preziveli)."""
     byday = {}
     for s, b in px.items():
@@ -289,7 +300,7 @@ def pit_membership(px, top_n, win):
     mem = {}
     for day, rows in byday.items():
         rows.sort(key=lambda r: (-r[0], r[1]))
-        for _, s in rows[:top_n]:
+        for _, s in rows[rank_from:top_n]:
             mem.setdefault(s, set()).add(day)
     return mem
 
@@ -1023,7 +1034,7 @@ def build_futures_prices(cands, ucfg, now, cache=None, log=print):
     return {"px": keep, "bench": bench, "used": used, "mem": None, "tradable": tradable, "ex": ex}
 
 
-def build_crypto_prices(cands, ucfg, now, cache=None, log=print, extra_exclude=()):
+def build_crypto_prices(cands, ucfg, now, cache=None, log=print, extra_exclude=(), memo=None):
     """Kripto: svi Binance USDT parovi (i ugaseni), clanstvo na dan = prvih top_n po prometu poslednjih rank_window dana (point-in-time).
     Studija koristi sve clanove; trguje se samo kovanicama koje Liquid ima i cijom se cenom HL oznaka slaze sa Binance-om."""
     allsyms = binance_symbols(log)
@@ -1041,12 +1052,12 @@ def build_crypto_prices(cands, ucfg, now, cache=None, log=print, extra_exclude=(
         return not any(base.endswith(x) and base[:-len(x)] + "USDT" in sset for x in ("UP", "DOWN", "BULL", "BEAR"))
 
     syms = [s for s in allsyms if allowed(s)]
-    sup, wf = binance_superset(syms, start_ms, ucfg["top_n"], ucfg.get("prefilter_factor", 1.5), cache)
+    sup, wf = binance_superset(syms, start_ms, ucfg["top_n"], ucfg.get("prefilter_factor", 1.5), cache, memo=memo)
     if wf > max(5, int(0.03 * len(syms))):
         log("Binance: %d od %d simbola (nedeljne svece) nije preuzeto: kripto se preskace" % (wf, len(syms)))
         return None
     sup.add(ucfg["benchmark"])
-    raw, fails = load_binance(sorted(sup), start_ms, cache)
+    raw, fails = load_binance(sorted(sup), start_ms, cache, memo=memo)
     if fails > max(3, int(0.03 * len(sup))):
         log("Binance: %d od %d simbola nije preuzeto: kripto se preskace" % (fails, len(sup)))
         return None
@@ -1062,7 +1073,7 @@ def build_crypto_prices(cands, ucfg, now, cache=None, log=print, extra_exclude=(
     bench = px.get(ucfg["benchmark"])
     if not bench:
         return None
-    mem = pit_membership(px, ucfg["top_n"], ucfg["rank_window"])
+    mem = pit_membership(px, ucfg["top_n"], ucfg["rank_window"], ucfg.get("rank_from", 0))
     px = {s: b for s, b in px.items() if s in mem}
     tradable, ex = set(), {}
     for c in cands:
@@ -1122,13 +1133,14 @@ def to_markdown(res):
 def prepare(cfg, now, cache, log=print, hl=None, prev=None):
     cands = hl if hl is not None else hl_candidates(cfg, prev)
     unis, used = {}, {}
+    memo = {}
     for name, ucfg in cfg["universes"].items():
         src, rows = ucfg["source"], cands.get(name, [])
         if src == "yahoo_futures":
             r = build_futures_prices(rows, ucfg, now, cache, log)
         elif src == "binance_pit":
             tokens = {c["yahoo"] + "B" for c in cands.get("stocks", []) if c.get("yahoo")}  # Binance akcijski tokeni (CRCLB, SNDKB...) nisu kripto
-            r = build_crypto_prices(rows, ucfg, now, cache, log, tokens)
+            r = build_crypto_prices(rows, ucfg, now, cache, log, tokens, memo=memo)
         else:
             px, bench, u = build_universe_prices(rows, ucfg, now, cache, log)
             r = {"px": px, "bench": bench, "used": u, "mem": None, "tradable": None, "ex": None} if px else None

@@ -236,6 +236,7 @@
    "why": "istrazivanje: obrtanje posle 24 h pomaka (t=-1,09)"
   }
  ],
+ "shadow_universe": {"file": "config/lab_v3.json", "max": 60, "_comment": "Dodatni instrumenti iz snimka lab_v3 (likvidni na Liquid-u, a nisu u zivom univerzumu): satna pravila se na njima SAMO mere (senka, lab/extended.json); Istrazivac ih ne trguje dok se ne dodaju u njegovu tabelu."},
  "governor": {
   "min_n": 30,
   "t_naive_max": -2.0,

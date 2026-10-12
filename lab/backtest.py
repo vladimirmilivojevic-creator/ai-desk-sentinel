@@ -91,8 +91,8 @@ def collect_signals(series, ctx, fam, params, warm=WARMUP):
     return sigs
 
 
-def evaluate(series, sigs, horizons=HORIZONS, with_x=True, ctx_bench=None):
-    """Vraca {test: lista (t, ret%, sym)} za fiksne horizonte i (opciono) X24."""
+def evaluate(series, sigs, horizons=HORIZONS, with_x=True, ctx_bench=None, x_daily=False):
+    """Vraca {test: lista (t, ret%, sym)} za fiksne horizonte i (opciono) X24 (satna pravila) ili X7 (dnevna pravila, x_daily)."""
     res = {}
     for H in horizons:
         rows = []
@@ -117,6 +117,18 @@ def evaluate(series, sigs, horizons=HORIZONS, with_x=True, ctx_bench=None):
             if r is not None:
                 rows.append((t, r, sym))
         res["X24"] = rows
+    if x_daily:
+        rows = []
+        for sym, i, t, side in stats.thin(sigs, 7):
+            S = series[sym]
+            a = S.atr_pct[i]
+            if a is None:
+                continue
+            sp = round(min(max(sim.ATR_MULT * a * 100.0, 3.0), 12.0), 2)  # isto kao Istrazivac za sedmodnevna drzanja
+            r = sim.stop_return(S, i, side, sp, 7, tp_mult=3.0)
+            if r is not None:
+                rows.append((t, r, sym))
+        res["X7"] = rows
     return res
 
 

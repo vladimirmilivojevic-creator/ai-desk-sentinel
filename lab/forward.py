@@ -14,9 +14,10 @@ from .indicators import Series
 HOUR = 3600000
 DAY = 86400000
 WARM = 205
-REV = 6  # povecaj kad se promeni izlaz/logika: laboratorija se tada odmah ponovo racuna u istom satu
+REV = 7  # povecaj kad se promeni izlaz/logika: laboratorija se tada odmah ponovo racuna u istom satu
 HOLD_HOURS_1H = 24
 HOLD_HOURS_1D = 168
+SHADOW_BUDGET_S = 120  # senka (dodatni instrumenti) sme najvise toliko da traje; zivi deo se tada vec zavrsio i sacuvao
 
 
 def _load(path, default):
@@ -44,9 +45,12 @@ def live_config(cfg):
     return {x["id"]: int(x.get("hold_hours", HOLD_HOURS_1H)) for x in cfg.get("live_variants", [])}
 
 
-def build_forward_series(cfg, days, interval, with_funding, log):
+def build_forward_series(cfg, days, interval, with_funding, log, deadline=None):
     series = {}
     for u in cfg["universe"]:
+        if deadline is not None and time.monotonic() > deadline:
+            log("vremenski budzet potrosen posle %d instrumenata" % len(series))
+            break
         try:
             cs = data.fetch_candles(u["hl"], days, interval=interval)
         except Exception as e:  # noqa: BLE001
@@ -81,9 +85,9 @@ def signals_since(series, ctx, fam, params, t0, last_only=False):
     return out
 
 
-def evaluate_forward(series, ctx, sigs, horizons, with_x):
+def evaluate_forward(series, ctx, sigs, horizons, with_x, x_daily=False):
     """Isti testovi kao u backtest-u, samo nad signalima posle T0. Vraca {test: lista (t, ret%, sym)}."""
-    return backtest.evaluate(series, sigs, horizons, with_x, ctx["bench"])
+    return backtest.evaluate(series, sigs, horizons, with_x, ctx["bench"], x_daily=x_daily)
 
 
 def summarize_rows(rows):
@@ -128,7 +132,7 @@ def run_interval(cfg, cands, t0, now_ms, interval, log):
     out_vars, triggers = {}, []
     for vid, fam, params in variants:
         sigs = signals_since(series, ctx, fam, params, t0)
-        ev = evaluate_forward(series, ctx, sigs, horizons, not daily)
+        ev = evaluate_forward(series, ctx, sigs, horizons, not daily, x_daily=daily)
         tests = {name: summarize_rows(rows) for name, rows in ev.items() if rows}
         out_vars[vid] = {"family": fam, "params": params, "interval": interval, "signals": len(sigs), "tests": tests,
                          "live": vid in live}
@@ -139,6 +143,45 @@ def run_interval(cfg, cands, t0, now_ms, interval, log):
     last_bar = max(S.t[-1] for S in series.values())
     marks = {sym: S.c[-1] for sym, S in series.items()}
     return out_vars, triggers, last_bar, len(series), marks
+
+
+def shadow_instruments(cfg, root):
+    """Dodatni instrumenti koji NISU u zivom univerzumu (config/lab.json 'shadow_universe': {file, max} ili {instruments}): za njih se samo
+    belezi sta bi pravila radila (signali i ishodi), a Istrazivac ih ne trguje dok se ne dodaju i u njegovu tabelu."""
+    sh = cfg.get("shadow_universe")
+    if not sh:
+        return []
+    items = sh.get("instruments")
+    if items is None:
+        items = _load(os.path.join(root, sh.get("file", "config/lab_v3.json")), {}).get("universe", [])
+    live = {u["sym"] for u in cfg["universe"]}
+    return [u for u in items if u["sym"] not in live][:int(sh.get("max", 80))]
+
+
+def run_shadow(cfg, cands, root, t0, now_ms, log, deadline):
+    """Satna pravila na dodatnim instrumentima: isti motor, samo senka. BTC se uzima zbog konteksta (BTCLEAD), a njegovi signali se ne racunaju.
+    Vraca {instruments, syms, variants} ili None kad nema dodatnih instrumenata. Nikad ne dira zive fajlove."""
+    extra = shadow_instruments(cfg, root)
+    if not extra:
+        return None
+    days = int(min(60, max(14, (now_ms - t0) / DAY + 12)))
+    series = build_forward_series(dict(cfg, universe=extra), days, "1h", with_funding=False, log=log, deadline=deadline)
+    ext_syms = set(series)
+    if len(ext_syms) < 5:
+        return {"instruments": len(ext_syms), "syms": sorted(ext_syms), "variants": {}}
+    btc = [u for u in cfg["universe"] if u["sym"] == "BTC"]
+    if btc and "BTC" not in series:
+        series.update(build_forward_series(dict(cfg, universe=btc), days, "1h", with_funding=False, log=log))
+    ctx = backtest.make_ctx(series, backtest.HORIZONS)
+    out = {}
+    for vid, fam, params in rules.default_variants() + rules.candidate_variants(cands):
+        try:
+            sigs = [x for x in signals_since(series, ctx, fam, params, t0) if x[0] in ext_syms]
+            ev = evaluate_forward(series, ctx, sigs, backtest.HORIZONS, True)
+            out[vid] = {"signals": len(sigs), "tests": {name: summarize_rows([r for r in rows if r[2] in ext_syms]) for name, rows in ev.items() if rows}}
+        except Exception as e:  # noqa: BLE001  # jedna varijanta bez konteksta (npr. fonding) ne sme da obori ostale
+            log("senka: varijanta %s preskocena (%s)" % (vid, type(e).__name__))
+    return {"instruments": len(ext_syms), "syms": sorted(ext_syms), "variants": out}
 
 
 def governor(cfg, all_vars):
@@ -307,7 +350,16 @@ def run(state_dir, root=None, now_ms=None, force=False, log=print):
     meta["rev"] = REV
     meta["updated_utc"] = iso(now_ms)
     _save(os.path.join(lab_dir, "meta.json"), meta)
-    return {"ok": True, "signals": totals["signals"], "triggers": len(all_triggers), "live_triggers": len(live_triggers),
+    n_shadow = None
+    try:  # senka dolazi POSLE svega zivog (to je vec sacuvano) i nikad ne sme da obori laboratoriju ni da je uspori preko budzeta
+        sh = run_shadow(cfg, cands, root, t0, now_ms, log, time.monotonic() + SHADOW_BUDGET_S)
+        if sh is not None:
+            sh.update(updated_utc=iso(now_ms), t0_utc=meta["t0_utc"], bar_utc=iso(last_bar))
+            _save(os.path.join(lab_dir, "extended.json"), sh)
+            n_shadow = sh["instruments"]
+    except Exception as e:  # noqa: BLE001
+        log("senka nije izracunata: %s" % type(e).__name__)
+    return {"ok": True, "shadow_instruments": n_shadow, "signals": totals["signals"], "triggers": len(all_triggers), "live_triggers": len(live_triggers),
             "instruments": n_sym}
 
 

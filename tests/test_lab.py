@@ -153,6 +153,21 @@ class SimTests(unittest.TestCase):
         r = sim.stop_return(S2, 60, "long", 2.0, 24)
         self.assertAlmostEqual(r, (S2.c[84] / S2.c[60] - 1) * 100 - sim.COST_PCT, places=6)
 
+    def test_daily_x7_uses_atr_stop_clamped_3_to_12_and_target_3x(self):
+        S = self.S
+        S.atr_pct[60] = 0.0001  # stop se podize na 3% (donja granica dnevnih pravila)
+        S.h[63] = S.c[60] * 1.10  # cilj je 3 x 3% = 9%
+        res = backtest.evaluate({"BTC": S}, [("BTC", 60, S.t[60], "long")], (7,), False, None, x_daily=True)
+        self.assertAlmostEqual(res["X7"][0][1], 9.0 - sim.COST_PCT)
+        S.atr_pct[70] = 0.5  # stop se spusta na 12%
+        S.l[72] = S.c[70] * 0.80
+        res = backtest.evaluate({"BTC": S}, [("BTC", 70, S.t[70], "long")], (7,), False, None, x_daily=True)
+        self.assertAlmostEqual(res["X7"][0][1], -12.0 - sim.COST_PCT)
+        S.atr_pct[80] = None  # bez ATR nema ishoda (ne izmislja se)
+        res = backtest.evaluate({"BTC": S}, [("BTC", 80, S.t[80], "long")], (7,), False, None, x_daily=True)
+        self.assertEqual(res["X7"], [])
+        self.assertNotIn("X7", backtest.evaluate({"BTC": S}, [("BTC", 60, S.t[60], "long")], (7,), False, None))  # satna pravila ga nemaju
+
     def test_stop_pct_clamped_by_class(self):
         S = self.S
         S.atr_pct[60] = 0.0001
@@ -436,6 +451,49 @@ class ForwardTests(unittest.TestCase):
         for x in tr["triggers"]:
             self.assertGreater(x["stop_pct"], 0)
             self.assertGreater(x["tp_pct"], x["stop_pct"])
+
+    def test_shadow_instruments_are_measured_but_never_live(self):
+        extra = [{"sym": "SHX%d" % k, "hl": "SHX%d" % k, "group": "crypto", "cls": "crypto"} for k in range(6)]
+        extra.append(dict(self.cfg["universe"][0]))  # vec ziv instrument se ne dupliraju
+        self.cfg["shadow_universe"] = {"instruments": extra, "max": 80}
+        os.makedirs(os.path.join(self.tmp.name, "lab"))
+        t0 = ((self.now // HOUR) * HOUR) - 6 * 24 * HOUR  # T0 pre sest dana: signali posle T0 postoje
+        with open(os.path.join(self.tmp.name, "lab", "meta.json"), "w") as f:
+            json.dump({"t0_ms": t0, "t0_utc": forward.iso(t0)}, f)
+        r = forward.run(self.tmp.name, now_ms=self.now, log=lambda *_: None)
+        self.assertTrue(r["ok"], r)
+        self.assertEqual(r["shadow_instruments"], 6)
+        lab = os.path.join(self.tmp.name, "lab")
+        with open(os.path.join(lab, "extended.json"), encoding="utf-8") as fh:
+            ex = json.load(fh)
+        self.assertEqual(ex["instruments"], 6)
+        self.assertNotIn("BTC", ex["syms"])  # BTC je samo kontekst
+        self.assertTrue(ex["variants"])
+        self.assertTrue(any(v["signals"] > 0 for v in ex["variants"].values()))
+        st = json.load(open(os.path.join(lab, "stats.json"), encoding="utf-8"))
+        self.assertEqual(st["universe_n"], 8)  # zivi deo se ne menja
+        tr = json.load(open(os.path.join(lab, "triggers.json"), encoding="utf-8"))
+        self.assertFalse([x for x in tr["triggers"] if x["sym"].startswith("SHX")])  # nikad okidaci za Istrazivaca
+
+    def test_shadow_failure_or_missing_config_never_breaks_the_live_lab(self):
+        r = forward.run(self.tmp.name, now_ms=self.now, log=lambda *_: None)  # bez 'shadow_universe'
+        self.assertTrue(r["ok"] and r["shadow_instruments"] is None, r)
+        self.assertFalse(os.path.exists(os.path.join(self.tmp.name, "lab", "extended.json")))
+        self.cfg["shadow_universe"] = {"instruments": [{"sym": "Y%d" % k, "hl": "Y%d" % k, "group": "crypto", "cls": "crypto"} for k in range(6)]}
+        orig = forward.run_shadow
+        forward.run_shadow = lambda *a, **k: (_ for _ in ()).throw(RuntimeError("pad"))
+        try:
+            r2 = forward.run(self.tmp.name, now_ms=self.now + HOUR, log=lambda *_: None)
+        finally:
+            forward.run_shadow = orig
+        self.assertTrue(r2["ok"], r2)
+        self.assertTrue(os.path.exists(os.path.join(self.tmp.name, "lab", "triggers.json")))
+
+    def test_shadow_respects_time_budget(self):
+        self.cfg["shadow_universe"] = {"instruments": [{"sym": "Z%d" % k, "hl": "Z%d" % k, "group": "crypto", "cls": "crypto"} for k in range(12)]}
+        out = forward.run_shadow(self.cfg, [], backtest.ROOT, self.now - 3 * 24 * HOUR, self.now, lambda *_: None, time.monotonic() - 1)
+        self.assertEqual(out["instruments"], 0)  # budzet je vec potrosen: nijedan instrument, a nema greske
+        self.assertEqual(out["variants"], {})
 
     def test_governor_demotes_known_losers_and_forward_losers(self):
         cfg = {"live_variants": [{"id": "A"}, {"id": "B"}, {"id": "C"}, {"id": "D"}],

@@ -1,0 +1,18 @@
+{
+ "version": 1,
+ "registered_utc": "2026-10-12T19:00:00Z",
+ "note": "Radar skokova (senka): samo BELEZI i meri, ne trguje, ne budi mozak, ne trosi tokene. Pragovi su upisani PRE ijednog rezultata i ne podesavaju se prema ishodu. Motiv: 2026-10-12 Wormhole (W) +70% i Reserve Rights (RSR) +50% bili su van svih univerzuma; satna laboratorija javlja signal tek posle zatvaranja sata, a Istrazivac ulazi oko :20, pa je ulaz uvek posle skoka. Pitanje na koje radar odgovara podacima: da li se posle naglog skoka (ili pada) isplati pratiti pokret ili ga izbegavati, i za koliko, posle troska.",
+ "scan": {"dexes": ["main", "xyz"]},
+ "triggers": {
+  "burst": {"window_min": 60, "ret_pct": 15.0},
+  "ramp": {"window_min": 240, "ret_pct": 25.0}
+ },
+ "cooldown_min": 360,
+ "base_tolerance_min": 8,
+ "outcomes_min": [60, 240, 1440],
+ "late_min": 40,
+ "thin_oi_usd": 5000000,
+ "cost_pct": {"normal": 0.23, "thin": 0.50},
+ "keep_events": 3000,
+ "snapshot_keep_min": 270
+}

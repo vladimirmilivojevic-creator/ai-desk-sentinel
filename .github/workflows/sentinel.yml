@@ -66,6 +66,12 @@ jobs:
         timeout-minutes: 5
         run: python -m lab.forward --state _state
 
+      - name: Radar skokova (senka: samo belezi nagle skokove i padove i meri sta bi se desilo, ne trguje)
+        if: github.event.inputs.dry != 'true'
+        continue-on-error: true
+        timeout-minutes: 2
+        run: python -m lab.jumps --state _state
+
       - name: Prikupljanje podataka (data lake, satno/na 4 h/dnevno)
         continue-on-error: true
         timeout-minutes: 6

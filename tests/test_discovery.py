@@ -319,9 +319,9 @@ class ForwardTests(unittest.TestCase):
         self.assertNotIn(victim, [s for s in U2.active(d)])
 
     def test_promotion_requires_all_forward_gates_and_demotion(self):
-        good = {"n": 12, "mean": 0.8, "t": 1.8, "stress_mean": 0.5, "mean_ex_best": 0.3, "sim_mean": 0.4}
+        good = {"n": 18, "mean": 0.8, "t": 2.3, "stress_mean": 0.5, "mean_ex_best": 0.3, "sim_mean": 0.4}
         self.assertTrue(D.forward_gate(good, CFG))
-        for k, v in (("n", 9), ("mean", -0.1), ("t", 1.2), ("stress_mean", -0.9), ("mean_ex_best", -0.1), ("sim_mean", -0.2), ("sim_mean", None)):
+        for k, v in (("n", 15), ("mean", -0.1), ("t", 1.9), ("stress_mean", -0.9), ("mean_ex_best", -0.1), ("sim_mean", -0.2), ("sim_mean", None)):
             self.assertFalse(D.forward_gate(dict(good, **{k: v}), CFG), k)
         rules = self.rules()
         D.apply_forward(rules, {"stocks:MOM12_1:1w:long": good}, CFG, "2026-11-01T00:00:00Z")
@@ -621,6 +621,30 @@ class DataQualityTests(unittest.TestCase):
         finally:
             D.fetch_binance_weekly = orig
 
+    def test_pit_membership_rank_band_excludes_the_top_ranks(self):
+        days = ["2023-01-%02d" % d for d in range(1, 11)]
+        px = {s: {"d": days, "v": [float(v)] * 10, "c": [1.0] * 10} for s, v in (("A", 60), ("B", 50), ("C", 40), ("D", 30), ("E", 20), ("F", 10))}
+        top = D.pit_membership(px, 2, 3)
+        band = D.pit_membership(px, 4, 3, rank_from=2)
+        self.assertEqual(set(top), {"A", "B"})
+        self.assertEqual(set(band), {"C", "D"})  # rangovi 3 i 4: nema preklapanja sa prvih 2
+        self.assertEqual(band["C"], top["A"])  # isti datumi (od treceg dana, kad prozor od 3 svece postoji)
+
+    def test_load_binance_memo_downloads_each_symbol_once_for_two_universes(self):
+        calls = []
+        orig = D.fetch_binance
+        try:
+            D.fetch_binance = lambda sym, start_ms: (calls.append(sym), {"d": ["2023-01-01"], "o": [1.0], "h": [1.0], "l": [1.0], "c": [1.0], "v": [1.0], "rc": [1.0]})[1]
+            memo = {}
+            a, fa = D.load_binance(["AUSDT", "BUSDT"], 0, memo=memo)
+            b, fb = D.load_binance(["AUSDT", "BUSDT", "CUSDT"], 0, memo=memo)
+            self.assertEqual(sorted(calls), ["AUSDT", "BUSDT", "CUSDT"])
+            self.assertEqual((fa, fb, len(a), len(b)), (0, 0, 2, 3))
+            D.load_binance(["AUSDT"], 0)  # bez memo recnika preuzima ponovo
+            self.assertEqual(calls.count("AUSDT"), 2)
+        finally:
+            D.fetch_binance = orig
+
     def test_binance_symbols_lists_dead_and_falls_back(self):
         xml1 = ("<ListBucketResult><IsTruncated>true</IsTruncated><NextMarker>data/spot/monthly/klines/BTCUSDT/</NextMarker><Prefix>data/spot/monthly/klines/</Prefix>"
                 "<CommonPrefixes><Prefix>data/spot/monthly/klines/BTCUSDT/</Prefix></CommonPrefixes><CommonPrefixes><Prefix>data/spot/monthly/klines/ETHBTC/</Prefix></CommonPrefixes></ListBucketResult>")
@@ -681,7 +705,7 @@ class ThreeUniverseRunTests(unittest.TestCase):
         data = dict(self.px_s, SPY=self.bench_s, **self.px_m)
         D.load_prices = lambda syms, cache=None, max_age_h=12: {s: data[s] for s in syms if s in data}
         D.binance_symbols = lambda log=print: sorted(self.px_c)
-        D.binance_superset = lambda syms, start_ms, top_n, factor, cache=None, max_age_h=12: (set(syms), 0)
+        D.binance_superset = lambda syms, start_ms, top_n, factor, cache=None, max_age_h=12, memo=None: (set(syms), 0)
         D.fetch_binance = lambda sym, start_ms: self.px_c.get(sym, {"d": [], "o": [], "h": [], "l": [], "c": [], "v": [], "rc": []})
 
     def tearDown(self):
@@ -709,6 +733,36 @@ class ThreeUniverseRunTests(unittest.TestCase):
             md = read_text(os.path.join(root, "calibration", "discovery.md"))
             self.assertIn("roll", md)
             self.assertEqual(D.run("daily", write=True, root=root, now=self.now, hl=self.cands, log=lambda m: None), 0)
+
+    def test_alts_universe_is_a_separate_rank_band_and_shares_downloads(self):
+        calls = []
+        inner = D.fetch_binance
+        D.fetch_binance = lambda sym, start_ms: (calls.append(sym), inner(sym, start_ms))[1]
+        try:
+            crypto = dict(self.cfg["universes"]["crypto"], top_n=8)
+            alts = dict(crypto, rank_from=8, top_n=16, extra_cost_pct=0.2, event_horizons=[3, 7, 14])
+            cfg = dict(self.cfg, universes=dict(self.cfg["universes"], crypto=crypto, alts=alts))
+            cands = dict(self.cands, alts=self.cands["crypto"])
+            unis, _ = D.prepare(cfg, self.now, None, log=lambda m: None, hl=cands)
+            self.assertEqual(set(unis), {"stocks", "crypto", "alts"} | {"commodities"})
+            cm, am = unis["crypto"].mem, unis["alts"].mem
+            overlap = {s for s in set(cm) & set(am) if cm[s] & am[s]}
+            self.assertEqual(overlap, set())  # nijedna kovanica nije u oba univerzuma istog dana
+            self.assertTrue(am)
+            self.assertEqual(unis["alts"].cost, CFG["cost_pct"] + 0.2)
+            self.assertEqual(unis["alts"].event_horizons, [3, 7, 14])
+            others = [s for s in calls if s != "BTCUSDT"]
+            self.assertEqual(len(others), len(set(others)))  # svaka kovanica je preuzeta samo jednom za oba univerzuma
+            with tempfile.TemporaryDirectory() as root:
+                os.makedirs(os.path.join(root, "config"))
+                with open(os.path.join(root, "config", "discovery.json"), "w", encoding="utf-8") as f:
+                    json.dump(cfg, f)
+                self.assertEqual(D.run("weekly", write=True, root=root, now=self.now, hl=cands, log=lambda m: None), 0)
+                res = json.loads(read_text(os.path.join(root, "calibration", "discovery.json")))
+                self.assertEqual(len(res["tests"]), 240)
+                self.assertTrue(any(r["id"] == "alts:SPIKE_UP:3d:long" for r in res["tests"]))
+        finally:
+            D.fetch_binance = inner
 
     def test_stock_tokens_are_not_crypto(self):
         unis, _ = D.prepare(self.cfg, self.now, None, log=lambda m: None, hl=self.cands)
