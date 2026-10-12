@@ -66,7 +66,7 @@ jobs:
         timeout-minutes: 5
         run: python -m lab.forward --state _state
 
-      - name: Radar skokova (senka: samo belezi nagle skokove i padove i meri sta bi se desilo, ne trguje)
+      - name: Radar skokova (senka, samo belezi nagle skokove i padove i meri sta bi se desilo, ne trguje)
         if: github.event.inputs.dry != 'true'
         continue-on-error: true
         timeout-minutes: 2
