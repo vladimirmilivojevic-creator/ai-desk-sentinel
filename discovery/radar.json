@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-10-11T11:42:26Z",
+ "generated_utc": "2026-10-12T06:31:01Z",
  "rules": [
   {
    "rule": "crypto:BRK20:1w:short",
@@ -8,44 +8,49 @@
    "family": "BRK20",
    "kind": "rank",
    "side": "short",
-   "signal_date": "2026-10-04",
-   "valid_from_utc": "2026-10-05T00:00:00Z",
-   "valid_until_utc": "2026-10-06T06:00:00Z",
+   "signal_date": "2026-10-11",
+   "valid_from_utc": "2026-10-12T00:00:00Z",
+   "valid_until_utc": "2026-10-13T06:00:00Z",
    "hold_hours": 168,
    "picks": [
     {
-     "ticker": "ZECUSDT",
-     "symbol": "ZEC",
-     "score": -0.181929,
-     "px": 1352.37,
-     "atr_pct": 9.74,
+     "ticker": "UNIUSDT",
+     "symbol": "UNI",
+     "score": -0.240172,
+     "px": 7.77,
+     "atr_pct": 7.78,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
+    },
+    {
+     "ticker": "HBARUSDT",
+     "symbol": "HBAR",
+     "score": -0.228759,
+     "px": 0.0941,
+     "atr_pct": 9.37,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     },
     {
      "ticker": "XPLUSDT",
      "symbol": "XPL",
-     "score": -0.160286,
-     "px": 0.0963,
-     "atr_pct": 12.72,
-     "stop_pct": 12.0,
-     "tp_pct": 36.0
-    },
-    {
-     "ticker": "ONDOUSDT",
-     "symbol": "ONDO",
-     "score": -0.151608,
-     "px": 0.4986,
-     "atr_pct": 10.21,
+     "score": -0.228307,
+     "px": 0.0885,
+     "atr_pct": 7.79,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
    ],
    "forward": {
-    "n": 0,
-    "mean": null,
+    "n": 1,
+    "mean": -2.265,
     "t": null,
-    "stress_mean": null,
+    "abs_mean": 2.6775,
+    "stress_mean": -2.535,
+    "median": -2.265,
+    "mean_ex_best": null,
+    "sim_n": 1,
+    "sim_mean": 2.6775,
     "pending": 1
    },
    "study": {
@@ -268,44 +273,49 @@
    "family": "LOWVOL",
    "kind": "rank",
    "side": "long",
-   "signal_date": "2026-10-04",
-   "valid_from_utc": "2026-10-05T00:00:00Z",
-   "valid_until_utc": "2026-10-06T06:00:00Z",
+   "signal_date": "2026-10-11",
+   "valid_from_utc": "2026-10-12T00:00:00Z",
+   "valid_until_utc": "2026-10-13T06:00:00Z",
    "hold_hours": 168,
    "picks": [
     {
      "ticker": "BNBUSDT",
      "symbol": "BNB",
-     "score": -0.019897,
-     "px": 795.43,
-     "atr_pct": 2.91,
-     "stop_pct": 7.28,
-     "tp_pct": 21.84
+     "score": -0.020817,
+     "px": 754.24,
+     "atr_pct": 2.88,
+     "stop_pct": 7.19,
+     "tp_pct": 21.57
     },
     {
      "ticker": "BTCUSDT",
      "symbol": "BTC",
-     "score": -0.022198,
-     "px": 86530.0,
-     "atr_pct": 2.7,
-     "stop_pct": 6.76,
-     "tp_pct": 20.28
+     "score": -0.022613,
+     "px": 83773.12,
+     "atr_pct": 2.43,
+     "stop_pct": 6.07,
+     "tp_pct": 18.21
     },
     {
-     "ticker": "ASTERUSDT",
-     "symbol": "ASTER",
-     "score": -0.029406,
-     "px": 0.7117,
-     "atr_pct": 5.43,
-     "stop_pct": 12.0,
-     "tp_pct": 36.0
+     "ticker": "ETHUSDT",
+     "symbol": "ETH",
+     "score": -0.031915,
+     "px": 2536.94,
+     "atr_pct": 3.1,
+     "stop_pct": 7.74,
+     "tp_pct": 23.22
     }
    ],
    "forward": {
-    "n": 0,
-    "mean": null,
+    "n": 1,
+    "mean": 1.2786,
     "t": null,
-    "stress_mean": null,
+    "abs_mean": -3.6638,
+    "stress_mean": 1.0086,
+    "median": 1.2786,
+    "mean_ex_best": null,
+    "sim_n": 1,
+    "sim_mean": -5.5568,
     "pending": 1
    },
    "study": {
@@ -333,44 +343,49 @@
    "family": "LOWVOL",
    "kind": "rank",
    "side": "short",
-   "signal_date": "2026-10-04",
-   "valid_from_utc": "2026-10-05T00:00:00Z",
-   "valid_until_utc": "2026-10-06T06:00:00Z",
+   "signal_date": "2026-10-11",
+   "valid_from_utc": "2026-10-12T00:00:00Z",
+   "valid_until_utc": "2026-10-13T06:00:00Z",
    "hold_hours": 168,
    "picks": [
     {
      "ticker": "ARBUSDT",
      "symbol": "ARB",
-     "score": -0.085981,
-     "px": 0.2041,
-     "atr_pct": 9.99,
+     "score": -0.086846,
+     "px": 0.1995,
+     "atr_pct": 7.94,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     },
     {
      "ticker": "PUMPUSDT",
      "symbol": "PUMP",
-     "score": -0.081764,
-     "px": 0.0065,
-     "atr_pct": 10.61,
+     "score": -0.082214,
+     "px": 0.0056,
+     "atr_pct": 13.3,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     },
     {
      "ticker": "ENAUSDT",
      "symbol": "ENA",
-     "score": -0.075282,
-     "px": 0.2414,
-     "atr_pct": 10.46,
+     "score": -0.076936,
+     "px": 0.2375,
+     "atr_pct": 9.29,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
    ],
    "forward": {
-    "n": 0,
-    "mean": null,
+    "n": 1,
+    "mean": 0.5623,
     "t": null,
-    "stress_mean": null,
+    "abs_mean": 5.5048,
+    "stress_mean": 0.2923,
+    "median": 0.5623,
+    "mean_ex_best": null,
+    "sim_n": 1,
+    "sim_mean": 5.5048,
     "pending": 1
    },
    "study": {

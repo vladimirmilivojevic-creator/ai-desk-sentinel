@@ -1,5 +1,5 @@
 {
- "updated_utc": "2026-10-11T11:42:26Z",
+ "updated_utc": "2026-10-12T06:31:01Z",
  "rules": {
   "stocks:SPIKE_UP:10d:long": {
    "universe": "stocks",
@@ -76,10 +76,15 @@
     ]
    ],
    "forward": {
-    "n": 0,
-    "mean": null,
+    "n": 1,
+    "mean": -2.265,
     "t": null,
-    "stress_mean": null,
+    "abs_mean": 2.6775,
+    "stress_mean": -2.535,
+    "median": -2.265,
+    "mean_ex_best": null,
+    "sim_n": 1,
+    "sim_mean": 2.6775,
     "pending": 1
    }
   },
@@ -244,10 +249,15 @@
     ]
    ],
    "forward": {
-    "n": 0,
-    "mean": null,
+    "n": 1,
+    "mean": 1.2786,
     "t": null,
-    "stress_mean": null,
+    "abs_mean": -3.6638,
+    "stress_mean": 1.0086,
+    "median": 1.2786,
+    "mean_ex_best": null,
+    "sim_n": 1,
+    "sim_mean": -5.5568,
     "pending": 1
    }
   },
@@ -289,10 +299,15 @@
     ]
    ],
    "forward": {
-    "n": 0,
-    "mean": null,
+    "n": 1,
+    "mean": 0.5623,
     "t": null,
-    "stress_mean": null,
+    "abs_mean": 5.5048,
+    "stress_mean": 0.2923,
+    "median": 0.5623,
+    "mean_ex_best": null,
+    "sim_n": 1,
+    "sim_mean": 5.5048,
     "pending": 1
    }
   },
@@ -546,7 +561,14 @@
      "2026-10-10T16:25:24Z",
      "kandidat"
     ]
-   ]
+   ],
+   "forward": {
+    "n": 0,
+    "mean": null,
+    "t": null,
+    "stress_mean": null,
+    "pending": 1
+   }
   },
   "crypto:SPIKE_DN:28d:short": {
    "universe": "crypto",
@@ -580,7 +602,14 @@
      "2026-10-10T16:25:24Z",
      "nagovestaj"
     ]
-   ]
+   ],
+   "forward": {
+    "n": 0,
+    "mean": null,
+    "t": null,
+    "stress_mean": null,
+    "pending": 1
+   }
   }
  }
 }
