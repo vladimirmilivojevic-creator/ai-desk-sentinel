@@ -100,7 +100,7 @@ class RunTests(unittest.TestCase):
                 raise OSError("mreza")
             r = L.run(d, ctx(), T0, cfg=CFG, upbit=boom, coinbase=boom, log=lambda m: None)
             self.assertEqual(r["new"], 0)
-            self.assertEqual(r["sources"], {"upbit": "OSError", "coinbase": "OSError"})
+            self.assertEqual(r["sources"], {"upbit": "OSError mreza", "coinbase": "OSError mreza"})
 
     def test_jump_radar_runs_listings_only_when_asked_and_survives_its_failure(self):
         jc = J.load_cfg()

@@ -184,7 +184,7 @@ def run(state_dir, ctx, now_ms, snap=None, cfg=None, log=print, upbit=None, coin
         seen["upbit"] = sorted(known | {n["id"] for n in notices})[-cfg["seen_keep"]:]
         health["upbit"] = "ok"
     except Exception as e:  # noqa: BLE001
-        health["upbit"] = "%s" % type(e).__name__
+        health["upbit"] = "%s %s" % (type(e).__name__, str(e)[:60])
     try:
         bases = (coinbase or fetch_coinbase_bases)(cfg)
         if "coinbase" in seen:
@@ -193,7 +193,7 @@ def run(state_dir, ctx, now_ms, snap=None, cfg=None, log=print, upbit=None, coin
         seen["coinbase"] = sorted(set(seen.get("coinbase", [])) | bases)
         health["coinbase"] = "ok"
     except Exception as e:  # noqa: BLE001
-        health["coinbase"] = "%s" % type(e).__name__
+        health["coinbase"] = "%s %s" % (type(e).__name__, str(e)[:60])
     ids = {e["id"] for e in events}
     new = [e for e in new if e["id"] not in ids]
     events = (events + new)[-cfg["keep_events"]:]
