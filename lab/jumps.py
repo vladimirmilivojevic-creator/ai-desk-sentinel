@@ -167,7 +167,7 @@ def summarize(events, cfg):
     return out
 
 
-def run(state_dir, cfg=None, ctx=None, now_ms=None, log=print):
+def run(state_dir, cfg=None, ctx=None, now_ms=None, log=print, listings=False):
     cfg = cfg or load_cfg()
     now_ms = now_ms or int(time.time() * 1000)
     if ctx is None:
@@ -189,14 +189,21 @@ def run(state_dir, cfg=None, ctx=None, now_ms=None, log=print):
                                                 for e in events[-8:]]})
     for e in new:
         log("skok: %s %s %+.1f%% (%s), OI $%.1fM" % (e["coin"], e["trigger"], e["ret_pct"], e["dir"], e["oi_usd"] / 1e6))
-    return {"ok": True, "coins": len(snap), "new": len(new), "events": len(events)}
+    res = {"ok": True, "coins": len(snap), "new": len(new), "events": len(events)}
+    if listings:  # radar listinga koristi iste cene (bez dodatnih poziva) i nikad ne sme da obori radar skokova
+        try:
+            from . import listings as L
+            res["listings"] = L.run(state_dir, ctx, now_ms, snap=snap, log=log)
+        except Exception as e:  # noqa: BLE001
+            res["listings"] = {"error": type(e).__name__}
+    return res
 
 
 def main():
     argv = sys.argv[1:]
     state = argv[argv.index("--state") + 1] if "--state" in argv else "_state"
     try:
-        res = run(state)
+        res = run(state, listings=True)
     except Exception as e:  # noqa: BLE001  # radar skokova nikad ne sme da obori stražu
         res = {"ok": False, "error": "%s: %s" % (type(e).__name__, e)}
     print(json.dumps(res, ensure_ascii=False))

@@ -452,6 +452,26 @@ class ForwardTests(unittest.TestCase):
             self.assertGreater(x["stop_pct"], 0)
             self.assertGreater(x["tp_pct"], x["stop_pct"])
 
+    def test_paused_variant_is_still_measured_but_never_a_live_trigger(self):
+        self.cfg["live_variants"] = [{"id": "CSM_rev_L24", "hold_hours": 24, "paused": True, "why": "pauzirano"}, {"id": "D_MOM_L7_z0.5", "hold_hours": 168}]
+        self.assertEqual(forward.live_config(self.cfg), {"D_MOM_L7_z0.5": 168})
+        os.makedirs(os.path.join(self.tmp.name, "lab"))
+        t0 = ((self.now // HOUR) * HOUR) - 6 * 24 * HOUR
+        with open(os.path.join(self.tmp.name, "lab", "meta.json"), "w") as f:
+            json.dump({"t0_ms": t0, "t0_utc": forward.iso(t0)}, f)
+        forward.run(self.tmp.name, now_ms=self.now, force=True, log=lambda *_: None)
+        with open(os.path.join(self.tmp.name, "lab", "stats.json"), encoding="utf-8") as f:
+            st = json.load(f)
+        self.assertGreater(st["variants"]["CSM_rev_L24"]["signals"], 0)  # i dalje se meri (besplatno)
+        self.assertFalse(st["variants"]["CSM_rev_L24"]["live"])
+        with open(os.path.join(self.tmp.name, "lab", "triggers.json"), encoding="utf-8") as f:
+            tr = json.load(f)
+        self.assertNotIn("CSM_rev_L24", {x["variant"] for x in tr["triggers"]})  # Istrazivac je ne vidi kao zivu
+        self.assertEqual(tr["live_variants"], {"D_MOM_L7_z0.5": 168})
+        cfg = {"live_variants": [{"id": "A", "paused": True}, {"id": "B"}], "governor": {"min_n": 30, "t_naive_max": -2.0, "bt_t_known_loser": -3.0}}
+        av = {"A": {"interval": "1h", "backtest": {"E24": {"t": -5.0}}, "tests": {}}, "B": {"interval": "1h", "backtest": {"E24": {"t": -5.0}}, "tests": {}}}
+        self.assertEqual(sorted(forward.governor(cfg, av)), ["B"])  # pauziranu varijantu governor ne dira
+
     def test_shadow_instruments_are_measured_but_never_live(self):
         extra = [{"sym": "SHX%d" % k, "hl": "SHX%d" % k, "group": "crypto", "cls": "crypto"} for k in range(6)]
         extra.append(dict(self.cfg["universe"][0]))  # vec ziv instrument se ne dupliraju

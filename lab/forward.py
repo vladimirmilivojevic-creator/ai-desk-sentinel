@@ -14,7 +14,7 @@ from .indicators import Series
 HOUR = 3600000
 DAY = 86400000
 WARM = 205
-REV = 7  # povecaj kad se promeni izlaz/logika: laboratorija se tada odmah ponovo racuna u istom satu
+REV = 8  # povecaj kad se promeni izlaz/logika: laboratorija se tada odmah ponovo racuna u istom satu
 HOLD_HOURS_1H = 24
 HOLD_HOURS_1D = 168
 SHADOW_BUDGET_S = 120  # senka (dodatni instrumenti) sme najvise toliko da traje; zivi deo se tada vec zavrsio i sacuvao
@@ -42,7 +42,7 @@ def iso(ms):
 
 def live_config(cfg):
     """Dozvoljene (zive) varijante za Istrazivaca: {id: hold_hours}. Menja se samo u config/lab.json."""
-    return {x["id"]: int(x.get("hold_hours", HOLD_HOURS_1H)) for x in cfg.get("live_variants", [])}
+    return {x["id"]: int(x.get("hold_hours", HOLD_HOURS_1H)) for x in cfg.get("live_variants", []) if not x.get("paused")}
 
 
 def build_forward_series(cfg, days, interval, with_funding, log, deadline=None):
@@ -59,7 +59,7 @@ def build_forward_series(cfg, days, interval, with_funding, log, deadline=None):
         if len(cs) < WARM + 5:
             continue
         fund = None
-        if with_funding:
+        if with_funding and u.get("funding", True):
             try:
                 fund = data.fetch_funding(u["hl"], days)
             except Exception:  # noqa: BLE001
@@ -193,6 +193,8 @@ def governor(cfg, all_vars):
     loser = g.get("bt_t_known_loser")
     out = {}
     for x in cfg.get("live_variants", []):
+        if x.get("paused"):
+            continue
         v = all_vars.get(x["id"])
         if not v:
             continue

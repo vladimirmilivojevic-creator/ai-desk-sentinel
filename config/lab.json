@@ -187,6 +187,209 @@
    "hl": "xyz:INTC",
    "group": "stock",
    "cls": "stock"
+  },
+  {
+   "sym": "ENA",
+   "hl": "ENA",
+   "group": "crypto",
+   "cls": "crypto",
+   "funding": false
+  },
+  {
+   "sym": "UNI",
+   "hl": "UNI",
+   "group": "crypto",
+   "cls": "crypto",
+   "funding": false
+  },
+  {
+   "sym": "LIT",
+   "hl": "LIT",
+   "group": "crypto",
+   "cls": "crypto",
+   "funding": false
+  },
+  {
+   "sym": "WLD",
+   "hl": "WLD",
+   "group": "crypto",
+   "cls": "crypto",
+   "funding": false
+  },
+  {
+   "sym": "ONDO",
+   "hl": "ONDO",
+   "group": "crypto",
+   "cls": "crypto",
+   "funding": false
+  },
+  {
+   "sym": "XPL",
+   "hl": "XPL",
+   "group": "crypto",
+   "cls": "crypto",
+   "funding": false
+  },
+  {
+   "sym": "ARB",
+   "hl": "ARB",
+   "group": "crypto",
+   "cls": "crypto",
+   "funding": false
+  },
+  {
+   "sym": "MON",
+   "hl": "MON",
+   "group": "crypto",
+   "cls": "crypto",
+   "funding": false
+  },
+  {
+   "sym": "XMR",
+   "hl": "XMR",
+   "group": "crypto",
+   "cls": "crypto",
+   "funding": false
+  },
+  {
+   "sym": "AAVE",
+   "hl": "AAVE",
+   "group": "crypto",
+   "cls": "crypto",
+   "funding": false
+  },
+  {
+   "sym": "LINK",
+   "hl": "LINK",
+   "group": "crypto",
+   "cls": "crypto",
+   "funding": false
+  },
+  {
+   "sym": "FARTCOIN",
+   "hl": "FARTCOIN",
+   "group": "crypto",
+   "cls": "crypto",
+   "funding": false
+  },
+  {
+   "sym": "PENGU",
+   "hl": "PENGU",
+   "group": "crypto",
+   "cls": "crypto",
+   "funding": false
+  },
+  {
+   "sym": "ETHFI",
+   "hl": "ETHFI",
+   "group": "crypto",
+   "cls": "crypto",
+   "funding": false
+  },
+  {
+   "sym": "JUP",
+   "hl": "JUP",
+   "group": "crypto",
+   "cls": "crypto",
+   "funding": false
+  },
+  {
+   "sym": "CRV",
+   "hl": "CRV",
+   "group": "crypto",
+   "cls": "crypto",
+   "funding": false
+  },
+  {
+   "sym": "GRASS",
+   "hl": "GRASS",
+   "group": "crypto",
+   "cls": "crypto",
+   "funding": false
+  },
+  {
+   "sym": "TRUMP",
+   "hl": "TRUMP",
+   "group": "crypto",
+   "cls": "crypto",
+   "funding": false
+  },
+  {
+   "sym": "CHIP",
+   "hl": "CHIP",
+   "group": "crypto",
+   "cls": "crypto",
+   "funding": false
+  },
+  {
+   "sym": "xyz:SNDK",
+   "hl": "xyz:SNDK",
+   "group": "stock",
+   "cls": "stock",
+   "funding": false
+  },
+  {
+   "sym": "xyz:MRVL",
+   "hl": "xyz:MRVL",
+   "group": "stock",
+   "cls": "stock",
+   "funding": false
+  },
+  {
+   "sym": "xyz:CRCL",
+   "hl": "xyz:CRCL",
+   "group": "stock",
+   "cls": "stock",
+   "funding": false
+  },
+  {
+   "sym": "xyz:NBIS",
+   "hl": "xyz:NBIS",
+   "group": "stock",
+   "cls": "stock",
+   "funding": false
+  },
+  {
+   "sym": "xyz:MSTR",
+   "hl": "xyz:MSTR",
+   "group": "stock",
+   "cls": "stock",
+   "funding": false
+  },
+  {
+   "sym": "xyz:HOOD",
+   "hl": "xyz:HOOD",
+   "group": "stock",
+   "cls": "stock",
+   "funding": false
+  },
+  {
+   "sym": "xyz:AVGO",
+   "hl": "xyz:AVGO",
+   "group": "stock",
+   "cls": "stock",
+   "funding": false
+  },
+  {
+   "sym": "xyz:ORCL",
+   "hl": "xyz:ORCL",
+   "group": "stock",
+   "cls": "stock",
+   "funding": false
+  },
+  {
+   "sym": "xyz:COIN",
+   "hl": "xyz:COIN",
+   "group": "stock",
+   "cls": "stock",
+   "funding": false
+  },
+  {
+   "sym": "xyz:PLTR",
+   "hl": "xyz:PLTR",
+   "group": "stock",
+   "cls": "stock",
+   "funding": false
   }
  ],
  "live_variants": [
@@ -207,35 +410,42 @@
   },
   {
    "id": "FADE_L24_z2.5",
+   "paused": true,
    "hold_hours": 24,
    "why": "obrtanje posle ekstremnog 24 h pomaka: jedino satno pravilo sa pozitivnom sredinom u obe polovine (t=0,94, n=52, ne dokaz)"
   },
   {
    "id": "BTCLEAD_z2.0",
+   "paused": true,
    "hold_hours": 24,
    "why": "alt koji kasni za BTC skokom (t=0,45, retko)"
   },
   {
    "id": "RSIFADE_80",
+   "paused": true,
    "hold_hours": 24,
    "why": "istrazivanje: RSI ekstrem 80/20 (t=-0,54: nema dokaza, ocekivan trosak oko -0,2%)"
   },
   {
    "id": "FADE_L4_z2.5",
+   "paused": true,
    "hold_hours": 24,
    "why": "istrazivanje: obrtanje posle ekstremnog 4 h pomaka (t=-1,05)"
   },
   {
    "id": "MOM_L4_z2.5",
+   "paused": true,
    "hold_hours": 24,
    "why": "istrazivanje: prati ekstremni 4 h pomak (t=-1,06)"
   },
   {
    "id": "FADE_L24_z1.5",
+   "paused": true,
    "hold_hours": 24,
    "why": "istrazivanje: obrtanje posle 24 h pomaka (t=-1,09)"
   }
  ],
+ "_paused_note": "2026-10-13: satna pravila sa paused:true se i dalje MERE u laboratoriji (besplatno, uklj. simulirano trgovanje X24 sa stopom i troskom), ali ih Istrazivac ne trguje: istorijski dokaz im je negativan (bt_t -0.5 do -1.1, 'odbaceno'), unapred oko nule, a svaki ulaz kosta oko 95 hiljada tokena. Povratak: obrisi 'paused' i objavi.",
  "shadow_universe": {"file": "config/lab_v3.json", "max": 60, "_comment": "Dodatni instrumenti iz snimka lab_v3 (likvidni na Liquid-u, a nisu u zivom univerzumu): satna pravila se na njima SAMO mere (senka, lab/extended.json); Istrazivac ih ne trguje dok se ne dodaju u njegovu tabelu."},
  "governor": {
   "min_n": 30,

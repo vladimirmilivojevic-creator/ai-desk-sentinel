@@ -46,7 +46,7 @@ def build_series(cfg, days=None, with_funding=True, log=print, interval="1h"):
             log("premalo svece za %s (%d)" % (u["sym"], len(cs)))
             continue
         fund = None
-        if with_funding:
+        if with_funding and u.get("funding", True):
             try:
                 fund = data.cached("f", u["hl"], days, lambda coin, d: data.fetch_funding(coin, d), max_age_s=6 * 3600)
             except Exception as e:  # noqa: BLE001

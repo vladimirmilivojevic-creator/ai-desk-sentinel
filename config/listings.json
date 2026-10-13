@@ -1,0 +1,18 @@
+{
+ "version": 1,
+ "registered_utc": "2026-10-14T00:30:00Z",
+ "note": "Radar listinga (senka): samo BELEZI i meri, ne trguje, ne budi mozak, ne trosi tokene. Motiv: 2026-10-12 skok Reserve Rights (RSR) od +42% za sat nije imao nikakav trag u ceni i obimu pre toga, a razlog je bio javno saopstenje Upbit-a o novom KRW/USDT marketu (objavljeno 04:54 UTC, trgovanje od oko 05:05 UTC). Takva saopstenja su javna, strukturisana i citaju se skriptom bez AI-ja. Pitanje na koje radar odgovara podacima: koliko od pokreta je vec odigrano do trenutka kad ga straza vidi i da li se posle toga isplati pratiti ga ili izbegavati, neto posle troska. Pragovi i izvori su upisani PRE ijednog rezultata.",
+ "upbit": {
+  "url": "https://api-manager.upbit.com/api/v1/announcements?os=web&page=1&per_page=20&category=trade",
+  "listing_words": ["신규 거래지원 안내", "마켓 디지털 자산 추가"],
+  "skip_words": ["변경", "취소", "종료", "유의", "연장", "해제", "개시 시점", "초기 매수 제한", "연기"]
+ },
+ "coinbase": {"url": "https://api.exchange.coinbase.com/products", "quotes": ["USD", "USDT", "USDC"]},
+ "binance_spot": "https://data-api.binance.vision/api/v3/ticker/price?symbol=%sUSDT",
+ "outcomes_min": [15, 60, 240, 1440],
+ "late_min": 40,
+ "thin_oi_usd": 5000000,
+ "cost_pct": {"normal": 0.23, "thin": 0.50, "no_perp": 0.30},
+ "keep_events": 1000,
+ "seen_keep": 1500
+}
