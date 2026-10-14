@@ -17,6 +17,7 @@ WARM = 205
 REV = 8  # povecaj kad se promeni izlaz/logika: laboratorija se tada odmah ponovo racuna u istom satu
 HOLD_HOURS_1H = 24
 HOLD_HOURS_1D = 168
+PROOF_TARGET = 300  # unapred upisano 2026-10-14: najmanje 300 simuliranih trejdova po pravilu pre nego sto se rezultat smatra dokazom (simulacija: 280-700 za t=2 pri prednosti 0,3%)
 SHADOW_BUDGET_S = 120  # senka (dodatni instrumenti) sme najvise toliko da traje; zivi deo se tada vec zavrsio i sacuvao
 
 
@@ -224,6 +225,31 @@ def history_point(bar_ms, all_vars, live_ids):
     return [bar_ms, tot, out24, n_tot, round(w / n_tot, 4) if n_tot else None, pl.get("mean")]
 
 
+def proof_rows(cfg, all_vars, hours_running, limit=16):
+    """Napredak ka dokazu po pravilu: koliko je simuliranih trejdova (sa stopom, ciljem i troskom: X24 satna, X7 dnevna pravila) vec izmereno unapred
+    prema cilju PROOF_TARGET, srednji rezultat, t (po danima kad ima bar 10 dana, inace naivno) i procena dana do cilja pri sadasnjem tempu.
+    Zivi i pauzirana pravila prvo, pa ostala po n; placebo ostaje kao poredjenje. Simulirani trejdovi istog dana nisu nezavisni: zato se broji t po danima."""
+    target = int(cfg.get("proof_target", PROOF_TARGET))
+    live = set(live_config(cfg))
+    paused = {x["id"] for x in cfg.get("live_variants", []) if x.get("paused")}
+    days = max(hours_running / 24.0, 1e-9)
+    rows = []
+    for vid, v in all_vars.items():
+        key = "X7" if v.get("interval") == "1d" else "X24"
+        s = (v.get("tests") or {}).get(key) or {}
+        n = s.get("n", 0)
+        if not n:
+            continue
+        rate = n / days
+        eta = None if n >= target or rate <= 0 else int(-(-(target - n) // rate))
+        rows.append({"id": vid, "test": key, "n": n, "mean": s.get("mean"), "t": s.get("t") if s.get("t") is not None else s.get("t_naive"),
+                     "t_days": s.get("t") is not None, "days": s.get("days"), "pct": round(100.0 * min(1.0, n / target), 1), "eta_days": eta,
+                     "status": "ziva" if vid in live else ("pauzirana" if vid in paused else ("placebo" if "PLACEBO" in vid else "merena"))})
+    order = {"ziva": 0, "pauzirana": 1, "placebo": 2, "merena": 3}
+    rows.sort(key=lambda r: (order[r["status"]], -r["n"]))
+    return {"target": target, "rows": rows[:limit]}
+
+
 def panel_summary(cfg, stats_obj, bt, history=None, registry=None):
     """Mali sazetak (nekoliko KB) za panel: zive varijante, najbolji istorijski dokazi, placebo, grafik napretka i brojke unapred."""
     why = {x["id"]: x.get("why", "") for x in cfg.get("live_variants", [])}
@@ -251,7 +277,8 @@ def panel_summary(cfg, stats_obj, bt, history=None, registry=None):
     return {"updated_utc": stats_obj["updated_utc"], "t0_utc": stats_obj["t0_utc"], "hours_running": stats_obj["hours_running"],
             "universe_n": stats_obj["universe_n"], "totals": stats_obj["totals"], "cost_pct": stats_obj["cost_pct"], "live": live,
             "top_backtest": ranked[:10], "backtest_counts": counts, "demoted": stats_obj.get("demoted", {}), "placebo": placebo,
-            "history": (history or [])[-168:], "features_rows": stats_obj.get("features_rows"), "registry": registry}
+            "history": (history or [])[-168:], "features_rows": stats_obj.get("features_rows"), "registry": registry,
+            "proof": proof_rows(cfg, all_vars, stats_obj.get("hours_running") or 0.0)}
 
 
 def load_backtest_summary(root):

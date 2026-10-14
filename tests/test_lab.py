@@ -452,6 +452,25 @@ class ForwardTests(unittest.TestCase):
             self.assertGreater(x["stop_pct"], 0)
             self.assertGreater(x["tp_pct"], x["stop_pct"])
 
+    def test_proof_rows_count_simulated_trades_toward_the_target_and_estimate_days(self):
+        cfg = {"live_variants": [{"id": "A", "hold_hours": 24}, {"id": "B", "hold_hours": 168}, {"id": "C", "hold_hours": 24, "paused": True}]}
+        av = {"A": {"interval": "1h", "tests": {"X24": {"n": 150, "mean": 0.31, "t": 1.2, "t_naive": 2.5, "days": 12}}},
+              "B": {"interval": "1d", "tests": {"X7": {"n": 12, "mean": -0.2, "t": None, "t_naive": -0.4, "days": 4}}},
+              "C": {"interval": "1h", "tests": {"X24": {"n": 400, "mean": 0.1, "t": 0.5, "t_naive": 1.0, "days": 12}}},
+              "PLACEBO_p2": {"interval": "1h", "tests": {"X24": {"n": 66, "mean": -0.25, "t": None, "t_naive": -0.9, "days": 6}}},
+              "NOTEST": {"interval": "1h", "tests": {}}}
+        out = forward.proof_rows(cfg, av, 24.0 * 6)  # 6 dana rada
+        self.assertEqual(out["target"], 300)
+        rows = {r["id"]: r for r in out["rows"]}
+        self.assertNotIn("NOTEST", rows)
+        self.assertEqual([r["id"] for r in out["rows"]], ["A", "B", "C", "PLACEBO_p2"])  # zive, pauzirana, placebo
+        self.assertEqual((rows["A"]["status"], rows["C"]["status"], rows["PLACEBO_p2"]["status"]), ("ziva", "pauzirana", "placebo"))
+        self.assertEqual(rows["A"]["pct"], 50.0)
+        self.assertEqual(rows["A"]["eta_days"], 6)  # 150 trejdova za 6 dana = 25 dnevno, fali jos 150: za 6 dana
+        self.assertTrue(rows["A"]["t_days"] and rows["A"]["t"] == 1.2)  # t po danima kad postoji
+        self.assertFalse(rows["B"]["t_days"])  # inace naivno (oznaka *)
+        self.assertEqual(rows["B"]["test"], "X7")
+
     def test_paused_variant_is_still_measured_but_never_a_live_trigger(self):
         self.cfg["live_variants"] = [{"id": "CSM_rev_L24", "hold_hours": 24, "paused": True, "why": "pauzirano"}, {"id": "D_MOM_L7_z0.5", "hold_hours": 168}]
         self.assertEqual(forward.live_config(self.cfg), {"D_MOM_L7_z0.5": 168})

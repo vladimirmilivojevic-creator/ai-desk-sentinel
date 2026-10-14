@@ -152,6 +152,12 @@ class BuildTests(unittest.TestCase):
         m = merge([json.load(open(os.path.join(d, "pf", "disc.%d.json" % i))) for i in range(res["disc"])])
         self.assertTrue(m["head"]["n_tests"] == 60 and 0 < len(m["rules"]) <= 110)
 
+    def test_proof_rows_travel_in_the_lab_document(self):
+        panel = {"updated_utc": "u", "live": [], "proof": {"target": 300, "rows": [{"id": "A", "test": "X24", "n": 150, "mean": 0.3, "t": 1.2, "t_days": True, "pct": 50.0, "eta_days": 6, "status": "ziva", "skip": 1}]}}
+        secs = dict(P.lab_sections(panel))
+        self.assertEqual(secs["proof_target"], 300)
+        self.assertEqual(secs["proof"], [{"id": "A", "test": "X24", "n": 150, "mean": 0.3, "t": 1.2, "t_days": True, "pct": 50.0, "eta_days": 6, "status": "ziva"}])
+
     def test_one_failing_document_is_reported_and_the_rest_are_still_written(self):
         d = self.state()
         orig = P.disc_sections
