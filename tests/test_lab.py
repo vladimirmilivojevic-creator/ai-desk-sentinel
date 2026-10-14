@@ -471,6 +471,22 @@ class ForwardTests(unittest.TestCase):
         self.assertFalse(rows["B"]["t_days"])  # inace naivno (oznaka *)
         self.assertEqual(rows["B"]["test"], "X7")
 
+    def test_proof_rows_show_excess_over_basket_and_flag_pure_market_direction(self):
+        cfg = {"live_variants": []}
+        av = {"BETA": {"interval": "1h", "tests": {"X24": {"n": 282, "mean": 0.58, "t": None, "t_naive": 3.17, "days": 7},
+                                                    "E24": {"n": 282, "mean": -0.02, "t": None, "t_naive": -0.11, "days": 7}}},
+              "EDGE": {"interval": "1h", "tests": {"X24": {"n": 200, "mean": 0.60, "t": 2.1, "t_naive": 3.0, "days": 14},
+                                                    "E24": {"n": 200, "mean": 0.35, "t": 2.0, "t_naive": 2.4, "days": 14}}},
+              "NOE": {"interval": "1h", "tests": {"X24": {"n": 50, "mean": 0.4, "t": None, "t_naive": 1.0, "days": 5}}},
+              "DAILY": {"interval": "1d", "tests": {"X7": {"n": 40, "mean": 0.9, "t": None, "t_naive": 1.5, "days": 9},
+                                                     "E7": {"n": 40, "mean": 0.5, "t": None, "t_naive": 0.9, "days": 9},
+                                                     "E24": {"n": 99, "mean": -9.0, "t": None, "t_naive": -9.0, "days": 9}}}}
+        rows = {r["id"]: r for r in forward.proof_rows(cfg, av, 24.0 * 7)["rows"]}
+        self.assertEqual((rows["BETA"]["e_mean"], rows["BETA"]["e_t"], rows["BETA"]["e_t_days"], rows["BETA"]["beta"]), (-0.02, -0.11, False, True))
+        self.assertEqual((rows["EDGE"]["e_mean"], rows["EDGE"]["e_t"], rows["EDGE"]["e_t_days"], rows["EDGE"]["beta"]), (0.35, 2.0, True, False))
+        self.assertEqual((rows["NOE"]["e_mean"], rows["NOE"]["e_t"], rows["NOE"]["beta"]), (None, None, False))  # nema E testa: nepoznato, ne optuzba
+        self.assertEqual(rows["DAILY"]["e_mean"], 0.5)  # dnevna pravila koriste E7, ne E24
+
     def test_paused_variant_is_still_measured_but_never_a_live_trigger(self):
         self.cfg["live_variants"] = [{"id": "CSM_rev_L24", "hold_hours": 24, "paused": True, "why": "pauzirano"}, {"id": "D_MOM_L7_z0.5", "hold_hours": 168}]
         self.assertEqual(forward.live_config(self.cfg), {"D_MOM_L7_z0.5": 168})

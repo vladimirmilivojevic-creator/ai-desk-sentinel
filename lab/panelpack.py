@@ -117,7 +117,7 @@ def lab_sections(panel):
             "totals": panel.get("totals"), "cost_pct": panel.get("cost_pct"), "features_rows": panel.get("features_rows"), "backtest_counts": panel.get("backtest_counts"),
             "demoted": panel.get("demoted"), "placebo": panel.get("placebo")}
     proof = panel.get("proof") or {}
-    proof_rows = [{k: r.get(k) for k in ("id", "test", "n", "mean", "t", "t_days", "pct", "eta_days", "status")} for r in proof.get("rows", [])]
+    proof_rows = [{k: r.get(k) for k in ("id", "test", "n", "mean", "t", "t_days", "pct", "eta_days", "status", "e_mean", "e_t", "e_t_days", "beta")} for r in proof.get("rows", [])]
     return [("head", head), ("live", live), ("proof_target", proof.get("target")), ("proof", proof_rows), ("top_backtest", top), ("history", hist[-72:]),
             ("registry_head", {"generated_utc": reg.get("generated_utc"), "gates_version": reg.get("gates_version"), "counts": reg.get("counts")}), ("registry_rules", rules)]
 

@@ -228,7 +228,9 @@ def history_point(bar_ms, all_vars, live_ids):
 def proof_rows(cfg, all_vars, hours_running, limit=16):
     """Napredak ka dokazu po pravilu: koliko je simuliranih trejdova (sa stopom, ciljem i troskom: X24 satna, X7 dnevna pravila) vec izmereno unapred
     prema cilju PROOF_TARGET, srednji rezultat, t (po danima kad ima bar 10 dana, inace naivno) i procena dana do cilja pri sadasnjem tempu.
-    Zivi i pauzirana pravila prvo, pa ostala po n; placebo ostaje kao poredjenje. Simulirani trejdovi istog dana nisu nezavisni: zato se broji t po danima."""
+    Zivi i pauzirana pravila prvo, pa ostala po n; placebo ostaje kao poredjenje. Simulirani trejdovi istog dana nisu nezavisni: zato se broji t po danima.
+    Visak prema korpi (E24 satna, E7 dnevna pravila, ista duzina drzanja): srednji rezultat bez smera trzista. `beta` = sirovi rezultat pozitivan a visak nula ili
+    negativan, to jest dobit je samo smer trzista (2026-10-14: BB_follow X24 +0,58% a E24 -0,02% jer je trziste padalo)."""
     target = int(cfg.get("proof_target", PROOF_TARGET))
     live = set(live_config(cfg))
     paused = {x["id"] for x in cfg.get("live_variants", []) if x.get("paused")}
@@ -242,8 +244,12 @@ def proof_rows(cfg, all_vars, hours_running, limit=16):
             continue
         rate = n / days
         eta = None if n >= target or rate <= 0 else int(-(-(target - n) // rate))
+        e = (v.get("tests") or {}).get("E7" if v.get("interval") == "1d" else "E24") or {}
+        em = e.get("mean") if e.get("n") else None
         rows.append({"id": vid, "test": key, "n": n, "mean": s.get("mean"), "t": s.get("t") if s.get("t") is not None else s.get("t_naive"),
                      "t_days": s.get("t") is not None, "days": s.get("days"), "pct": round(100.0 * min(1.0, n / target), 1), "eta_days": eta,
+                     "e_mean": em, "e_t": (e.get("t") if e.get("t") is not None else e.get("t_naive")) if em is not None else None, "e_t_days": e.get("t") is not None,
+                     "beta": bool(em is not None and (s.get("mean") or 0) > 0 and em <= 0),
                      "status": "ziva" if vid in live else ("pauzirana" if vid in paused else ("placebo" if "PLACEBO" in vid else "merena"))})
     order = {"ziva": 0, "pauzirana": 1, "placebo": 2, "merena": 3}
     rows.sort(key=lambda r: (order[r["status"]], -r["n"]))
