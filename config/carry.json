@@ -1,0 +1,17 @@
+{
+ "version": 1,
+ "registered_utc": "2026-10-14T01:00:00Z",
+ "note": "Korpa po fondingu (carry), unapred zadata studija. Pitanje: da li se isplati svakodnevno birati kovanice po prosecnom fondingu poslednjih n dana (dugo najnizi fonding, kratko najvisi: prima se fonding na obe strane) i drzati korpu, uz trosak i uz cenu koja se pomera. Motiv: Robot Wealth (2025) kaze da je carry korpa po Binance fondingu ostala isplativa posle troska, dok je carry na Hyperliquid-u od 2024 istopljen jer pomaci cene pojedu fonding; ovo proverava tu tvrdnju na sopstvenim podacima. Parametri i broj testova (12) su upisani PRE ijednog rezultata i ne podesavaju se prema ishodu. Podaci: Binance javni arhiv (mesecni fajlovi fundingRate), cene: Binance spot dnevne svece iz Lovca (razlika perp/spot je zanemarena i to je poznato ogranicenje).",
+ "universe": {"top_n": 30, "rank_window": 30, "from": "2021-01-01", "min_names": 12, "note": "prvih 30 po prometu na dan (point-in-time, sa ugasenim), samo kovanice koje na taj dan imaju fonding"},
+ "signal_days": [3, 7],
+ "hold_days": [3, 7, 14],
+ "orientations": ["carry", "reverse"],
+ "k": 5,
+ "weights": "inverse_vol_30d",
+ "cost_per_round_trip_pct": 0.33,
+ "fdr_q": 0.10,
+ "placebo_runs": 50,
+ "min_periods": 30,
+ "candidate_gates": {"fdr": true, "mean_gt": 0.0, "both_halves_mean_gt": 0.0, "last_270d_mean_gt": 0.0},
+ "limits": "cena je spot, a fonding je sa perpetuala (razlika je zanemarena); fonding trenutnog meseca nije u arhivi pa studija ide do poslednjeg punog meseca; uzorak 2021-2026 ukljucuje dva velika tržišna režima; nema gledanja unapred (signal na dan d koristi fonding do kraja dana d, ulaz na otvaranju dana d+1)."
+}
