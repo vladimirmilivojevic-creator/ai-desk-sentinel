@@ -7,7 +7,7 @@ import os
 import sys
 
 LIMIT = 5400
-SLOTS = {"lab": 6, "brief": 4, "trig": 3, "feat": 8, "disc": 3}
+SLOTS = {"lab": 6, "brief": 4, "trig": 3, "feat": 8, "disc": 5}
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -60,13 +60,32 @@ def pack(sections, limit=LIMIT):
     return parts
 
 
+def fit(sections, slots, limit=LIMIT):
+    """Pakuje odeljke tako da staju u `slots` delova: ako ne staju, odbacuje odeljke od kraja (poredak = vaznost), a ako ni to ne pomogne,
+    skracuje poslednju listu koja je ostala (npr. pravila) dok ne stane. Uvek vraca delove (nikad ne baca izuzetak zbog velicine)."""
+    secs = list(sections)
+    while secs:
+        parts = pack(secs, limit)
+        if len(parts) <= slots:
+            return parts
+        if len(secs) > 2:
+            secs.pop()
+            continue
+        k, v = secs[-1]
+        if isinstance(v, list) and len(v) > 1:
+            secs[-1] = (k, v[:max(1, len(v) * 3 // 4)])
+            continue
+        secs.pop()
+    return []
+
+
 def write_parts(outdir, name, parts):
     """Brise stare delove istog dokumenta i upisuje nove; panel cita fiksan broj mesta (SLOTS), nepostojeca se preskacu."""
     os.makedirs(outdir, exist_ok=True)
-    for f in glob.glob(os.path.join(outdir, name + ".*.json")):
-        os.remove(f)
     if len(parts) > SLOTS.get(name, 8):
         raise ValueError("dokument %s ima %d delova, a panel cita %d" % (name, len(parts), SLOTS.get(name, 8)))
+    for f in glob.glob(os.path.join(outdir, name + ".*.json")):
+        os.remove(f)
     for i, p in enumerate(parts):
         with open(os.path.join(outdir, "%s.%d.json" % (name, i)), "w", encoding="utf-8") as f:
             json.dump(p, f, ensure_ascii=False, separators=(",", ":"))
@@ -141,8 +160,10 @@ def disc_sections(root):
     rl = [{"id": rid, "status": r["status"], "since": r.get("forward_start"), "promoted": r.get("promoted_utc"),
            "study": {k: (r.get("study") or {}).get(k) for k in keys},
            "fwd": {k: (r.get("forward") or {}).get(k) for k in ("n", "mean", "t", "sim_mean", "mean_ex_best", "pending")}} for rid, r in sorted((rules or {}).items())]
+    now_s = radar.get("generated_utc") or ""
     rd = [{"rule": x["rule"], "status": x["status"], "side": x["side"], "signal_date": x["signal_date"], "from": x["valid_from_utc"], "to": x["valid_until_utc"],
-           "hold_hours": x["hold_hours"], "picks": [{k: p.get(k) for k in ("ticker", "px", "stop_pct", "tp_pct", "score")} for p in x["picks"]]} for x in radar.get("rules", [])]
+           "hold_hours": x["hold_hours"], "picks": [{k: p.get(k) for k in ("ticker", "px", "stop_pct", "tp_pct", "score")} for p in x["picks"]]}
+          for x in radar.get("rules", []) if not now_s or x["valid_until_utc"] >= now_s]  # istekli prozori se ne prikazuju (i ne pune dokument)
     top = [{k: t.get(k) for k in ("id", "n", "mean", "median", "mean_ex_best", "t", "status")} for t in sorted(tests, key=lambda t: -(t["t"] if t.get("t") is not None else -99))[:10]]
     return [("head", head), ("rules", rl), ("radar", rd), ("top", top), ("cases", (study or {}).get("cases") or [])]
 
@@ -150,24 +171,22 @@ def disc_sections(root):
 def build(state_dir, root=ROOT):
     out = os.path.join(state_dir, "pf")
     res = {}
-    panel = _load(os.path.join(state_dir, "lab", "panel.json"))
-    if panel:
-        res["lab"] = write_parts(out, "lab", pack(lab_sections(panel)))
-    b = _load(os.path.join(state_dir, "data", "briefing.json"))
-    if b:
-        res["brief"] = write_parts(out, "brief", pack(brief_sections(b)))
-    t = _load(os.path.join(state_dir, "lab", "triggers.json"))
-    if t:
-        res["trig"] = write_parts(out, "trig", pack(trig_sections(t)))
-    f = _load(os.path.join(state_dir, "data", "features.json"))
-    if f:
-        res["feat"] = write_parts(out, "feat", pack(feat_sections(f)))
-    try:
-        ds = disc_sections(root)
-    except Exception:  # noqa: BLE001  # Lovac nikad ne obara pakovanje ostalih dokumenata
-        ds = None
-    if ds:
-        res["disc"] = write_parts(out, "disc", pack(ds))
+    errors = {}
+
+    def doc(name, loader, sections, packer=pack):
+        try:
+            src = loader()
+            if src:
+                res[name] = write_parts(out, name, packer(sections(src)))
+        except Exception as e:  # noqa: BLE001  # jedan dokument nikad ne obara pakovanje ostalih (2026-10-14: Lovac je pao pa su svi posle njega ostali neosvezeni)
+            errors[name] = "%s: %s" % (type(e).__name__, e)
+    doc("lab", lambda: _load(os.path.join(state_dir, "lab", "panel.json")), lab_sections)
+    doc("brief", lambda: _load(os.path.join(state_dir, "data", "briefing.json")), brief_sections)
+    doc("trig", lambda: _load(os.path.join(state_dir, "lab", "triggers.json")), trig_sections)
+    doc("feat", lambda: _load(os.path.join(state_dir, "data", "features.json")), feat_sections)
+    doc("disc", lambda: disc_sections(root), lambda ds: ds, packer=lambda secs: fit(secs, SLOTS["disc"]))
+    if errors:
+        res["errors"] = errors
     return res
 
 

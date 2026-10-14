@@ -110,8 +110,10 @@ class BuildTests(unittest.TestCase):
         rules = {"stocks:SPIKE_UP:10d:long": {"status": "nagovestaj", "forward_start": "2026-09-28", "study": {"n": 90, "mean": 5.7, "median": -0.9, "mean_ex_best": 3.0, "t": 2.9, "p": 0.004, "recent_mean": -0.4},
                                               "forward": {"n": 0, "mean": None, "t": None, "sim_mean": None, "mean_ex_best": None, "pending": 1}}}
         json.dump({"updated_utc": "2026-10-10T00:40:00Z", "rules": rules}, open(os.path.join(root, "discovery", "rules.json"), "w"))
-        json.dump({"generated_utc": "g", "rules": [{"rule": "stocks:SPIKE_UP:10d:long", "status": "nagovestaj", "side": "long", "signal_date": "2026-10-09", "valid_from_utc": "a", "valid_until_utc": "b",
-                                                    "hold_hours": 336, "picks": [{"ticker": "GME", "px": 25.0, "stop_pct": 5.0, "tp_pct": 15.0, "score": 4.0, "symbol": "xyz:GME"}]}]},
+        json.dump({"generated_utc": "2026-10-10T00:40:00Z", "rules": [{"rule": "stocks:SPIKE_UP:10d:long", "status": "nagovestaj", "side": "long", "signal_date": "2026-10-09", "valid_from_utc": "2026-10-10T14:30:00Z", "valid_until_utc": "2026-10-11T20:30:00Z",
+                                                    "hold_hours": 336, "picks": [{"ticker": "GME", "px": 25.0, "stop_pct": 5.0, "tp_pct": 15.0, "score": 4.0, "symbol": "xyz:GME"}]},
+                                                   {"rule": "crypto:BRK20:1w:short", "status": "kandidat", "side": "short", "signal_date": "2026-10-04", "valid_from_utc": "2026-10-05T00:00:00Z", "valid_until_utc": "2026-10-06T06:00:00Z",
+                                                    "hold_hours": 168, "picks": [{"ticker": "ZECUSDT", "px": 1.0, "stop_pct": 5.0, "tp_pct": 15.0, "score": 1.0}]}]},
                   open(os.path.join(root, "discovery", "radar.json"), "w"))
         tests = [{"id": "t%d" % i, "n": 50, "mean": 0.1 * i, "median": 0.0, "mean_ex_best": 0.0, "t": float(i), "status": "odbaceno"} for i in range(60)]
         json.dump({"generated_utc": "g", "tests": tests, "universes": {"stocks": {"n": 47, "from": "2020", "to": "2026"}}, "cfg_summary": {"fdr_q": 0.1}, "cases": [{"sym": "GME", "entry": "2026-10-03", "profile": {"date": "d", "families": {}, "events": []}}]},
@@ -126,9 +128,47 @@ class BuildTests(unittest.TestCase):
         self.assertEqual(m["head"]["rule_counts"], {"nagovestaj": 1})
         self.assertEqual(len(m["top"]), 10)
         self.assertEqual(m["top"][0]["id"], "t59")
+        self.assertEqual([x["rule"] for x in m["radar"]], ["stocks:SPIKE_UP:10d:long"])  # istekli prozor (BRK20, do 06.10.) se ne prikazuje
         self.assertEqual(m["radar"][0]["picks"][0]["ticker"], "GME")
         self.assertEqual(m["rules"][0]["fwd"]["pending"], 1)
         self.assertEqual(m["cases"][0]["sym"], "GME")
+
+    def test_oversize_discovery_document_degrades_instead_of_vanishing_and_never_blocks_other_documents(self):
+        """2026-10-14: sa novim univerzumom Lovac je prerastao broj mesta, ValueError je obrisao dokument i panel je beskonacno 'ucitavao'."""
+        d, root = self.state(), tempfile.mkdtemp()
+        os.makedirs(os.path.join(root, "discovery"))
+        os.makedirs(os.path.join(root, "calibration"))
+        rules = {"crypto:RULE%03d:1w:short" % i: {"status": "nagovestaj", "forward_start": "2026-09-28", "study": {"n": 90, "mean": 5.7, "median": -0.9, "mean_ex_best": 3.0, "t": 2.9, "p": 0.004, "recent_mean": -0.4},
+                                                  "forward": {"n": 0, "mean": None, "t": None, "sim_mean": None, "mean_ex_best": None, "pending": 1}} for i in range(110)}
+        with open(os.path.join(root, "discovery", "rules.json"), "w") as f:
+            json.dump({"updated_utc": "2026-10-10T00:40:00Z", "rules": rules}, f)
+        tests = [{"id": "t%d" % i, "n": 50, "mean": 0.1 * i, "median": 0.0, "mean_ex_best": 0.0, "t": float(i), "status": "odbaceno"} for i in range(60)]
+        with open(os.path.join(root, "calibration", "discovery.json"), "w") as f:
+            json.dump({"generated_utc": "g", "tests": tests, "universes": {"stocks": {"n": 47}}, "cfg_summary": {}, "cases": []}, f)
+        res = P.build(d, root=root)
+        self.assertIn("disc", res, res)  # dokument nije nestao
+        self.assertLessEqual(res["disc"], P.SLOTS["disc"])
+        self.assertIn("lab", res)  # a ostali dokumenti su osvezeni
+        m = merge([json.load(open(os.path.join(d, "pf", "disc.%d.json" % i))) for i in range(res["disc"])])
+        self.assertTrue(m["head"]["n_tests"] == 60 and 0 < len(m["rules"]) <= 110)
+
+    def test_one_failing_document_is_reported_and_the_rest_are_still_written(self):
+        d = self.state()
+        orig = P.disc_sections
+        P.disc_sections = lambda root: (_ for _ in ()).throw(RuntimeError("pad"))
+        try:
+            res = P.build(d, root=tempfile.mkdtemp())
+        finally:
+            P.disc_sections = orig
+        self.assertEqual(res["errors"], {"disc": "RuntimeError: pad"})
+        self.assertIn("lab", res)
+
+    def test_write_parts_keeps_the_old_document_when_the_new_one_is_too_big(self):
+        with tempfile.TemporaryDirectory() as d:
+            P.write_parts(d, "disc", [{"a": 1}])
+            with self.assertRaises(ValueError):
+                P.write_parts(d, "disc", [{"a": i} for i in range(P.SLOTS["disc"] + 1)])
+            self.assertTrue(os.path.exists(os.path.join(d, "disc.0.json")))  # stari dokument ostaje (ranije je bio obrisan)
 
 
 if __name__ == "__main__":
