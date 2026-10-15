@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-10-14T05:23:12Z",
+ "generated_utc": "2026-10-15T05:10:43Z",
  "rules": [
   {
    "rule": "alts:LOWVOL:4w:long",
@@ -23,20 +23,20 @@
      "tp_pct": 36.0
     },
     {
+     "ticker": "CAKEUSDT",
+     "symbol": "CAKE",
+     "score": -0.037318,
+     "px": 2.508,
+     "atr_pct": 5.92,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
+    },
+    {
      "ticker": "ICPUSDT",
      "symbol": "ICP",
      "score": -0.037818,
      "px": 3.365,
      "atr_pct": 7.6,
-     "stop_pct": 12.0,
-     "tp_pct": 36.0
-    },
-    {
-     "ticker": "ATOMUSDT",
-     "symbol": "ATOM",
-     "score": -0.038419,
-     "px": 1.75,
-     "atr_pct": 7.0,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
@@ -153,20 +153,20 @@
      "tp_pct": 36.0
     },
     {
+     "ticker": "HBARUSDT",
+     "symbol": "HBAR",
+     "score": -0.228759,
+     "px": 0.0941,
+     "atr_pct": 9.37,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
+    },
+    {
      "ticker": "XPLUSDT",
      "symbol": "XPL",
      "score": -0.228307,
      "px": 0.0885,
      "atr_pct": 7.79,
-     "stop_pct": 12.0,
-     "tp_pct": 36.0
-    },
-    {
-     "ticker": "ZECUSDT",
-     "symbol": "ZEC",
-     "score": -0.227709,
-     "px": 1276.69,
-     "atr_pct": 8.09,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
