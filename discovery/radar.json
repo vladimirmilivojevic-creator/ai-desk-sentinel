@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-10-15T05:10:43Z",
+ "generated_utc": "2026-10-16T04:58:46Z",
  "rules": [
   {
    "rule": "alts:LOWVOL:4w:long",
@@ -23,20 +23,20 @@
      "tp_pct": 36.0
     },
     {
-     "ticker": "CAKEUSDT",
-     "symbol": "CAKE",
-     "score": -0.037318,
-     "px": 2.508,
-     "atr_pct": 5.92,
-     "stop_pct": 12.0,
-     "tp_pct": 36.0
-    },
-    {
      "ticker": "ICPUSDT",
      "symbol": "ICP",
      "score": -0.037818,
      "px": 3.365,
      "atr_pct": 7.6,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
+    },
+    {
+     "ticker": "ALGOUSDT",
+     "symbol": "ALGO",
+     "score": -0.042188,
+     "px": 0.1326,
+     "atr_pct": 7.81,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
