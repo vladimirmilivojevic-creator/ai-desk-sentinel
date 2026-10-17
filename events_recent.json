@@ -1,0 +1,28 @@
+{
+ "events": [
+  {
+   "id": "EV-20261016T1635Z-OIL",
+   "ts": "2026-10-16T16:35:22Z",
+   "theme": "OIL",
+   "tier": "N2",
+   "text": "N2 OIL | Brent +2,9%/60m, WTI +3,1%/60m | ocena 5,0 (P 2,0, X 1,5, M 1,5) | mozak se NE okida (fire_enabled=false (senka))",
+   "scheduled": false
+  },
+  {
+   "id": "EV-20261014T1310Z-GOLD",
+   "ts": "2026-10-14T13:10:32Z",
+   "theme": "GOLD",
+   "tier": "N2",
+   "text": "N2 GOLD | Zlato -1,3%/60m | ocena 3,5 (P 2,0, X 1,5) | mozak se NE okida (fire_enabled=false (senka))",
+   "scheduled": false
+  },
+  {
+   "id": "EV-20261008T1725Z-EQUITY",
+   "ts": "2026-10-08T17:25:24Z",
+   "theme": "EQUITY",
+   "tier": "N2",
+   "text": "N2 EQUITY | Nasdaq -1,2%/60m | ocena 4,5 (P 2,0, H 1,0, M 1,5) | mozak se NE okida (fire_enabled=false (senka))",
+   "scheduled": false
+  }
+ ]
+}

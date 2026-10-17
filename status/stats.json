@@ -1,0 +1,248 @@
+{
+ "updated": "2026-10-17T16:20:30Z",
+ "open": 2,
+ "closed": 2,
+ "min_n": 10,
+ "stats": {
+  "EQUITY": {
+   "h4": {
+    "n": 1,
+    "mean_follow": -0.408,
+    "pos_share": 0.0,
+    "enough": false
+   },
+   "h24": {
+    "n": 1,
+    "mean_follow": -0.731,
+    "pos_share": 0.0,
+    "enough": false
+   },
+   "h72": {
+    "n": 1,
+    "mean_follow": -1.116,
+    "pos_share": 0.0,
+    "enough": false
+   }
+  },
+  "EQUITY|potvrdjeno": {
+   "h4": {
+    "n": 1,
+    "mean_follow": -0.408,
+    "pos_share": 0.0,
+    "enough": false
+   },
+   "h24": {
+    "n": 1,
+    "mean_follow": -0.731,
+    "pos_share": 0.0,
+    "enough": false
+   },
+   "h72": {
+    "n": 1,
+    "mean_follow": -1.116,
+    "pos_share": 0.0,
+    "enough": false
+   }
+  },
+  "EQUITY|sa vescu": {
+   "h4": {
+    "n": 1,
+    "mean_follow": -0.408,
+    "pos_share": 0.0,
+    "enough": false
+   },
+   "h24": {
+    "n": 1,
+    "mean_follow": -0.731,
+    "pos_share": 0.0,
+    "enough": false
+   },
+   "h72": {
+    "n": 1,
+    "mean_follow": -1.116,
+    "pos_share": 0.0,
+    "enough": false
+   }
+  },
+  "SVE|sa vescu": {
+   "h4": {
+    "n": 3,
+    "mean_follow": 0.145,
+    "pos_share": 0.67,
+    "enough": false
+   },
+   "h24": {
+    "n": 1,
+    "mean_follow": -0.731,
+    "pos_share": 0.0,
+    "enough": false
+   },
+   "h72": {
+    "n": 1,
+    "mean_follow": -1.116,
+    "pos_share": 0.0,
+    "enough": false
+   }
+  },
+  "SVE": {
+   "h4": {
+    "n": 4,
+    "mean_follow": 0.124,
+    "pos_share": 0.75,
+    "enough": false
+   },
+   "h24": {
+    "n": 2,
+    "mean_follow": -1.108,
+    "pos_share": 0.0,
+    "enough": false
+   },
+   "h72": {
+    "n": 2,
+    "mean_follow": -1.525,
+    "pos_share": 0.0,
+    "enough": false
+   }
+  },
+  "GOLD": {
+   "h4": {
+    "n": 1,
+    "mean_follow": 0.061,
+    "pos_share": 1.0,
+    "enough": false
+   },
+   "h24": {
+    "n": 1,
+    "mean_follow": -1.485,
+    "pos_share": 0.0,
+    "enough": false
+   },
+   "h72": {
+    "n": 1,
+    "mean_follow": -1.933,
+    "pos_share": 0.0,
+    "enough": false
+   }
+  },
+  "GOLD|potvrdjeno": {
+   "h4": {
+    "n": 1,
+    "mean_follow": 0.061,
+    "pos_share": 1.0,
+    "enough": false
+   },
+   "h24": {
+    "n": 1,
+    "mean_follow": -1.485,
+    "pos_share": 0.0,
+    "enough": false
+   },
+   "h72": {
+    "n": 1,
+    "mean_follow": -1.933,
+    "pos_share": 0.0,
+    "enough": false
+   }
+  },
+  "GOLD|bez vesti": {
+   "h4": {
+    "n": 1,
+    "mean_follow": 0.061,
+    "pos_share": 1.0,
+    "enough": false
+   },
+   "h24": {
+    "n": 1,
+    "mean_follow": -1.485,
+    "pos_share": 0.0,
+    "enough": false
+   },
+   "h72": {
+    "n": 1,
+    "mean_follow": -1.933,
+    "pos_share": 0.0,
+    "enough": false
+   }
+  },
+  "SVE|bez vesti": {
+   "h4": {
+    "n": 1,
+    "mean_follow": 0.061,
+    "pos_share": 1.0,
+    "enough": false
+   },
+   "h24": {
+    "n": 1,
+    "mean_follow": -1.485,
+    "pos_share": 0.0,
+    "enough": false
+   },
+   "h72": {
+    "n": 1,
+    "mean_follow": -1.933,
+    "pos_share": 0.0,
+    "enough": false
+   }
+  },
+  "OIL": {
+   "h4": {
+    "n": 2,
+    "mean_follow": 0.422,
+    "pos_share": 1.0,
+    "enough": false
+   },
+   "h24": {
+    "n": 0,
+    "mean_follow": null,
+    "pos_share": null,
+    "enough": false
+   },
+   "h72": {
+    "n": 0,
+    "mean_follow": null,
+    "pos_share": null,
+    "enough": false
+   }
+  },
+  "OIL|potvrdjeno": {
+   "h4": {
+    "n": 2,
+    "mean_follow": 0.422,
+    "pos_share": 1.0,
+    "enough": false
+   },
+   "h24": {
+    "n": 0,
+    "mean_follow": null,
+    "pos_share": null,
+    "enough": false
+   },
+   "h72": {
+    "n": 0,
+    "mean_follow": null,
+    "pos_share": null,
+    "enough": false
+   }
+  },
+  "OIL|sa vescu": {
+   "h4": {
+    "n": 2,
+    "mean_follow": 0.422,
+    "pos_share": 1.0,
+    "enough": false
+   },
+   "h24": {
+    "n": 0,
+    "mean_follow": null,
+    "pos_share": null,
+    "enough": false
+   },
+   "h72": {
+    "n": 0,
+    "mean_follow": null,
+    "pos_share": null,
+    "enough": false
+   }
+  }
+ }
+}
