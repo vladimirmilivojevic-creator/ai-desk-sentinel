@@ -23,6 +23,9 @@ NOISE = ["블러(BLUR) 거래 유의 종목 지정 안내", "아이콘(ICX) 거�
          "헤미(HEMI), 유즈리스(USELESS) 신규 거래지원 안내 (BTC, USDT 마켓) (헤미(HEMI) 거래지원 취소 안내)", "카이아(KAIA) 신규 거래지원 안내 (KRW, BTC, USDT 마켓) (KAIA/BTC 초기 매수 제한 안내)"]
 
 
+NOKR = lambda c, k: set()  # korejska trzista bez mreze u testovima
+
+
 def ctx(**px):
     return {k: {"mark": v, "oi_usd": 1.4e6 if k == "RSR" else 50e6} for k, v in px.items()}
 
@@ -59,16 +62,54 @@ class PriceTests(unittest.TestCase):
         self.assertIsNone(L.price_before(snap, "RSR", T0 - 2 * 60 * MIN, {"RSR": {}}))
 
 
+class KoreaMarketTests(unittest.TestCase):
+    """Rezerva dok API saopstenja Upbit-a vraca 403 sa adrese straze: novo KRW trziste na Upbit-u ili Bithumb-u je dogadjaj."""
+
+    def test_parse_krw_bases_only(self):
+        cfg = dict(CFG, korea=dict(CFG["korea"]))
+        import lab.listings as mod
+        orig = mod._get_json
+        mod._get_json = lambda url, timeout=20: [{"market": "KRW-BTC"}, {"market": "BTC-ETH"}, {"market": "USDT-PEPE"}, {"market": "KRW-RSR"}, {"nema": 1}]
+        try:
+            self.assertEqual(L.fetch_korea_bases(cfg, "upbit_mkt"), {"BTC", "RSR"})
+        finally:
+            mod._get_json = orig
+
+    def test_seed_then_new_market_is_an_event_and_same_coin_from_second_exchange_is_not_double_counted(self):
+        with tempfile.TemporaryDirectory() as d:
+            up = {"BTC", "ETH"}
+            state = {"upbit_mkt": set(up), "bithumb": set(up)}
+            kr = lambda c, k: set(state[k])
+            ok = lambda c: []
+            L.run(d, ctx(), T0, cfg=CFG, upbit=ok, coinbase=lambda c: set(), log=lambda m: None, korea=kr)
+            self.assertEqual(len(read_json(os.path.join(d, "listings", "events.json"))), 0)  # prvi krug samo pamti
+            state["upbit_mkt"].add("RSR")
+            r = L.run(d, ctx(RSR=0.002), T0 + 5 * MIN, cfg=CFG, upbit=ok, coinbase=lambda c: set(), log=lambda m: None, korea=kr, spot=lambda s, c: 1.0)
+            self.assertEqual(r["new"], 1)
+            state["bithumb"].add("RSR")  # ista kovanica na drugoj berzi u 6 h: ne broji se dvaput
+            r2 = L.run(d, ctx(RSR=0.002), T0 + 10 * MIN, cfg=CFG, upbit=ok, coinbase=lambda c: set(), log=lambda m: None, korea=kr, spot=lambda s, c: 1.0)
+            self.assertEqual(r2["new"], 0)
+            state["bithumb"].add("NEWK")  # druga kovanica se broji
+            r3 = L.run(d, ctx(), T0 + 15 * MIN, cfg=CFG, upbit=ok, coinbase=lambda c: set(), log=lambda m: None, korea=kr, spot=lambda s, c: 1.0)
+            self.assertEqual(r3["new"], 1)
+            ev = read_json(os.path.join(d, "listings", "events.json"))
+            self.assertEqual([(e["source"], e["sym"]) for e in ev], [("upbit_mkt", "RSR"), ("bithumb", "NEWK")])
+            summ = read_json(os.path.join(d, "listings", "summary.json"))
+            self.assertEqual(summ["summary"]["upbit_mkt"]["events"], 1)
+            self.assertEqual(summ["summary"]["bithumb"]["events"], 1)
+            self.assertEqual(summ["sources"]["bithumb"], "ok")
+
+
 class RunTests(unittest.TestCase):
     def test_first_run_seeds_without_events_then_new_notice_and_new_coinbase_asset_become_events(self):
         with tempfile.TemporaryDirectory() as d:
             up1 = lambda c: [notice("1", KAIA, T0 - 3 * 86400000)]
-            r1 = L.run(d, ctx(RSR=0.0017), T0, cfg=CFG, upbit=up1, coinbase=lambda c: {"BTC", "ETH"}, log=lambda m: None)
+            r1 = L.run(d, ctx(RSR=0.0017), T0, cfg=CFG, upbit=up1, coinbase=lambda c: {"BTC", "ETH"}, log=lambda m: None, korea=NOKR)
             self.assertEqual((r1["new"], r1["events"]), (0, 0))  # staro se samo pamti
             up2 = lambda c: [notice("2", RSR, T0 + 4 * MIN), notice("1", KAIA, T0 - 3 * 86400000)]
             snap = {"RSR": [[T0, 0.00166, 0], [T0 + 3 * MIN, 0.00167, 0]]}
             r2 = L.run(d, ctx(RSR=0.00236), T0 + 6 * MIN, snap=snap, cfg=CFG, upbit=up2, coinbase=lambda c: {"BTC", "ETH", "NEWC"}, log=lambda m: None,
-                       spot=lambda s, c: 1.0)
+                       spot=lambda s, c: 1.0, korea=NOKR)
             self.assertEqual(r2["new"], 2)
             ev = {e["source"]: e for e in read_json(os.path.join(d, "listings", "events.json"))}
             u = ev["upbit"]
@@ -76,7 +117,7 @@ class RunTests(unittest.TestCase):
             self.assertAlmostEqual(u["move_before_detect_pct"], (0.00236 / 0.00167 - 1) * 100, places=1)  # koliko je cena vec otisla do detekcije
             self.assertTrue(u["cost"] == CFG["cost_pct"]["thin"])  # OI $1,4M = tanko trziste
             self.assertEqual((ev["coinbase"]["sym"], ev["coinbase"]["venue"], ev["coinbase"]["cost"]), ("NEWC", "binance", CFG["cost_pct"]["no_perp"]))
-            r3 = L.run(d, ctx(RSR=0.00236), T0 + 9 * MIN, cfg=CFG, upbit=up2, coinbase=lambda c: {"BTC", "ETH", "NEWC"}, log=lambda m: None, spot=lambda s, c: 1.0)
+            r3 = L.run(d, ctx(RSR=0.00236), T0 + 9 * MIN, cfg=CFG, upbit=up2, coinbase=lambda c: {"BTC", "ETH", "NEWC"}, log=lambda m: None, spot=lambda s, c: 1.0, korea=NOKR)
             self.assertEqual(r3["new"], 0)  # isto saopstenje se ne broji dvaput
 
     def test_outcomes_follow_and_fade_net_of_cost_late_is_missed(self):
@@ -98,9 +139,9 @@ class RunTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             def boom(c):
                 raise OSError("mreza")
-            r = L.run(d, ctx(), T0, cfg=CFG, upbit=boom, coinbase=boom, log=lambda m: None)
+            r = L.run(d, ctx(), T0, cfg=CFG, upbit=boom, coinbase=boom, log=lambda m: None, korea=lambda c, k: boom(c))
             self.assertEqual(r["new"], 0)
-            self.assertEqual(r["sources"], {"upbit": "OSError mreza", "coinbase": "OSError mreza"})
+            self.assertEqual(r["sources"], {"upbit": "OSError mreza", "coinbase": "OSError mreza", "upbit_mkt": "OSError mreza", "bithumb": "OSError mreza"})
 
     def test_jump_radar_runs_listings_only_when_asked_and_survives_its_failure(self):
         jc = J.load_cfg()

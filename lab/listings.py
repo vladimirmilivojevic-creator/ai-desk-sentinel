@@ -1,4 +1,4 @@
-"""Radar listinga (senka). Svaki krug straze cita javna saopstenja o novim listinzima (Upbit: spisak obavestenja; Coinbase: nov proizvod na spisku),
+"""Radar listinga (senka). Svaki krug straze cita javna saopstenja o novim listinzima (Upbit: spisak obavestenja, a kad je blokiran i spisak KRW trzista Upbit-a i Bithumb-a; Coinbase: nov proizvod na spisku),
 prepoznaje oznaku kovanice SKRIPTOM (bez AI-ja), belezi cenu u trenutku kad je straza videla saopstenje i koliko je cena vec otisla od saopstenja,
 pa meri sta bi se desilo da se pokret pratio (ili izbegao) posle 15 min, 1 h, 4 h i 24 h, neto posle troska. Nikad ne trguje i ne budi mozak.
 Poziva ga lab/jumps.py sa istim cenama (bez dodatnih poziva Hyperliquid-u). Pada tiho: nikad ne obara stražu.
@@ -54,6 +54,12 @@ def fetch_coinbase_bases(cfg):
     quotes = set(cfg["coinbase"]["quotes"])
     return {p["base_currency"] for p in _get_json(cfg["coinbase"]["url"], 40) if p.get("quote_currency") in quotes and p.get("status") == "online"
             and not p.get("trading_disabled")}
+
+
+def fetch_korea_bases(cfg, key):
+    """Skup osnovnih oznaka koje imaju KRW trziste na korejskoj berzi (key: upbit_mkt | bithumb). Rezerva kad saopstenja Upbit-a nisu dostupna sa adrese straze."""
+    q = cfg["korea"]["quote"] + "-"
+    return {m["market"][len(q):] for m in _get_json(cfg["korea"][key]) if str(m.get("market", "")).startswith(q)}
 
 
 def spot_price(sym, cfg):
@@ -155,7 +161,8 @@ def _stats(vals):
 
 def summarize(events, cfg):
     out = {}
-    for key, es in (("all", events), ("upbit", [e for e in events if e["source"] == "upbit"]), ("coinbase", [e for e in events if e["source"] == "coinbase"])):
+    for key, es in (("all", events), ("upbit", [e for e in events if e["source"] == "upbit"]), ("coinbase", [e for e in events if e["source"] == "coinbase"]),
+                    ("upbit_mkt", [e for e in events if e["source"] == "upbit_mkt"]), ("bithumb", [e for e in events if e["source"] == "bithumb"])):
         row = {"events": len(es), "with_price": sum(1 for e in es if e["px0"]),
                "move_before_detect": _stats([e["move_before_detect_pct"] for e in es if e["move_before_detect_pct"] is not None]),
                "delay_min": _stats([e["delay_min"] for e in es])}
@@ -167,7 +174,7 @@ def summarize(events, cfg):
     return out
 
 
-def run(state_dir, ctx, now_ms, snap=None, cfg=None, log=print, upbit=None, coinbase=None, spot=None):
+def run(state_dir, ctx, now_ms, snap=None, cfg=None, log=print, upbit=None, coinbase=None, spot=None, korea=None):
     cfg = cfg or load_cfg()
     d = os.path.join(state_dir, "listings")
     seen = _load(os.path.join(d, "seen.json"), {})
@@ -194,6 +201,18 @@ def run(state_dir, ctx, now_ms, snap=None, cfg=None, log=print, upbit=None, coin
         health["coinbase"] = "ok"
     except Exception as e:  # noqa: BLE001
         health["coinbase"] = "%s %s" % (type(e).__name__, str(e)[:60])
+    for key in ("upbit_mkt", "bithumb"):
+        try:
+            bases = (korea or fetch_korea_bases)(cfg, key)
+            if key in seen:
+                for b in sorted(bases - set(seen[key])):
+                    # vreme saopstenja nije poznato: koristi se trenutak otkrivanja (trgovanje je vec pocelo); isti simbol iz drugog izvora u 6 h se ne broji dvaput
+                    if not any(e["sym"] == b and abs(e["t_ms"] - now_ms) < 6 * 60 * MIN for e in events + new):
+                        new.append(make_event(key, iso(now_ms)[:13], b, now_ms, now_ms, ctx, snap, cfg, spot))
+            seen[key] = sorted(set(seen.get(key, [])) | bases)
+            health[key] = "ok"
+        except Exception as e:  # noqa: BLE001
+            health[key] = "%s %s" % (type(e).__name__, str(e)[:60])
     ids = {e["id"] for e in events}
     new = [e for e in new if e["id"] not in ids]
     events = (events + new)[-cfg["keep_events"]:]
