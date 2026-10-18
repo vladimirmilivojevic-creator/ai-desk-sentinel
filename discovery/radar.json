@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-10-17T04:58:40Z",
+ "generated_utc": "2026-10-18T05:07:13Z",
  "rules": [
   {
    "rule": "alts:LOWVOL:4w:long",
@@ -23,20 +23,20 @@
      "tp_pct": 36.0
     },
     {
+     "ticker": "ALGOUSDT",
+     "symbol": "ALGO",
+     "score": -0.042188,
+     "px": 0.1326,
+     "atr_pct": 7.81,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
+    },
+    {
      "ticker": "PYTHUSDT",
      "symbol": "PYTH",
      "score": -0.043054,
      "px": 0.0781,
      "atr_pct": 9.13,
-     "stop_pct": 12.0,
-     "tp_pct": 36.0
-    },
-    {
-     "ticker": "SYRUPUSDT",
-     "symbol": "SYRUP",
-     "score": -0.045013,
-     "px": 0.2591,
-     "atr_pct": 7.79,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
@@ -129,110 +129,6 @@
     "exec_n": 44,
     "exec_mean": -2.0316,
     "exec_t": -0.96
-   }
-  },
-  {
-   "rule": "alts:SPIKE_UP:3d:short",
-   "status": "nagovestaj",
-   "universe": "alts",
-   "family": "SPIKE_UP",
-   "kind": "event",
-   "side": "short",
-   "signal_date": "2026-10-16",
-   "valid_from_utc": "2026-10-17T00:00:00Z",
-   "valid_until_utc": "2026-10-18T06:00:00Z",
-   "hold_hours": 72,
-   "picks": [
-    {
-     "ticker": "TIAUSDT",
-     "symbol": "TIA",
-     "score": 3.7735,
-     "px": 0.6885,
-     "atr_pct": 10.88,
-     "stop_pct": 12.0,
-     "tp_pct": 36.0
-    }
-   ],
-   "forward": {
-    "n": 1,
-    "mean": 5.3799,
-    "t": null,
-    "abs_mean": 10.2516,
-    "stress_mean": 5.1099,
-    "median": 5.3799,
-    "mean_ex_best": null,
-    "sim_n": 1,
-    "sim_mean": -8.3487,
-    "pending": 1
-   },
-   "study": {
-    "n": 322,
-    "mean": 1.8647,
-    "median": 2.7414,
-    "mean_ex_best": 1.7559,
-    "t": 3.91,
-    "p": 9e-05,
-    "t_train": 5.03,
-    "t_test": 0.74,
-    "recent_mean": 3.2173,
-    "stress_mean": 1.5947,
-    "abs_mean": 2.2538,
-    "fdr": true,
-    "exec_n": 99,
-    "exec_mean": -2.6841,
-    "exec_t": -1.92
-   }
-  },
-  {
-   "rule": "alts:SPIKE_UP:7d:short",
-   "status": "nagovestaj",
-   "universe": "alts",
-   "family": "SPIKE_UP",
-   "kind": "event",
-   "side": "short",
-   "signal_date": "2026-10-16",
-   "valid_from_utc": "2026-10-17T00:00:00Z",
-   "valid_until_utc": "2026-10-18T06:00:00Z",
-   "hold_hours": 168,
-   "picks": [
-    {
-     "ticker": "TIAUSDT",
-     "symbol": "TIA",
-     "score": 3.7735,
-     "px": 0.6885,
-     "atr_pct": 10.88,
-     "stop_pct": 12.0,
-     "tp_pct": 36.0
-    }
-   ],
-   "forward": {
-    "n": 1,
-    "mean": -5.7944,
-    "t": null,
-    "abs_mean": -1.1525,
-    "stress_mean": -6.0644,
-    "median": -5.7944,
-    "mean_ex_best": null,
-    "sim_n": 1,
-    "sim_mean": -8.0744,
-    "pending": 3
-   },
-   "study": {
-    "n": 320,
-    "mean": 1.8176,
-    "median": 3.5529,
-    "mean_ex_best": 1.6872,
-    "t": 2.93,
-    "p": 0.00339,
-    "t_train": 2.58,
-    "t_test": 1.54,
-    "recent_mean": 4.8169,
-    "stress_mean": 1.5476,
-    "abs_mean": 1.9491,
-    "fdr": true,
-    "exec_n": 98,
-    "exec_mean": -5.7436,
-    "exec_t": -1.79
    }
   },
   {
