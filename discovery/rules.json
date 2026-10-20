@@ -1,5 +1,5 @@
 {
- "updated_utc": "2026-10-19T05:18:57Z",
+ "updated_utc": "2026-10-20T05:16:33Z",
  "rules": {
   "stocks:SPIKE_UP:10d:long": {
    "universe": "stocks",
@@ -43,7 +43,7 @@
     "mean": null,
     "t": null,
     "stress_mean": null,
-    "pending": 1
+    "pending": 0
    }
   },
   "crypto:BRK20:1w:short": {
@@ -565,11 +565,16 @@
     ]
    ],
    "forward": {
-    "n": 0,
-    "mean": null,
+    "n": 1,
+    "mean": 28.0488,
     "t": null,
-    "stress_mean": null,
-    "pending": 1
+    "abs_mean": 31.875,
+    "stress_mean": 27.7788,
+    "median": 28.0488,
+    "mean_ex_best": null,
+    "sim_n": 1,
+    "sim_mean": -12.33,
+    "pending": 0
    }
   },
   "crypto:SPIKE_DN:14d:short": {
@@ -775,16 +780,16 @@
     ]
    ],
    "forward": {
-    "n": 1,
-    "mean": 5.3799,
+    "n": 2,
+    "mean": 6.4762,
     "t": null,
-    "abs_mean": 10.2516,
-    "stress_mean": 5.1099,
-    "median": 5.3799,
+    "abs_mean": 10.1839,
+    "stress_mean": 6.2062,
+    "median": 6.4762,
     "mean_ex_best": null,
-    "sim_n": 1,
-    "sim_mean": -8.3487,
-    "pending": 1
+    "sim_n": 2,
+    "sim_mean": 0.8838,
+    "pending": 0
    }
   },
   "alts:SPIKE_UP:7d:short": {
@@ -867,16 +872,16 @@
     ]
    ],
    "forward": {
-    "n": 1,
-    "mean": 28.0514,
+    "n": 2,
+    "mean": 20.7555,
     "t": null,
-    "abs_mean": 33.7228,
-    "stress_mean": 27.7814,
-    "median": 28.0514,
+    "abs_mean": 26.1467,
+    "stress_mean": 20.4855,
+    "median": 20.7555,
     "mean_ex_best": null,
-    "sim_n": 1,
-    "sim_mean": 33.7228,
-    "pending": 1
+    "sim_n": 2,
+    "sim_mean": 26.1467,
+    "pending": 0
    }
   }
  }
