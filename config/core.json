@@ -1,0 +1,29 @@
+{
+  "_comment": "JEZGRO (senka): sistematski trend-ansambl na velikim kovanicama. Pravila su upisana UNAPRED (2026-10-20, verzija 1) i posle toga se ne podesavaju na osnovu rezultata; svaka izmena je nova verzija sa novim T0. Ne trguje: samo racuna sta bi drzao i meri unapred od T0 (virtuelno, posle troska).",
+  "version": 1,
+  "registered_utc": "2026-10-20T01:30:00Z",
+  "t0_candle": "2026-10-19",
+  "universe": ["BTC", "ETH", "BNB", "XRP", "ADA", "DOGE", "SOL", "AVAX", "LINK", "LTC", "TRX", "XLM"],
+  "lookbacks": [14, 28, 56, 112],
+  "vol_lookback": 30,
+  "port_vol_lookback": 60,
+  "target_vol": 0.20,
+  "scale_cap": 3.0,
+  "max_gross": 1.0,
+  "long_only": true,
+  "rebalance_candle_weekday": 6,
+  "cost_per_side_pct": 0.095,
+  "history_days": 1500,
+  "min_names": 4,
+  "backtest_ref": {
+    "source": "calibration/core_study.md (Binance perp dnevne svece 2020-11..2026-10, 12 kovanica, trosak 0,095% po strani)",
+    "note": "Brojke su zapisane unapred i sluze samo kao referenca; ne menjaju se. Istorijski dokaz NIJE dokaz buducnosti."
+  },
+  "gates_for_real_money_discussion": {
+    "_comment": "Predlog kapije, ne pravilo. Odluka o pravom novcu je iskljucivo vlasnikova (CLAUDE.md, pravilo 1).",
+    "min_days_forward": 90,
+    "min_forward_net_pct_after_cost": 0.0,
+    "max_forward_drawdown_pct": 25.0,
+    "real_fee_and_min_order_read_by_owner": true
+  }
+}

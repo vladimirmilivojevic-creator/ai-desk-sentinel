@@ -72,6 +72,12 @@ jobs:
         timeout-minutes: 2
         run: python -m lab.jumps --state _state
 
+      - name: Jezgro (senka, trend-ansambl na velikim kovanicama, racuna se jednom dnevno, ne trguje)
+        if: github.event.inputs.dry != 'true'
+        continue-on-error: true
+        timeout-minutes: 3
+        run: python -m lab.core --state _state
+
       - name: Prikupljanje podataka (data lake, satno/na 4 h/dnevno)
         continue-on-error: true
         timeout-minutes: 6

@@ -7,7 +7,7 @@ import os
 import sys
 
 LIMIT = 5400
-SLOTS = {"lab": 6, "brief": 4, "trig": 3, "feat": 8, "disc": 5}
+SLOTS = {"lab": 6, "brief": 4, "trig": 3, "feat": 8, "disc": 5, "core": 3}
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -170,6 +170,19 @@ def disc_sections(root):
     return [("head", head), ("rules", rl), ("radar", rd), ("top", top), ("cases", (study or {}).get("cases") or [])]
 
 
+def core_sections(c, max_points=120):
+    """Jezgro (lab/core.py): glava, tezine i signali, senka unapred (kriva proredjena na max_points) i istorijska referenca. Redosled = vaznost."""
+    sh = dict(c.get("shadow") or {})
+    cur = sh.pop("curve", None) or []
+    if len(cur) > max_points:
+        step = -(-len(cur) // max_points)
+        cur = cur[::step][:-1] + [cur[-1]]
+    head = {k: c.get(k) for k in ("updated_utc", "config_version", "t0_candle", "last_candle", "gross", "cash", "weights_date", "next_rebalance_candle", "schedule_only_ret_pct")}
+    bt = c.get("backtest") or {}
+    ref = {k: bt.get(k) for k in ("from", "to", "yearly_pct", "yearly_buyhold_pct", "yearly_btc_pct", "full", "buyhold_full", "periods", "placebo_periods", "placebo_sharpe_mean", "months")} if bt else None
+    return [("head", head), ("weights", c.get("weights") or {}), ("signals", c.get("signals") or {}), ("shadow", sh), ("ref", ref), ("curve", cur)]
+
+
 def build(state_dir, root=ROOT):
     out = os.path.join(state_dir, "pf")
     res = {}
@@ -187,6 +200,7 @@ def build(state_dir, root=ROOT):
     doc("trig", lambda: _load(os.path.join(state_dir, "lab", "triggers.json")), trig_sections)
     doc("feat", lambda: _load(os.path.join(state_dir, "data", "features.json")), feat_sections)
     doc("disc", lambda: disc_sections(root), lambda ds: ds, packer=lambda secs: fit(secs, SLOTS["disc"]))
+    doc("core", lambda: _load(os.path.join(state_dir, "core", "core.json")), core_sections, packer=lambda secs: fit(secs, SLOTS["core"]))
     if errors:
         res["errors"] = errors
     return res

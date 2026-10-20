@@ -133,6 +133,29 @@ class BuildTests(unittest.TestCase):
         self.assertEqual(m["rules"][0]["fwd"]["pending"], 1)
         self.assertEqual(m["cases"][0]["sym"], "GME")
 
+    def test_core_document_is_packed_small_complete_and_curve_is_thinned(self):
+        d = self.state()
+        curve = [["2026-%02d-%02d" % (1 + i // 28, 1 + i % 28), 100 + i * 0.01] for i in range(300)]
+        core = {"schema": 1, "updated_utc": "u", "config_version": 1, "t0_candle": "2026-10-19", "last_candle": "2026-10-20", "gross": 0.8, "cash": 0.2,
+                "weights_date": "2026-10-18", "next_rebalance_candle": "2026-10-25", "schedule_only_ret_pct": 0.1, "weights": {"BTC": 0.2, "ETH": 0.1},
+                "signals": {"BTC": {"L14": 1, "L28": 1, "L56": 0, "L112": 1}}, "shadow": {"days": 300, "ret_pct": 3.0, "maxdd_pct": -2.0, "curve": curve, "btc_pct": 1.0, "ew_pct": 0.5},
+                "backtest": {"from": "2021-04-01", "to": "2026-10-14", "yearly_pct": {"2022": -18.9}, "full": {"sharpe": 1.07}, "placebo_periods": {"sve": {"sharpe": 0.82}}, "months": {"n": 67}, "variants": {"junk": "x" * 9000}}}
+        os.makedirs(os.path.join(d, "core"))
+        json.dump(core, open(os.path.join(d, "core", "core.json"), "w"))
+        res = P.build(d, root=tempfile.mkdtemp())
+        self.assertIn("core", res)
+        self.assertLessEqual(res["core"], P.SLOTS["core"])
+        for f in os.listdir(os.path.join(d, "pf")):
+            self.assertLessEqual(os.path.getsize(os.path.join(d, "pf", f)), 6000, f)
+        m = merge([json.load(open(os.path.join(d, "pf", "core.%d.json" % i))) for i in range(res["core"])])
+        self.assertEqual(m["head"]["gross"], 0.8)
+        self.assertEqual(m["weights"]["BTC"], 0.2)
+        self.assertEqual(m["shadow"]["ret_pct"], 3.0)
+        self.assertLessEqual(len(m["curve"]), 121)
+        self.assertEqual(m["curve"][-1], curve[-1])  # poslednja tacka ostaje
+        self.assertEqual(m["ref"]["yearly_pct"]["2022"], -18.9)
+        self.assertNotIn("variants", m["ref"])
+
     def test_oversize_discovery_document_degrades_instead_of_vanishing_and_never_blocks_other_documents(self):
         """2026-10-14: sa novim univerzumom Lovac je prerastao broj mesta, ValueError je obrisao dokument i panel je beskonacno 'ucitavao'."""
         d, root = self.state(), tempfile.mkdtemp()
