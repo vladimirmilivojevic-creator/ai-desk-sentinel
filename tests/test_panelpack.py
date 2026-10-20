@@ -139,7 +139,8 @@ class BuildTests(unittest.TestCase):
         core = {"schema": 1, "updated_utc": "u", "config_version": 1, "t0_candle": "2026-10-19", "last_candle": "2026-10-20", "gross": 0.8, "cash": 0.2,
                 "weights_date": "2026-10-18", "next_rebalance_candle": "2026-10-25", "schedule_only_ret_pct": 0.1, "weights": {"BTC": 0.2, "ETH": 0.1},
                 "signals": {"BTC": {"L14": 1, "L28": 1, "L56": 0, "L112": 1}}, "shadow": {"days": 300, "ret_pct": 3.0, "maxdd_pct": -2.0, "curve": curve, "btc_pct": 1.0, "ew_pct": 0.5},
-                "backtest": {"from": "2021-04-01", "to": "2026-10-14", "yearly_pct": {"2022": -18.9}, "full": {"sharpe": 1.07}, "placebo_periods": {"sve": {"sharpe": 0.82}}, "months": {"n": 67}, "variants": {"junk": "x" * 9000}}}
+                "backtest": {"from": "2021-04-01", "to": "2026-10-14", "yearly_pct": {"2022": -18.9}, "full": {"sharpe": 1.07}, "placebo_periods": {"sve": {"sharpe": 0.82}}, "months": {"n": 67}, "variants": {"junk": "x" * 9000},
+                             "pit": {"from": "2021-06-01", "to": "2026-10-14", "n_coins": 438, "variants": {"trend12": {"label": "trend top-12", "full": {"sharpe": 0.47, "t": 1.09, "ann_pct": 10.3, "maxdd_pct": -27.0}, "since_2025": {"sharpe": 0.26}, "yearly": {"2022": -14.1}}}}}}
         os.makedirs(os.path.join(d, "core"))
         json.dump(core, open(os.path.join(d, "core", "core.json"), "w"))
         res = P.build(d, root=tempfile.mkdtemp())
@@ -155,6 +156,8 @@ class BuildTests(unittest.TestCase):
         self.assertEqual(m["curve"][-1], curve[-1])  # poslednja tacka ostaje
         self.assertEqual(m["ref"]["yearly_pct"]["2022"], -18.9)
         self.assertNotIn("variants", m["ref"])
+        self.assertEqual(m["ref"]["pit"]["rows"][0]["sh"], 0.47)
+        self.assertEqual(m["ref"]["pit"]["rows"][0]["s25"], 0.26)
 
     def test_oversize_discovery_document_degrades_instead_of_vanishing_and_never_blocks_other_documents(self):
         """2026-10-14: sa novim univerzumom Lovac je prerastao broj mesta, ValueError je obrisao dokument i panel je beskonacno 'ucitavao'."""

@@ -108,6 +108,56 @@ class TestEngine(unittest.TestCase):
         self.assertLessEqual(g2, g1 + 1e-9)
 
 
+class TestFundingPitCsm(unittest.TestCase):
+    def setUp(self):
+        self.rows = world()
+        self.dates, self.px = K.build_matrix(self.rows)
+        self.n = len(self.dates)
+
+    def test_long_pays_and_short_receives_funding(self):
+        fund = {s: [0.001] * self.n for s in self.px}
+        base = K.ensemble(self.px, self.dates, CFG)
+        paid = K.ensemble(self.px, self.dates, CFG, fund=fund)
+        self.assertLess(sum(paid["net"]), sum(base["net"]))  # duga noga placa
+        base_ls = K.ensemble(self.px, self.dates, CFG, long_only=False)
+        paid_ls = K.ensemble(self.px, self.dates, CFG, long_only=False, fund=fund)
+        # u dugo/kratko korpi razlika je mala jer se placanje i primanje delimicno potiru, ali nije nula
+        self.assertNotEqual(round(sum(paid_ls["net"]), 9), round(sum(base_ls["net"]), 9))
+
+    def test_daily_funding_sums_hourly_points_per_utc_day(self):
+        pts = [(1704067200000, 0.0001), (1704070800000, 0.0002), (1704153600000, 0.0003)]  # 2024-01-01 00:00, 01:00, 2024-01-02 00:00
+        got = dict(K.daily_funding(pts))
+        self.assertAlmostEqual(got["2024-01-01"], 0.0003, places=9)
+        self.assertAlmostEqual(got["2024-01-02"], 0.0003, places=9)
+        al = K.align_funding(["2024-01-01", "2024-01-02", "2024-01-03"], {"X": K.daily_funding(pts)})
+        self.assertEqual(al["X"][2], None)
+
+    def test_pit_eligibility_picks_top_by_dollar_volume_requires_history_and_drops_delisted(self):
+        n = 200
+        ds = days(n)
+        closes = {"BIG": [10.0] * n, "MID": [10.0] * n, "SMALL": [10.0] * n, "NEW": [None] * 150 + [10.0] * 50, "DEAD": [10.0] * 120 + [None] * 80}
+        vols = {"BIG": [1000.0] * n, "MID": [100.0] * n, "SMALL": [1.0] * n, "NEW": [5000.0] * n, "DEAD": [900.0] * 120 + [None] * 80}
+        el = K.pit_eligibility(ds, closes, vols, top_n=2, win=30, min_hist=60)
+        self.assertTrue(el["BIG"][100] and el["DEAD"][100] and not el["SMALL"][100])  # DEAD je tada bio drugi po prometu
+        self.assertFalse(el["DEAD"][150])  # ugasena: vise nije u univerzumu
+        self.assertFalse(el["NEW"][160])  # premalo istorije, bez obzira na promet
+        self.assertTrue(el["NEW"][199] is False or el["NEW"][199])  # posle min_hist moze da udje
+        self.assertTrue(el["BIG"][199])
+
+    def test_csm_mode_goes_long_leader_and_short_laggard(self):
+        cfg = dict(CFG, csm_k=1, min_names=2)
+        e = K.ensemble(self.px, self.dates, cfg, mode="csm", lookbacks=[28])
+        self.assertGreater(e["w"]["UP"], 0)
+        self.assertLess(e["w"]["DN"], 0)
+        self.assertEqual(e["w"]["FLAT"], 0.0)
+        self.assertLessEqual(e["gross"], cfg["max_gross"] + 1e-9)
+
+    def test_eligibility_mask_keeps_ineligible_coin_out_of_trend_weights(self):
+        el = {s: [s != "UP"] * self.n for s in self.px}  # UP nikad nije u univerzumu
+        e = K.ensemble(self.px, self.dates, CFG, elig=el)
+        self.assertEqual(e["w"]["UP"], 0.0)
+
+
 class TestMetrics(unittest.TestCase):
     def test_metrics_and_yearly(self):
         ds = days(400)

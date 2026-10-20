@@ -179,7 +179,12 @@ def core_sections(c, max_points=120):
         cur = cur[::step][:-1] + [cur[-1]]
     head = {k: c.get(k) for k in ("updated_utc", "config_version", "t0_candle", "last_candle", "gross", "cash", "weights_date", "next_rebalance_candle", "schedule_only_ret_pct")}
     bt = c.get("backtest") or {}
-    ref = {k: bt.get(k) for k in ("from", "to", "yearly_pct", "yearly_buyhold_pct", "yearly_btc_pct", "full", "buyhold_full", "periods", "placebo_periods", "placebo_sharpe_mean", "months")} if bt else None
+    ref = {k: bt.get(k) for k in ("from", "to", "yearly_pct", "yearly_buyhold_pct", "yearly_btc_pct", "full", "full_no_funding", "buyhold_full", "periods", "placebo_periods", "placebo_sharpe_mean", "months")} if bt else None
+    if ref is not None and bt.get("pit"):  # pošteniji test (univerzum tog dana): samo najvažnije brojke po varijanti
+        pv = bt["pit"].get("variants") or {}
+        ref["pit"] = {"from": bt["pit"].get("from"), "to": bt["pit"].get("to"), "n_coins": bt["pit"].get("n_coins"),
+                      "rows": [{"k": k, "label": v.get("label"), "sh": (v.get("full") or {}).get("sharpe"), "t": (v.get("full") or {}).get("t"), "ann": (v.get("full") or {}).get("ann_pct"),
+                                "dd": (v.get("full") or {}).get("maxdd_pct"), "s25": (v.get("since_2025") or {}).get("sharpe")} for k, v in pv.items()]}
     return [("head", head), ("weights", c.get("weights") or {}), ("signals", c.get("signals") or {}), ("shadow", sh), ("ref", ref), ("curve", cur)]
 
 
