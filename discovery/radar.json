@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-10-22T05:21:08Z",
+ "generated_utc": "2026-10-23T05:21:11Z",
  "rules": [
   {
    "rule": "alts:LOWVOL:4w:long",
@@ -14,13 +14,13 @@
    "hold_hours": 672,
    "picks": [
     {
-     "ticker": "RENDERUSDT",
-     "symbol": "RENDER",
-     "score": -0.036984,
-     "px": 1.974,
-     "atr_pct": 7.18,
-     "stop_pct": 12.0,
-     "tp_pct": 36.0
+     "ticker": "WLFIUSDT",
+     "symbol": "WLFI",
+     "score": -0.022185,
+     "px": 0.0551,
+     "atr_pct": 4.54,
+     "stop_pct": 11.34,
+     "tp_pct": 34.02
     },
     {
      "ticker": "ICPUSDT",
@@ -32,11 +32,11 @@
      "tp_pct": 36.0
     },
     {
-     "ticker": "PYTHUSDT",
-     "symbol": "PYTH",
-     "score": -0.043054,
-     "px": 0.0781,
-     "atr_pct": 9.13,
+     "ticker": "RUNEUSDT",
+     "symbol": "RUNE",
+     "score": -0.042437,
+     "px": 0.796,
+     "atr_pct": 8.59,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
@@ -132,107 +132,55 @@
    }
   },
   {
-   "rule": "alts:SPIKE_UP:3d:short",
+   "rule": "alts:SPIKE_DN:7d:short",
    "status": "nagovestaj",
    "universe": "alts",
-   "family": "SPIKE_UP",
+   "family": "SPIKE_DN",
    "kind": "event",
    "side": "short",
-   "signal_date": "2026-10-21",
-   "valid_from_utc": "2026-10-22T00:00:00Z",
-   "valid_until_utc": "2026-10-23T06:00:00Z",
-   "hold_hours": 72,
+   "signal_date": "2026-10-22",
+   "valid_from_utc": "2026-10-23T00:00:00Z",
+   "valid_until_utc": "2026-10-24T06:00:00Z",
+   "hold_hours": 168,
    "picks": [
     {
      "ticker": "ALTUSDT",
      "symbol": "ALT",
-     "score": 8.607,
-     "px": 0.013,
-     "atr_pct": 10.09,
+     "score": 6.0965,
+     "px": 0.0082,
+     "atr_pct": 20.54,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
    ],
    "forward": {
     "n": 2,
-    "mean": 6.4762,
+    "mean": 20.7555,
     "t": null,
-    "abs_mean": 10.1839,
-    "stress_mean": 6.2062,
-    "median": 6.4762,
+    "abs_mean": 26.1467,
+    "stress_mean": 20.4855,
+    "median": 20.7555,
     "mean_ex_best": null,
     "sim_n": 2,
-    "sim_mean": 0.8838,
+    "sim_mean": 26.1467,
     "pending": 1
    },
    "study": {
-    "n": 323,
-    "mean": 1.9048,
-    "median": 2.8223,
-    "mean_ex_best": 1.7965,
-    "t": 4.01,
-    "p": 6e-05,
-    "t_train": 5.01,
-    "t_test": 0.89,
-    "recent_mean": 3.6395,
-    "stress_mean": 1.6348,
-    "abs_mean": 2.3119,
-    "fdr": true,
-    "exec_n": 68,
-    "exec_mean": -1.3241,
-    "exec_t": -0.93
-   }
-  },
-  {
-   "rule": "alts:SPIKE_UP:7d:short",
-   "status": "nagovestaj",
-   "universe": "alts",
-   "family": "SPIKE_UP",
-   "kind": "event",
-   "side": "short",
-   "signal_date": "2026-10-21",
-   "valid_from_utc": "2026-10-22T00:00:00Z",
-   "valid_until_utc": "2026-10-23T06:00:00Z",
-   "hold_hours": 168,
-   "picks": [
-    {
-     "ticker": "ALTUSDT",
-     "symbol": "ALT",
-     "score": 8.607,
-     "px": 0.013,
-     "atr_pct": 10.09,
-     "stop_pct": 12.0,
-     "tp_pct": 36.0
-    }
-   ],
-   "forward": {
-    "n": 1,
-    "mean": 0.2237,
-    "t": null,
-    "abs_mean": 7.298,
-    "stress_mean": -0.0463,
-    "median": 0.2237,
-    "mean_ex_best": null,
-    "sim_n": 1,
-    "sim_mean": -9.8166,
-    "pending": 2
-   },
-   "study": {
-    "n": 321,
-    "mean": 1.8474,
-    "median": 3.5681,
-    "mean_ex_best": 1.7176,
-    "t": 2.99,
-    "p": 0.00279,
-    "t_train": 2.58,
-    "t_test": 1.61,
-    "recent_mean": 4.9968,
-    "stress_mean": 1.5774,
-    "abs_mean": 1.9849,
-    "fdr": true,
-    "exec_n": 68,
-    "exec_mean": -1.5366,
-    "exec_t": -0.76
+    "n": 271,
+    "mean": 2.6258,
+    "median": 5.9214,
+    "mean_ex_best": 2.3436,
+    "t": 2.04,
+    "p": 0.04135,
+    "t_train": 1.16,
+    "t_test": 2.02,
+    "recent_mean": 5.166,
+    "stress_mean": 2.3558,
+    "abs_mean": 0.7935,
+    "fdr": false,
+    "exec_n": 13,
+    "exec_mean": -4.5967,
+    "exec_t": -0.48
    }
   },
   {
