@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-10-25T08:39:19Z",
+ "generated_utc": "2026-10-26T05:17:00Z",
  "rules": [
   {
    "rule": "alts:LOWVOL:4w:long",
@@ -32,11 +32,11 @@
      "tp_pct": 36.0
     },
     {
-     "ticker": "ICPUSDT",
-     "symbol": "ICP",
-     "score": -0.037818,
-     "px": 3.365,
-     "atr_pct": 7.6,
+     "ticker": "PYTHUSDT",
+     "symbol": "PYTH",
+     "score": -0.043054,
+     "px": 0.0781,
+     "atr_pct": 9.13,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
@@ -138,49 +138,49 @@
    "family": "BRK20",
    "kind": "rank",
    "side": "short",
-   "signal_date": "2026-10-18",
-   "valid_from_utc": "2026-10-19T00:00:00Z",
-   "valid_until_utc": "2026-10-20T06:00:00Z",
+   "signal_date": "2026-10-25",
+   "valid_from_utc": "2026-10-26T00:00:00Z",
+   "valid_until_utc": "2026-10-27T06:00:00Z",
    "hold_hours": 168,
    "picks": [
     {
      "ticker": "STRKUSDT",
      "symbol": "STRK",
-     "score": -0.509175,
-     "px": 0.0604,
-     "atr_pct": 28.87,
+     "score": -0.628451,
+     "px": 0.0458,
+     "atr_pct": 26.09,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     },
     {
      "ticker": "PUMPUSDT",
      "symbol": "PUMP",
-     "score": -0.360988,
+     "score": -0.344726,
      "px": 0.0042,
-     "atr_pct": 14.21,
+     "atr_pct": 12.33,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     },
     {
-     "ticker": "HBARUSDT",
-     "symbol": "HBAR",
-     "score": -0.299959,
-     "px": 0.0854,
-     "atr_pct": 6.25,
+     "ticker": "AAVEUSDT",
+     "symbol": "AAVE",
+     "score": -0.259181,
+     "px": 136.37,
+     "atr_pct": 7.32,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
    ],
    "forward": {
-    "n": 2,
-    "mean": -2.2113,
-    "t": null,
-    "abs_mean": 6.1455,
-    "stress_mean": -2.4813,
-    "median": -2.2113,
+    "n": 3,
+    "mean": 0.7125,
+    "t": 0.24,
+    "abs_mean": 7.5383,
+    "stress_mean": 0.4425,
+    "median": -2.1577,
     "mean_ex_best": null,
-    "sim_n": 2,
-    "sim_mean": 6.1455,
+    "sim_n": 3,
+    "sim_mean": 6.3889,
     "pending": 1
    },
    "study": {
@@ -232,13 +232,13 @@
      "tp_pct": 19.2
     },
     {
-     "ticker": "ASTERUSDT",
-     "symbol": "ASTER",
-     "score": -0.076426,
-     "px": 0.6997,
-     "atr_pct": 4.61,
-     "stop_pct": 11.51,
-     "tp_pct": 34.53
+     "ticker": "BNBUSDT",
+     "symbol": "BNB",
+     "score": -0.090605,
+     "px": 723.36,
+     "atr_pct": 2.98,
+     "stop_pct": 7.46,
+     "tp_pct": 22.38
     }
    ],
    "forward": {
@@ -302,11 +302,11 @@
      "tp_pct": 36.0
     },
     {
-     "ticker": "HBARUSDT",
-     "symbol": "HBAR",
-     "score": -0.299959,
-     "px": 0.0854,
-     "atr_pct": 6.25,
+     "ticker": "ENAUSDT",
+     "symbol": "ENA",
+     "score": -0.288788,
+     "px": 0.1884,
+     "atr_pct": 11.83,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
@@ -363,20 +363,20 @@
      "tp_pct": 36.0
     },
     {
-     "ticker": "DASHUSDT",
-     "symbol": "DASH",
-     "score": -0.168569,
-     "px": 59.73,
-     "atr_pct": 9.55,
-     "stop_pct": 12.0,
-     "tp_pct": 36.0
-    },
-    {
      "ticker": "XPLUSDT",
      "symbol": "XPL",
      "score": -0.160286,
      "px": 0.0963,
      "atr_pct": 12.72,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
+    },
+    {
+     "ticker": "ONDOUSDT",
+     "symbol": "ONDO",
+     "score": -0.151608,
+     "px": 0.4986,
+     "atr_pct": 10.21,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
@@ -413,49 +413,49 @@
    "family": "LOWVOL",
    "kind": "rank",
    "side": "long",
-   "signal_date": "2026-10-18",
-   "valid_from_utc": "2026-10-19T00:00:00Z",
-   "valid_until_utc": "2026-10-20T06:00:00Z",
+   "signal_date": "2026-10-25",
+   "valid_from_utc": "2026-10-26T00:00:00Z",
+   "valid_until_utc": "2026-10-27T06:00:00Z",
    "hold_hours": 168,
    "picks": [
     {
-     "ticker": "BNBUSDT",
-     "symbol": "BNB",
-     "score": -0.020888,
-     "px": 723.36,
-     "atr_pct": 2.98,
-     "stop_pct": 7.46,
-     "tp_pct": 22.38
-    },
-    {
      "ticker": "BTCUSDT",
      "symbol": "BTC",
-     "score": -0.02122,
-     "px": 82116.0,
-     "atr_pct": 2.56,
-     "stop_pct": 6.4,
-     "tp_pct": 19.2
+     "score": -0.018364,
+     "px": 80154.09,
+     "atr_pct": 2.68,
+     "stop_pct": 6.69,
+     "tp_pct": 20.07
+    },
+    {
+     "ticker": "BNBUSDT",
+     "symbol": "BNB",
+     "score": -0.019281,
+     "px": 738.69,
+     "atr_pct": 2.62,
+     "stop_pct": 6.55,
+     "tp_pct": 19.65
     },
     {
      "ticker": "ETHUSDT",
      "symbol": "ETH",
-     "score": -0.024047,
-     "px": 2410.31,
-     "atr_pct": 4.18,
-     "stop_pct": 10.46,
-     "tp_pct": 31.38
+     "score": -0.020909,
+     "px": 2329.87,
+     "atr_pct": 4.43,
+     "stop_pct": 11.07,
+     "tp_pct": 33.21
     }
    ],
    "forward": {
-    "n": 2,
-    "mean": 4.5159,
-    "t": null,
-    "abs_mean": -3.8409,
-    "stress_mean": 4.2459,
-    "median": 4.5159,
+    "n": 3,
+    "mean": 4.0517,
+    "t": 2.1,
+    "abs_mean": -2.7741,
+    "stress_mean": 3.7817,
+    "median": 3.1232,
     "mean_ex_best": null,
-    "sim_n": 2,
-    "sim_mean": -5.2451,
+    "sim_n": 3,
+    "sim_mean": -3.7102,
     "pending": 1
    },
    "study": {
@@ -483,49 +483,49 @@
    "family": "LOWVOL",
    "kind": "rank",
    "side": "short",
-   "signal_date": "2026-10-18",
-   "valid_from_utc": "2026-10-19T00:00:00Z",
-   "valid_until_utc": "2026-10-20T06:00:00Z",
+   "signal_date": "2026-10-25",
+   "valid_from_utc": "2026-10-26T00:00:00Z",
+   "valid_until_utc": "2026-10-27T06:00:00Z",
    "hold_hours": 168,
    "picks": [
     {
      "ticker": "STRKUSDT",
      "symbol": "STRK",
-     "score": -0.126357,
-     "px": 0.0604,
-     "atr_pct": 28.87,
+     "score": -0.126272,
+     "px": 0.0458,
+     "atr_pct": 26.09,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     },
     {
      "ticker": "ARBUSDT",
      "symbol": "ARB",
-     "score": -0.086712,
-     "px": 0.187,
-     "atr_pct": 8.64,
+     "score": -0.086892,
+     "px": 0.1687,
+     "atr_pct": 9.29,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     },
     {
-     "ticker": "PUMPUSDT",
-     "symbol": "PUMP",
-     "score": -0.082985,
-     "px": 0.0042,
-     "atr_pct": 14.21,
+     "ticker": "NEARUSDT",
+     "symbol": "NEAR",
+     "score": -0.072393,
+     "px": 4.596,
+     "atr_pct": 11.16,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
    ],
    "forward": {
-    "n": 2,
-    "mean": 3.0514,
-    "t": null,
-    "abs_mean": 11.4082,
-    "stress_mean": 2.7814,
-    "median": 3.0514,
+    "n": 3,
+    "mean": 4.2746,
+    "t": 2.27,
+    "abs_mean": 11.1004,
+    "stress_mean": 4.0046,
+    "median": 5.5406,
     "mean_ex_best": null,
-    "sim_n": 2,
-    "sim_mean": 11.4082,
+    "sim_n": 3,
+    "sim_mean": 9.951,
     "pending": 1
    },
    "study": {
@@ -717,13 +717,13 @@
      "tp_pct": 20.28
     },
     {
-     "ticker": "ASTERUSDT",
-     "symbol": "ASTER",
-     "score": -0.029406,
-     "px": 0.7117,
-     "atr_pct": 5.43,
-     "stop_pct": 12.0,
-     "tp_pct": 36.0
+     "ticker": "ETHUSDT",
+     "symbol": "ETH",
+     "score": -0.030834,
+     "px": 2726.94,
+     "atr_pct": 3.05,
+     "stop_pct": 7.62,
+     "tp_pct": 22.86
     }
    ],
    "forward": {

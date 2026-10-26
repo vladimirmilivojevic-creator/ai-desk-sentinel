@@ -1,5 +1,5 @@
 {
- "updated_utc": "2026-10-25T08:39:19Z",
+ "updated_utc": "2026-10-26T05:17:00Z",
  "rules": {
   "stocks:SPIKE_UP:10d:long": {
    "universe": "stocks",
@@ -92,15 +92,15 @@
     ]
    ],
    "forward": {
-    "n": 2,
-    "mean": -2.2113,
-    "t": null,
-    "abs_mean": 6.1455,
-    "stress_mean": -2.4813,
-    "median": -2.2113,
+    "n": 3,
+    "mean": 0.7125,
+    "t": 0.24,
+    "abs_mean": 7.5383,
+    "stress_mean": 0.4425,
+    "median": -2.1577,
     "mean_ex_best": null,
-    "sim_n": 2,
-    "sim_mean": 6.1455,
+    "sim_n": 3,
+    "sim_mean": 6.3889,
     "pending": 1
    }
   },
@@ -287,15 +287,15 @@
     ]
    ],
    "forward": {
-    "n": 2,
-    "mean": 4.5159,
-    "t": null,
-    "abs_mean": -3.8409,
-    "stress_mean": 4.2459,
-    "median": 4.5159,
+    "n": 3,
+    "mean": 4.0517,
+    "t": 2.1,
+    "abs_mean": -2.7741,
+    "stress_mean": 3.7817,
+    "median": 3.1232,
     "mean_ex_best": null,
-    "sim_n": 2,
-    "sim_mean": -5.2451,
+    "sim_n": 3,
+    "sim_mean": -3.7102,
     "pending": 1
    }
   },
@@ -337,15 +337,15 @@
     ]
    ],
    "forward": {
-    "n": 2,
-    "mean": 3.0514,
-    "t": null,
-    "abs_mean": 11.4082,
-    "stress_mean": 2.7814,
-    "median": 3.0514,
+    "n": 3,
+    "mean": 4.2746,
+    "t": 2.27,
+    "abs_mean": 11.1004,
+    "stress_mean": 4.0046,
+    "median": 5.5406,
     "mean_ex_best": null,
-    "sim_n": 2,
-    "sim_mean": 11.4082,
+    "sim_n": 3,
+    "sim_mean": 9.951,
     "pending": 1
    }
   },
