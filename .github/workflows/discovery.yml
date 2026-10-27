@@ -15,6 +15,7 @@ on:
   schedule:
     - cron: "40 0 * * *"
     - cron: "30 3 * * 0"
+    - cron: "30 3 * * 3"
   workflow_dispatch:
     inputs:
       mode:
@@ -45,7 +46,7 @@ jobs:
           INPUT_MODE: ${{ github.event.inputs.mode }}
         run: |
           MODE=daily
-          if [ "$SCHEDULE" = "30 3 * * 0" ] || [ "$INPUT_MODE" = "weekly" ] || [ "$EVENT" = "push" ]; then MODE=weekly; fi
+          if [ "$SCHEDULE" = "30 3 * * 0" ] || [ "$SCHEDULE" = "30 3 * * 3" ] || [ "$INPUT_MODE" = "weekly" ] || [ "$EVENT" = "push" ]; then MODE=weekly; fi
           echo "rezim: $MODE"
           python -m lab.discovery "$MODE"
       - name: Objavi na main

@@ -114,9 +114,16 @@ def _raw_weights(px, r, i, L, cfg, long_only, rng=None, elig=None):
     vl = cfg["vol_lookback"]
     for s in syms:
         c = px[s]
-        if not ok(s) or i < L or c[i - L] is None:
-            continue
-        mom = c[i] / c[i - L] - 1.0
+        if isinstance(L, tuple):  # presek proseka (brzi, spori): signal = brzi prosek iznad sporog
+            f_, s_ = L
+            wf, ws = c[i - f_ + 1:i + 1] if i >= s_ else [], c[i - s_ + 1:i + 1] if i >= s_ else []
+            if not ok(s) or len(ws) < s_ or any(x is None for x in ws):
+                continue
+            mom = sum(wf) / f_ - sum(ws) / s_
+        else:
+            if not ok(s) or i < L or c[i - L] is None:
+                continue
+            mom = c[i] / c[i - L] - 1.0
         if rng is not None:  # placebo: nasumican znak umesto momentuma (samo za kalibraciju studije)
             mom = rng.random() - 0.5
         sig = 1.0 if mom > 0 else (-1.0 if (mom < 0 and not long_only) else 0.0)
@@ -197,7 +204,7 @@ def ensemble(px, dates, cfg, force=(), cost=None, long_only=None, lookbacks=None
     net = [sum(x["net"][i] for x in runs) / len(runs) for i in range(n)]
     syms = list(px)
     w = {s: sum(x["w"][s] for x in runs) / len(runs) for s in syms}
-    sig = {s: {"L%d" % L: x["sig"].get(s, 0) for L, x in zip(Ls, runs)} for s in syms}
+    sig = {s: {("L%d" % L if not isinstance(L, tuple) else "MA%d_%d" % L): x["sig"].get(s, 0) for L, x in zip(Ls, runs)} for s in syms}
     return {"net": net, "w": w, "w_date": max((x["w_date"] for x in runs if x["w_date"]), default=None), "sig": sig,
             "gross": sum(abs(v) for v in w.values()), "runs": runs}
 
