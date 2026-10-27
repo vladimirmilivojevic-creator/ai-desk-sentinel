@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-10-26T05:17:00Z",
+ "generated_utc": "2026-10-27T05:35:37Z",
  "rules": [
   {
    "rule": "alts:LOWVOL:4w:long",
@@ -223,6 +223,15 @@
      "tp_pct": 36.0
     },
     {
+     "ticker": "TRXUSDT",
+     "symbol": "TRX",
+     "score": -0.01393,
+     "px": 0.3327,
+     "atr_pct": 0.98,
+     "stop_pct": 3.0,
+     "tp_pct": 9.0
+    },
+    {
      "ticker": "BTCUSDT",
      "symbol": "BTC",
      "score": -0.051011,
@@ -230,15 +239,6 @@
      "atr_pct": 2.56,
      "stop_pct": 6.4,
      "tp_pct": 19.2
-    },
-    {
-     "ticker": "BNBUSDT",
-     "symbol": "BNB",
-     "score": -0.090605,
-     "px": 723.36,
-     "atr_pct": 2.98,
-     "stop_pct": 7.46,
-     "tp_pct": 22.38
     }
    ],
    "forward": {
@@ -302,11 +302,11 @@
      "tp_pct": 36.0
     },
     {
-     "ticker": "ENAUSDT",
-     "symbol": "ENA",
-     "score": -0.288788,
-     "px": 0.1884,
-     "atr_pct": 11.83,
+     "ticker": "HBARUSDT",
+     "symbol": "HBAR",
+     "score": -0.299959,
+     "px": 0.0854,
+     "atr_pct": 6.25,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
@@ -419,6 +419,15 @@
    "hold_hours": 168,
    "picks": [
     {
+     "ticker": "TRXUSDT",
+     "symbol": "TRX",
+     "score": -0.007808,
+     "px": 0.3304,
+     "atr_pct": 1.03,
+     "stop_pct": 3.0,
+     "tp_pct": 9.0
+    },
+    {
      "ticker": "BTCUSDT",
      "symbol": "BTC",
      "score": -0.018364,
@@ -435,15 +444,6 @@
      "atr_pct": 2.62,
      "stop_pct": 6.55,
      "tp_pct": 19.65
-    },
-    {
-     "ticker": "ETHUSDT",
-     "symbol": "ETH",
-     "score": -0.020909,
-     "px": 2329.87,
-     "atr_pct": 4.43,
-     "stop_pct": 11.07,
-     "tp_pct": 33.21
     }
    ],
    "forward": {
@@ -559,6 +559,15 @@
    "hold_hours": 336,
    "picks": [
     {
+     "ticker": "TRXUSDT",
+     "symbol": "TRX",
+     "score": -0.00875,
+     "px": 0.3327,
+     "atr_pct": 0.98,
+     "stop_pct": 3.0,
+     "tp_pct": 9.0
+    },
+    {
      "ticker": "BNBUSDT",
      "symbol": "BNB",
      "score": -0.020888,
@@ -575,15 +584,6 @@
      "atr_pct": 2.56,
      "stop_pct": 6.4,
      "tp_pct": 19.2
-    },
-    {
-     "ticker": "ETHUSDT",
-     "symbol": "ETH",
-     "score": -0.024047,
-     "px": 2410.31,
-     "atr_pct": 4.18,
-     "stop_pct": 10.46,
-     "tp_pct": 31.38
     }
    ],
    "forward": {
@@ -699,6 +699,15 @@
    "hold_hours": 672,
    "picks": [
     {
+     "ticker": "TRXUSDT",
+     "symbol": "TRX",
+     "score": -0.008605,
+     "px": 0.3357,
+     "atr_pct": 1.31,
+     "stop_pct": 3.27,
+     "tp_pct": 9.81
+    },
+    {
      "ticker": "BNBUSDT",
      "symbol": "BNB",
      "score": -0.019897,
@@ -715,15 +724,6 @@
      "atr_pct": 2.7,
      "stop_pct": 6.76,
      "tp_pct": 20.28
-    },
-    {
-     "ticker": "ETHUSDT",
-     "symbol": "ETH",
-     "score": -0.030834,
-     "px": 2726.94,
-     "atr_pct": 3.05,
-     "stop_pct": 7.62,
-     "tp_pct": 22.86
     }
    ],
    "forward": {
