@@ -1,401 +1,401 @@
 {
- "generated_utc": "2026-10-28T06:16:39Z",
+ "generated_utc": "2026-10-28T09:55:09Z",
  "universes": {
   "stocks": [
    {
     "sym": "xyz:TSLA",
     "yahoo": "TSLA",
-    "vol24": 62785209.0,
+    "vol24": 63876907.0,
     "bars": 1506
    },
    {
     "sym": "xyz:NVDA",
     "yahoo": "NVDA",
-    "vol24": 63428634.0,
+    "vol24": 61776320.0,
     "bars": 1506
    },
    {
     "sym": "xyz:HOOD",
     "yahoo": "HOOD",
-    "vol24": 40551059.0,
+    "vol24": 42879985.0,
     "bars": 1318
    },
    {
     "sym": "xyz:INTC",
     "yahoo": "INTC",
-    "vol24": 42373022.0,
+    "vol24": 43384867.0,
     "bars": 1506
    },
    {
     "sym": "xyz:PLTR",
     "yahoo": "PLTR",
-    "vol24": 6789173.0,
+    "vol24": 6764378.0,
     "bars": 1506
    },
    {
     "sym": "xyz:COIN",
     "yahoo": "COIN",
-    "vol24": 6404956.0,
+    "vol24": 6695622.0,
     "bars": 1392
    },
    {
     "sym": "xyz:META",
     "yahoo": "META",
-    "vol24": 42063708.0,
+    "vol24": 37206761.0,
     "bars": 1506
    },
    {
     "sym": "xyz:AAPL",
     "yahoo": "AAPL",
-    "vol24": 40204076.0,
+    "vol24": 40526083.0,
     "bars": 1506
    },
    {
     "sym": "xyz:MSFT",
     "yahoo": "MSFT",
-    "vol24": 17840781.0,
+    "vol24": 17197920.0,
     "bars": 1506
    },
    {
     "sym": "xyz:ORCL",
     "yahoo": "ORCL",
-    "vol24": 6090911.0,
+    "vol24": 6515700.0,
     "bars": 1506
    },
    {
     "sym": "xyz:GOOGL",
     "yahoo": "GOOGL",
-    "vol24": 56204710.0,
+    "vol24": 58335528.0,
     "bars": 1506
    },
    {
     "sym": "xyz:AMZN",
     "yahoo": "AMZN",
-    "vol24": 11035370.0,
+    "vol24": 10657313.0,
     "bars": 1506
    },
    {
     "sym": "xyz:AMD",
     "yahoo": "AMD",
-    "vol24": 44952865.0,
+    "vol24": 44821957.0,
     "bars": 1506
    },
    {
     "sym": "xyz:MU",
     "yahoo": "MU",
-    "vol24": 131017234.0,
+    "vol24": 140744174.0,
     "bars": 1506
    },
    {
     "sym": "xyz:SNDK",
     "yahoo": "SNDK",
-    "vol24": 166453714.0,
+    "vol24": 167871996.0,
     "bars": 428
    },
    {
     "sym": "xyz:MSTR",
     "yahoo": "MSTR",
-    "vol24": 9001093.0,
+    "vol24": 9338124.0,
     "bars": 1506
    },
    {
     "sym": "xyz:NFLX",
     "yahoo": "NFLX",
-    "vol24": 2772302.0,
+    "vol24": 2838693.0,
     "bars": 1506
    },
    {
     "sym": "xyz:COST",
     "yahoo": "COST",
-    "vol24": 328569.0,
+    "vol24": 347081.0,
     "bars": 1506
    },
    {
     "sym": "xyz:LLY",
     "yahoo": "LLY",
-    "vol24": 835404.0,
+    "vol24": 904684.0,
     "bars": 1506
    },
    {
     "sym": "xyz:TSM",
     "yahoo": "TSM",
-    "vol24": 2088203.0,
+    "vol24": 2208827.0,
     "bars": 1506
    },
    {
     "sym": "xyz:RIVN",
     "yahoo": "RIVN",
-    "vol24": 504877.0,
+    "vol24": 560374.0,
     "bars": 1245
    },
    {
     "sym": "xyz:BABA",
     "yahoo": "BABA",
-    "vol24": 1063378.0,
+    "vol24": 1474235.0,
     "bars": 1506
    },
    {
     "sym": "xyz:USAR",
     "yahoo": "USAR",
-    "vol24": 1287558.0,
+    "vol24": 1409416.0,
     "bars": 825
    },
    {
     "sym": "xyz:URNM",
     "yahoo": "URNM",
-    "vol24": 818308.0,
+    "vol24": 838016.0,
     "bars": 1506
    },
    {
     "sym": "xyz:GME",
     "yahoo": "GME",
-    "vol24": 1619284.0,
+    "vol24": 1589600.0,
     "bars": 1506
    },
    {
     "sym": "xyz:EWY",
     "yahoo": "EWY",
-    "vol24": 18435619.0,
+    "vol24": 18208287.0,
     "bars": 1506
    },
    {
     "sym": "xyz:EWJ",
     "yahoo": "EWJ",
-    "vol24": 167985.0,
+    "vol24": 175682.0,
     "bars": 1506
    },
    {
     "sym": "xyz:HIMS",
     "yahoo": "HIMS",
-    "vol24": 1602791.0,
+    "vol24": 1483484.0,
     "bars": 1506
    },
    {
     "sym": "xyz:DKNG",
     "yahoo": "DKNG",
-    "vol24": 503166.0,
+    "vol24": 505361.0,
     "bars": 1506
    },
    {
     "sym": "xyz:LITE",
     "yahoo": "LITE",
-    "vol24": 6790251.0,
+    "vol24": 6663318.0,
     "bars": 1506
    },
    {
     "sym": "xyz:XLE",
     "yahoo": "XLE",
-    "vol24": 350999.0,
+    "vol24": 357605.0,
     "bars": 1506
    },
    {
     "sym": "xyz:BX",
     "yahoo": "BX",
-    "vol24": 293768.0,
+    "vol24": 326656.0,
     "bars": 1506
    },
    {
     "sym": "xyz:MRVL",
     "yahoo": "MRVL",
-    "vol24": 18691792.0,
+    "vol24": 18713564.0,
     "bars": 1506
    },
    {
     "sym": "xyz:RKLB",
     "yahoo": "RKLB",
-    "vol24": 11769214.0,
+    "vol24": 11928682.0,
     "bars": 1487
    },
    {
     "sym": "xyz:EWZ",
     "yahoo": "EWZ",
-    "vol24": 13800895.0,
+    "vol24": 14908852.0,
     "bars": 1506
    },
    {
     "sym": "xyz:ZM",
     "yahoo": "ZM",
-    "vol24": 100490.0,
+    "vol24": 107141.0,
     "bars": 1506
    },
    {
     "sym": "xyz:EBAY",
     "yahoo": "EBAY",
-    "vol24": 121941.0,
+    "vol24": 119035.0,
     "bars": 1506
    },
    {
     "sym": "xyz:ARM",
     "yahoo": "ARM",
-    "vol24": 2147594.0,
+    "vol24": 2297748.0,
     "bars": 783
    },
    {
     "sym": "xyz:EWT",
     "yahoo": "EWT",
-    "vol24": 144815.0,
+    "vol24": 160669.0,
     "bars": 1506
    },
    {
     "sym": "xyz:ASML",
     "yahoo": "ASML",
-    "vol24": 1815952.0,
+    "vol24": 1745859.0,
     "bars": 1506
    },
    {
     "sym": "xyz:BB",
     "yahoo": "BB",
-    "vol24": 3151967.0,
+    "vol24": 3215812.0,
     "bars": 1506
    },
    {
     "sym": "xyz:DELL",
     "yahoo": "DELL",
-    "vol24": 4141662.0,
+    "vol24": 4200376.0,
     "bars": 1506
    },
    {
     "sym": "xyz:IBM",
     "yahoo": "IBM",
-    "vol24": 585038.0,
+    "vol24": 582636.0,
     "bars": 1506
    },
    {
     "sym": "xyz:AVGO",
     "yahoo": "AVGO",
-    "vol24": 6053644.0,
+    "vol24": 6584208.0,
     "bars": 1506
    },
    {
     "sym": "xyz:NOW",
     "yahoo": "NOW",
-    "vol24": 156283.0,
+    "vol24": 161061.0,
     "bars": 1506
    },
    {
     "sym": "xyz:NBIS",
     "yahoo": "NBIS",
-    "vol24": 28362244.0,
+    "vol24": 26519297.0,
     "bars": 506
    },
    {
     "sym": "xyz:WDC",
     "yahoo": "WDC",
-    "vol24": 4155641.0,
+    "vol24": 4216579.0,
     "bars": 1506
    },
    {
     "sym": "xyz:NOK",
     "yahoo": "NOK",
-    "vol24": 1650725.0,
+    "vol24": 1717529.0,
     "bars": 1506
    },
    {
     "sym": "xyz:SMH",
     "yahoo": "SMH",
-    "vol24": 1104307.0,
+    "vol24": 1303398.0,
     "bars": 1506
    },
    {
     "sym": "xyz:BE",
     "yahoo": "BE",
-    "vol24": 8819691.0,
+    "vol24": 9382988.0,
     "bars": 1506
    },
    {
     "sym": "xyz:QCOM",
     "yahoo": "QCOM",
-    "vol24": 908810.0,
+    "vol24": 934325.0,
     "bars": 1506
    },
    {
     "sym": "xyz:AMAT",
     "yahoo": "AMAT",
-    "vol24": 1451666.0,
+    "vol24": 1645424.0,
     "bars": 1506
    },
    {
     "sym": "xyz:KSTR",
     "yahoo": "KSTR",
-    "vol24": 453660.0,
+    "vol24": 395796.0,
     "bars": 1442
    },
    {
     "sym": "xyz:GEV",
     "yahoo": "GEV",
-    "vol24": 351452.0,
+    "vol24": 412087.0,
     "bars": 649
    },
    {
     "sym": "xyz:KORU",
     "yahoo": "KORU",
-    "vol24": 41764596.0,
+    "vol24": 41097978.0,
     "bars": 1506
    },
    {
     "sym": "xyz:SOXL",
     "yahoo": "SOXL",
-    "vol24": 172748652.0,
+    "vol24": 171399500.0,
     "bars": 1506
    },
    {
     "sym": "xyz:MAGS",
     "yahoo": "MAGS",
-    "vol24": 126277.0,
+    "vol24": 130850.0,
     "bars": 891
    },
    {
     "sym": "xyz:IREN",
     "yahoo": "IREN",
-    "vol24": 3784247.0,
+    "vol24": 3844962.0,
     "bars": 1240
    },
    {
     "sym": "xyz:NET",
     "yahoo": "NET",
-    "vol24": 4122743.0,
+    "vol24": 3253331.0,
     "bars": 1506
    },
    {
     "sym": "xyz:CRWD",
     "yahoo": "CRWD",
-    "vol24": 2452103.0,
+    "vol24": 2538660.0,
     "bars": 1506
    },
    {
     "sym": "xyz:RDDT",
     "yahoo": "RDDT",
-    "vol24": 377267.0,
+    "vol24": 412540.0,
     "bars": 653
    },
    {
     "sym": "xyz:AAOI",
     "yahoo": "AAOI",
-    "vol24": 3044855.0,
+    "vol24": 2841395.0,
     "bars": 1506
    },
    {
     "sym": "xyz:MRNA",
     "yahoo": "MRNA",
-    "vol24": 13483565.0,
+    "vol24": 13333433.0,
     "bars": 1506
    },
    {
     "sym": "xyz:TLT",
     "yahoo": "TLT",
-    "vol24": 257771.0,
+    "vol24": 283298.0,
     "bars": 1506
    },
    {
     "sym": "xyz:LRCX",
     "yahoo": "LRCX",
-    "vol24": 195374.0,
+    "vol24": 250812.0,
     "bars": 1506
    },
    {
     "sym": "xyz:GLW",
     "yahoo": "GLW",
-    "vol24": 1325772.0,
+    "vol24": 1350130.0,
     "bars": 1506
    }
   ],
@@ -716,8 +716,8 @@
    },
    {
     "sym": "ATOMUSDT",
-    "ex": null,
-    "tradable": false,
+    "ex": "ATOM",
+    "tradable": true,
     "bars": 2299
    },
    {
@@ -878,8 +878,8 @@
    },
    {
     "sym": "ETHFIUSDT",
-    "ex": "ETHFI",
-    "tradable": true,
+    "ex": null,
+    "tradable": false,
     "bars": 954
    },
    {
@@ -920,8 +920,8 @@
    },
    {
     "sym": "INITUSDT",
-    "ex": "INIT",
-    "tradable": true,
+    "ex": null,
+    "tradable": false,
     "bars": 552
    },
    {

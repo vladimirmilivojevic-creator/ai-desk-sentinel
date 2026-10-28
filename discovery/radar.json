@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-10-28T06:16:39Z",
+ "generated_utc": "2026-10-28T09:55:09Z",
  "rules": [
   {
    "rule": "alts:LOWVOL:4w:long",
@@ -23,20 +23,20 @@
      "tp_pct": 34.02
     },
     {
+     "ticker": "ATOMUSDT",
+     "symbol": "ATOM",
+     "score": -0.038419,
+     "px": 1.75,
+     "atr_pct": 7.0,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
+    },
+    {
      "ticker": "DOTUSDT",
      "symbol": "DOT",
      "score": -0.046206,
      "px": 1.205,
      "atr_pct": 7.91,
-     "stop_pct": 12.0,
-     "tp_pct": 36.0
-    },
-    {
-     "ticker": "APTUSDT",
-     "symbol": "APT",
-     "score": -0.050791,
-     "px": 0.8016,
-     "atr_pct": 9.18,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
@@ -61,9 +61,9 @@
     "stress_mean": 2.0168,
     "abs_mean": 4.9973,
     "fdr": true,
-    "exec_n": 24,
-    "exec_mean": -2.099,
-    "exec_t": -0.83
+    "exec_n": 18,
+    "exec_mean": -4.1009,
+    "exec_t": -1.32
    }
   },
   {
@@ -126,14 +126,14 @@
     "stress_mean": 1.7522,
     "abs_mean": -0.6882,
     "fdr": false,
-    "exec_n": 24,
-    "exec_mean": 1.4925,
-    "exec_t": 0.55
+    "exec_n": 18,
+    "exec_mean": 6.0891,
+    "exec_t": 1.92
    }
   },
   {
    "rule": "crypto:BRK20:1w:short",
-   "status": "kandidat",
+   "status": "nagovestaj",
    "universe": "crypto",
    "family": "BRK20",
    "kind": "rank",
@@ -184,21 +184,21 @@
     "pending": 1
    },
    "study": {
-    "n": 324,
-    "mean": 1.5645,
-    "median": 1.6665,
-    "mean_ex_best": 1.4885,
-    "t": 5.44,
+    "n": 323,
+    "mean": 1.5644,
+    "median": 1.6797,
+    "mean_ex_best": 1.4882,
+    "t": 5.42,
     "p": 0.0,
-    "t_train": 3.6,
+    "t_train": 3.58,
     "t_test": 4.42,
     "recent_mean": 2.6273,
-    "stress_mean": 1.2945,
-    "abs_mean": 1.5482,
+    "stress_mean": 1.2944,
+    "abs_mean": 1.5961,
     "fdr": true,
-    "exec_n": 324,
-    "exec_mean": 0.4836,
-    "exec_t": 1.38
+    "exec_n": 323,
+    "exec_mean": 0.2869,
+    "exec_t": 0.83
    }
   },
   {
@@ -267,8 +267,8 @@
     "abs_mean": 1.7851,
     "fdr": true,
     "exec_n": 161,
-    "exec_mean": 0.5077,
-    "exec_t": 0.65
+    "exec_mean": 0.3537,
+    "exec_t": 0.45
    }
   },
   {
@@ -337,8 +337,8 @@
     "abs_mean": 3.349,
     "fdr": true,
     "exec_n": 161,
-    "exec_mean": 1.1487,
-    "exec_t": 1.46
+    "exec_mean": 0.9578,
+    "exec_t": 1.27
    }
   },
   {
@@ -402,8 +402,8 @@
     "abs_mean": 4.6773,
     "fdr": true,
     "exec_n": 80,
-    "exec_mean": 0.8468,
-    "exec_t": 0.4
+    "exec_mean": 0.9772,
+    "exec_t": 0.45
    }
   },
   {
@@ -471,9 +471,9 @@
     "stress_mean": 0.2958,
     "abs_mean": 0.6915,
     "fdr": false,
-    "exec_n": 315,
-    "exec_mean": -0.3236,
-    "exec_t": -0.96
+    "exec_n": 319,
+    "exec_mean": -0.3382,
+    "exec_t": -1.03
    }
   },
   {
@@ -541,9 +541,9 @@
     "stress_mean": 1.1375,
     "abs_mean": 1.2818,
     "fdr": true,
-    "exec_n": 315,
-    "exec_mean": -0.3152,
-    "exec_t": -0.64
+    "exec_n": 319,
+    "exec_mean": -0.2644,
+    "exec_t": -0.6
    }
   },
   {
@@ -611,9 +611,9 @@
     "stress_mean": 1.062,
     "abs_mean": 1.6224,
     "fdr": true,
-    "exec_n": 157,
-    "exec_mean": -0.2527,
-    "exec_t": -0.37
+    "exec_n": 159,
+    "exec_mean": -0.3191,
+    "exec_t": -0.5
    }
   },
   {
@@ -681,9 +681,9 @@
     "stress_mean": 3.2633,
     "abs_mean": 3.2428,
     "fdr": true,
-    "exec_n": 157,
-    "exec_mean": -0.8444,
-    "exec_t": -0.75
+    "exec_n": 159,
+    "exec_mean": -0.2085,
+    "exec_t": -0.2
    }
   },
   {
@@ -746,9 +746,9 @@
     "stress_mean": 2.7595,
     "abs_mean": 4.4381,
     "fdr": true,
-    "exec_n": 78,
-    "exec_mean": 0.9683,
-    "exec_t": 0.48
+    "exec_n": 79,
+    "exec_mean": 0.5958,
+    "exec_t": 0.34
    }
   },
   {
@@ -811,9 +811,9 @@
     "stress_mean": 4.1392,
     "abs_mean": 3.0006,
     "fdr": true,
-    "exec_n": 78,
-    "exec_mean": -3.3,
-    "exec_t": -1.03
+    "exec_n": 79,
+    "exec_mean": -3.0582,
+    "exec_t": -0.95
    }
   }
  ]
