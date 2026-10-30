@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-10-29T06:27:13Z",
+ "generated_utc": "2026-10-30T06:26:18Z",
  "rules": [
   {
    "rule": "alts:LOWVOL:4w:long",
@@ -32,11 +32,11 @@
      "tp_pct": 36.0
     },
     {
-     "ticker": "ATOMUSDT",
-     "symbol": "ATOM",
-     "score": -0.038419,
-     "px": 1.75,
-     "atr_pct": 7.0,
+     "ticker": "RENDERUSDT",
+     "symbol": "RENDER",
+     "score": -0.036984,
+     "px": 1.974,
+     "atr_pct": 7.18,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
@@ -129,110 +129,6 @@
     "exec_n": 18,
     "exec_mean": 6.0891,
     "exec_t": 1.92
-   }
-  },
-  {
-   "rule": "alts:SPIKE_UP:3d:short",
-   "status": "nagovestaj",
-   "universe": "alts",
-   "family": "SPIKE_UP",
-   "kind": "event",
-   "side": "short",
-   "signal_date": "2026-10-28",
-   "valid_from_utc": "2026-10-29T00:00:00Z",
-   "valid_until_utc": "2026-10-30T06:00:00Z",
-   "hold_hours": 72,
-   "picks": [
-    {
-     "ticker": "BLURUSDT",
-     "symbol": "BLUR",
-     "score": 3.5859,
-     "px": 0.0083,
-     "atr_pct": 12.13,
-     "stop_pct": 12.0,
-     "tp_pct": 36.0
-    }
-   ],
-   "forward": {
-    "n": 3,
-    "mean": 17.3877,
-    "t": 1.6,
-    "abs_mean": 22.6982,
-    "stress_mean": 17.1177,
-    "median": 7.6901,
-    "mean_ex_best": null,
-    "sim_n": 3,
-    "sim_mean": 12.4458,
-    "pending": 1
-   },
-   "study": {
-    "n": 322,
-    "mean": 1.9152,
-    "median": 2.8215,
-    "mean_ex_best": 1.8066,
-    "t": 4.01,
-    "p": 6e-05,
-    "t_train": 4.95,
-    "t_test": 0.97,
-    "recent_mean": 4.2273,
-    "stress_mean": 1.6452,
-    "abs_mean": 2.3654,
-    "fdr": true,
-    "exec_n": 35,
-    "exec_mean": -0.2043,
-    "exec_t": -0.07
-   }
-  },
-  {
-   "rule": "alts:SPIKE_UP:7d:short",
-   "status": "kandidat",
-   "universe": "alts",
-   "family": "SPIKE_UP",
-   "kind": "event",
-   "side": "short",
-   "signal_date": "2026-10-28",
-   "valid_from_utc": "2026-10-29T00:00:00Z",
-   "valid_until_utc": "2026-10-30T06:00:00Z",
-   "hold_hours": 168,
-   "picks": [
-    {
-     "ticker": "BLURUSDT",
-     "symbol": "BLUR",
-     "score": 3.5859,
-     "px": 0.0083,
-     "atr_pct": 12.13,
-     "stop_pct": 12.0,
-     "tp_pct": 36.0
-    }
-   ],
-   "forward": {
-    "n": 3,
-    "mean": 18.2709,
-    "t": 1.61,
-    "abs_mean": 25.6441,
-    "stress_mean": 18.0009,
-    "median": 15.2688,
-    "mean_ex_best": null,
-    "sim_n": 3,
-    "sim_mean": 15.7334,
-    "pending": 1
-   },
-   "study": {
-    "n": 321,
-    "mean": 1.8392,
-    "median": 3.5681,
-    "mean_ex_best": 1.7094,
-    "t": 2.98,
-    "p": 0.00288,
-    "t_train": 2.55,
-    "t_test": 1.64,
-    "recent_mean": 5.6183,
-    "stress_mean": 1.5692,
-    "abs_mean": 2.1207,
-    "fdr": true,
-    "exec_n": 35,
-    "exec_mean": 6.1124,
-    "exec_t": 3.05
    }
   },
   {
