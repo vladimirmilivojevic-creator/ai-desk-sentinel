@@ -4,7 +4,7 @@ name: studies
 # Bez AI-ja, bez tajni, ne trguje. Rezultati idu u calibration/ na main. Ako preuzimanje podataka ne uspe, workflow samo pada i stari fajl ostaje.
 on:
   schedule:
-    - cron: "30 3 * * 0"
+    - cron: "30 3 * * *"
   workflow_dispatch:
 
 permissions:
