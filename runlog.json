@@ -1,0 +1,8646 @@
+{
+ "lines": [
+  {
+   "ts": "2026-10-30T11:40:32Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.1,
+    "WTI": 0.1,
+    "GOLD": -0.14,
+    "SP500": -0.05,
+    "NASDAQ": -0.19,
+    "BTC": -0.17,
+    "ETH": -0.14,
+    "VIX": -0.05,
+    "DXY": 0.03
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 10,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T11:45:32Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.13,
+    "WTI": 0.19,
+    "GOLD": -0.24,
+    "SP500": -0.06,
+    "NASDAQ": -0.26,
+    "BTC": -0.28,
+    "ETH": -0.25,
+    "VIX": -0.65,
+    "DXY": 0.01
+   },
+   "tiers": {
+    "OIL": "N1"
+   },
+   "head_n": 8,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T11:50:32Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.23,
+    "WTI": 0.34,
+    "GOLD": -0.2,
+    "SP500": -0.08,
+    "NASDAQ": -0.29,
+    "BTC": -0.26,
+    "ETH": -0.38,
+    "VIX": -0.86,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "OIL": "N1"
+   },
+   "head_n": 10,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T11:55:24Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.11,
+    "WTI": -0.13,
+    "GOLD": -0.23,
+    "SP500": -0.08,
+    "NASDAQ": -0.22,
+    "BTC": -0.46,
+    "ETH": -0.55,
+    "VIX": -0.32,
+    "DXY": -0.01
+   },
+   "tiers": {
+    "OIL": "N1"
+   },
+   "head_n": 9,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T12:00:53Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.05,
+    "WTI": 0.0,
+    "GOLD": -0.41,
+    "SP500": -0.1,
+    "NASDAQ": -0.23,
+    "BTC": -0.67,
+    "ETH": -0.66,
+    "VIX": 0.92,
+    "DXY": 0.02
+   },
+   "tiers": {
+    "OIL": "N1"
+   },
+   "head_n": 9,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T12:05:26Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.33,
+    "WTI": -0.24,
+    "GOLD": -0.38,
+    "SP500": -0.06,
+    "NASDAQ": -0.06,
+    "BTC": -0.34,
+    "ETH": -0.53,
+    "VIX": 1.03,
+    "DXY": 0.03
+   },
+   "tiers": {
+    "OIL": "N1"
+   },
+   "head_n": 9,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T12:10:32Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.4,
+    "WTI": -0.25,
+    "GOLD": -0.32,
+    "SP500": -0.06,
+    "NASDAQ": -0.12,
+    "BTC": -0.26,
+    "ETH": -0.29,
+    "VIX": 1.3,
+    "DXY": 0.04
+   },
+   "tiers": {
+    "OIL": "N1"
+   },
+   "head_n": 12,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T12:15:31Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.32,
+    "WTI": -0.21,
+    "GOLD": -0.43,
+    "SP500": -0.09,
+    "NASDAQ": -0.21,
+    "BTC": -0.21,
+    "ETH": -0.33,
+    "VIX": 1.47,
+    "DXY": 0.04
+   },
+   "tiers": {
+    "OIL": "N1"
+   },
+   "head_n": 10,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T12:20:34Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.15,
+    "WTI": -0.06,
+    "GOLD": -0.16,
+    "SP500": -0.06,
+    "NASDAQ": -0.14,
+    "BTC": -0.13,
+    "ETH": -0.26,
+    "VIX": 1.25,
+    "DXY": 0.06
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 8,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T12:25:26Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.27,
+    "WTI": -0.26,
+    "GOLD": -0.11,
+    "SP500": -0.08,
+    "NASDAQ": -0.2,
+    "BTC": -0.32,
+    "ETH": -0.49,
+    "VIX": 1.36,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "OIL": "N1"
+   },
+   "head_n": 11,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T12:30:43Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.28,
+    "WTI": -0.2,
+    "GOLD": -0.23,
+    "SP500": -0.06,
+    "NASDAQ": -0.14,
+    "BTC": -0.43,
+    "ETH": -0.63,
+    "VIX": 1.63,
+    "DXY": -0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 12,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T12:35:29Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.18,
+    "WTI": -0.17,
+    "GOLD": -0.2,
+    "SP500": -0.01,
+    "NASDAQ": -0.07,
+    "BTC": -0.3,
+    "ETH": -0.55,
+    "VIX": 1.47,
+    "DXY": 0.02
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 13,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T12:40:34Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.01,
+    "WTI": -0.07,
+    "GOLD": -0.3,
+    "SP500": 0.02,
+    "NASDAQ": -0.06,
+    "BTC": -0.18,
+    "ETH": -0.5,
+    "VIX": 1.25,
+    "DXY": 0.06
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 11,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T12:43:50Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.06,
+    "WTI": 0.03,
+    "GOLD": -0.47,
+    "SP500": -0.08,
+    "NASDAQ": -0.17,
+    "BTC": -0.38,
+    "ETH": -0.65,
+    "VIX": 0.97,
+    "DXY": 0.05
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 12,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T12:45:32Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.17,
+    "WTI": -0.1,
+    "GOLD": -0.28,
+    "SP500": -0.01,
+    "NASDAQ": -0.01,
+    "BTC": -0.12,
+    "ETH": -0.33,
+    "VIX": 0.43,
+    "DXY": 0.06
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 12,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T12:50:33Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.41,
+    "WTI": -0.28,
+    "GOLD": -0.29,
+    "SP500": 0.03,
+    "NASDAQ": 0.06,
+    "BTC": 0.05,
+    "ETH": -0.06,
+    "VIX": 0.0,
+    "DXY": 0.09
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 7,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T12:55:26Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.29,
+    "WTI": -0.12,
+    "GOLD": -0.31,
+    "SP500": 0.04,
+    "NASDAQ": 0.02,
+    "BTC": -0.01,
+    "ETH": -0.16,
+    "VIX": -0.21,
+    "DXY": 0.13
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 7,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T13:00:52Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.39,
+    "WTI": -0.28,
+    "GOLD": -0.36,
+    "SP500": 0.06,
+    "NASDAQ": 0.07,
+    "BTC": 0.07,
+    "ETH": -0.09,
+    "VIX": 0.43,
+    "DXY": 0.2
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 7,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T13:05:24Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.3,
+    "WTI": -0.2,
+    "GOLD": -0.42,
+    "SP500": -0.0,
+    "NASDAQ": -0.06,
+    "BTC": -0.17,
+    "ETH": -0.14,
+    "VIX": 0.05,
+    "DXY": 0.14
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 6,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T13:10:33Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.16,
+    "WTI": -0.03,
+    "GOLD": -0.6,
+    "SP500": -0.04,
+    "NASDAQ": -0.11,
+    "BTC": -0.33,
+    "ETH": -0.38,
+    "VIX": 0.0,
+    "DXY": 0.13
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 7,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T13:15:31Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.23,
+    "WTI": -0.16,
+    "GOLD": -0.35,
+    "SP500": 0.03,
+    "NASDAQ": 0.01,
+    "BTC": -0.27,
+    "ETH": -0.31,
+    "VIX": -0.43,
+    "DXY": 0.18
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 7,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T13:20:33Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.2,
+    "WTI": -0.22,
+    "GOLD": -0.47,
+    "SP500": 0.04,
+    "NASDAQ": 0.02,
+    "BTC": -0.33,
+    "ETH": -0.33,
+    "VIX": -0.59,
+    "DXY": 0.19
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 6,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T13:25:24Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.11,
+    "WTI": -0.03,
+    "GOLD": -0.45,
+    "SP500": 0.01,
+    "NASDAQ": 0.05,
+    "BTC": -0.3,
+    "ETH": -0.27,
+    "VIX": 0.11,
+    "DXY": 0.2
+   },
+   "tiers": {},
+   "head_n": 3,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T13:30:43Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.01,
+    "WTI": 0.03,
+    "GOLD": -0.51,
+    "SP500": -0.02,
+    "NASDAQ": -0.04,
+    "BTC": -0.32,
+    "ETH": -0.35,
+    "VIX": -0.05,
+    "DXY": 0.21
+   },
+   "tiers": {},
+   "head_n": 3,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T13:35:24Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.02,
+    "WTI": -0.13,
+    "GOLD": -0.99,
+    "SP500": -0.24,
+    "NASDAQ": -0.42,
+    "BTC": -0.33,
+    "ETH": -0.46,
+    "VIX": 0.27,
+    "DXY": 0.21
+   },
+   "tiers": {
+    "EQUITY": "N1"
+   },
+   "head_n": 4,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T13:40:32Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.01,
+    "WTI": -0.08,
+    "GOLD": -0.68,
+    "SP500": -0.13,
+    "NASDAQ": -0.05,
+    "BTC": -0.38,
+    "ETH": -0.17,
+    "VIX": 0.65,
+    "DXY": 0.14
+   },
+   "tiers": {},
+   "head_n": 4,
+   "movers": 0,
+   "degraded": [
+    "yahoo_GVZ",
+    "yahoo_OVX"
+   ]
+  },
+  {
+   "ts": "2026-10-30T13:45:34Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.27,
+    "WTI": -0.48,
+    "GOLD": -0.73,
+    "SP500": -0.08,
+    "NASDAQ": -0.06,
+    "BTC": -0.41,
+    "ETH": -0.35,
+    "VIX": -0.21,
+    "DXY": 0.06
+   },
+   "tiers": {},
+   "head_n": 6,
+   "movers": 0,
+   "degraded": [
+    "yahoo_GVZ",
+    "yahoo_OVX"
+   ]
+  },
+  {
+   "ts": "2026-10-30T13:50:32Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.03,
+    "WTI": -0.23,
+    "GOLD": -0.91,
+    "SP500": -0.15,
+    "NASDAQ": -0.15,
+    "BTC": -0.88,
+    "ETH": -0.81,
+    "VIX": 2.52,
+    "DXY": 0.08,
+    "OVX": null,
+    "GVZ": null
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 7,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T13:55:26Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.4,
+    "WTI": 0.38,
+    "GOLD": -1.01,
+    "SP500": -0.15,
+    "NASDAQ": -0.03,
+    "BTC": -0.64,
+    "ETH": -0.52,
+    "VIX": 0.59,
+    "DXY": 0.14,
+    "OVX": null,
+    "GVZ": null
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 6,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T14:00:51Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.5,
+    "WTI": 0.47,
+    "GOLD": -0.94,
+    "SP500": -0.1,
+    "NASDAQ": 0.11,
+    "BTC": -0.44,
+    "ETH": -0.4,
+    "VIX": 1.5,
+    "DXY": 0.18,
+    "OVX": null,
+    "GVZ": null
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 4,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T14:05:27Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.38,
+    "WTI": 0.35,
+    "GOLD": -0.93,
+    "SP500": -0.12,
+    "NASDAQ": 0.08,
+    "BTC": -0.45,
+    "ETH": -0.34,
+    "VIX": 1.56,
+    "DXY": 0.12,
+    "OVX": null,
+    "GVZ": null
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 7,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T14:10:32Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.63,
+    "WTI": 0.57,
+    "GOLD": -0.91,
+    "SP500": -0.21,
+    "NASDAQ": -0.1,
+    "BTC": -0.46,
+    "ETH": -0.41,
+    "VIX": 1.17,
+    "DXY": 0.14,
+    "OVX": null,
+    "GVZ": null
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 7,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T14:15:34Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.66,
+    "WTI": 0.66,
+    "GOLD": -1.0,
+    "SP500": -0.33,
+    "NASDAQ": -0.3,
+    "BTC": -0.72,
+    "ETH": -0.56,
+    "VIX": 0.75,
+    "DXY": 0.2,
+    "OVX": null,
+    "GVZ": null
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 6,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T14:20:33Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.59,
+    "WTI": 0.64,
+    "GOLD": -0.9,
+    "SP500": -0.34,
+    "NASDAQ": -0.32,
+    "BTC": -0.46,
+    "ETH": -0.29,
+    "VIX": 0.54,
+    "DXY": 0.16,
+    "OVX": null,
+    "GVZ": null
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 6,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T14:30:43Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.52,
+    "WTI": 0.46,
+    "GOLD": -0.93,
+    "SP500": -0.39,
+    "NASDAQ": -0.39,
+    "BTC": -0.44,
+    "ETH": -0.21,
+    "VIX": 3.9,
+    "DXY": 0.13,
+    "OVX": null,
+    "GVZ": null
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 7,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T14:35:28Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.27,
+    "WTI": 0.28,
+    "GOLD": -0.77,
+    "SP500": -0.18,
+    "NASDAQ": 0.05,
+    "BTC": -0.57,
+    "ETH": -0.29,
+    "VIX": 3.2,
+    "DXY": 0.13,
+    "OVX": 2.2,
+    "GVZ": 3.34
+   },
+   "tiers": {},
+   "head_n": 5,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T14:40:35Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.21,
+    "WTI": 0.2,
+    "GOLD": -0.51,
+    "SP500": -0.14,
+    "NASDAQ": -0.08,
+    "BTC": -0.18,
+    "ETH": 0.03,
+    "VIX": 7.28,
+    "DXY": 0.09,
+    "OVX": 1.56,
+    "GVZ": 5.34
+   },
+   "tiers": {},
+   "head_n": 5,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T14:45:36Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.37,
+    "WTI": 0.47,
+    "GOLD": -0.36,
+    "SP500": -0.03,
+    "NASDAQ": 0.16,
+    "BTC": 0.02,
+    "ETH": 0.45,
+    "VIX": 4.69,
+    "DXY": 0.02,
+    "OVX": 1.22,
+    "GVZ": 2.71
+   },
+   "tiers": {},
+   "head_n": 5,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T14:50:33Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.17,
+    "WTI": 0.3,
+    "GOLD": -0.2,
+    "SP500": -0.03,
+    "NASDAQ": 0.17,
+    "BTC": 0.61,
+    "ETH": 1.01,
+    "VIX": 4.44,
+    "DXY": -0.02,
+    "OVX": 0.66,
+    "GVZ": 2.7
+   },
+   "tiers": {},
+   "head_n": 5,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T14:55:26Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.04,
+    "WTI": -0.07,
+    "GOLD": -0.08,
+    "SP500": -0.14,
+    "NASDAQ": -0.07,
+    "BTC": 0.32,
+    "ETH": 0.58,
+    "VIX": 3.03,
+    "DXY": -0.06,
+    "OVX": -0.69,
+    "GVZ": 0.34
+   },
+   "tiers": {},
+   "head_n": 6,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T15:00:53Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.03,
+    "WTI": -0.17,
+    "GOLD": -0.02,
+    "SP500": -0.21,
+    "NASDAQ": -0.29,
+    "BTC": 0.2,
+    "ETH": 0.61,
+    "VIX": 3.29,
+    "DXY": -0.03,
+    "OVX": -0.74,
+    "GVZ": -0.5
+   },
+   "tiers": {},
+   "head_n": 4,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T15:05:27Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.04,
+    "WTI": -0.14,
+    "GOLD": 0.18,
+    "SP500": -0.19,
+    "NASDAQ": -0.3,
+    "BTC": 0.76,
+    "ETH": 1.17,
+    "VIX": 1.17,
+    "DXY": -0.1,
+    "OVX": -0.95,
+    "GVZ": -1.94
+   },
+   "tiers": {},
+   "head_n": 4,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T15:10:33Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.29,
+    "WTI": -0.54,
+    "GOLD": 0.2,
+    "SP500": -0.02,
+    "NASDAQ": 0.0,
+    "BTC": 0.92,
+    "ETH": 1.42,
+    "VIX": 1.37,
+    "DXY": -0.14,
+    "OVX": -0.77,
+    "GVZ": -3.54
+   },
+   "tiers": {
+    "EQUITY": "N1"
+   },
+   "head_n": 6,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T15:15:34Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.15,
+    "WTI": -0.16,
+    "GOLD": 0.09,
+    "SP500": 0.0,
+    "NASDAQ": 0.11,
+    "BTC": 1.29,
+    "ETH": 1.61,
+    "VIX": -1.59,
+    "DXY": -0.0,
+    "OVX": -0.8,
+    "GVZ": -3.2
+   },
+   "tiers": {
+    "EQUITY": "N1"
+   },
+   "head_n": 5,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T15:20:36Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.1,
+    "WTI": -0.33,
+    "GOLD": 0.09,
+    "SP500": 0.03,
+    "NASDAQ": 0.07,
+    "BTC": 1.37,
+    "ETH": 1.47,
+    "VIX": -1.58,
+    "DXY": 0.01,
+    "OVX": -0.8,
+    "GVZ": -3.53
+   },
+   "tiers": {
+    "EQUITY": "N1"
+   },
+   "head_n": 5,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T15:25:27Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.29,
+    "WTI": -0.71,
+    "GOLD": 0.34,
+    "SP500": 0.17,
+    "NASDAQ": 0.35,
+    "BTC": 1.36,
+    "ETH": 1.16,
+    "VIX": -4.37,
+    "DXY": -0.0,
+    "OVX": -1.07,
+    "GVZ": -3.55
+   },
+   "tiers": {
+    "EQUITY": "N1"
+   },
+   "head_n": 6,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T15:30:46Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.11,
+    "WTI": -0.57,
+    "GOLD": 0.01,
+    "SP500": 0.02,
+    "NASDAQ": 0.04,
+    "BTC": 0.94,
+    "ETH": 0.63,
+    "VIX": -1.56,
+    "DXY": -0.05,
+    "OVX": -0.77,
+    "GVZ": -2.77
+   },
+   "tiers": {},
+   "head_n": 5,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T15:35:28Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.41,
+    "WTI": -0.72,
+    "GOLD": 0.09,
+    "SP500": -0.02,
+    "NASDAQ": -0.06,
+    "BTC": 0.84,
+    "ETH": 0.43,
+    "VIX": -0.96,
+    "DXY": -0.02,
+    "OVX": 0.14,
+    "GVZ": -2.51
+   },
+   "tiers": {
+    "OIL": "N1"
+   },
+   "head_n": 6,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T15:40:34Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.11,
+    "WTI": -0.28,
+    "GOLD": -0.21,
+    "SP500": -0.25,
+    "NASDAQ": -0.49,
+    "BTC": 0.68,
+    "ETH": 0.09,
+    "VIX": -0.1,
+    "DXY": -0.03,
+    "OVX": 0.0,
+    "GVZ": -1.52
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 7,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T15:45:33Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.09,
+    "WTI": -0.22,
+    "GOLD": -0.44,
+    "SP500": -0.32,
+    "NASDAQ": -0.55,
+    "BTC": 0.64,
+    "ETH": -0.19,
+    "VIX": 2.41,
+    "DXY": -0.03,
+    "OVX": 0.12,
+    "GVZ": 0.27
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 8,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T15:50:33Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.04,
+    "WTI": -0.18,
+    "GOLD": -0.38,
+    "SP500": -0.34,
+    "NASDAQ": -0.53,
+    "BTC": 0.4,
+    "ETH": -0.4,
+    "VIX": 3.09,
+    "DXY": -0.09,
+    "OVX": 0.15,
+    "GVZ": 0.77
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 6,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T15:55:25Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.01,
+    "WTI": -0.31,
+    "GOLD": -0.41,
+    "SP500": -0.24,
+    "NASDAQ": -0.42,
+    "BTC": 0.49,
+    "ETH": -0.37,
+    "VIX": 2.54,
+    "DXY": -0.07,
+    "OVX": 0.54,
+    "GVZ": 1.64
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 5,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T16:00:51Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.08,
+    "WTI": -0.13,
+    "GOLD": -0.47,
+    "SP500": -0.3,
+    "NASDAQ": -0.5,
+    "BTC": 0.27,
+    "ETH": -0.66,
+    "VIX": 5.17,
+    "DXY": -0.02,
+    "OVX": 0.91,
+    "GVZ": 1.67
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 6,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T16:05:26Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.19,
+    "WTI": 0.01,
+    "GOLD": -0.46,
+    "SP500": -0.25,
+    "NASDAQ": -0.42,
+    "BTC": -0.05,
+    "ETH": -1.09,
+    "VIX": 3.46,
+    "DXY": -0.07,
+    "OVX": 1.25,
+    "GVZ": 3.08
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 3,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T16:10:34Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.2,
+    "WTI": 0.08,
+    "GOLD": -0.39,
+    "SP500": -0.28,
+    "NASDAQ": -0.53,
+    "BTC": -0.29,
+    "ETH": -1.17,
+    "VIX": 2.69,
+    "DXY": -0.14,
+    "OVX": 1.38,
+    "GVZ": 2.25
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 6,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T16:15:32Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.15,
+    "WTI": 0.03,
+    "GOLD": -0.36,
+    "SP500": -0.21,
+    "NASDAQ": -0.44,
+    "BTC": -0.21,
+    "ETH": -0.81,
+    "VIX": 1.96,
+    "DXY": -0.17,
+    "OVX": 1.37,
+    "GVZ": 1.81
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 5,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T16:20:34Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.11,
+    "WTI": 0.12,
+    "GOLD": -0.29,
+    "SP500": -0.17,
+    "NASDAQ": -0.38,
+    "BTC": -0.57,
+    "ETH": -0.99,
+    "VIX": 3.07,
+    "DXY": -0.14,
+    "OVX": 1.11,
+    "GVZ": 1.23
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 7,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T16:25:26Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.32,
+    "WTI": 0.48,
+    "GOLD": -0.39,
+    "SP500": -0.22,
+    "NASDAQ": -0.48,
+    "BTC": -0.47,
+    "ETH": -0.47,
+    "VIX": 3.66,
+    "DXY": -0.11,
+    "OVX": 1.23,
+    "GVZ": 1.39
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 8,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T16:30:44Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.15,
+    "WTI": 0.38,
+    "GOLD": -0.27,
+    "SP500": -0.17,
+    "NASDAQ": -0.38,
+    "BTC": -0.16,
+    "ETH": -0.17,
+    "VIX": 2.66,
+    "DXY": -0.07,
+    "OVX": 1.08,
+    "GVZ": 1.81
+   },
+   "tiers": {},
+   "head_n": 8,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T16:35:25Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.33,
+    "WTI": 0.59,
+    "GOLD": -0.12,
+    "SP500": -0.11,
+    "NASDAQ": -0.27,
+    "BTC": 0.14,
+    "ETH": 0.31,
+    "VIX": 1.68,
+    "DXY": -0.02,
+    "OVX": 0.83,
+    "GVZ": 1.34
+   },
+   "tiers": {},
+   "head_n": 5,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T16:40:33Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.45,
+    "WTI": 0.71,
+    "GOLD": -0.19,
+    "SP500": -0.02,
+    "NASDAQ": -0.13,
+    "BTC": -0.08,
+    "ETH": 0.09,
+    "VIX": 1.52,
+    "DXY": 0.04,
+    "OVX": 0.61,
+    "GVZ": 1.5
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 8,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T16:45:32Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.08,
+    "WTI": 0.4,
+    "GOLD": -0.11,
+    "SP500": -0.02,
+    "NASDAQ": -0.09,
+    "BTC": 0.01,
+    "ETH": 0.28,
+    "VIX": 0.0,
+    "DXY": -0.01,
+    "OVX": -0.55,
+    "GVZ": 0.92
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 8,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T16:50:33Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.18,
+    "WTI": 0.48,
+    "GOLD": -0.07,
+    "SP500": -0.2,
+    "NASDAQ": -0.48,
+    "BTC": -0.28,
+    "ETH": -0.23,
+    "VIX": -1.05,
+    "DXY": -0.01,
+    "OVX": -0.48,
+    "GVZ": 0.15
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 7,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T16:55:24Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.4,
+    "WTI": 0.69,
+    "GOLD": -0.19,
+    "SP500": -0.26,
+    "NASDAQ": -0.5,
+    "BTC": -0.26,
+    "ETH": 0.13,
+    "VIX": -0.05,
+    "DXY": 0.01,
+    "OVX": -0.37,
+    "GVZ": 0.04
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 7,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T17:00:53Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.47,
+    "WTI": 0.76,
+    "GOLD": -0.12,
+    "SP500": -0.28,
+    "NASDAQ": -0.5,
+    "BTC": -0.18,
+    "ETH": 0.65,
+    "VIX": 1.37,
+    "DXY": 0.02,
+    "OVX": 0.03,
+    "GVZ": 0.38
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 7,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T17:05:25Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.3,
+    "WTI": 0.59,
+    "GOLD": -0.16,
+    "SP500": -0.12,
+    "NASDAQ": -0.3,
+    "BTC": -0.03,
+    "ETH": 0.84,
+    "VIX": -1.04,
+    "DXY": 0.08,
+    "OVX": 0.05,
+    "GVZ": 0.65
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 8,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T17:10:34Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.37,
+    "WTI": 0.61,
+    "GOLD": -0.31,
+    "SP500": -0.2,
+    "NASDAQ": -0.45,
+    "BTC": -0.42,
+    "ETH": 0.48,
+    "VIX": 3.93,
+    "DXY": 0.08,
+    "OVX": -0.05,
+    "GVZ": 1.33
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 7,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T17:15:33Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.32,
+    "WTI": 0.53,
+    "GOLD": -0.21,
+    "SP500": -0.23,
+    "NASDAQ": -0.44,
+    "BTC": -0.45,
+    "ETH": 0.37,
+    "VIX": 0.0,
+    "DXY": 0.1,
+    "OVX": 0.33,
+    "GVZ": 0.49
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 5,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T17:20:33Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.14,
+    "WTI": 0.35,
+    "GOLD": -0.17,
+    "SP500": -0.26,
+    "NASDAQ": -0.47,
+    "BTC": -0.55,
+    "ETH": 0.27,
+    "VIX": 0.0,
+    "DXY": 0.07,
+    "OVX": 0.35,
+    "GVZ": 0.53
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 5,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T17:25:25Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.33,
+    "WTI": 0.52,
+    "GOLD": -0.2,
+    "SP500": -0.18,
+    "NASDAQ": -0.3,
+    "BTC": -0.23,
+    "ETH": 0.42,
+    "VIX": 0.0,
+    "DXY": 0.04,
+    "OVX": 0.18,
+    "GVZ": 0.3
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 5,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T17:30:42Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.54,
+    "WTI": 0.66,
+    "GOLD": -0.28,
+    "SP500": -0.31,
+    "NASDAQ": -0.5,
+    "BTC": -0.4,
+    "ETH": 0.25,
+    "VIX": 6.46,
+    "DXY": 0.02,
+    "OVX": 0.2,
+    "GVZ": 0.76
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 6,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T17:35:26Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.54,
+    "WTI": 0.62,
+    "GOLD": -0.43,
+    "SP500": -0.33,
+    "NASDAQ": -0.55,
+    "BTC": -0.36,
+    "ETH": 0.23,
+    "VIX": 0.0,
+    "DXY": 0.04,
+    "OVX": 0.08
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 8,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T17:40:33Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.33,
+    "WTI": 0.32,
+    "GOLD": -0.33,
+    "SP500": -0.32,
+    "NASDAQ": -0.55,
+    "BTC": -0.33,
+    "ETH": 0.34,
+    "VIX": 5.36,
+    "DXY": 0.04,
+    "OVX": -0.18,
+    "GVZ": 0.83
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 9,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T17:45:34Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.17,
+    "WTI": 0.08,
+    "GOLD": -0.3,
+    "SP500": -0.31,
+    "NASDAQ": -0.5,
+    "BTC": -0.22,
+    "ETH": 0.52,
+    "VIX": 5.26,
+    "DXY": -0.0,
+    "OVX": -0.53,
+    "GVZ": 0.26
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 10,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T17:53:42Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.01,
+    "WTI": 0.05,
+    "GOLD": -0.39,
+    "SP500": -0.32,
+    "NASDAQ": -0.46,
+    "BTC": -0.15,
+    "ETH": 0.66,
+    "VIX": 3.2,
+    "DXY": 0.03,
+    "OVX": -0.7,
+    "GVZ": 0.94
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 9,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T17:56:19Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.29,
+    "WTI": -0.28,
+    "GOLD": -0.21,
+    "SP500": -0.23,
+    "NASDAQ": -0.37,
+    "BTC": -0.21,
+    "ETH": 0.53,
+    "VIX": 1.53,
+    "DXY": 0.02,
+    "OVX": -0.72,
+    "GVZ": 0.04
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 8,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T18:00:51Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.58,
+    "WTI": -0.58,
+    "GOLD": -0.32,
+    "SP500": -0.26,
+    "NASDAQ": -0.46,
+    "BTC": -0.25,
+    "ETH": 0.5,
+    "VIX": 2.27,
+    "DXY": 0.05,
+    "OVX": -0.03,
+    "GVZ": 0.38
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 6,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T18:05:29Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.35,
+    "WTI": -0.33,
+    "GOLD": -0.36,
+    "SP500": -0.31,
+    "NASDAQ": -0.45,
+    "BTC": -0.42,
+    "ETH": 0.02,
+    "VIX": 2.74,
+    "DXY": 0.03,
+    "OVX": -0.18,
+    "GVZ": 0.49
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 9,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T18:10:33Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.47,
+    "WTI": -0.43,
+    "GOLD": -0.21,
+    "SP500": -0.26,
+    "NASDAQ": -0.31,
+    "BTC": -0.12,
+    "ETH": 0.19,
+    "VIX": 2.99,
+    "DXY": 0.07,
+    "OVX": -0.15,
+    "GVZ": 0.15
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 10,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T18:14:19Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.38,
+    "WTI": -0.34,
+    "GOLD": -0.23,
+    "SP500": -0.31,
+    "NASDAQ": -0.37,
+    "BTC": -0.11,
+    "ETH": 0.14,
+    "VIX": 3.79,
+    "DXY": 0.06,
+    "OVX": -0.22,
+    "GVZ": 0.04
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 8,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T18:16:23Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.41,
+    "WTI": -0.43,
+    "GOLD": -0.21,
+    "SP500": -0.32,
+    "NASDAQ": -0.4,
+    "BTC": -0.26,
+    "ETH": -0.1,
+    "VIX": 3.51,
+    "DXY": 0.02,
+    "OVX": -0.2,
+    "GVZ": -0.23
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 7,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T18:20:32Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.51,
+    "WTI": -0.48,
+    "GOLD": -0.27,
+    "SP500": -0.4,
+    "NASDAQ": -0.53,
+    "BTC": -0.36,
+    "ETH": -0.44,
+    "VIX": 4.55,
+    "DXY": 0.0,
+    "OVX": -0.08,
+    "GVZ": 0.19
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 8,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T18:25:27Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.49,
+    "WTI": -0.59,
+    "GOLD": -0.34,
+    "SP500": -0.44,
+    "NASDAQ": -0.58,
+    "BTC": -0.37,
+    "ETH": -0.37,
+    "VIX": 5.84,
+    "DXY": -0.01,
+    "OVX": 0.0,
+    "GVZ": 0.49
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 8,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T18:30:43Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.68,
+    "WTI": -0.79,
+    "GOLD": -0.23,
+    "SP500": -0.57,
+    "NASDAQ": -0.69,
+    "BTC": -0.57,
+    "ETH": -0.65,
+    "VIX": 5.19,
+    "DXY": -0.05,
+    "OVX": 0.05,
+    "GVZ": 0.38
+   },
+   "tiers": {},
+   "head_n": 6,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T18:35:27Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.75,
+    "WTI": -0.84,
+    "GOLD": -0.04,
+    "SP500": -0.57,
+    "NASDAQ": -0.67,
+    "BTC": -0.62,
+    "ETH": -0.73,
+    "VIX": 8.18,
+    "DXY": -0.06,
+    "OVX": 0.32,
+    "GVZ": 0.41
+   },
+   "tiers": {},
+   "head_n": 6,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T18:40:31Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.51,
+    "WTI": -0.55,
+    "GOLD": 0.0,
+    "SP500": -0.41,
+    "NASDAQ": -0.5,
+    "BTC": -0.64,
+    "ETH": -0.59,
+    "VIX": 6.39,
+    "DXY": -0.07,
+    "OVX": 0.4,
+    "GVZ": 0.07
+   },
+   "tiers": {},
+   "head_n": 6,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T18:45:31Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.24,
+    "WTI": -0.43,
+    "GOLD": -0.02,
+    "SP500": -0.47,
+    "NASDAQ": -0.54,
+    "BTC": -0.75,
+    "ETH": -0.66,
+    "VIX": 9.16,
+    "DXY": -0.13,
+    "OVX": 0.29,
+    "GVZ": 0.79
+   },
+   "tiers": {
+    "OIL": "N1"
+   },
+   "head_n": 7,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T18:50:33Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.49,
+    "WTI": -0.66,
+    "GOLD": -0.08,
+    "SP500": -0.47,
+    "NASDAQ": -0.57,
+    "BTC": -0.81,
+    "ETH": -0.83,
+    "VIX": 9.81,
+    "DXY": -0.12,
+    "OVX": -0.48,
+    "GVZ": 0.6
+   },
+   "tiers": {
+    "OIL": "N1"
+   },
+   "head_n": 12,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T18:55:26Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.33,
+    "WTI": -0.51,
+    "GOLD": -0.1,
+    "SP500": -0.37,
+    "NASDAQ": -0.44,
+    "BTC": -0.64,
+    "ETH": -0.55,
+    "VIX": 9.56,
+    "DXY": -0.1,
+    "OVX": -0.27,
+    "GVZ": 0.19
+   },
+   "tiers": {
+    "OIL": "N1"
+   },
+   "head_n": 11,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T19:00:51Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.03,
+    "WTI": -0.15,
+    "GOLD": -0.15,
+    "SP500": -0.27,
+    "NASDAQ": -0.29,
+    "BTC": -0.82,
+    "ETH": -0.64,
+    "VIX": 3.9,
+    "DXY": -0.09,
+    "OVX": -0.13,
+    "GVZ": 0.34
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 13,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T19:05:29Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.15,
+    "WTI": -0.29,
+    "GOLD": -0.02,
+    "SP500": -0.15,
+    "NASDAQ": -0.13,
+    "BTC": -0.53,
+    "ETH": -0.3,
+    "VIX": 1.95,
+    "DXY": -0.08,
+    "OVX": -0.12,
+    "GVZ": -0.52
+   },
+   "tiers": {
+    "OIL": "N1"
+   },
+   "head_n": 12,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T19:10:32Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.05,
+    "WTI": -0.17,
+    "GOLD": -0.04,
+    "SP500": 0.03,
+    "NASDAQ": 0.04,
+    "BTC": -0.54,
+    "ETH": -0.36,
+    "VIX": 0.0,
+    "DXY": -0.06,
+    "OVX": -0.47,
+    "GVZ": 0.45
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 10,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T19:15:31Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.38,
+    "WTI": -0.53,
+    "GOLD": -0.09,
+    "SP500": -0.02,
+    "NASDAQ": 0.01,
+    "BTC": -0.83,
+    "ETH": -0.53,
+    "VIX": -2.28,
+    "DXY": -0.06,
+    "OVX": -0.75,
+    "GVZ": 0.26
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 3,
+   "movers": 3,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T19:20:34Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.49,
+    "WTI": -0.68,
+    "GOLD": -0.07,
+    "SP500": 0.0,
+    "NASDAQ": 0.09,
+    "BTC": -0.75,
+    "ETH": -0.51,
+    "VIX": -5.46,
+    "DXY": -0.02,
+    "OVX": -1.04,
+    "GVZ": 0.3
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 3,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T19:25:26Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.6,
+    "WTI": -0.71,
+    "GOLD": 0.03,
+    "SP500": 0.15,
+    "NASDAQ": 0.25,
+    "BTC": -0.59,
+    "ETH": -0.25,
+    "VIX": -8.91,
+    "DXY": -0.02,
+    "OVX": -0.97,
+    "GVZ": -0.15
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 4,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T19:30:41Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.49,
+    "WTI": -0.6,
+    "GOLD": -0.09,
+    "SP500": 0.19,
+    "NASDAQ": 0.25,
+    "BTC": -0.52,
+    "ETH": 0.0,
+    "VIX": 0.0,
+    "DXY": -0.01,
+    "OVX": -1.05,
+    "GVZ": 0.07
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 2,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T19:35:24Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.34,
+    "WTI": -0.46,
+    "GOLD": -0.12,
+    "SP500": 0.4,
+    "NASDAQ": 0.55,
+    "BTC": -0.34,
+    "ETH": 0.1,
+    "VIX": 0.0,
+    "DXY": 0.03,
+    "OVX": -0.94,
+    "GVZ": -0.3
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 0,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T19:40:32Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.57,
+    "WTI": -0.87,
+    "GOLD": -0.1,
+    "SP500": 0.27,
+    "NASDAQ": 0.48,
+    "BTC": -0.13,
+    "ETH": 0.11,
+    "VIX": 0.0,
+    "DXY": 0.01,
+    "OVX": -0.9
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 1,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T19:45:34Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.67,
+    "WTI": -0.89,
+    "GOLD": -0.25,
+    "SP500": 0.28,
+    "NASDAQ": 0.46,
+    "BTC": -0.02,
+    "ETH": 0.26,
+    "VIX": -6.25,
+    "DXY": 0.04,
+    "OVX": -1.07,
+    "GVZ": -0.07
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 1,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T19:50:32Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.64,
+    "WTI": -0.79,
+    "GOLD": -0.06,
+    "SP500": 0.52,
+    "NASDAQ": 0.83,
+    "BTC": 0.31,
+    "ETH": 0.59,
+    "VIX": -7.6,
+    "DXY": 0.02,
+    "OVX": -1.44,
+    "GVZ": -0.34
+   },
+   "tiers": {},
+   "head_n": 3,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T19:55:26Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.76,
+    "WTI": -0.91,
+    "GOLD": 0.08,
+    "SP500": 0.64,
+    "NASDAQ": 0.94,
+    "BTC": 0.42,
+    "ETH": 0.56,
+    "VIX": -8.97,
+    "DXY": 0.01,
+    "OVX": -1.68,
+    "GVZ": -0.34
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 0,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T20:00:51Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.91,
+    "WTI": -1.07,
+    "GOLD": 0.09,
+    "SP500": 0.53,
+    "NASDAQ": 0.83,
+    "BTC": 0.42,
+    "ETH": 0.43,
+    "VIX": 0.0,
+    "DXY": 0.03,
+    "OVX": -1.36
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 3,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T20:05:26Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.95,
+    "WTI": -1.11,
+    "GOLD": 0.13,
+    "SP500": 0.54,
+    "NASDAQ": 0.83,
+    "BTC": 0.59,
+    "ETH": 0.52,
+    "VIX": -9.01,
+    "DXY": 0.04,
+    "OVX": -1.42,
+    "GVZ": -0.52
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 4,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T20:10:31Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.91,
+    "WTI": -1.04,
+    "GOLD": 0.19,
+    "SP500": 0.36,
+    "NASDAQ": 0.56,
+    "BTC": 0.37,
+    "ETH": 0.25,
+    "VIX": 0.0,
+    "DXY": 0.01,
+    "OVX": -1.3
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 3,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T20:15:33Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.83,
+    "WTI": -0.94,
+    "GOLD": 0.1,
+    "SP500": 0.45,
+    "NASDAQ": 0.59,
+    "BTC": 0.64,
+    "ETH": 0.39,
+    "VIX": -5.65,
+    "DXY": 0.0,
+    "OVX": -1.35,
+    "GVZ": -1.72
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 6,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T20:20:33Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.53,
+    "WTI": -0.67,
+    "GOLD": 0.08,
+    "SP500": 0.52,
+    "NASDAQ": 0.72,
+    "BTC": 0.77,
+    "ETH": 0.68,
+    "VIX": 0.0,
+    "DXY": 0.01,
+    "OVX": -1.05
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 8,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T20:25:25Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.5,
+    "WTI": -0.53,
+    "GOLD": -0.07,
+    "SP500": 0.37,
+    "NASDAQ": 0.5,
+    "BTC": 0.39,
+    "ETH": 0.3,
+    "VIX": -5.54,
+    "DXY": 0.01
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 7,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T20:30:48Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.43,
+    "WTI": -0.43,
+    "GOLD": 0.09,
+    "SP500": 0.41,
+    "NASDAQ": 0.56,
+    "BTC": 0.52,
+    "ETH": 0.47,
+    "VIX": -7.7,
+    "DXY": 0.02
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 8,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T20:35:25Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.45,
+    "WTI": -0.45,
+    "GOLD": 0.0,
+    "SP500": 0.36,
+    "NASDAQ": 0.49,
+    "BTC": 0.78,
+    "ETH": 0.76,
+    "VIX": -7.48,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 9,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T20:40:33Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.41,
+    "WTI": -0.27,
+    "GOLD": -0.04,
+    "SP500": 0.33,
+    "NASDAQ": 0.41,
+    "BTC": 0.45,
+    "ETH": 0.31,
+    "VIX": 0.0,
+    "DXY": -0.01
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 9,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T20:45:31Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.28,
+    "WTI": -0.15,
+    "GOLD": 0.04,
+    "SP500": 0.37,
+    "NASDAQ": 0.46,
+    "BTC": 0.51,
+    "ETH": 0.37,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 5,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T20:50:31Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.19,
+    "WTI": -0.13,
+    "GOLD": -0.05,
+    "SP500": 0.21,
+    "NASDAQ": 0.23,
+    "BTC": 0.11,
+    "ETH": 0.03,
+    "VIX": 0.0,
+    "DXY": 0.02
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 4,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T20:55:26Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.26,
+    "WTI": -0.17,
+    "GOLD": -0.15,
+    "SP500": -0.04,
+    "NASDAQ": -0.1,
+    "BTC": -0.02,
+    "ETH": -0.15,
+    "VIX": 0.0,
+    "DXY": 0.02
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 3,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T21:00:49Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.21,
+    "WTI": -0.16,
+    "GOLD": -0.27,
+    "SP500": 0.02,
+    "NASDAQ": 0.03,
+    "BTC": -0.0,
+    "ETH": 0.02,
+    "VIX": 0.0,
+    "DXY": 0.04
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 4,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T21:05:25Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.07,
+    "WTI": 0.02,
+    "GOLD": -0.17,
+    "SP500": -0.02,
+    "NASDAQ": -0.05,
+    "BTC": -0.03,
+    "ETH": -0.02,
+    "VIX": 0.0,
+    "DXY": 0.02
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 5,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T21:10:33Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.05,
+    "WTI": -0.08,
+    "GOLD": -0.29,
+    "SP500": -0.04,
+    "NASDAQ": -0.05,
+    "BTC": -0.38,
+    "ETH": -0.19,
+    "VIX": 0.0,
+    "DXY": 0.07
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 6,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T21:15:32Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.03,
+    "WTI": -0.08,
+    "GOLD": -0.15,
+    "SP500": -0.11,
+    "NASDAQ": -0.1,
+    "BTC": -0.31,
+    "ETH": -0.03,
+    "VIX": 0.0,
+    "DXY": 0.07
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 4,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T21:20:36Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.17,
+    "WTI": -0.17,
+    "GOLD": -0.11,
+    "SP500": -0.06,
+    "NASDAQ": -0.11,
+    "BTC": -0.3,
+    "ETH": 0.04,
+    "VIX": 0.0,
+    "DXY": 0.05
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 5,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T21:25:28Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.04,
+    "WTI": -0.02,
+    "GOLD": -0.04,
+    "SP500": -0.01,
+    "NASDAQ": -0.05,
+    "BTC": 0.08,
+    "ETH": 0.32,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 6,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T21:30:44Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.26,
+    "WTI": 0.19,
+    "GOLD": -0.1,
+    "SP500": -0.05,
+    "NASDAQ": -0.08,
+    "BTC": -0.24,
+    "ETH": -0.04,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 5,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T21:35:26Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.34,
+    "WTI": 0.21,
+    "GOLD": -0.01,
+    "SP500": 0.0,
+    "NASDAQ": -0.01,
+    "BTC": -0.22,
+    "ETH": -0.04,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 5,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T21:40:35Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.37,
+    "WTI": 0.22,
+    "GOLD": 0.06,
+    "SP500": 0.01,
+    "NASDAQ": -0.04,
+    "BTC": -0.23,
+    "ETH": 0.11,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 5,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T21:45:33Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.3,
+    "WTI": 0.15,
+    "GOLD": 0.15,
+    "SP500": -0.01,
+    "NASDAQ": -0.07,
+    "BTC": -0.28,
+    "ETH": -0.03,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 3,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T21:50:32Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.32,
+    "WTI": 0.21,
+    "GOLD": 0.2,
+    "SP500": -0.0,
+    "NASDAQ": -0.05,
+    "BTC": -0.29,
+    "ETH": -0.08,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 1,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T21:55:25Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.36,
+    "WTI": 0.23,
+    "GOLD": 0.09,
+    "SP500": 0.02,
+    "NASDAQ": 0.0,
+    "BTC": -0.28,
+    "ETH": 0.03,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 1,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T22:00:51Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.32,
+    "WTI": 0.21,
+    "GOLD": 0.15,
+    "SP500": 0.01,
+    "NASDAQ": 0.0,
+    "BTC": -0.21,
+    "ETH": 0.04,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "OIL": "N1"
+   },
+   "head_n": 1,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T22:05:28Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.37,
+    "WTI": 0.33,
+    "GOLD": 0.19,
+    "SP500": -0.0,
+    "NASDAQ": 0.02,
+    "BTC": -0.07,
+    "ETH": 0.05,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "OIL": "N1"
+   },
+   "head_n": 1,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T22:10:35Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.4,
+    "WTI": 0.3,
+    "GOLD": 0.15,
+    "SP500": 0.01,
+    "NASDAQ": 0.01,
+    "BTC": 0.35,
+    "ETH": 0.3,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "OIL": "N1"
+   },
+   "head_n": 2,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T22:15:32Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.39,
+    "WTI": 0.33,
+    "GOLD": 0.13,
+    "SP500": 0.01,
+    "NASDAQ": 0.04,
+    "BTC": 0.26,
+    "ETH": 0.08,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "OIL": "N1"
+   },
+   "head_n": 2,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T22:20:39Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.36,
+    "WTI": 0.2,
+    "GOLD": 0.17,
+    "SP500": 0.02,
+    "NASDAQ": 0.07,
+    "BTC": -0.05,
+    "ETH": -0.35,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "OIL": "N1"
+   },
+   "head_n": 3,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T22:22:22Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.3,
+    "WTI": 0.16,
+    "GOLD": 0.18,
+    "SP500": 0.02,
+    "NASDAQ": 0.08,
+    "BTC": 0.02,
+    "ETH": -0.29,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "OIL": "N1"
+   },
+   "head_n": 3,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T22:25:25Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.27,
+    "WTI": 0.07,
+    "GOLD": 0.2,
+    "SP500": 0.02,
+    "NASDAQ": 0.08,
+    "BTC": -0.12,
+    "ETH": -0.43,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "OIL": "N1"
+   },
+   "head_n": 3,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T22:30:43Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.14,
+    "WTI": -0.23,
+    "GOLD": 0.22,
+    "SP500": 0.03,
+    "NASDAQ": 0.09,
+    "BTC": 0.03,
+    "ETH": -0.23,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 2,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T22:35:28Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.16,
+    "WTI": -0.22,
+    "GOLD": 0.22,
+    "SP500": 0.01,
+    "NASDAQ": 0.09,
+    "BTC": 0.13,
+    "ETH": -0.03,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 1,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T22:40:33Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.08,
+    "WTI": -0.13,
+    "GOLD": 0.2,
+    "SP500": 0.0,
+    "NASDAQ": 0.04,
+    "BTC": 0.19,
+    "ETH": -0.11,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 1,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T22:45:34Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.12,
+    "WTI": 0.0,
+    "GOLD": 0.2,
+    "SP500": 0.0,
+    "NASDAQ": 0.01,
+    "BTC": 0.19,
+    "ETH": -0.13,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 2,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T22:50:31Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.05,
+    "WTI": -0.05,
+    "GOLD": 0.14,
+    "SP500": 0.03,
+    "NASDAQ": 0.04,
+    "BTC": 0.29,
+    "ETH": -0.01,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 3,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T22:55:24Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.08,
+    "WTI": 0.0,
+    "GOLD": 0.13,
+    "SP500": 0.04,
+    "NASDAQ": 0.06,
+    "BTC": 0.3,
+    "ETH": -0.08,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 2,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T23:00:53Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.06,
+    "WTI": 0.05,
+    "GOLD": 0.12,
+    "SP500": 0.04,
+    "NASDAQ": 0.04,
+    "BTC": 0.29,
+    "ETH": -0.1,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 2,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T23:05:25Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.07,
+    "WTI": 0.06,
+    "GOLD": 0.02,
+    "SP500": 0.04,
+    "NASDAQ": 0.03,
+    "BTC": 0.25,
+    "ETH": -0.19,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 3,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T23:10:34Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.02,
+    "WTI": -0.05,
+    "GOLD": 0.08,
+    "SP500": 0.06,
+    "NASDAQ": 0.06,
+    "BTC": 0.31,
+    "ETH": -0.09,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 2,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T23:15:36Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.05,
+    "WTI": 0.01,
+    "GOLD": 0.08,
+    "SP500": 0.06,
+    "NASDAQ": 0.08,
+    "BTC": 0.23,
+    "ETH": -0.08,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 0,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T23:20:34Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.34,
+    "WTI": 0.32,
+    "GOLD": 0.06,
+    "SP500": 0.06,
+    "NASDAQ": 0.06,
+    "BTC": 0.42,
+    "ETH": 0.22,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 1,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T23:25:28Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.25,
+    "WTI": 0.24,
+    "GOLD": -0.0,
+    "SP500": 0.08,
+    "NASDAQ": 0.08,
+    "BTC": 0.51,
+    "ETH": 0.34,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 3,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T23:30:41Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.2,
+    "WTI": 0.24,
+    "GOLD": -0.01,
+    "SP500": 0.02,
+    "NASDAQ": 0.06,
+    "BTC": 0.38,
+    "ETH": 0.3,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 3,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T23:35:24Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.18,
+    "WTI": 0.23,
+    "GOLD": 0.0,
+    "SP500": 0.02,
+    "NASDAQ": 0.07,
+    "BTC": 0.41,
+    "ETH": 0.23,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 3,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T23:40:45Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.05,
+    "WTI": 0.14,
+    "GOLD": -0.0,
+    "SP500": 0.03,
+    "NASDAQ": 0.16,
+    "BTC": 0.43,
+    "ETH": 0.29,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 3,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T23:45:33Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.0,
+    "WTI": 0.13,
+    "GOLD": -0.02,
+    "SP500": 0.04,
+    "NASDAQ": 0.15,
+    "BTC": 0.47,
+    "ETH": 0.33,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 4,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T23:50:31Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.02,
+    "WTI": 0.07,
+    "GOLD": -0.02,
+    "SP500": 0.04,
+    "NASDAQ": 0.11,
+    "BTC": 0.45,
+    "ETH": 0.32,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 2,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-30T23:55:25Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.08,
+    "WTI": -0.01,
+    "GOLD": 0.02,
+    "SP500": 0.04,
+    "NASDAQ": 0.12,
+    "BTC": 0.47,
+    "ETH": 0.36,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 2,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T00:00:50Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.06,
+    "WTI": -0.08,
+    "GOLD": 0.01,
+    "SP500": 0.05,
+    "NASDAQ": 0.14,
+    "BTC": 0.57,
+    "ETH": 0.43,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 1,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T00:05:25Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.06,
+    "WTI": -0.13,
+    "GOLD": 0.01,
+    "SP500": 0.06,
+    "NASDAQ": 0.21,
+    "BTC": 0.35,
+    "ETH": 0.32,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 1,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T00:10:32Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.0,
+    "WTI": -0.01,
+    "GOLD": -0.04,
+    "SP500": 0.02,
+    "NASDAQ": 0.11,
+    "BTC": 0.21,
+    "ETH": 0.21,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 2,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T00:15:34Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.0,
+    "WTI": -0.03,
+    "GOLD": 0.03,
+    "SP500": 0.01,
+    "NASDAQ": 0.13,
+    "BTC": 0.38,
+    "ETH": 0.35,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 1,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T00:20:32Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.07,
+    "WTI": -0.07,
+    "GOLD": 0.05,
+    "SP500": 0.01,
+    "NASDAQ": 0.12,
+    "BTC": 0.41,
+    "ETH": 0.34,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 1,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T00:25:25Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.04,
+    "WTI": -0.07,
+    "GOLD": 0.07,
+    "SP500": -0.01,
+    "NASDAQ": 0.17,
+    "BTC": 0.25,
+    "ETH": 0.2,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 1,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T00:30:41Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.0,
+    "WTI": -0.12,
+    "GOLD": 0.03,
+    "SP500": 0.04,
+    "NASDAQ": 0.19,
+    "BTC": 0.17,
+    "ETH": 0.15,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 2,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T00:35:26Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.05,
+    "WTI": -0.06,
+    "GOLD": 0.01,
+    "SP500": 0.03,
+    "NASDAQ": 0.13,
+    "BTC": 0.03,
+    "ETH": 0.05,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 2,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T00:40:33Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.07,
+    "WTI": -0.01,
+    "GOLD": 0.02,
+    "SP500": 0.02,
+    "NASDAQ": 0.12,
+    "BTC": 0.09,
+    "ETH": 0.05,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 2,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T00:45:32Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.08,
+    "WTI": -0.05,
+    "GOLD": -0.01,
+    "SP500": 0.01,
+    "NASDAQ": 0.13,
+    "BTC": 0.1,
+    "ETH": 0.17,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 3,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T00:50:33Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.11,
+    "WTI": 0.03,
+    "GOLD": -0.02,
+    "SP500": 0.0,
+    "NASDAQ": 0.09,
+    "BTC": 0.28,
+    "ETH": 0.26,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 2,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T00:55:24Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.12,
+    "WTI": -0.01,
+    "GOLD": -0.02,
+    "SP500": 0.01,
+    "NASDAQ": 0.09,
+    "BTC": 0.24,
+    "ETH": 0.17,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 3,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T01:00:52Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.03,
+    "WTI": -0.11,
+    "GOLD": -0.01,
+    "SP500": -0.01,
+    "NASDAQ": 0.08,
+    "BTC": 0.29,
+    "ETH": 0.21,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 0,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T01:05:28Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.0,
+    "WTI": -0.04,
+    "GOLD": 0.04,
+    "SP500": -0.01,
+    "NASDAQ": 0.03,
+    "BTC": 0.38,
+    "ETH": 0.26,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 1,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T01:10:32Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.04,
+    "WTI": -0.12,
+    "GOLD": 0.03,
+    "SP500": -0.01,
+    "NASDAQ": 0.04,
+    "BTC": 0.27,
+    "ETH": 0.14,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 2,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T01:15:31Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.07,
+    "WTI": -0.11,
+    "GOLD": -0.01,
+    "SP500": 0.0,
+    "NASDAQ": 0.04,
+    "BTC": 0.26,
+    "ETH": 0.06,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 3,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T01:20:33Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.04,
+    "WTI": -0.02,
+    "GOLD": -0.04,
+    "SP500": 0.0,
+    "NASDAQ": 0.02,
+    "BTC": 0.14,
+    "ETH": -0.11,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 3,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T01:25:25Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.04,
+    "WTI": 0.0,
+    "GOLD": -0.05,
+    "SP500": -0.0,
+    "NASDAQ": -0.1,
+    "BTC": 0.09,
+    "ETH": -0.1,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 4,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T01:30:41Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.06,
+    "WTI": -0.04,
+    "GOLD": 0.01,
+    "SP500": 0.0,
+    "NASDAQ": -0.09,
+    "BTC": 0.09,
+    "ETH": -0.13,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 3,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T01:35:24Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.06,
+    "WTI": -0.05,
+    "GOLD": 0.02,
+    "SP500": 0.0,
+    "NASDAQ": -0.04,
+    "BTC": 0.15,
+    "ETH": -0.06,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 3,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T01:40:19Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.07,
+    "WTI": -0.03,
+    "GOLD": -0.0,
+    "SP500": -0.0,
+    "NASDAQ": -0.05,
+    "BTC": 0.1,
+    "ETH": -0.04,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 2,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T01:40:36Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.07,
+    "WTI": -0.04,
+    "GOLD": -0.0,
+    "SP500": -0.0,
+    "NASDAQ": -0.05,
+    "BTC": 0.11,
+    "ETH": -0.03,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 2,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T01:45:43Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.09,
+    "WTI": -0.04,
+    "GOLD": 0.01,
+    "SP500": 0.0,
+    "NASDAQ": -0.04,
+    "BTC": 0.06,
+    "ETH": -0.14,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 3,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T01:50:33Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.08,
+    "WTI": -0.03,
+    "GOLD": 0.03,
+    "SP500": -0.0,
+    "NASDAQ": 0.01,
+    "BTC": -0.1,
+    "ETH": -0.23,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 2,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T01:55:23Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.11,
+    "WTI": -0.09,
+    "GOLD": 0.01,
+    "SP500": 0.0,
+    "NASDAQ": 0.0,
+    "BTC": -0.11,
+    "ETH": -0.19,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 2,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T02:00:53Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.05,
+    "WTI": 0.0,
+    "GOLD": -0.02,
+    "SP500": 0.0,
+    "NASDAQ": -0.03,
+    "BTC": -0.2,
+    "ETH": -0.2,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 2,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T02:05:24Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.05,
+    "WTI": -0.02,
+    "GOLD": 0.0,
+    "SP500": 0.0,
+    "NASDAQ": -0.08,
+    "BTC": -0.24,
+    "ETH": -0.25,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 3,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T02:10:38Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.04,
+    "WTI": 0.06,
+    "GOLD": -0.03,
+    "SP500": 0.0,
+    "NASDAQ": -0.06,
+    "BTC": -0.19,
+    "ETH": -0.16,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 2,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T02:15:32Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.05,
+    "WTI": 0.03,
+    "GOLD": -0.06,
+    "SP500": 0.0,
+    "NASDAQ": -0.04,
+    "BTC": -0.15,
+    "ETH": -0.06,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 2,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T02:20:31Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.08,
+    "WTI": 0.03,
+    "GOLD": -0.06,
+    "SP500": 0.0,
+    "NASDAQ": -0.04,
+    "BTC": -0.2,
+    "ETH": -0.06,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 2,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T02:25:27Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.07,
+    "WTI": -0.01,
+    "GOLD": -0.03,
+    "SP500": 0.0,
+    "NASDAQ": -0.04,
+    "BTC": -0.12,
+    "ETH": -0.01,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 2,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T02:30:54Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.09,
+    "WTI": 0.06,
+    "GOLD": -0.06,
+    "SP500": 0.0,
+    "NASDAQ": -0.03,
+    "BTC": -0.05,
+    "ETH": 0.05,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 2,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T02:35:27Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.08,
+    "WTI": 0.07,
+    "GOLD": -0.12,
+    "SP500": -0.0,
+    "NASDAQ": -0.04,
+    "BTC": -0.17,
+    "ETH": -0.14,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 4,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T02:40:31Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.09,
+    "WTI": 0.06,
+    "GOLD": -0.16,
+    "SP500": 0.0,
+    "NASDAQ": -0.06,
+    "BTC": -0.05,
+    "ETH": -0.07,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 6,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T02:45:29Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.12,
+    "WTI": 0.1,
+    "GOLD": -0.16,
+    "SP500": -0.0,
+    "NASDAQ": -0.05,
+    "BTC": -0.01,
+    "ETH": 0.0,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 6,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T02:50:33Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.08,
+    "WTI": 0.07,
+    "GOLD": -0.16,
+    "SP500": 0.0,
+    "NASDAQ": -0.07,
+    "BTC": 0.0,
+    "ETH": 0.07,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 6,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T02:55:23Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.05,
+    "WTI": 0.07,
+    "GOLD": -0.08,
+    "SP500": -0.0,
+    "NASDAQ": -0.04,
+    "BTC": 0.03,
+    "ETH": 0.09,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 4,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T03:00:54Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.03,
+    "WTI": 0.08,
+    "GOLD": -0.06,
+    "SP500": 0.0,
+    "NASDAQ": -0.01,
+    "BTC": 0.04,
+    "ETH": 0.1,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 3,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T03:05:25Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.04,
+    "WTI": 0.05,
+    "GOLD": -0.07,
+    "SP500": -0.0,
+    "NASDAQ": 0.04,
+    "BTC": 0.02,
+    "ETH": 0.04,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 4,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T03:10:31Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.01,
+    "WTI": 0.0,
+    "GOLD": -0.04,
+    "SP500": -0.0,
+    "NASDAQ": 0.02,
+    "BTC": -0.07,
+    "ETH": -0.09,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 5,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T03:15:31Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.04,
+    "WTI": -0.07,
+    "GOLD": -0.02,
+    "SP500": 0.0,
+    "NASDAQ": 0.02,
+    "BTC": -0.14,
+    "ETH": -0.18,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 5,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T03:20:35Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.05,
+    "WTI": -0.08,
+    "GOLD": -0.02,
+    "SP500": -0.0,
+    "NASDAQ": 0.09,
+    "BTC": -0.05,
+    "ETH": -0.05,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 5,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T03:25:26Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.03,
+    "WTI": -0.07,
+    "GOLD": -0.05,
+    "SP500": -0.0,
+    "NASDAQ": 0.09,
+    "BTC": -0.02,
+    "ETH": -0.05,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 5,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T03:30:44Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.04,
+    "WTI": -0.09,
+    "GOLD": -0.01,
+    "SP500": 0.0,
+    "NASDAQ": 0.1,
+    "BTC": -0.06,
+    "ETH": -0.02,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 3,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T03:35:26Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.05,
+    "WTI": -0.06,
+    "GOLD": 0.05,
+    "SP500": 0.0,
+    "NASDAQ": 0.08,
+    "BTC": -0.04,
+    "ETH": 0.0,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 4,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T03:40:34Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.06,
+    "WTI": -0.09,
+    "GOLD": 0.07,
+    "SP500": 0.0,
+    "NASDAQ": 0.08,
+    "BTC": -0.34,
+    "ETH": -0.19,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 3,
+   "movers": 3,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T03:45:40Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.09,
+    "WTI": -0.05,
+    "GOLD": 0.07,
+    "SP500": 0.0,
+    "NASDAQ": 0.08,
+    "BTC": -0.29,
+    "ETH": -0.17,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 3,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T03:50:32Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.08,
+    "WTI": -0.09,
+    "GOLD": 0.07,
+    "SP500": 0.0,
+    "NASDAQ": 0.08,
+    "BTC": -0.32,
+    "ETH": -0.2,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 4,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T03:55:34Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.09,
+    "WTI": -0.09,
+    "GOLD": -0.01,
+    "SP500": 0.0,
+    "NASDAQ": 0.07,
+    "BTC": -0.38,
+    "ETH": -0.28,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 5,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T04:00:48Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.1,
+    "WTI": -0.09,
+    "GOLD": -0.05,
+    "SP500": 0.0,
+    "NASDAQ": 0.06,
+    "BTC": -0.38,
+    "ETH": -0.28,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 6,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T04:05:27Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.09,
+    "WTI": -0.05,
+    "GOLD": -0.02,
+    "SP500": 0.0,
+    "NASDAQ": 0.04,
+    "BTC": -0.24,
+    "ETH": -0.2,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 5,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T04:10:34Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.08,
+    "WTI": -0.02,
+    "GOLD": -0.04,
+    "SP500": 0.0,
+    "NASDAQ": 0.06,
+    "BTC": -0.08,
+    "ETH": -0.07,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 3,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T04:15:33Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.05,
+    "WTI": 0.0,
+    "GOLD": -0.07,
+    "SP500": 0.0,
+    "NASDAQ": 0.06,
+    "BTC": -0.16,
+    "ETH": -0.14,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 6,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T04:20:45Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.06,
+    "WTI": -0.01,
+    "GOLD": -0.1,
+    "SP500": 0.0,
+    "NASDAQ": 0.06,
+    "BTC": -0.11,
+    "ETH": -0.13,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 5,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T04:25:23Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.12,
+    "WTI": 0.0,
+    "GOLD": -0.1,
+    "SP500": 0.0,
+    "NASDAQ": 0.06,
+    "BTC": -0.17,
+    "ETH": -0.18,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 4,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T04:30:40Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.17,
+    "WTI": -0.03,
+    "GOLD": -0.12,
+    "SP500": 0.0,
+    "NASDAQ": 0.03,
+    "BTC": -0.11,
+    "ETH": -0.14,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 4,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T04:35:25Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.17,
+    "WTI": -0.08,
+    "GOLD": -0.15,
+    "SP500": 0.0,
+    "NASDAQ": 0.05,
+    "BTC": -0.23,
+    "ETH": -0.21,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 6,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T04:40:33Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.13,
+    "WTI": -0.07,
+    "GOLD": -0.12,
+    "SP500": 0.0,
+    "NASDAQ": 0.05,
+    "BTC": 0.02,
+    "ETH": -0.16,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 5,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T04:45:31Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.13,
+    "WTI": -0.1,
+    "GOLD": -0.11,
+    "SP500": 0.0,
+    "NASDAQ": 0.01,
+    "BTC": -0.08,
+    "ETH": -0.19,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 5,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T04:50:32Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.12,
+    "WTI": -0.08,
+    "GOLD": -0.11,
+    "SP500": 0.0,
+    "NASDAQ": 0.01,
+    "BTC": -0.0,
+    "ETH": -0.12,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 5,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T04:55:24Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.12,
+    "WTI": -0.05,
+    "GOLD": -0.11,
+    "SP500": 0.0,
+    "NASDAQ": 0.0,
+    "BTC": 0.03,
+    "ETH": -0.13,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 3,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T05:00:49Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.12,
+    "WTI": -0.08,
+    "GOLD": -0.07,
+    "SP500": 0.0,
+    "NASDAQ": -0.02,
+    "BTC": 0.05,
+    "ETH": 0.0,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 3,
+   "movers": 3,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T05:05:23Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.12,
+    "WTI": -0.05,
+    "GOLD": -0.06,
+    "SP500": 0.0,
+    "NASDAQ": 0.01,
+    "BTC": -0.02,
+    "ETH": -0.04,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 4,
+   "movers": 3,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T05:10:31Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.14,
+    "WTI": -0.06,
+    "GOLD": -0.03,
+    "SP500": 0.0,
+    "NASDAQ": 0.02,
+    "BTC": 0.02,
+    "ETH": 0.04,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 4,
+   "movers": 3,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T05:15:32Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.15,
+    "WTI": -0.07,
+    "GOLD": 0.06,
+    "SP500": 0.0,
+    "NASDAQ": 0.02,
+    "BTC": 0.01,
+    "ETH": 0.05,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 6,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T05:20:30Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.13,
+    "WTI": -0.06,
+    "GOLD": 0.06,
+    "SP500": 0.0,
+    "NASDAQ": -0.01,
+    "BTC": -0.07,
+    "ETH": -0.02,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 8,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T05:25:29Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.06,
+    "WTI": -0.01,
+    "GOLD": 0.05,
+    "SP500": 0.0,
+    "NASDAQ": 0.0,
+    "BTC": -0.04,
+    "ETH": 0.02,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 9,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T05:30:42Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.03,
+    "WTI": 0.06,
+    "GOLD": 0.05,
+    "SP500": 0.0,
+    "NASDAQ": -0.01,
+    "BTC": -0.12,
+    "ETH": -0.06,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 7,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T05:35:23Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.04,
+    "WTI": 0.1,
+    "GOLD": 0.04,
+    "SP500": 0.0,
+    "NASDAQ": 0.0,
+    "BTC": 0.08,
+    "ETH": 0.14,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 8,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T05:40:33Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.04,
+    "WTI": 0.08,
+    "GOLD": 0.01,
+    "SP500": 0.0,
+    "NASDAQ": -0.01,
+    "BTC": 0.09,
+    "ETH": 0.11,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 7,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T05:45:32Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.04,
+    "WTI": 0.11,
+    "GOLD": -0.01,
+    "SP500": 0.0,
+    "NASDAQ": 0.02,
+    "BTC": 0.21,
+    "ETH": 0.26,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 3,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T05:50:30Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.04,
+    "WTI": 0.07,
+    "GOLD": 0.0,
+    "SP500": -0.0,
+    "NASDAQ": 0.01,
+    "BTC": 0.1,
+    "ETH": 0.15,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 4,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T05:55:24Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.03,
+    "WTI": 0.03,
+    "GOLD": 0.01,
+    "SP500": 0.0,
+    "NASDAQ": 0.02,
+    "BTC": 0.15,
+    "ETH": 0.17,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 1,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T06:00:50Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.04,
+    "WTI": 0.05,
+    "GOLD": 0.02,
+    "SP500": 0.0,
+    "NASDAQ": 0.02,
+    "BTC": 0.11,
+    "ETH": 0.16,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 0,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T06:05:24Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.03,
+    "WTI": -0.01,
+    "GOLD": 0.03,
+    "SP500": -0.0,
+    "NASDAQ": -0.0,
+    "BTC": 0.19,
+    "ETH": 0.25,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 3,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T06:10:35Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.05,
+    "WTI": 0.02,
+    "GOLD": -0.01,
+    "SP500": -0.0,
+    "NASDAQ": -0.05,
+    "BTC": -0.01,
+    "ETH": 0.01,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 3,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T06:15:34Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.06,
+    "WTI": 0.05,
+    "GOLD": -0.01,
+    "SP500": -0.01,
+    "NASDAQ": -0.08,
+    "BTC": 0.11,
+    "ETH": 0.15,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 4,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T06:20:35Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.04,
+    "WTI": 0.04,
+    "GOLD": -0.01,
+    "SP500": -0.0,
+    "NASDAQ": -0.04,
+    "BTC": 0.02,
+    "ETH": 0.09,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 3,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T06:25:25Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.04,
+    "WTI": 0.02,
+    "GOLD": 0.01,
+    "SP500": -0.01,
+    "NASDAQ": -0.03,
+    "BTC": 0.06,
+    "ETH": 0.13,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 3,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T06:30:43Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.07,
+    "WTI": 0.02,
+    "GOLD": 0.02,
+    "SP500": -0.01,
+    "NASDAQ": -0.01,
+    "BTC": 0.02,
+    "ETH": 0.12,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 2,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T06:35:25Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.04,
+    "WTI": -0.01,
+    "GOLD": 0.04,
+    "SP500": -0.01,
+    "NASDAQ": -0.0,
+    "BTC": 0.1,
+    "ETH": 0.16,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 1,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T06:40:30Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.04,
+    "WTI": 0.03,
+    "GOLD": 0.06,
+    "SP500": -0.03,
+    "NASDAQ": -0.02,
+    "BTC": 0.08,
+    "ETH": 0.16,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 1,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T06:45:40Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.02,
+    "WTI": 0.03,
+    "GOLD": 0.06,
+    "SP500": -0.08,
+    "NASDAQ": -0.01,
+    "BTC": 0.03,
+    "ETH": 0.13,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 2,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T06:50:38Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.01,
+    "WTI": -0.01,
+    "GOLD": 0.05,
+    "SP500": -0.04,
+    "NASDAQ": -0.02,
+    "BTC": 0.15,
+    "ETH": 0.18,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 2,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T06:55:23Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.0,
+    "WTI": -0.01,
+    "GOLD": 0.06,
+    "SP500": -0.04,
+    "NASDAQ": -0.0,
+    "BTC": 0.18,
+    "ETH": 0.18,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 4,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T07:00:49Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.05,
+    "WTI": -0.04,
+    "GOLD": 0.06,
+    "SP500": -0.05,
+    "NASDAQ": 0.01,
+    "BTC": 0.16,
+    "ETH": 0.16,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 3,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T07:05:24Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.0,
+    "WTI": 0.01,
+    "GOLD": 0.02,
+    "SP500": -0.06,
+    "NASDAQ": -0.0,
+    "BTC": 0.03,
+    "ETH": 0.01,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 3,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T07:10:31Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.04,
+    "WTI": 0.04,
+    "GOLD": 0.01,
+    "SP500": -0.09,
+    "NASDAQ": 0.02,
+    "BTC": 0.17,
+    "ETH": 0.07,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 3,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T07:15:32Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.05,
+    "WTI": 0.0,
+    "GOLD": 0.01,
+    "SP500": -0.11,
+    "NASDAQ": 0.02,
+    "BTC": 0.18,
+    "ETH": 0.1,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 2,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T07:20:32Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.1,
+    "WTI": 0.05,
+    "GOLD": 0.01,
+    "SP500": -0.09,
+    "NASDAQ": -0.03,
+    "BTC": 0.19,
+    "ETH": 0.1,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 2,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T07:25:24Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.1,
+    "WTI": 0.06,
+    "GOLD": -0.0,
+    "SP500": -0.09,
+    "NASDAQ": -0.06,
+    "BTC": 0.15,
+    "ETH": 0.07,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 1,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T07:29:42Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.11,
+    "WTI": 0.06,
+    "GOLD": 0.0,
+    "SP500": -0.1,
+    "NASDAQ": -0.05,
+    "BTC": 0.18,
+    "ETH": 0.09,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 2,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T07:30:48Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.04,
+    "WTI": 0.01,
+    "GOLD": 0.0,
+    "SP500": -0.1,
+    "NASDAQ": -0.06,
+    "BTC": 0.19,
+    "ETH": 0.07,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 2,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T07:35:25Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.06,
+    "WTI": 0.01,
+    "GOLD": -0.01,
+    "SP500": -0.1,
+    "NASDAQ": -0.09,
+    "BTC": 0.08,
+    "ETH": -0.01,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 1,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T07:40:31Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.08,
+    "WTI": 0.01,
+    "GOLD": -0.02,
+    "SP500": -0.01,
+    "NASDAQ": -0.08,
+    "BTC": 0.05,
+    "ETH": -0.06,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 0,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T07:45:30Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.12,
+    "WTI": 0.04,
+    "GOLD": -0.04,
+    "SP500": -0.02,
+    "NASDAQ": -0.06,
+    "BTC": -0.01,
+    "ETH": -0.12,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 0,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T07:50:31Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.09,
+    "WTI": 0.08,
+    "GOLD": -0.04,
+    "SP500": -0.06,
+    "NASDAQ": -0.07,
+    "BTC": -0.06,
+    "ETH": -0.14,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 1,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T07:55:23Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.03,
+    "WTI": 0.03,
+    "GOLD": -0.05,
+    "SP500": -0.06,
+    "NASDAQ": -0.08,
+    "BTC": -0.06,
+    "ETH": -0.12,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 2,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T08:00:48Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.02,
+    "WTI": 0.01,
+    "GOLD": -0.07,
+    "SP500": -0.06,
+    "NASDAQ": -0.11,
+    "BTC": -0.04,
+    "ETH": -0.08,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 2,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T08:05:26Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.09,
+    "WTI": -0.04,
+    "GOLD": -0.05,
+    "SP500": -0.03,
+    "NASDAQ": -0.11,
+    "BTC": -0.14,
+    "ETH": -0.13,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 3,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T08:10:34Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.15,
+    "WTI": -0.06,
+    "GOLD": -0.05,
+    "SP500": -0.0,
+    "NASDAQ": -0.08,
+    "BTC": -0.08,
+    "ETH": -0.01,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 4,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T08:15:31Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.16,
+    "WTI": -0.06,
+    "GOLD": -0.04,
+    "SP500": 0.01,
+    "NASDAQ": -0.06,
+    "BTC": 0.01,
+    "ETH": 0.02,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 5,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T08:20:32Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.14,
+    "WTI": -0.08,
+    "GOLD": -0.04,
+    "SP500": -0.02,
+    "NASDAQ": -0.06,
+    "BTC": 0.05,
+    "ETH": -0.0,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 3,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T08:25:31Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.15,
+    "WTI": -0.08,
+    "GOLD": -0.05,
+    "SP500": -0.01,
+    "NASDAQ": -0.04,
+    "BTC": -0.02,
+    "ETH": -0.13,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 3,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T08:30:40Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.17,
+    "WTI": -0.07,
+    "GOLD": -0.06,
+    "SP500": 0.0,
+    "NASDAQ": -0.05,
+    "BTC": -0.06,
+    "ETH": -0.18,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 4,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T08:35:25Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.17,
+    "WTI": -0.08,
+    "GOLD": -0.05,
+    "SP500": 0.01,
+    "NASDAQ": -0.05,
+    "BTC": -0.13,
+    "ETH": -0.19,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 4,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T08:40:32Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.19,
+    "WTI": -0.1,
+    "GOLD": -0.04,
+    "SP500": 0.0,
+    "NASDAQ": -0.01,
+    "BTC": -0.08,
+    "ETH": -0.12,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 4,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T08:45:31Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.2,
+    "WTI": -0.14,
+    "GOLD": -0.02,
+    "SP500": 0.01,
+    "NASDAQ": 0.01,
+    "BTC": -0.05,
+    "ETH": -0.12,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 4,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T08:50:32Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.2,
+    "WTI": -0.13,
+    "GOLD": -0.02,
+    "SP500": 0.01,
+    "NASDAQ": -0.01,
+    "BTC": 0.01,
+    "ETH": -0.04,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 3,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T08:55:32Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.08,
+    "WTI": -0.06,
+    "GOLD": -0.02,
+    "SP500": -0.04,
+    "NASDAQ": -0.02,
+    "BTC": -0.01,
+    "ETH": -0.07,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 2,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T09:00:52Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.04,
+    "WTI": -0.05,
+    "GOLD": -0.01,
+    "SP500": -0.05,
+    "NASDAQ": -0.02,
+    "BTC": 0.04,
+    "ETH": -0.05,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 2,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T09:05:23Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.01,
+    "WTI": -0.02,
+    "GOLD": -0.01,
+    "SP500": -0.07,
+    "NASDAQ": 0.0,
+    "BTC": 0.13,
+    "ETH": 0.04,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 0,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T09:10:34Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.04,
+    "WTI": -0.01,
+    "GOLD": -0.02,
+    "SP500": -0.04,
+    "NASDAQ": -0.0,
+    "BTC": 0.11,
+    "ETH": -0.01,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 2,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T09:15:30Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.04,
+    "WTI": -0.04,
+    "GOLD": -0.01,
+    "SP500": -0.04,
+    "NASDAQ": -0.01,
+    "BTC": 0.0,
+    "ETH": -0.08,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 3,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T09:20:33Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.11,
+    "WTI": -0.06,
+    "GOLD": -0.01,
+    "SP500": -0.03,
+    "NASDAQ": 0.0,
+    "BTC": -0.09,
+    "ETH": -0.08,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 4,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T09:25:25Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.12,
+    "WTI": -0.06,
+    "GOLD": 0.0,
+    "SP500": -0.04,
+    "NASDAQ": 0.04,
+    "BTC": 0.07,
+    "ETH": 0.11,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 3,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T09:30:40Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.09,
+    "WTI": -0.06,
+    "GOLD": 0.0,
+    "SP500": -0.02,
+    "NASDAQ": 0.05,
+    "BTC": 0.1,
+    "ETH": 0.15,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 3,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T09:35:23Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.07,
+    "WTI": -0.04,
+    "GOLD": 0.0,
+    "SP500": 0.01,
+    "NASDAQ": 0.11,
+    "BTC": 0.21,
+    "ETH": 0.27,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 2,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T09:40:31Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.08,
+    "WTI": -0.03,
+    "GOLD": 0.01,
+    "SP500": -0.01,
+    "NASDAQ": 0.1,
+    "BTC": 0.21,
+    "ETH": 0.23,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 4,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T09:45:30Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.04,
+    "WTI": -0.02,
+    "GOLD": 0.02,
+    "SP500": -0.02,
+    "NASDAQ": 0.06,
+    "BTC": 0.17,
+    "ETH": 0.2,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 4,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T09:50:30Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.04,
+    "WTI": -0.04,
+    "GOLD": 0.02,
+    "SP500": -0.01,
+    "NASDAQ": 0.08,
+    "BTC": 0.13,
+    "ETH": 0.17,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 0,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T09:55:24Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.04,
+    "WTI": -0.05,
+    "GOLD": 0.02,
+    "SP500": 0.06,
+    "NASDAQ": 0.09,
+    "BTC": 0.13,
+    "ETH": 0.22,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 4,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T10:00:47Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.12,
+    "WTI": -0.07,
+    "GOLD": 0.03,
+    "SP500": 0.08,
+    "NASDAQ": 0.14,
+    "BTC": 0.13,
+    "ETH": 0.19,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 2,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T10:05:33Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.1,
+    "WTI": -0.08,
+    "GOLD": 0.04,
+    "SP500": 0.08,
+    "NASDAQ": 0.07,
+    "BTC": 0.02,
+    "ETH": 0.05,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 1,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T10:10:31Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.09,
+    "WTI": -0.09,
+    "GOLD": 0.04,
+    "SP500": 0.07,
+    "NASDAQ": 0.07,
+    "BTC": 0.05,
+    "ETH": 0.08,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 1,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T10:15:30Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.08,
+    "WTI": -0.12,
+    "GOLD": 0.05,
+    "SP500": 0.07,
+    "NASDAQ": 0.03,
+    "BTC": 0.07,
+    "ETH": 0.13,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 1,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T10:20:32Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.02,
+    "WTI": -0.05,
+    "GOLD": 0.05,
+    "SP500": 0.07,
+    "NASDAQ": 0.01,
+    "BTC": 0.09,
+    "ETH": 0.16,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 1,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T10:25:26Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.01,
+    "WTI": -0.08,
+    "GOLD": 0.03,
+    "SP500": 0.05,
+    "NASDAQ": -0.04,
+    "BTC": 0.07,
+    "ETH": 0.1,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 1,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T10:30:43Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.02,
+    "WTI": -0.05,
+    "GOLD": 0.03,
+    "SP500": 0.02,
+    "NASDAQ": -0.04,
+    "BTC": 0.04,
+    "ETH": 0.08,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 2,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T10:35:25Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.02,
+    "WTI": 0.01,
+    "GOLD": 0.03,
+    "SP500": -0.01,
+    "NASDAQ": -0.11,
+    "BTC": 0.07,
+    "ETH": 0.06,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 3,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T10:40:32Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.0,
+    "WTI": 0.04,
+    "GOLD": 0.02,
+    "SP500": 0.0,
+    "NASDAQ": -0.1,
+    "BTC": 0.05,
+    "ETH": 0.05,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 3,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T10:45:31Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.0,
+    "WTI": 0.02,
+    "GOLD": 0.02,
+    "SP500": 0.0,
+    "NASDAQ": -0.08,
+    "BTC": 0.07,
+    "ETH": 0.05,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 3,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T10:50:42Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.01,
+    "WTI": 0.06,
+    "GOLD": 0.04,
+    "SP500": 0.01,
+    "NASDAQ": -0.08,
+    "BTC": -0.03,
+    "ETH": -0.0,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 3,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T10:55:31Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.0,
+    "WTI": 0.08,
+    "GOLD": 0.04,
+    "SP500": -0.03,
+    "NASDAQ": -0.12,
+    "BTC": 0.01,
+    "ETH": 0.04,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 2,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T11:00:48Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.12,
+    "WTI": 0.11,
+    "GOLD": 0.01,
+    "SP500": -0.03,
+    "NASDAQ": -0.14,
+    "BTC": -0.07,
+    "ETH": -0.04,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 1,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T11:05:25Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.13,
+    "WTI": 0.15,
+    "GOLD": 0.0,
+    "SP500": -0.04,
+    "NASDAQ": -0.09,
+    "BTC": -0.02,
+    "ETH": 0.02,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 2,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T11:10:31Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.15,
+    "WTI": 0.16,
+    "GOLD": -0.01,
+    "SP500": -0.02,
+    "NASDAQ": -0.09,
+    "BTC": -0.05,
+    "ETH": 0.0,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 2,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T11:15:30Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.12,
+    "WTI": 0.19,
+    "GOLD": -0.04,
+    "SP500": -0.01,
+    "NASDAQ": -0.04,
+    "BTC": -0.07,
+    "ETH": -0.02,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 2,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T11:20:31Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.06,
+    "WTI": 0.15,
+    "GOLD": -0.03,
+    "SP500": -0.01,
+    "NASDAQ": -0.02,
+    "BTC": -0.09,
+    "ETH": -0.07,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 2,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T11:25:26Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.06,
+    "WTI": 0.1,
+    "GOLD": 0.0,
+    "SP500": -0.0,
+    "NASDAQ": -0.02,
+    "BTC": -0.04,
+    "ETH": -0.04,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 3,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T11:30:40Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.04,
+    "WTI": 0.02,
+    "GOLD": 0.01,
+    "SP500": -0.0,
+    "NASDAQ": -0.02,
+    "BTC": -0.09,
+    "ETH": -0.09,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 0,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T11:35:25Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.07,
+    "WTI": -0.07,
+    "GOLD": 0.01,
+    "SP500": 0.01,
+    "NASDAQ": 0.02,
+    "BTC": -0.09,
+    "ETH": -0.02,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 0,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T11:40:31Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.01,
+    "WTI": -0.04,
+    "GOLD": 0.01,
+    "SP500": -0.0,
+    "NASDAQ": 0.01,
+    "BTC": -0.02,
+    "ETH": 0.1,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 1,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T11:45:29Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.04,
+    "WTI": -0.08,
+    "GOLD": -0.01,
+    "SP500": 0.01,
+    "NASDAQ": 0.0,
+    "BTC": 0.15,
+    "ETH": 0.24,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 3,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T11:50:32Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.01,
+    "WTI": -0.03,
+    "GOLD": -0.03,
+    "SP500": 0.0,
+    "NASDAQ": 0.0,
+    "BTC": 0.29,
+    "ETH": 0.23,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 2,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T11:55:24Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.01,
+    "WTI": -0.02,
+    "GOLD": -0.01,
+    "SP500": 0.01,
+    "NASDAQ": 0.02,
+    "BTC": 0.25,
+    "ETH": 0.22,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 2,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T12:00:50Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.05,
+    "WTI": -0.06,
+    "GOLD": 0.02,
+    "SP500": 0.01,
+    "NASDAQ": 0.03,
+    "BTC": 0.25,
+    "ETH": 0.12,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 3,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T12:05:23Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.08,
+    "WTI": -0.09,
+    "GOLD": 0.02,
+    "SP500": 0.01,
+    "NASDAQ": 0.02,
+    "BTC": 0.21,
+    "ETH": 0.11,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 3,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T12:10:32Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.1,
+    "WTI": -0.08,
+    "GOLD": 0.01,
+    "SP500": -0.03,
+    "NASDAQ": 0.02,
+    "BTC": 0.24,
+    "ETH": 0.12,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 3,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T12:15:30Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.08,
+    "WTI": -0.09,
+    "GOLD": 0.05,
+    "SP500": -0.02,
+    "NASDAQ": 0.03,
+    "BTC": 0.24,
+    "ETH": 0.12,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 2,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T12:20:32Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.04,
+    "WTI": -0.05,
+    "GOLD": 0.05,
+    "SP500": -0.03,
+    "NASDAQ": -0.0,
+    "BTC": 0.21,
+    "ETH": 0.1,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 1,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T12:25:25Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.04,
+    "WTI": -0.02,
+    "GOLD": 0.06,
+    "SP500": -0.03,
+    "NASDAQ": -0.01,
+    "BTC": 0.18,
+    "ETH": 0.12,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 1,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T12:30:41Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.05,
+    "WTI": 0.13,
+    "GOLD": 0.08,
+    "SP500": -0.0,
+    "NASDAQ": -0.02,
+    "BTC": 0.18,
+    "ETH": 0.14,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 1,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T12:35:23Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.02,
+    "WTI": 0.05,
+    "GOLD": 0.08,
+    "SP500": 0.01,
+    "NASDAQ": -0.02,
+    "BTC": 0.18,
+    "ETH": 0.2,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 2,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T12:40:29Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.01,
+    "WTI": 0.03,
+    "GOLD": 0.07,
+    "SP500": 0.03,
+    "NASDAQ": -0.02,
+    "BTC": 0.19,
+    "ETH": 0.2,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 3,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T12:45:31Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.01,
+    "WTI": 0.07,
+    "GOLD": 0.07,
+    "SP500": 0.02,
+    "NASDAQ": -0.04,
+    "BTC": -0.05,
+    "ETH": 0.06,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 3,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T12:50:34Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.04,
+    "WTI": 0.09,
+    "GOLD": 0.05,
+    "SP500": 0.0,
+    "NASDAQ": -0.06,
+    "BTC": -0.11,
+    "ETH": 0.06,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 6,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T12:55:24Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.04,
+    "WTI": 0.05,
+    "GOLD": 0.05,
+    "SP500": 0.0,
+    "NASDAQ": -0.06,
+    "BTC": -0.08,
+    "ETH": 0.1,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 6,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T13:00:51Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.04,
+    "WTI": 0.06,
+    "GOLD": 0.04,
+    "SP500": 0.0,
+    "NASDAQ": -0.05,
+    "BTC": -0.13,
+    "ETH": 0.12,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 5,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T13:05:25Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.06,
+    "WTI": 0.09,
+    "GOLD": 0.04,
+    "SP500": 0.01,
+    "NASDAQ": -0.06,
+    "BTC": -0.11,
+    "ETH": 0.05,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 5,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T13:10:31Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.04,
+    "WTI": 0.02,
+    "GOLD": 0.05,
+    "SP500": 0.02,
+    "NASDAQ": -0.07,
+    "BTC": -0.15,
+    "ETH": 0.02,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 3,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T13:15:35Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.07,
+    "WTI": 0.01,
+    "GOLD": 0.0,
+    "SP500": 0.0,
+    "NASDAQ": -0.09,
+    "BTC": -0.17,
+    "ETH": -0.04,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 1,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T13:20:31Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.05,
+    "WTI": 0.01,
+    "GOLD": -0.0,
+    "SP500": -0.0,
+    "NASDAQ": -0.08,
+    "BTC": -0.1,
+    "ETH": 0.03,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 1,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T13:25:26Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.03,
+    "WTI": 0.0,
+    "GOLD": -0.03,
+    "SP500": -0.03,
+    "NASDAQ": -0.09,
+    "BTC": -0.13,
+    "ETH": 0.01,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 1,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T13:30:44Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.05,
+    "WTI": 0.0,
+    "GOLD": -0.03,
+    "SP500": -0.05,
+    "NASDAQ": -0.07,
+    "BTC": -0.14,
+    "ETH": 0.01,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 1,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T13:35:27Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.04,
+    "WTI": 0.0,
+    "GOLD": -0.06,
+    "SP500": -0.05,
+    "NASDAQ": -0.06,
+    "BTC": -0.2,
+    "ETH": -0.06,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 1,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T13:40:31Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.04,
+    "WTI": -0.02,
+    "GOLD": -0.05,
+    "SP500": -0.07,
+    "NASDAQ": -0.05,
+    "BTC": -0.19,
+    "ETH": -0.19,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 1,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T13:45:30Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.04,
+    "WTI": -0.04,
+    "GOLD": -0.02,
+    "SP500": -0.09,
+    "NASDAQ": 0.0,
+    "BTC": -0.03,
+    "ETH": -0.03,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 2,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T13:48:23Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.04,
+    "WTI": -0.04,
+    "GOLD": -0.03,
+    "SP500": -0.09,
+    "NASDAQ": 0.0,
+    "BTC": 0.01,
+    "ETH": 0.02,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 3,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T13:50:33Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.0,
+    "WTI": -0.08,
+    "GOLD": -0.04,
+    "SP500": -0.07,
+    "NASDAQ": -0.01,
+    "BTC": 0.06,
+    "ETH": 0.04,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 2,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T13:55:24Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.02,
+    "WTI": -0.08,
+    "GOLD": -0.04,
+    "SP500": -0.06,
+    "NASDAQ": -0.02,
+    "BTC": -0.05,
+    "ETH": -0.0,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 2,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T14:00:55Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.04,
+    "WTI": -0.13,
+    "GOLD": -0.05,
+    "SP500": -0.05,
+    "NASDAQ": -0.02,
+    "BTC": -0.04,
+    "ETH": -0.05,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 2,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T14:05:25Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.04,
+    "WTI": -0.12,
+    "GOLD": -0.05,
+    "SP500": -0.05,
+    "NASDAQ": -0.0,
+    "BTC": -0.0,
+    "ETH": 0.04,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 2,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T14:10:32Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.04,
+    "WTI": -0.05,
+    "GOLD": -0.04,
+    "SP500": -0.03,
+    "NASDAQ": 0.04,
+    "BTC": 0.01,
+    "ETH": 0.1,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 3,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T14:15:34Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.09,
+    "WTI": -0.13,
+    "GOLD": -0.03,
+    "SP500": 0.01,
+    "NASDAQ": 0.04,
+    "BTC": 0.01,
+    "ETH": 0.11,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 4,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T14:20:31Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.06,
+    "WTI": -0.12,
+    "GOLD": -0.02,
+    "SP500": 0.02,
+    "NASDAQ": 0.02,
+    "BTC": -0.07,
+    "ETH": 0.05,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 3,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T14:25:25Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.07,
+    "WTI": -0.12,
+    "GOLD": -0.02,
+    "SP500": 0.03,
+    "NASDAQ": 0.03,
+    "BTC": -0.05,
+    "ETH": 0.06,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 5,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T14:30:41Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.12,
+    "WTI": -0.14,
+    "GOLD": -0.02,
+    "SP500": 0.02,
+    "NASDAQ": 0.02,
+    "BTC": -0.03,
+    "ETH": 0.04,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 5,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T14:35:23Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.1,
+    "WTI": -0.15,
+    "GOLD": -0.03,
+    "SP500": 0.02,
+    "NASDAQ": 0.02,
+    "BTC": 0.07,
+    "ETH": 0.14,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 5,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T14:40:35Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.04,
+    "WTI": -0.05,
+    "GOLD": -0.04,
+    "SP500": 0.05,
+    "NASDAQ": 0.01,
+    "BTC": 0.07,
+    "ETH": 0.12,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 3,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T14:45:32Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.04,
+    "WTI": -0.08,
+    "GOLD": -0.06,
+    "SP500": 0.06,
+    "NASDAQ": 0.01,
+    "BTC": -0.02,
+    "ETH": 0.07,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 1,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T14:50:36Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.08,
+    "WTI": -0.14,
+    "GOLD": -0.05,
+    "SP500": 0.06,
+    "NASDAQ": 0.03,
+    "BTC": -0.06,
+    "ETH": -0.03,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 0,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T14:55:26Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.14,
+    "WTI": -0.2,
+    "GOLD": -0.02,
+    "SP500": 0.05,
+    "NASDAQ": 0.05,
+    "BTC": -0.05,
+    "ETH": -0.17,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 0,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T15:00:48Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.14,
+    "WTI": -0.2,
+    "GOLD": 0.02,
+    "SP500": 0.05,
+    "NASDAQ": 0.05,
+    "BTC": -0.09,
+    "ETH": -0.2,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 1,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T15:05:24Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.1,
+    "WTI": -0.17,
+    "GOLD": 0.06,
+    "SP500": 0.06,
+    "NASDAQ": 0.02,
+    "BTC": -0.2,
+    "ETH": -0.3,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 1,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T15:10:32Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.06,
+    "WTI": -0.12,
+    "GOLD": 0.04,
+    "SP500": 0.01,
+    "NASDAQ": 0.0,
+    "BTC": -0.15,
+    "ETH": -0.15,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 1,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T15:15:30Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.09,
+    "WTI": -0.11,
+    "GOLD": 0.04,
+    "SP500": 0.02,
+    "NASDAQ": 0.03,
+    "BTC": -0.06,
+    "ETH": -0.08,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 1,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T15:20:35Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.04,
+    "WTI": -0.06,
+    "GOLD": 0.04,
+    "SP500": 0.02,
+    "NASDAQ": 0.02,
+    "BTC": -0.06,
+    "ETH": -0.09,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 1,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T15:25:25Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.0,
+    "WTI": -0.07,
+    "GOLD": 0.06,
+    "SP500": 0.01,
+    "NASDAQ": 0.04,
+    "BTC": -0.04,
+    "ETH": -0.11,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 0,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T15:30:41Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.03,
+    "WTI": -0.07,
+    "GOLD": 0.06,
+    "SP500": 0.02,
+    "NASDAQ": 0.02,
+    "BTC": 0.04,
+    "ETH": -0.04,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 0,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T15:35:24Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.07,
+    "WTI": -0.09,
+    "GOLD": 0.09,
+    "SP500": 0.02,
+    "NASDAQ": 0.03,
+    "BTC": 0.03,
+    "ETH": -0.06,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 0,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T15:40:33Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.14,
+    "WTI": -0.17,
+    "GOLD": 0.09,
+    "SP500": 0.02,
+    "NASDAQ": 0.03,
+    "BTC": 0.07,
+    "ETH": -0.04,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 0,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T15:45:30Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.16,
+    "WTI": -0.16,
+    "GOLD": 0.1,
+    "SP500": 0.01,
+    "NASDAQ": 0.02,
+    "BTC": 0.06,
+    "ETH": -0.12,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 0,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T15:50:32Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.11,
+    "WTI": -0.11,
+    "GOLD": 0.11,
+    "SP500": 0.01,
+    "NASDAQ": 0.01,
+    "BTC": 0.03,
+    "ETH": -0.1,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 0,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T15:55:26Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.08,
+    "WTI": -0.09,
+    "GOLD": 0.06,
+    "SP500": -0.02,
+    "NASDAQ": -0.03,
+    "BTC": 0.14,
+    "ETH": 0.12,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 0,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T16:00:50Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.12,
+    "WTI": -0.09,
+    "GOLD": 0.04,
+    "SP500": -0.02,
+    "NASDAQ": -0.04,
+    "BTC": 0.2,
+    "ETH": 0.19,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 0,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T16:05:23Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.11,
+    "WTI": -0.14,
+    "GOLD": 0.04,
+    "SP500": -0.05,
+    "NASDAQ": -0.04,
+    "BTC": 0.3,
+    "ETH": 0.3,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 1,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T16:10:30Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.16,
+    "WTI": -0.18,
+    "GOLD": 0.03,
+    "SP500": -0.04,
+    "NASDAQ": -0.03,
+    "BTC": 0.29,
+    "ETH": 0.2,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 1,
+   "movers": 2,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T16:15:30Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.18,
+    "WTI": -0.2,
+    "GOLD": 0.04,
+    "SP500": -0.05,
+    "NASDAQ": -0.02,
+    "BTC": 0.22,
+    "ETH": 0.15,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 3,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T16:20:31Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.49,
+    "WTI": -0.51,
+    "GOLD": 0.04,
+    "SP500": -0.02,
+    "NASDAQ": -0.01,
+    "BTC": 0.22,
+    "ETH": 0.15,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 2,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T16:25:25Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.51,
+    "WTI": -0.37,
+    "GOLD": 0.03,
+    "SP500": -0.01,
+    "NASDAQ": 0.01,
+    "BTC": 0.23,
+    "ETH": 0.22,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 2,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T16:30:41Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.41,
+    "WTI": -0.3,
+    "GOLD": 0.03,
+    "SP500": -0.0,
+    "NASDAQ": -0.02,
+    "BTC": 0.16,
+    "ETH": 0.17,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 3,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T16:35:25Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.41,
+    "WTI": -0.31,
+    "GOLD": 0.03,
+    "SP500": -0.0,
+    "NASDAQ": -0.01,
+    "BTC": 0.08,
+    "ETH": 0.03,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 2,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T16:40:31Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.32,
+    "WTI": -0.28,
+    "GOLD": 0.03,
+    "SP500": 0.0,
+    "NASDAQ": -0.01,
+    "BTC": 0.02,
+    "ETH": 0.06,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 2,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T16:45:31Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.31,
+    "WTI": -0.23,
+    "GOLD": 0.03,
+    "SP500": 0.07,
+    "NASDAQ": -0.01,
+    "BTC": -0.01,
+    "ETH": 0.06,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 1,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T16:50:31Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.25,
+    "WTI": -0.16,
+    "GOLD": 0.03,
+    "SP500": 0.07,
+    "NASDAQ": 0.02,
+    "BTC": 0.04,
+    "ETH": 0.11,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 1,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T16:55:23Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.26,
+    "WTI": -0.15,
+    "GOLD": 0.04,
+    "SP500": 0.09,
+    "NASDAQ": 0.04,
+    "BTC": 0.01,
+    "ETH": 0.08,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 0,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T17:00:48Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.21,
+    "WTI": -0.14,
+    "GOLD": 0.01,
+    "SP500": 0.09,
+    "NASDAQ": 0.04,
+    "BTC": 0.0,
+    "ETH": 0.04,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 0,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T17:05:25Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.21,
+    "WTI": -0.14,
+    "GOLD": 0.01,
+    "SP500": 0.08,
+    "NASDAQ": 0.02,
+    "BTC": -0.06,
+    "ETH": -0.18,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 0,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T17:10:31Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.18,
+    "WTI": -0.11,
+    "GOLD": 0.02,
+    "SP500": 0.09,
+    "NASDAQ": 0.04,
+    "BTC": -0.05,
+    "ETH": -0.02,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 0,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T17:15:29Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.2,
+    "WTI": -0.11,
+    "GOLD": 0.02,
+    "SP500": 0.08,
+    "NASDAQ": 0.04,
+    "BTC": -0.02,
+    "ETH": -0.08,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 1,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T17:20:33Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.21,
+    "WTI": 0.29,
+    "GOLD": 0.01,
+    "SP500": 0.08,
+    "NASDAQ": 0.0,
+    "BTC": 0.06,
+    "ETH": 0.03,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 2,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T17:25:23Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.13,
+    "WTI": 0.08,
+    "GOLD": 0.0,
+    "SP500": 0.04,
+    "NASDAQ": -0.01,
+    "BTC": -0.05,
+    "ETH": -0.06,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 1,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T17:30:41Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.07,
+    "WTI": -0.04,
+    "GOLD": -0.01,
+    "SP500": 0.04,
+    "NASDAQ": -0.02,
+    "BTC": -0.06,
+    "ETH": -0.09,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 1,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T17:35:23Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.04,
+    "WTI": 0.01,
+    "GOLD": -0.01,
+    "SP500": 0.04,
+    "NASDAQ": 0.0,
+    "BTC": 0.0,
+    "ETH": 0.02,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 1,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T17:40:31Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.07,
+    "WTI": 0.04,
+    "GOLD": -0.01,
+    "SP500": 0.04,
+    "NASDAQ": 0.01,
+    "BTC": 0.06,
+    "ETH": 0.03,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 1,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T17:45:31Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.04,
+    "WTI": 0.02,
+    "GOLD": -0.02,
+    "SP500": -0.02,
+    "NASDAQ": 0.0,
+    "BTC": 0.06,
+    "ETH": 0.05,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 2,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T17:50:31Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.03,
+    "WTI": -0.01,
+    "GOLD": -0.07,
+    "SP500": -0.01,
+    "NASDAQ": -0.01,
+    "BTC": 0.14,
+    "ETH": 0.14,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 2,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T17:55:26Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.04,
+    "WTI": -0.04,
+    "GOLD": -0.08,
+    "SP500": 0.0,
+    "NASDAQ": 0.0,
+    "BTC": 0.18,
+    "ETH": 0.18,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 2,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T17:58:03Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.02,
+    "WTI": -0.03,
+    "GOLD": -0.07,
+    "SP500": 0.0,
+    "NASDAQ": 0.0,
+    "BTC": 0.14,
+    "ETH": 0.16,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 3,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T18:00:47Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.01,
+    "WTI": -0.01,
+    "GOLD": -0.09,
+    "SP500": 0.0,
+    "NASDAQ": 0.01,
+    "BTC": 0.1,
+    "ETH": 0.1,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 5,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T18:05:26Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.01,
+    "WTI": 0.01,
+    "GOLD": -0.09,
+    "SP500": 0.01,
+    "NASDAQ": 0.02,
+    "BTC": 0.16,
+    "ETH": 0.32,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 5,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T18:10:32Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.02,
+    "WTI": 0.01,
+    "GOLD": -0.06,
+    "SP500": 0.01,
+    "NASDAQ": -0.0,
+    "BTC": 0.14,
+    "ETH": 0.24,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 4,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T18:15:38Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.04,
+    "WTI": 0.04,
+    "GOLD": -0.07,
+    "SP500": 0.01,
+    "NASDAQ": 0.0,
+    "BTC": 0.13,
+    "ETH": 0.33,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 4,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T18:20:30Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.06,
+    "WTI": 0.08,
+    "GOLD": -0.04,
+    "SP500": -0.0,
+    "NASDAQ": -0.01,
+    "BTC": 0.09,
+    "ETH": 0.16,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 3,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T18:25:24Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.09,
+    "WTI": 0.18,
+    "GOLD": -0.04,
+    "SP500": 0.02,
+    "NASDAQ": 0.04,
+    "BTC": 0.12,
+    "ETH": 0.19,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 1,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T18:30:43Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.12,
+    "WTI": 0.13,
+    "GOLD": -0.03,
+    "SP500": 0.01,
+    "NASDAQ": 0.05,
+    "BTC": 0.15,
+    "ETH": 0.22,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 0,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T18:35:25Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.16,
+    "WTI": 0.18,
+    "GOLD": -0.05,
+    "SP500": 0.01,
+    "NASDAQ": 0.02,
+    "BTC": 0.14,
+    "ETH": 0.25,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 0,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T18:40:31Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.15,
+    "WTI": 0.16,
+    "GOLD": -0.05,
+    "SP500": 0.01,
+    "NASDAQ": -0.01,
+    "BTC": 0.08,
+    "ETH": 0.22,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 0,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T18:45:31Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.13,
+    "WTI": 0.11,
+    "GOLD": -0.05,
+    "SP500": 0.01,
+    "NASDAQ": -0.01,
+    "BTC": 0.08,
+    "ETH": 0.17,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 0,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T18:50:32Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.1,
+    "WTI": 0.06,
+    "GOLD": 0.01,
+    "SP500": 0.02,
+    "NASDAQ": -0.0,
+    "BTC": -0.04,
+    "ETH": 0.05,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 0,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T18:55:26Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.11,
+    "WTI": 0.07,
+    "GOLD": 0.01,
+    "SP500": 0.01,
+    "NASDAQ": -0.0,
+    "BTC": -0.15,
+    "ETH": -0.06,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 0,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T19:00:49Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.04,
+    "WTI": -0.05,
+    "GOLD": 0.06,
+    "SP500": 0.01,
+    "NASDAQ": -0.01,
+    "BTC": -0.1,
+    "ETH": -0.0,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 0,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T19:05:25Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.05,
+    "WTI": -0.03,
+    "GOLD": 0.04,
+    "SP500": 0.01,
+    "NASDAQ": 0.01,
+    "BTC": -0.07,
+    "ETH": 0.05,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 0,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T19:10:33Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": 0.02,
+    "WTI": -0.08,
+    "GOLD": -0.01,
+    "SP500": 0.01,
+    "NASDAQ": 0.02,
+    "BTC": -0.06,
+    "ETH": 0.0,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 0,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T19:15:31Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.04,
+    "WTI": -0.15,
+    "GOLD": -0.01,
+    "SP500": 0.01,
+    "NASDAQ": 0.02,
+    "BTC": -0.06,
+    "ETH": -0.03,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 0,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T19:20:32Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.12,
+    "WTI": -0.2,
+    "GOLD": -0.03,
+    "SP500": 0.02,
+    "NASDAQ": 0.0,
+    "BTC": -0.12,
+    "ETH": -0.07,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 0,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T19:25:24Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.12,
+    "WTI": -0.22,
+    "GOLD": -0.03,
+    "SP500": -0.0,
+    "NASDAQ": -0.02,
+    "BTC": -0.18,
+    "ETH": -0.13,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 0,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T19:30:41Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.07,
+    "WTI": -0.17,
+    "GOLD": -0.03,
+    "SP500": 0.01,
+    "NASDAQ": -0.02,
+    "BTC": -0.19,
+    "ETH": -0.11,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 1,
+   "movers": 3,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T19:35:31Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.1,
+    "WTI": -0.19,
+    "GOLD": -0.01,
+    "SP500": 0.01,
+    "NASDAQ": -0.0,
+    "BTC": -0.14,
+    "ETH": -0.1,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 1,
+   "movers": 3,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T19:40:31Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.17,
+    "WTI": -0.22,
+    "GOLD": -0.01,
+    "SP500": 0.01,
+    "NASDAQ": 0.02,
+    "BTC": -0.12,
+    "ETH": -0.15,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 1,
+   "movers": 3,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T19:45:30Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.16,
+    "WTI": -0.24,
+    "GOLD": -0.02,
+    "SP500": -0.0,
+    "NASDAQ": 0.0,
+    "BTC": -0.11,
+    "ETH": -0.1,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 1,
+   "movers": 3,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T19:50:31Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.08,
+    "WTI": -0.12,
+    "GOLD": -0.02,
+    "SP500": -0.01,
+    "NASDAQ": -0.01,
+    "BTC": -0.12,
+    "ETH": -0.17,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 1,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T19:55:24Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.17,
+    "WTI": -0.2,
+    "GOLD": -0.03,
+    "SP500": -0.01,
+    "NASDAQ": -0.01,
+    "BTC": -0.08,
+    "ETH": -0.1,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 1,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T20:00:49Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.08,
+    "WTI": -0.12,
+    "GOLD": -0.04,
+    "SP500": -0.01,
+    "NASDAQ": 0.0,
+    "BTC": -0.05,
+    "ETH": -0.07,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 0,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T20:05:24Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.16,
+    "WTI": -0.16,
+    "GOLD": -0.05,
+    "SP500": -0.01,
+    "NASDAQ": -0.02,
+    "BTC": -0.06,
+    "ETH": -0.04,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 0,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T20:10:31Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.11,
+    "WTI": -0.11,
+    "GOLD": -0.04,
+    "SP500": -0.01,
+    "NASDAQ": -0.02,
+    "BTC": -0.04,
+    "ETH": -0.04,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 0,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T20:15:30Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.04,
+    "WTI": -0.07,
+    "GOLD": -0.02,
+    "SP500": -0.01,
+    "NASDAQ": -0.02,
+    "BTC": -0.12,
+    "ETH": -0.14,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {
+    "EQUITY": "N1",
+    "GOLD": "N1",
+    "OIL": "N1"
+   },
+   "head_n": 1,
+   "movers": 1,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T20:20:30Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.04,
+    "WTI": -0.07,
+    "GOLD": -0.02,
+    "SP500": -0.01,
+    "NASDAQ": -0.01,
+    "BTC": -0.01,
+    "ETH": -0.03,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 1,
+   "movers": 0,
+   "degraded": []
+  },
+  {
+   "ts": "2026-10-31T20:25:25Z",
+   "mode": "shadow",
+   "moves": {
+    "BRENT": -0.06,
+    "WTI": -0.1,
+    "GOLD": -0.02,
+    "SP500": -0.01,
+    "NASDAQ": -0.01,
+    "BTC": 0.0,
+    "ETH": 0.01,
+    "VIX": 0.0,
+    "DXY": 0.0
+   },
+   "tiers": {},
+   "head_n": 1,
+   "movers": 0,
+   "degraded": []
+  }
+ ]
+}
