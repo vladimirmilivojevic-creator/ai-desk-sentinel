@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-10-30T06:26:18Z",
+ "generated_utc": "2026-10-31T06:16:24Z",
  "rules": [
   {
    "rule": "alts:LOWVOL:4w:long",
@@ -32,11 +32,11 @@
      "tp_pct": 36.0
     },
     {
-     "ticker": "RENDERUSDT",
-     "symbol": "RENDER",
-     "score": -0.036984,
-     "px": 1.974,
-     "atr_pct": 7.18,
+     "ticker": "RUNEUSDT",
+     "symbol": "RUNE",
+     "score": -0.042437,
+     "px": 0.796,
+     "atr_pct": 8.59,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
@@ -162,11 +162,11 @@
      "tp_pct": 36.0
     },
     {
-     "ticker": "FETUSDT",
-     "symbol": "FET",
-     "score": -0.310683,
-     "px": 0.1755,
-     "atr_pct": 9.26,
+     "ticker": "AAVEUSDT",
+     "symbol": "AAVE",
+     "score": -0.259181,
+     "px": 136.37,
+     "atr_pct": 7.32,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
@@ -363,20 +363,20 @@
      "tp_pct": 36.0
     },
     {
-     "ticker": "DASHUSDT",
-     "symbol": "DASH",
-     "score": -0.168569,
-     "px": 59.73,
-     "atr_pct": 9.55,
-     "stop_pct": 12.0,
-     "tp_pct": 36.0
-    },
-    {
      "ticker": "XPLUSDT",
      "symbol": "XPL",
      "score": -0.160286,
      "px": 0.0963,
      "atr_pct": 12.72,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
+    },
+    {
+     "ticker": "ONDOUSDT",
+     "symbol": "ONDO",
+     "score": -0.151608,
+     "px": 0.4986,
+     "atr_pct": 10.21,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
