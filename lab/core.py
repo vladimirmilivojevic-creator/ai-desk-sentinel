@@ -292,15 +292,17 @@ def compute(cfg, rows, now_ms=None, backtest=None, fund_rows=None):
     """Ceo izlaz jezgra iz dnevnih sveca. rows: {sym: [(datum, zatvaranje)]}. Vraca recnik za <state>/core/core.json."""
     now_ms = now_ms or int(time.time() * 1000)
     dates, px = build_matrix(rows)
-    if len(dates) < cfg["port_vol_lookback"] + max(cfg["lookbacks"]) + 10 or len(px) < cfg.get("min_names", 1):
+    if len(dates) < cfg["port_vol_lookback"] + max((max(x) if isinstance(x, (list, tuple)) else x) for x in cfg["lookbacks"]) + 10 or len(px) < cfg.get("min_names", 1):
         return {"schema": 1, "updated_utc": iso(now_ms), "config_version": cfg["version"], "error": "premalo istorije ili kovanica"}
     t0 = cfg["t0_candle"]
     if t0 not in dates:
         return {"schema": 1, "updated_utc": iso(now_ms), "config_version": cfg["version"], "last_candle": dates[-1], "error": "T0 sveca nije u podacima"}
     i0 = dates.index(t0)
     fund = align_funding(dates, fund_rows) if fund_rows else None
-    sched = ensemble(px, dates, cfg, fund=fund)  # cist raspored (kao u istorijskoj proveri)
-    live = ensemble(px, dates, cfg, force=(t0,), fund=fund)  # od T0 drzi izlozenost odmah, zatim nedeljno
+    lbs = [tuple(x) if isinstance(x, list) else x for x in cfg["lookbacks"]]  # presek proseka dolazi iz JSON-a kao lista
+    mode = cfg.get("mode", "trend")
+    sched = ensemble(px, dates, cfg, fund=fund, lookbacks=lbs, mode=mode)  # cist raspored (kao u istorijskoj proveri)
+    live = ensemble(px, dates, cfg, force=(t0,), fund=fund, lookbacks=lbs, mode=mode)  # od T0 drzi izlozenost odmah, zatim nedeljno
     eq, curve, peak, mdd = 1.0, [], 1.0, 0.0
     for i in range(i0 + 1, len(dates)):
         eq *= 1.0 + live["net"][i]

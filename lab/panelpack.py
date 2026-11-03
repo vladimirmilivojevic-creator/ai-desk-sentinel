@@ -7,7 +7,7 @@ import os
 import sys
 
 LIMIT = 5400
-SLOTS = {"lab": 6, "brief": 4, "trig": 3, "feat": 8, "disc": 5, "core": 3}
+SLOTS = {"lab": 6, "brief": 4, "trig": 3, "feat": 8, "disc": 5, "core": 3, "sleeves": 2}
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -206,6 +206,8 @@ def build(state_dir, root=ROOT):
     doc("feat", lambda: _load(os.path.join(state_dir, "data", "features.json")), feat_sections)
     doc("disc", lambda: disc_sections(root), lambda ds: ds, packer=lambda secs: fit(secs, SLOTS["disc"]))
     doc("core", lambda: _load(os.path.join(state_dir, "core", "core.json")), core_sections, packer=lambda secs: fit(secs, SLOTS["core"]))
+    doc("sleeves", lambda: _load(os.path.join(state_dir, "sleeves", "sleeves.json")), lambda x: [("head", {k: x.get(k) for k in ("updated_utc", "version", "t0_candle", "last_candle", "funding_included")}),
+                                                                                              ("rows", x.get("sleeves") or [])], packer=lambda secs: fit(secs, SLOTS["sleeves"]))
     if errors:
         res["errors"] = errors
     return res

@@ -1,0 +1,27 @@
+{
+  "_comment": "EKSPERIMENTI (senka): vise unapred upisanih varijanti strategija koje se prate paralelno unapred od T0, posle troska i fondinga, bez naloga i bez tokena (lab/sleeves.py, GitHub Actions). Odluka vlasnika 2026-11-03: agresivnije probati mnogo opcija. Nista ovde nije dokaz; izmena varijante = nova varijanta sa novim T0.",
+  "version": 1,
+  "registered_utc": "2026-11-03T15:00:00Z",
+  "t0_candle": "2026-11-02",
+  "universes": {
+    "btc": ["BTC"],
+    "btceth": ["BTC", "ETH"],
+    "top6": ["BTC", "ETH", "BNB", "SOL", "XRP", "DOGE"],
+    "major12": ["BTC", "ETH", "BNB", "XRP", "ADA", "DOGE", "SOL", "AVAX", "LINK", "LTC", "TRX", "XLM"],
+    "wide30": ["BTC", "ETH", "BNB", "XRP", "ADA", "DOGE", "SOL", "AVAX", "LINK", "LTC", "TRX", "XLM", "HBAR", "UNI", "AAVE", "NEAR", "SUI", "HYPE", "TAO", "ZEC", "ARB", "ENA", "WLD", "ONDO", "PENDLE", "LDO", "CRV", "FET", "XMR", "JUP"]
+  },
+  "sleeves": [
+    {"id": "S01_trend_btc", "text": "trend samo BTC", "universe": "btc", "mode": "trend", "lookbacks": [14, 28, 56, 112], "long_only": true, "target_vol": 0.20},
+    {"id": "S02_trend_btceth", "text": "trend BTC+ETH", "universe": "btceth", "mode": "trend", "lookbacks": [14, 28, 56, 112], "long_only": true, "target_vol": 0.20},
+    {"id": "S03_trend_top6", "text": "trend 6 najvecih", "universe": "top6", "mode": "trend", "lookbacks": [14, 28, 56, 112], "long_only": true, "target_vol": 0.20},
+    {"id": "S04_trend_wide30", "text": "trend 30 kovanica", "universe": "wide30", "mode": "trend", "lookbacks": [14, 28, 56, 112], "long_only": true, "target_vol": 0.20},
+    {"id": "S05_trend_major12_ls", "text": "trend dugo/kratko 12", "universe": "major12", "mode": "trend", "lookbacks": [14, 28, 56, 112], "long_only": false, "target_vol": 0.20},
+    {"id": "S06_trend_major12_fast", "text": "brzi trend 7/14/28", "universe": "major12", "mode": "trend", "lookbacks": [7, 14, 28], "long_only": true, "target_vol": 0.20},
+    {"id": "S07_trend_major12_slow", "text": "spori trend 56/112/200", "universe": "major12", "mode": "trend", "lookbacks": [56, 112, 200], "long_only": true, "target_vol": 0.20},
+    {"id": "S08_trend_major12_vol35", "text": "trend 12, agresivna volatilnost 35%", "universe": "major12", "mode": "trend", "lookbacks": [14, 28, 56, 112], "long_only": true, "target_vol": 0.35},
+    {"id": "S09_trend_wide30_vol35", "text": "trend 30, agresivna volatilnost 35%", "universe": "wide30", "mode": "trend", "lookbacks": [14, 28, 56, 112], "long_only": true, "target_vol": 0.35},
+    {"id": "S10_ma_20_50", "text": "presek proseka 20/50 na 12", "universe": "major12", "mode": "trend", "lookbacks": [[20, 50]], "long_only": true, "target_vol": 0.20},
+    {"id": "S11_csm_wide30_k4", "text": "poredak neutralno 30, k=4", "universe": "wide30", "mode": "csm", "lookbacks": [7, 14, 28], "csm_k": 4, "long_only": false, "target_vol": 0.20},
+    {"id": "S12_csm_wide30_k6_slow", "text": "poredak neutralno 30, k=6, spori", "universe": "wide30", "mode": "csm", "lookbacks": [14, 28, 56], "csm_k": 6, "long_only": false, "target_vol": 0.20}
+  ]
+}
