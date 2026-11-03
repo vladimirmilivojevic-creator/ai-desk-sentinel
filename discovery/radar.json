@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-02T06:48:37Z",
+ "generated_utc": "2026-11-03T07:14:21Z",
  "rules": [
   {
    "rule": "alts:LOWVOL:4w:long",
@@ -84,29 +84,29 @@
    "hold_hours": 672,
    "picks": [
     {
-     "ticker": "XPLUSDT",
-     "symbol": "XPL",
-     "score": -0.060144,
-     "px": 0.0712,
-     "atr_pct": 9.76,
+     "ticker": "CHIPUSDT",
+     "symbol": "CHIP",
+     "score": -0.09029,
+     "px": 0.0434,
+     "atr_pct": 14.31,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     },
     {
-     "ticker": "LDOUSDT",
-     "symbol": "LDO",
-     "score": -0.053983,
-     "px": 0.3421,
-     "atr_pct": 7.36,
+     "ticker": "INITUSDT",
+     "symbol": "INIT",
+     "score": -0.070217,
+     "px": 0.187,
+     "atr_pct": 17.88,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     },
     {
-     "ticker": "PYTHUSDT",
-     "symbol": "PYTH",
-     "score": -0.051144,
-     "px": 0.0654,
-     "atr_pct": 9.11,
+     "ticker": "OPUSDT",
+     "symbol": "OP",
+     "score": -0.068369,
+     "px": 0.113,
+     "atr_pct": 8.32,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
@@ -142,58 +142,6 @@
    }
   },
   {
-   "rule": "alts:SPIKE_DN:7d:short",
-   "status": "nagovestaj",
-   "universe": "alts",
-   "family": "SPIKE_DN",
-   "kind": "event",
-   "side": "short",
-   "signal_date": "2026-11-01",
-   "valid_from_utc": "2026-11-02T00:00:00Z",
-   "valid_until_utc": "2026-11-03T06:00:00Z",
-   "hold_hours": 168,
-   "picks": [
-    {
-     "ticker": "XPLUSDT",
-     "symbol": "XPL",
-     "score": 3.6947,
-     "px": 0.0712,
-     "atr_pct": 9.76,
-     "stop_pct": 12.0,
-     "tp_pct": 36.0
-    }
-   ],
-   "forward": {
-    "n": 3,
-    "mean": 19.4138,
-    "t": 4.41,
-    "abs_mean": 26.22,
-    "stress_mean": 19.1438,
-    "median": 16.7382,
-    "mean_ex_best": null,
-    "sim_n": 3,
-    "sim_mean": 26.22,
-    "pending": 1
-   },
-   "study": {
-    "n": 271,
-    "mean": 2.6056,
-    "median": 5.9214,
-    "mean_ex_best": 2.3233,
-    "t": 2.02,
-    "p": 0.04338,
-    "t_train": 1.24,
-    "t_test": 1.86,
-    "recent_mean": 4.761,
-    "stress_mean": 2.3356,
-    "abs_mean": 0.8489,
-    "fdr": false,
-    "exec_n": 10,
-    "exec_mean": 6.4629,
-    "exec_t": 1.33
-   }
-  },
-  {
    "rule": "crypto:BRK20:1w:short",
    "status": "kandidat",
    "universe": "crypto",
@@ -224,11 +172,11 @@
      "tp_pct": 36.0
     },
     {
-     "ticker": "TIAUSDT",
-     "symbol": "TIA",
-     "score": -0.31053,
-     "px": 0.4747,
-     "atr_pct": 10.39,
+     "ticker": "APTUSDT",
+     "symbol": "APT",
+     "score": -0.258889,
+     "px": 0.6295,
+     "atr_pct": 8.53,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
@@ -364,11 +312,11 @@
      "tp_pct": 36.0
     },
     {
-     "ticker": "TIAUSDT",
-     "symbol": "TIA",
-     "score": -0.31053,
-     "px": 0.4747,
-     "atr_pct": 10.39,
+     "ticker": "APTUSDT",
+     "symbol": "APT",
+     "score": -0.258889,
+     "px": 0.6295,
+     "atr_pct": 8.53,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
@@ -434,11 +382,11 @@
      "tp_pct": 36.0
     },
     {
-     "ticker": "TIAUSDT",
-     "symbol": "TIA",
-     "score": -0.31053,
-     "px": 0.4747,
-     "atr_pct": 10.39,
+     "ticker": "APTUSDT",
+     "symbol": "APT",
+     "score": -0.258889,
+     "px": 0.6295,
+     "atr_pct": 8.53,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
