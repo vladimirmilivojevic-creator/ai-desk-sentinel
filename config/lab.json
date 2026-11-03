@@ -410,7 +410,6 @@
   },
   {
    "id": "FADE_L24_z2.5",
-   "paused": true,
    "hold_hours": 24,
    "why": "obrtanje posle ekstremnog 24 h pomaka: jedino satno pravilo sa pozitivnom sredinom u obe polovine (t=0,94, n=52, ne dokaz)"
   },
@@ -422,7 +421,6 @@
   },
   {
    "id": "RSIFADE_80",
-   "paused": true,
    "hold_hours": 24,
    "why": "istrazivanje: RSI ekstrem 80/20 (t=-0,54: nema dokaza, ocekivan trosak oko -0,2%)"
   },
@@ -440,7 +438,6 @@
   },
   {
    "id": "FADE_L24_z1.5",
-   "paused": true,
    "hold_hours": 24,
    "why": "istrazivanje: obrtanje posle 24 h pomaka (t=-1,09)"
   }
