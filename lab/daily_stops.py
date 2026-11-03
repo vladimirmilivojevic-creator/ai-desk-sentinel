@@ -10,7 +10,8 @@ from . import backtest, rules, sim, stats
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 H = 7
 # (ATR mnozilac, donja granica %, gornja granica %, cilj = tp_mult x stop)
-MODES = {"fiksno": None, "uzivo": (2.5, 3.0, 12.0, 3.0), "uzi": (1.5, 2.0, 8.0, 3.0), "siri": (4.0, 5.0, 20.0, 3.0)}
+MODES = {"fiksno": None, "uzivo": (2.5, 3.0, 12.0, 3.0), "uzi": (1.5, 2.0, 8.0, 3.0), "siri": (4.0, 5.0, 20.0, 3.0),
+         "x20": (99.0, 20.0, 20.0, 3.0), "x20bez": (99.0, 20.0, 20.0, 50.0)}  # x20 = fiksan stop 20% i cilj 60%; x20bez = stop 20% bez realnog cilja (predlog vlasnika 2026-11-03)
 RULES = ("D_MOM_L7_z0.5", "D_MOM_L21_z0.5", "D_MOM_L14_z1.0", "D_CSM_mom_L7", "D_CSM_mom_L14", "D_CSM_mom_L30")
 
 
@@ -82,7 +83,7 @@ def study_rule(series, ctx, vid, fam, params, group=None, warm=210):
 
 def to_markdown(res, group):
     L = ["# Dnevna pravila: fiksno drzanje (testirano) prema stopu i cilju (uzivo), H=%d dana, grupa %s" % (H, group or "sve"), "",
-         "Neto posle troska %.2f%%. Ulaz na zatvaranju svece. 'uzivo' = stop 2,5 x ATR (3-12%%), cilj 3 x stop; 'uzi' 1,5 x ATR (2-8%%); 'siri' 4 x ATR (5-20%%). "
+         "Neto posle troska %.2f%%. Ulaz na zatvaranju svece. 'uzivo' = stop 2,5 x ATR (3-12%%), cilj 3 x stop; 'uzi' 1,5 x ATR (2-8%%); 'siri' 4 x ATR (5-20%%); 'x20' fiksan stop 20%% i cilj 60%%; 'x20bez' stop 20%% bez cilja. "
          "Prinos po trejdu je SIROV (nije oduzet prinos korpe), pa se poredi samo izmedju nacina za isto pravilo." % sim.COST_PCT, "",
          "| pravilo | n | " + " | ".join("%s srednje %%, t" % m for m in MODES) + " | pogodjen stop uzivo % | pogodjen cilj uzivo % | MAE p50/p90 % | MFE p50/p90 % | uzivo stop (medijana) % |",
          "|---|---|" + "---|" * len(MODES) + "---|---|---|---|---|"]
