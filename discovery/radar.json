@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-03T07:14:21Z",
+ "generated_utc": "2026-11-04T06:58:08Z",
  "rules": [
   {
    "rule": "alts:LOWVOL:4w:long",
@@ -23,20 +23,20 @@
      "tp_pct": 30.6
     },
     {
+     "ticker": "SHIBUSDT",
+     "symbol": "kSHIB",
+     "score": -0.031612,
+     "px": 0.0,
+     "atr_pct": 4.49,
+     "stop_pct": 11.22,
+     "tp_pct": 33.66
+    },
+    {
      "ticker": "GRAMUSDT",
      "symbol": "GRAM",
      "score": -0.031872,
      "px": 1.217,
      "atr_pct": 5.04,
-     "stop_pct": 12.0,
-     "tp_pct": 36.0
-    },
-    {
-     "ticker": "MORPHOUSDT",
-     "symbol": "MORPHO",
-     "score": -0.043408,
-     "px": 2.243,
-     "atr_pct": 7.54,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
@@ -93,20 +93,20 @@
      "tp_pct": 36.0
     },
     {
-     "ticker": "INITUSDT",
-     "symbol": "INIT",
-     "score": -0.070217,
-     "px": 0.187,
-     "atr_pct": 17.88,
+     "ticker": "JUPUSDT",
+     "symbol": "JUP",
+     "score": -0.062875,
+     "px": 0.2581,
+     "atr_pct": 7.8,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     },
     {
-     "ticker": "OPUSDT",
-     "symbol": "OP",
-     "score": -0.068369,
-     "px": 0.113,
-     "atr_pct": 8.32,
+     "ticker": "XPLUSDT",
+     "symbol": "XPL",
+     "score": -0.060144,
+     "px": 0.0712,
+     "atr_pct": 9.76,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
@@ -142,6 +142,110 @@
    }
   },
   {
+   "rule": "alts:SPIKE_UP:3d:short",
+   "status": "nagovestaj",
+   "universe": "alts",
+   "family": "SPIKE_UP",
+   "kind": "event",
+   "side": "short",
+   "signal_date": "2026-11-03",
+   "valid_from_utc": "2026-11-04T00:00:00Z",
+   "valid_until_utc": "2026-11-05T06:00:00Z",
+   "hold_hours": 72,
+   "picks": [
+    {
+     "ticker": "RUNEUSDT",
+     "symbol": "RUNE",
+     "score": 3.2073,
+     "px": 0.632,
+     "atr_pct": 9.3,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
+    }
+   ],
+   "forward": {
+    "n": 4,
+    "mean": 12.2981,
+    "t": 1.33,
+    "abs_mean": 17.67,
+    "stress_mean": 12.0281,
+    "median": 6.5294,
+    "mean_ex_best": null,
+    "sim_n": 4,
+    "sim_mean": 6.2269,
+    "pending": 1
+   },
+   "study": {
+    "n": 323,
+    "mean": 1.8469,
+    "median": 2.8142,
+    "mean_ex_best": 1.7384,
+    "t": 3.84,
+    "p": 0.00012,
+    "t_train": 4.77,
+    "t_test": 0.89,
+    "recent_mean": 3.9126,
+    "stress_mean": 1.5769,
+    "abs_mean": 2.3068,
+    "fdr": true,
+    "exec_n": 31,
+    "exec_mean": 0.1166,
+    "exec_t": 0.05
+   }
+  },
+  {
+   "rule": "alts:SPIKE_UP:7d:short",
+   "status": "nagovestaj",
+   "universe": "alts",
+   "family": "SPIKE_UP",
+   "kind": "event",
+   "side": "short",
+   "signal_date": "2026-11-03",
+   "valid_from_utc": "2026-11-04T00:00:00Z",
+   "valid_until_utc": "2026-11-05T06:00:00Z",
+   "hold_hours": 168,
+   "picks": [
+    {
+     "ticker": "RUNEUSDT",
+     "symbol": "RUNE",
+     "score": 3.2073,
+     "px": 0.632,
+     "atr_pct": 9.3,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
+    }
+   ],
+   "forward": {
+    "n": 3,
+    "mean": 18.2709,
+    "t": 1.61,
+    "abs_mean": 25.6441,
+    "stress_mean": 18.0009,
+    "median": 15.2688,
+    "mean_ex_best": null,
+    "sim_n": 3,
+    "sim_mean": 15.7334,
+    "pending": 2
+   },
+   "study": {
+    "n": 321,
+    "mean": 1.5796,
+    "median": 3.6175,
+    "mean_ex_best": 1.4489,
+    "t": 2.24,
+    "p": 0.02509,
+    "t_train": 1.56,
+    "t_test": 1.64,
+    "recent_mean": 5.7925,
+    "stress_mean": 1.3096,
+    "abs_mean": 1.874,
+    "fdr": false,
+    "exec_n": 31,
+    "exec_mean": 4.6912,
+    "exec_t": 2.37
+   }
+  },
+  {
    "rule": "crypto:BRK20:1w:short",
    "status": "kandidat",
    "universe": "crypto",
@@ -172,11 +276,11 @@
      "tp_pct": 36.0
     },
     {
-     "ticker": "APTUSDT",
-     "symbol": "APT",
-     "score": -0.258889,
-     "px": 0.6295,
-     "atr_pct": 8.53,
+     "ticker": "TIAUSDT",
+     "symbol": "TIA",
+     "score": -0.31053,
+     "px": 0.4747,
+     "atr_pct": 10.39,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
@@ -312,11 +416,11 @@
      "tp_pct": 36.0
     },
     {
-     "ticker": "APTUSDT",
-     "symbol": "APT",
-     "score": -0.258889,
-     "px": 0.6295,
-     "atr_pct": 8.53,
+     "ticker": "TIAUSDT",
+     "symbol": "TIA",
+     "score": -0.31053,
+     "px": 0.4747,
+     "atr_pct": 10.39,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
@@ -382,11 +486,11 @@
      "tp_pct": 36.0
     },
     {
-     "ticker": "APTUSDT",
-     "symbol": "APT",
-     "score": -0.258889,
-     "px": 0.6295,
-     "atr_pct": 8.53,
+     "ticker": "TIAUSDT",
+     "symbol": "TIA",
+     "score": -0.31053,
+     "px": 0.4747,
+     "atr_pct": 10.39,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
