@@ -1,0 +1,252 @@
+{
+ "v": 1,
+ "updated": "2026-11-07T16:45:30Z",
+ "mode": "shadow",
+ "fire_enabled": false,
+ "instruments": [
+  {
+   "key": "BRENT",
+   "name": "Brent",
+   "px": 97.369,
+   "ch24": 0.28632931991636745,
+   "m60": 0.22542460113226248,
+   "m240": 0.25638385502471106,
+   "stale": false,
+   "hot": false,
+   "provider": "hl-sveće"
+  },
+  {
+   "key": "WTI",
+   "name": "WTI",
+   "px": 90.155,
+   "ch24": 0.0932597617435249,
+   "m60": 0.21007936331502997,
+   "m240": 0.21676300578035157,
+   "stale": false,
+   "hot": false,
+   "provider": "hl-sveće"
+  },
+  {
+   "key": "GOLD",
+   "name": "Zlato",
+   "px": 4074.3,
+   "ch24": 0.3250350890152909,
+   "m60": 0.004909059669633287,
+   "m240": -0.022084805653699302,
+   "stale": false,
+   "hot": false,
+   "provider": "hl-sveće"
+  },
+  {
+   "key": "SP500",
+   "name": "SP500",
+   "px": 7382.6,
+   "ch24": -0.5214719793028122,
+   "m60": -0.036559110665779215,
+   "m240": -0.10824560928747173,
+   "stale": false,
+   "hot": false,
+   "provider": "hl-sveće"
+  },
+  {
+   "key": "NASDAQ",
+   "name": "Nasdaq",
+   "px": 26950.0,
+   "ch24": -0.6890960680989044,
+   "m60": -0.05192107995846129,
+   "m240": -0.08897456810261772,
+   "stale": false,
+   "hot": false,
+   "provider": "hl-sveće"
+  },
+  {
+   "key": "BTC",
+   "name": "BTC",
+   "px": 75761.9,
+   "ch24": 0.13865207449408334,
+   "m60": -0.037076131415758606,
+   "m240": -0.09375865388420168,
+   "stale": false,
+   "hot": false,
+   "provider": "hl-sveće"
+  },
+  {
+   "key": "ETH",
+   "name": "ETH",
+   "px": 2235.0,
+   "ch24": 0.4223580158159601,
+   "m60": -0.19202429330594795,
+   "m240": -0.21430484864720656,
+   "stale": false,
+   "hot": false,
+   "provider": "hl-sveće"
+  },
+  {
+   "key": "VIX",
+   "name": "VIX",
+   "px": 20.0,
+   "ch24": 0.0,
+   "m60": 0.0,
+   "m240": 0.0,
+   "stale": false,
+   "hot": false,
+   "provider": "hl-bafer"
+  },
+  {
+   "key": "DXY",
+   "name": "DXY",
+   "px": 97.15,
+   "ch24": 0.0,
+   "m60": 0.0,
+   "m240": 0.0,
+   "stale": false,
+   "hot": false,
+   "provider": "hl-bafer"
+  },
+  {
+   "key": "OVX",
+   "name": "OVX",
+   "px": 58.290000915527344,
+   "ch24": null,
+   "m60": null,
+   "m240": null,
+   "stale": true,
+   "hot": false,
+   "provider": "yahoo"
+  },
+  {
+   "key": "GVZ",
+   "name": "GVZ",
+   "px": 25.969999313354492,
+   "ch24": null,
+   "m60": null,
+   "m240": null,
+   "stale": true,
+   "hot": false,
+   "provider": "yahoo"
+  }
+ ],
+ "themes": {
+  "CRYPTO": {
+   "tier": null,
+   "score": 0,
+   "families": []
+  },
+  "EQUITY": {
+   "tier": "N1",
+   "score": 1.5,
+   "families": [
+    "M"
+   ]
+  },
+  "GOLD": {
+   "tier": "N1",
+   "score": 1.5,
+   "families": [
+    "M"
+   ]
+  },
+  "OIL": {
+   "tier": "N1",
+   "score": 1.5,
+   "families": [
+    "M"
+   ]
+  }
+ },
+ "scheduled": [],
+ "degraded": [],
+ "headlines_scored": 1,
+ "heartbeat": {
+  "ts": "2026-11-07T16:45:30Z",
+  "interval_min": 5
+ },
+ "events": [
+  {
+   "id": "EV-20261105T2100Z-EQUITY",
+   "ts": "2026-11-05T21:00:45Z",
+   "theme": "EQUITY",
+   "tier": "N2",
+   "text": "N2 EQUITY | Nasdaq -1,4%/60m | ocena 3,5 (P 2,0, M 1,5) | mozak se NE okida (fire_enabled=false (senka))",
+   "scheduled": false
+  },
+  {
+   "id": "EV-20261105T1530Z-CRYPTO",
+   "ts": "2026-11-05T15:30:42Z",
+   "theme": "CRYPTO",
+   "tier": "N2",
+   "text": "N2 CRYPTO | BTC -4,1%/60m | ocena 3,5 (P 2,0, X 1,5) | mozak se NE okida (fire_enabled=false (senka))",
+   "scheduled": false
+  },
+  {
+   "id": "EV-20261105T1500Z-EQUITY",
+   "ts": "2026-11-05T15:00:46Z",
+   "theme": "EQUITY",
+   "tier": "N3",
+   "text": "N3 EQUITY eskalacija | SP500 -1,6%/60m, Nasdaq -2,6%/60m | ocena 4,5 (P 2,0, PX 1,0, X 1,5) | mozak se NE okida (fire_enabled=false (senka))",
+   "scheduled": false
+  },
+  {
+   "id": "EV-20261105T1455Z-EQUITY",
+   "ts": "2026-11-05T14:55:23Z",
+   "theme": "EQUITY",
+   "tier": "N2",
+   "text": "N2 EQUITY | SP500 -1,7%/60m, Nasdaq -2,7%/60m | ocena 3,0 (P 2,0, PX 1,0) | mozak se NE okida (fire_enabled=false (senka))",
+   "scheduled": false
+  },
+  {
+   "id": "EV-20261104T1655Z-OIL",
+   "ts": "2026-11-04T16:55:26Z",
+   "theme": "OIL",
+   "tier": "N3",
+   "text": "N3 OIL eskalacija | Brent -5,5%/60m, WTI -4,4%/60m | ocena 4,5 (P 2,0, PX 1,0, X 1,5) | mozak se NE okida (fire_enabled=false (senka))",
+   "scheduled": false
+  },
+  {
+   "id": "EV-20261104T1615Z-OIL",
+   "ts": "2026-11-04T16:15:27Z",
+   "theme": "OIL",
+   "tier": "N2",
+   "text": "N2 OIL | Brent -2,8%/60m, WTI -2,6%/60m | ocena 3,5 (P 2,0, X 1,5) | mozak se NE okida (fire_enabled=false (senka))",
+   "scheduled": false
+  },
+  {
+   "id": "EV-20261104T1506Z-EQUITY",
+   "ts": "2026-11-04T15:06:28Z",
+   "theme": "EQUITY",
+   "tier": "N2",
+   "text": "N2 EQUITY | Nasdaq +1,6%/60m | ocena 3,5 (P 2,0, X 1,5) | mozak se NE okida (fire_enabled=false (senka))",
+   "scheduled": false
+  },
+  {
+   "id": "EV-20261104T1506Z-CRYPTO",
+   "ts": "2026-11-04T15:06:28Z",
+   "theme": "CRYPTO",
+   "tier": "N2",
+   "text": "N2 CRYPTO | ETH +5,2%/60m | ocena 3,5 (P 2,0, X 1,5) | mozak se NE okida (fire_enabled=false (senka))",
+   "scheduled": false
+  },
+  {
+   "id": "EV-20261104T0300Z-EQUITY",
+   "ts": "2026-11-04T03:00:51Z",
+   "theme": "EQUITY",
+   "tier": "N2",
+   "text": "N2 EQUITY | Nasdaq -0,6%/60m | ocena 3,5 (P 2,0, M 1,5) | mozak se NE okida (fire_enabled=false (senka))",
+   "scheduled": false
+  },
+  {
+   "id": "EV-20261103T1345Z-GOLD",
+   "ts": "2026-11-03T13:45:31Z",
+   "theme": "GOLD",
+   "tier": "N2",
+   "text": "N2 GOLD | Zlato +1,3%/60m | ocena 5,0 (P 2,0, X 1,5, M 1,5) | mozak se NE okida (fire_enabled=false (senka))",
+   "scheduled": false
+  }
+ ],
+ "signals": {
+  "open": 10,
+  "closed": 24
+ },
+ "sources_ok": 45,
+ "sources_total": 45
+}
