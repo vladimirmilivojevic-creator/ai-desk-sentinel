@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-06T07:24:04Z",
+ "generated_utc": "2026-11-07T06:35:35Z",
  "rules": [
   {
    "rule": "alts:LOWVOL:4w:long",
@@ -23,20 +23,20 @@
      "tp_pct": 30.6
     },
     {
-     "ticker": "SHIBUSDT",
-     "symbol": "kSHIB",
-     "score": -0.031612,
-     "px": 0.0,
-     "atr_pct": 4.49,
-     "stop_pct": 11.22,
-     "tp_pct": 33.66
-    },
-    {
      "ticker": "GRAMUSDT",
      "symbol": "GRAM",
      "score": -0.031872,
      "px": 1.217,
      "atr_pct": 5.04,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
+    },
+    {
+     "ticker": "ALGOUSDT",
+     "symbol": "ALGO",
+     "score": -0.042432,
+     "px": 0.0941,
+     "atr_pct": 5.88,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
