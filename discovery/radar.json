@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-07T06:35:35Z",
+ "generated_utc": "2026-11-08T06:41:23Z",
  "rules": [
   {
    "rule": "alts:LOWVOL:4w:long",
@@ -32,11 +32,11 @@
      "tp_pct": 36.0
     },
     {
-     "ticker": "ALGOUSDT",
-     "symbol": "ALGO",
-     "score": -0.042432,
-     "px": 0.0941,
-     "atr_pct": 5.88,
+     "ticker": "CRVUSDT",
+     "symbol": "CRV",
+     "score": -0.044135,
+     "px": 0.2793,
+     "atr_pct": 8.74,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
@@ -72,6 +72,110 @@
    }
   },
   {
+   "rule": "alts:SPIKE_UP:3d:short",
+   "status": "nagovestaj",
+   "universe": "alts",
+   "family": "SPIKE_UP",
+   "kind": "event",
+   "side": "short",
+   "signal_date": "2026-11-07",
+   "valid_from_utc": "2026-11-08T00:00:00Z",
+   "valid_until_utc": "2026-11-09T06:00:00Z",
+   "hold_hours": 72,
+   "picks": [
+    {
+     "ticker": "METUSDT",
+     "symbol": "MET",
+     "score": 5.6385,
+     "px": 0.3284,
+     "atr_pct": 7.61,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
+    }
+   ],
+   "forward": {
+    "n": 5,
+    "mean": 10.9603,
+    "t": 1.51,
+    "abs_mean": 15.5982,
+    "stress_mean": 10.6903,
+    "median": 5.6091,
+    "mean_ex_best": 3.9243,
+    "sim_n": 5,
+    "sim_mean": 6.4437,
+    "pending": 1
+   },
+   "study": {
+    "n": 322,
+    "mean": 1.9181,
+    "median": 2.8175,
+    "mean_ex_best": 1.8095,
+    "t": 4.01,
+    "p": 6e-05,
+    "t_train": 4.94,
+    "t_test": 0.97,
+    "recent_mean": 3.9938,
+    "stress_mean": 1.6481,
+    "abs_mean": 2.389,
+    "fdr": true,
+    "exec_n": 41,
+    "exec_mean": -0.5484,
+    "exec_t": -0.31
+   }
+  },
+  {
+   "rule": "alts:SPIKE_UP:7d:short",
+   "status": "nagovestaj",
+   "universe": "alts",
+   "family": "SPIKE_UP",
+   "kind": "event",
+   "side": "short",
+   "signal_date": "2026-11-07",
+   "valid_from_utc": "2026-11-08T00:00:00Z",
+   "valid_until_utc": "2026-11-09T06:00:00Z",
+   "hold_hours": 168,
+   "picks": [
+    {
+     "ticker": "METUSDT",
+     "symbol": "MET",
+     "score": 5.6385,
+     "px": 0.3284,
+     "atr_pct": 7.61,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
+    }
+   ],
+   "forward": {
+    "n": 4,
+    "mean": 13.8927,
+    "t": 1.52,
+    "abs_mean": 21.2064,
+    "stress_mean": 13.6227,
+    "median": 8.0135,
+    "mean_ex_best": null,
+    "sim_n": 4,
+    "sim_mean": 8.6925,
+    "pending": 2
+   },
+   "study": {
+    "n": 321,
+    "mean": 1.9571,
+    "median": 3.5775,
+    "mean_ex_best": 1.8276,
+    "t": 3.2,
+    "p": 0.00137,
+    "t_train": 2.59,
+    "t_test": 1.92,
+    "recent_mean": 6.3093,
+    "stress_mean": 1.6871,
+    "abs_mean": 2.2889,
+    "fdr": true,
+    "exec_n": 41,
+    "exec_mean": 0.2606,
+    "exec_t": 0.13
+   }
+  },
+  {
    "rule": "crypto:BRK20:1w:short",
    "status": "kandidat",
    "universe": "crypto",
@@ -102,11 +206,11 @@
      "tp_pct": 36.0
     },
     {
-     "ticker": "TIAUSDT",
-     "symbol": "TIA",
-     "score": -0.31053,
-     "px": 0.4747,
-     "atr_pct": 10.39,
+     "ticker": "INJUSDT",
+     "symbol": "INJ",
+     "score": -0.197027,
+     "px": 7.185,
+     "atr_pct": 8.78,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
@@ -154,15 +258,6 @@
    "hold_hours": 336,
    "picks": [
     {
-     "ticker": "ASTERUSDT",
-     "symbol": "ASTER",
-     "score": -0.026352,
-     "px": 0.6983,
-     "atr_pct": 3.46,
-     "stop_pct": 8.65,
-     "tp_pct": 25.95
-    },
-    {
      "ticker": "PEPEUSDT",
      "symbol": "kPEPE",
      "score": -0.029821,
@@ -177,6 +272,15 @@
      "score": -0.039514,
      "px": 284.4,
      "atr_pct": 5.48,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
+    },
+    {
+     "ticker": "UNIUSDT",
+     "symbol": "UNI",
+     "score": -0.042965,
+     "px": 7.217,
+     "atr_pct": 7.31,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
@@ -242,11 +346,11 @@
      "tp_pct": 36.0
     },
     {
-     "ticker": "TIAUSDT",
-     "symbol": "TIA",
-     "score": -0.31053,
-     "px": 0.4747,
-     "atr_pct": 10.39,
+     "ticker": "INJUSDT",
+     "symbol": "INJ",
+     "score": -0.197027,
+     "px": 7.185,
+     "atr_pct": 8.78,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
@@ -312,11 +416,11 @@
      "tp_pct": 36.0
     },
     {
-     "ticker": "TIAUSDT",
-     "symbol": "TIA",
-     "score": -0.31053,
-     "px": 0.4747,
-     "atr_pct": 10.39,
+     "ticker": "INJUSDT",
+     "symbol": "INJ",
+     "score": -0.197027,
+     "px": 7.185,
+     "atr_pct": 8.78,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
