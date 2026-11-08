@@ -29,7 +29,7 @@ class SleevesTests(unittest.TestCase):
         self.assertEqual(len(ids), len(set(ids)))
         for s in c["sleeves"]:
             self.assertIn(s["universe"], c["universes"])
-            self.assertIn(s["mode"], ("trend", "csm"))
+            self.assertIn(s["mode"], ("trend", "csm", "fundrank"))
             self.assertLessEqual(s["target_vol"], 0.5)
 
     def test_run_writes_all_sleeves_and_skips_second_time(self):

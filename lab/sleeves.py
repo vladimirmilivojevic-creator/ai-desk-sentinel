@@ -29,7 +29,7 @@ def compute_all(scfg, base, rows, fund_rows, now_ms):
     out = []
     for sl in scfg["sleeves"]:
         syms = [s for s in scfg["universes"][sl["universe"]] if s in rows]
-        cfg = dict(base, t0_candle=scfg["t0_candle"], universe=syms, min_names=min(len(syms), 4), lookbacks=sl["lookbacks"], long_only=sl["long_only"],
+        cfg = dict(base, t0_candle=sl.get("t0_candle", scfg["t0_candle"]), universe=syms, min_names=min(len(syms), 4), lookbacks=sl["lookbacks"], long_only=sl["long_only"],
                    target_vol=sl["target_vol"], mode=sl.get("mode", "trend"), csm_k=sl.get("csm_k", 6))
         row = {"id": sl["id"], "text": sl["text"], "n": len(syms)}
         try:

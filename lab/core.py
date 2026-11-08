@@ -160,6 +160,32 @@ def _csm_raw(px, r, i, L, cfg, elig=None):
     return out
 
 
+def _fund_raw(px, i, L, cfg, fund, elig=None):
+    """Poredak po fondingu (market-neutralno): kratko k sa NAJVISIM, dugo k sa NAJNIZIM zbirom fondinga poslednjih L dana (lek protiv guzve u dugim pozicijama). Zahteva fund."""
+    syms = list(px)
+    out = {s: 0.0 for s in syms}
+    if not fund:
+        return out
+    vals = []
+    for s in syms:
+        col = fund.get(s)
+        if col is None or px[s][i] is None or i < L or (elig is not None and not elig[s][i]):
+            continue
+        w = col[i - L + 1:i + 1]
+        if sum(1 for x in w if x is not None) < max(2, L - 1):
+            continue
+        vals.append((sum(x for x in w if x is not None), s))
+    k = cfg.get("csm_k", 6)
+    if len(vals) < max(cfg.get("min_names", 1), 2 * k):
+        return out
+    vals.sort()
+    for _, s in vals[:k]:
+        out[s] = 0.5 / k
+    for _, s in vals[-k:]:
+        out[s] = -0.5 / k
+    return out
+
+
 def strategy(px, dates, cfg, L, force=(), cost=None, long_only=None, rng=None, fund=None, elig=None, mode="trend"):
     """Jedan horizont. Vraca dict: net (dnevni neto prinos po danima, razlomak), w (tezine koje se drze posle poslednjeg dana), w_date, sig, gross."""
     n = len(dates)
@@ -182,7 +208,7 @@ def strategy(px, dates, cfg, L, force=(), cost=None, long_only=None, rng=None, f
         w_prev = dict(w_held)
         d = dates[i]
         if dt.date.fromisoformat(d).weekday() == wd or d in force:
-            raw = _raw_weights(px, r, i, L, cfg, lo, rng, elig) if mode == "trend" else _csm_raw(px, r, i, L, cfg, elig)
+            raw = _raw_weights(px, r, i, L, cfg, lo, rng, elig) if mode == "trend" else (_fund_raw(px, i, L, cfg, fund, elig) if mode == "fundrank" else _csm_raw(px, r, i, L, cfg, elig))
             sc = 0.0
             if i + 1 >= pvl:
                 sd = _std(g0[i - pvl + 1:i + 1])
