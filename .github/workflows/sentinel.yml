@@ -92,6 +92,12 @@ jobs:
           FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
         run: python -m lab.collect --state _state
 
+      - name: Doprinos izvora (kros-sekcioni IC osobina prema prinosu, dnevno, ne trguje)
+        if: github.event.inputs.dry != 'true'
+        continue-on-error: true
+        timeout-minutes: 4
+        run: python -m lab.ic_track --state _state
+
       - name: Pakovanje podataka za panel (delovi do 5,4 KB jer read_link odseca na 6000 znakova)
         continue-on-error: true
         timeout-minutes: 2
