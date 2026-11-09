@@ -1,5 +1,5 @@
 {
- "updated_utc": "2026-11-08T10:40:30Z",
+ "updated_utc": "2026-11-09T07:10:30Z",
  "rules": {
   "stocks:SPIKE_UP:10d:long": {
    "universe": "stocks",
@@ -100,15 +100,15 @@
     ]
    ],
    "forward": {
-    "n": 4,
-    "mean": 0.4531,
-    "t": 0.22,
-    "abs_mean": 6.3098,
-    "stress_mean": 0.1831,
-    "median": -1.2415,
-    "mean_ex_best": null,
-    "sim_n": 4,
-    "sim_mean": 5.4477,
+    "n": 5,
+    "mean": 1.4162,
+    "t": 0.75,
+    "abs_mean": 8.0941,
+    "stress_mean": 1.1462,
+    "median": -0.3254,
+    "mean_ex_best": 0.1301,
+    "sim_n": 5,
+    "sim_mean": 7.4045,
     "pending": 1
    }
   },
@@ -332,15 +332,15 @@
     ]
    ],
    "forward": {
-    "n": 4,
-    "mean": 3.0182,
-    "t": 1.77,
-    "abs_mean": -2.8385,
-    "stress_mean": 2.7482,
-    "median": 2.2009,
-    "mean_ex_best": null,
-    "sim_n": 4,
-    "sim_mean": -3.7934,
+    "n": 5,
+    "mean": 3.742,
+    "t": 2.48,
+    "abs_mean": -2.936,
+    "stress_mean": 3.472,
+    "median": 3.1232,
+    "mean_ex_best": 2.7391,
+    "sim_n": 5,
+    "sim_mean": -3.9524,
     "pending": 1
    }
   },
@@ -382,15 +382,15 @@
     ]
    ],
    "forward": {
-    "n": 4,
-    "mean": 3.7241,
-    "t": 2.58,
-    "abs_mean": 9.5808,
-    "stress_mean": 3.4541,
-    "median": 3.8065,
-    "mean_ex_best": null,
-    "sim_n": 4,
-    "sim_mean": 8.7187,
+    "n": 5,
+    "mean": 2.7956,
+    "t": 1.92,
+    "abs_mean": 9.4735,
+    "stress_mean": 2.5256,
+    "median": 2.0723,
+    "mean_ex_best": 1.8142,
+    "sim_n": 5,
+    "sim_mean": 8.7839,
     "pending": 1
    }
   },
@@ -974,16 +974,16 @@
     ]
    ],
    "forward": {
-    "n": 3,
-    "mean": 19.4138,
-    "t": 4.41,
-    "abs_mean": 26.22,
-    "stress_mean": 19.1438,
-    "median": 16.7382,
+    "n": 4,
+    "mean": 18.9957,
+    "t": 6.04,
+    "abs_mean": 26.4877,
+    "stress_mean": 18.7257,
+    "median": 17.2398,
     "mean_ex_best": null,
-    "sim_n": 3,
-    "sim_mean": 26.22,
-    "pending": 1
+    "sim_n": 4,
+    "sim_mean": 26.4877,
+    "pending": 0
    }
   }
  }
