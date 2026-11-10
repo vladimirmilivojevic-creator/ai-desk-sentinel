@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-09T07:10:30Z",
+ "generated_utc": "2026-11-10T07:44:01Z",
  "rules": [
   {
    "rule": "alts:LOWVOL:4w:long",
@@ -23,20 +23,20 @@
      "tp_pct": 30.6
     },
     {
-     "ticker": "SHIBUSDT",
-     "symbol": "kSHIB",
-     "score": -0.031612,
-     "px": 0.0,
-     "atr_pct": 4.49,
-     "stop_pct": 11.22,
-     "tp_pct": 33.66
-    },
-    {
      "ticker": "GRAMUSDT",
      "symbol": "GRAM",
      "score": -0.031872,
      "px": 1.217,
      "atr_pct": 5.04,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
+    },
+    {
+     "ticker": "MORPHOUSDT",
+     "symbol": "MORPHO",
+     "score": -0.043408,
+     "px": 2.243,
+     "atr_pct": 7.54,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
@@ -67,6 +67,110 @@
     "abs_mean": 4.7554,
     "fdr": true,
     "exec_n": 0,
+    "exec_mean": null,
+    "exec_t": null
+   }
+  },
+  {
+   "rule": "alts:SPIKE_UP:3d:short",
+   "status": "kandidat",
+   "universe": "alts",
+   "family": "SPIKE_UP",
+   "kind": "event",
+   "side": "short",
+   "signal_date": "2026-11-09",
+   "valid_from_utc": "2026-11-10T00:00:00Z",
+   "valid_until_utc": "2026-11-11T06:00:00Z",
+   "hold_hours": 72,
+   "picks": [
+    {
+     "ticker": "NXPCUSDT",
+     "symbol": "NXPC",
+     "score": 16.2833,
+     "px": 0.1574,
+     "atr_pct": 7.58,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
+    }
+   ],
+   "forward": {
+    "n": 5,
+    "mean": 10.9603,
+    "t": 1.51,
+    "abs_mean": 15.5982,
+    "stress_mean": 10.6903,
+    "median": 5.6091,
+    "mean_ex_best": 3.9243,
+    "sim_n": 5,
+    "sim_mean": 6.4437,
+    "pending": 2
+   },
+   "study": {
+    "n": 323,
+    "mean": 1.9549,
+    "median": 2.8208,
+    "mean_ex_best": 1.8467,
+    "t": 4.08,
+    "p": 5e-05,
+    "t_train": 4.97,
+    "t_test": 1.02,
+    "recent_mean": 4.0352,
+    "stress_mean": 1.6849,
+    "abs_mean": 2.4169,
+    "fdr": true,
+    "exec_n": 1,
+    "exec_mean": null,
+    "exec_t": null
+   }
+  },
+  {
+   "rule": "alts:SPIKE_UP:7d:short",
+   "status": "kandidat",
+   "universe": "alts",
+   "family": "SPIKE_UP",
+   "kind": "event",
+   "side": "short",
+   "signal_date": "2026-11-09",
+   "valid_from_utc": "2026-11-10T00:00:00Z",
+   "valid_until_utc": "2026-11-11T06:00:00Z",
+   "hold_hours": 168,
+   "picks": [
+    {
+     "ticker": "NXPCUSDT",
+     "symbol": "NXPC",
+     "score": 16.2833,
+     "px": 0.1574,
+     "atr_pct": 7.58,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
+    }
+   ],
+   "forward": {
+    "n": 4,
+    "mean": 13.8927,
+    "t": 1.52,
+    "abs_mean": 21.2064,
+    "stress_mean": 13.6227,
+    "median": 8.0135,
+    "mean_ex_best": null,
+    "sim_n": 4,
+    "sim_mean": 8.6925,
+    "pending": 3
+   },
+   "study": {
+    "n": 321,
+    "mean": 1.9789,
+    "median": 3.5775,
+    "mean_ex_best": 1.8495,
+    "t": 3.23,
+    "p": 0.00124,
+    "t_train": 2.63,
+    "t_test": 1.9,
+    "recent_mean": 6.2691,
+    "stress_mean": 1.7089,
+    "abs_mean": 2.297,
+    "fdr": true,
+    "exec_n": 1,
     "exec_mean": null,
     "exec_t": null
    }
