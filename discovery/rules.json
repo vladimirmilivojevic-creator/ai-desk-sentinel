@@ -1,5 +1,5 @@
 {
- "updated_utc": "2026-11-11T11:19:24Z",
+ "updated_utc": "2026-11-12T07:43:16Z",
  "rules": {
   "stocks:SPIKE_UP:10d:long": {
    "universe": "stocks",
@@ -636,16 +636,16 @@
     ]
    ],
    "forward": {
-    "n": 1,
-    "mean": 28.0488,
+    "n": 2,
+    "mean": 13.2256,
     "t": null,
-    "abs_mean": 31.875,
-    "stress_mean": 27.7788,
-    "median": 28.0488,
+    "abs_mean": 21.5205,
+    "stress_mean": 12.9556,
+    "median": 13.2256,
     "mean_ex_best": null,
-    "sim_n": 1,
-    "sim_mean": -12.33,
-    "pending": 1
+    "sim_n": 2,
+    "sim_mean": -0.582,
+    "pending": 0
    }
   },
   "crypto:SPIKE_DN:14d:short": {
@@ -887,7 +887,7 @@
     "mean_ex_best": 4.1048,
     "sim_n": 5,
     "sim_mean": 6.6224,
-    "pending": 1
+    "pending": 2
    }
   },
   "alts:SPIKE_UP:7d:short": {
@@ -949,7 +949,7 @@
     "mean_ex_best": 4.2597,
     "sim_n": 5,
     "sim_mean": 7.9739,
-    "pending": 2
+    "pending": 3
    }
   },
   "alts:SPIKE_DN:7d:short": {
@@ -995,7 +995,7 @@
     "mean_ex_best": null,
     "sim_n": 4,
     "sim_mean": 26.4877,
-    "pending": 0
+    "pending": 1
    }
   }
  }
