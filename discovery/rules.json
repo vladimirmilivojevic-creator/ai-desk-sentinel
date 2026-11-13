@@ -1,5 +1,5 @@
 {
- "updated_utc": "2026-11-12T07:43:16Z",
+ "updated_utc": "2026-11-13T07:17:23Z",
  "rules": {
   "stocks:SPIKE_UP:10d:long": {
    "universe": "stocks",
@@ -775,11 +775,11 @@
    ],
    "forward": {
     "n": 1,
-    "mean": 2.7282,
+    "mean": 2.6731,
     "t": null,
     "abs_mean": -20.5799,
-    "stress_mean": 2.4582,
-    "median": 2.7282,
+    "stress_mean": 2.4031,
+    "median": 2.6731,
     "mean_ex_best": null,
     "sim_n": 1,
     "sim_mean": -12.43,
@@ -825,11 +825,11 @@
    ],
    "forward": {
     "n": 1,
-    "mean": -3.6099,
+    "mean": -3.5549,
     "t": null,
     "abs_mean": 19.6981,
-    "stress_mean": -3.8799,
-    "median": -3.6099,
+    "stress_mean": -3.8249,
+    "median": -3.5549,
     "mean_ex_best": null,
     "sim_n": 1,
     "sim_mean": -12.43,
@@ -878,16 +878,16 @@
     ]
    ],
    "forward": {
-    "n": 5,
-    "mean": 11.1046,
-    "t": 1.53,
-    "abs_mean": 15.7769,
-    "stress_mean": 10.8346,
-    "median": 6.3309,
-    "mean_ex_best": 4.1048,
-    "sim_n": 5,
-    "sim_mean": 6.6224,
-    "pending": 2
+    "n": 6,
+    "mean": 9.165,
+    "t": 1.48,
+    "abs_mean": 13.5735,
+    "stress_mean": 8.895,
+    "median": 5.8467,
+    "mean_ex_best": 3.189,
+    "sim_n": 6,
+    "sim_mean": 5.9447,
+    "pending": 1
    }
   },
   "alts:SPIKE_UP:7d:short": {
@@ -941,12 +941,12 @@
    ],
    "forward": {
     "n": 5,
-    "mean": 11.265,
-    "t": 1.49,
+    "mean": 11.3429,
+    "t": 1.5,
     "abs_mean": 17.985,
-    "stress_mean": 10.995,
-    "median": 0.7582,
-    "mean_ex_best": 4.2597,
+    "stress_mean": 11.0729,
+    "median": 0.7695,
+    "mean_ex_best": 4.3666,
     "sim_n": 5,
     "sim_mean": 7.9739,
     "pending": 3
@@ -987,11 +987,11 @@
    ],
    "forward": {
     "n": 4,
-    "mean": 18.9957,
-    "t": 6.04,
+    "mean": 19.0492,
+    "t": 5.97,
     "abs_mean": 26.4877,
-    "stress_mean": 18.7257,
-    "median": 17.2398,
+    "stress_mean": 18.7792,
+    "median": 17.2633,
     "mean_ex_best": null,
     "sim_n": 4,
     "sim_mean": 26.4877,

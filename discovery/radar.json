@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-12T07:43:16Z",
+ "generated_utc": "2026-11-13T07:17:23Z",
  "rules": [
   {
    "rule": "alts:LOWVOL:4w:long",
@@ -32,22 +32,22 @@
      "tp_pct": 36.0
     },
     {
-     "ticker": "CRVUSDT",
-     "symbol": "CRV",
-     "score": -0.044135,
-     "px": 0.2793,
-     "atr_pct": 8.74,
+     "ticker": "VIRTUALUSDT",
+     "symbol": "VIRTUAL",
+     "score": -0.043184,
+     "px": 0.5964,
+     "atr_pct": 5.89,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
    ],
    "forward": {
     "n": 1,
-    "mean": 2.7282,
+    "mean": 2.6731,
     "t": null,
     "abs_mean": -20.5799,
-    "stress_mean": 2.4582,
-    "median": 2.7282,
+    "stress_mean": 2.4031,
+    "median": 2.6731,
     "mean_ex_best": null,
     "sim_n": 1,
     "sim_mean": -12.43,
@@ -69,58 +69,6 @@
     "exec_n": 28,
     "exec_mean": -1.9825,
     "exec_t": -1.1
-   }
-  },
-  {
-   "rule": "alts:SPIKE_DN:7d:short",
-   "status": "nagovestaj",
-   "universe": "alts",
-   "family": "SPIKE_DN",
-   "kind": "event",
-   "side": "short",
-   "signal_date": "2026-11-11",
-   "valid_from_utc": "2026-11-12T00:00:00Z",
-   "valid_until_utc": "2026-11-13T06:00:00Z",
-   "hold_hours": 168,
-   "picks": [
-    {
-     "ticker": "INITUSDT",
-     "symbol": "INIT",
-     "score": 5.7142,
-     "px": 0.1342,
-     "atr_pct": 44.51,
-     "stop_pct": 12.0,
-     "tp_pct": 36.0
-    }
-   ],
-   "forward": {
-    "n": 4,
-    "mean": 18.9957,
-    "t": 6.04,
-    "abs_mean": 26.4877,
-    "stress_mean": 18.7257,
-    "median": 17.2398,
-    "mean_ex_best": null,
-    "sim_n": 4,
-    "sim_mean": 26.4877,
-    "pending": 1
-   },
-   "study": {
-    "n": 271,
-    "mean": 2.6328,
-    "median": 6.0942,
-    "mean_ex_best": 2.3507,
-    "t": 2.04,
-    "p": 0.04135,
-    "t_train": 1.19,
-    "t_test": 2.0,
-    "recent_mean": 5.3578,
-    "stress_mean": 2.3628,
-    "abs_mean": 0.9064,
-    "fdr": false,
-    "exec_n": 11,
-    "exec_mean": -12.4578,
-    "exec_t": -0.94
    }
   },
   {
@@ -206,6 +154,15 @@
    "hold_hours": 336,
    "picks": [
     {
+     "ticker": "ASTERUSDT",
+     "symbol": "ASTER",
+     "score": -0.026352,
+     "px": 0.6983,
+     "atr_pct": 3.46,
+     "stop_pct": 8.65,
+     "tp_pct": 25.95
+    },
+    {
      "ticker": "PEPEUSDT",
      "symbol": "kPEPE",
      "score": -0.029821,
@@ -220,15 +177,6 @@
      "score": -0.039514,
      "px": 284.4,
      "atr_pct": 5.48,
-     "stop_pct": 12.0,
-     "tp_pct": 36.0
-    },
-    {
-     "ticker": "UNIUSDT",
-     "symbol": "UNI",
-     "score": -0.042965,
-     "px": 7.217,
-     "atr_pct": 7.31,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
@@ -416,6 +364,15 @@
    "hold_hours": 168,
    "picks": [
     {
+     "ticker": "TRXUSDT",
+     "symbol": "TRX",
+     "score": -0.017362,
+     "px": 0.3194,
+     "atr_pct": 3.47,
+     "stop_pct": 8.67,
+     "tp_pct": 26.01
+    },
+    {
      "ticker": "BNBUSDT",
      "symbol": "BNB",
      "score": -0.019355,
@@ -432,15 +389,6 @@
      "atr_pct": 3.12,
      "stop_pct": 7.81,
      "tp_pct": 23.43
-    },
-    {
-     "ticker": "ETHUSDT",
-     "symbol": "ETH",
-     "score": -0.024521,
-     "px": 2127.46,
-     "atr_pct": 4.52,
-     "stop_pct": 11.29,
-     "tp_pct": 33.87
     }
    ],
    "forward": {
@@ -556,6 +504,15 @@
    "hold_hours": 336,
    "picks": [
     {
+     "ticker": "TRXUSDT",
+     "symbol": "TRX",
+     "score": -0.017375,
+     "px": 0.3132,
+     "atr_pct": 3.36,
+     "stop_pct": 8.4,
+     "tp_pct": 25.2
+    },
+    {
      "ticker": "BTCUSDT",
      "symbol": "BTC",
      "score": -0.018558,
@@ -572,15 +529,6 @@
      "atr_pct": 3.45,
      "stop_pct": 8.63,
      "tp_pct": 25.89
-    },
-    {
-     "ticker": "BNBUSDT",
-     "symbol": "BNB",
-     "score": -0.021681,
-     "px": 712.69,
-     "atr_pct": 3.28,
-     "stop_pct": 8.19,
-     "tp_pct": 24.57
     }
    ],
    "forward": {
@@ -696,6 +644,15 @@
    "hold_hours": 672,
    "picks": [
     {
+     "ticker": "TRXUSDT",
+     "symbol": "TRX",
+     "score": -0.017375,
+     "px": 0.3132,
+     "atr_pct": 3.36,
+     "stop_pct": 8.4,
+     "tp_pct": 25.2
+    },
+    {
      "ticker": "BTCUSDT",
      "symbol": "BTC",
      "score": -0.018558,
@@ -712,15 +669,6 @@
      "atr_pct": 3.45,
      "stop_pct": 8.63,
      "tp_pct": 25.89
-    },
-    {
-     "ticker": "BNBUSDT",
-     "symbol": "BNB",
-     "score": -0.021681,
-     "px": 712.69,
-     "atr_pct": 3.28,
-     "stop_pct": 8.19,
-     "tp_pct": 24.57
     }
    ],
    "forward": {
