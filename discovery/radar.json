@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-13T07:17:23Z",
+ "generated_utc": "2026-11-14T07:00:08Z",
  "rules": [
   {
    "rule": "alts:LOWVOL:4w:long",
@@ -32,11 +32,11 @@
      "tp_pct": 36.0
     },
     {
-     "ticker": "VIRTUALUSDT",
-     "symbol": "VIRTUAL",
-     "score": -0.043184,
-     "px": 0.5964,
-     "atr_pct": 5.89,
+     "ticker": "MORPHOUSDT",
+     "symbol": "MORPHO",
+     "score": -0.043408,
+     "px": 2.243,
+     "atr_pct": 7.54,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
@@ -69,6 +69,110 @@
     "exec_n": 28,
     "exec_mean": -1.9825,
     "exec_t": -1.1
+   }
+  },
+  {
+   "rule": "alts:SPIKE_UP:3d:short",
+   "status": "nagovestaj",
+   "universe": "alts",
+   "family": "SPIKE_UP",
+   "kind": "event",
+   "side": "short",
+   "signal_date": "2026-11-13",
+   "valid_from_utc": "2026-11-14T00:00:00Z",
+   "valid_until_utc": "2026-11-15T06:00:00Z",
+   "hold_hours": 72,
+   "picks": [
+    {
+     "ticker": "BERAUSDT",
+     "symbol": "BERA",
+     "score": 8.7866,
+     "px": 0.1148,
+     "atr_pct": 8.74,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
+    }
+   ],
+   "forward": {
+    "n": 6,
+    "mean": 13.7116,
+    "t": 2.12,
+    "abs_mean": 18.2402,
+    "stress_mean": 13.4416,
+    "median": 6.9676,
+    "mean_ex_best": 8.645,
+    "sim_n": 6,
+    "sim_mean": 4.6958,
+    "pending": 1
+   },
+   "study": {
+    "n": 322,
+    "mean": 1.9087,
+    "median": 2.8175,
+    "mean_ex_best": 1.8001,
+    "t": 4.0,
+    "p": 6e-05,
+    "t_train": 4.88,
+    "t_test": 1.02,
+    "recent_mean": 4.1305,
+    "stress_mean": 1.6387,
+    "abs_mean": 2.3949,
+    "fdr": true,
+    "exec_n": 52,
+    "exec_mean": -3.6473,
+    "exec_t": -1.9
+   }
+  },
+  {
+   "rule": "alts:SPIKE_UP:7d:short",
+   "status": "nagovestaj",
+   "universe": "alts",
+   "family": "SPIKE_UP",
+   "kind": "event",
+   "side": "short",
+   "signal_date": "2026-11-13",
+   "valid_from_utc": "2026-11-14T00:00:00Z",
+   "valid_until_utc": "2026-11-15T06:00:00Z",
+   "hold_hours": 168,
+   "picks": [
+    {
+     "ticker": "BERAUSDT",
+     "symbol": "BERA",
+     "score": 8.7866,
+     "px": 0.1148,
+     "atr_pct": 8.74,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
+    }
+   ],
+   "forward": {
+    "n": 5,
+    "mean": 11.3429,
+    "t": 1.5,
+    "abs_mean": 17.985,
+    "stress_mean": 11.0729,
+    "median": 0.7695,
+    "mean_ex_best": 4.3666,
+    "sim_n": 5,
+    "sim_mean": 7.9739,
+    "pending": 4
+   },
+   "study": {
+    "n": 321,
+    "mean": 1.9161,
+    "median": 3.5748,
+    "mean_ex_best": 1.7864,
+    "t": 3.14,
+    "p": 0.00169,
+    "t_train": 2.46,
+    "t_test": 1.96,
+    "recent_mean": 6.1277,
+    "stress_mean": 1.6461,
+    "abs_mean": 2.2551,
+    "fdr": true,
+    "exec_n": 52,
+    "exec_mean": -5.7985,
+    "exec_t": -1.61
    }
   },
   {
