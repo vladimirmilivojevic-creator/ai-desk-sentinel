@@ -405,8 +405,9 @@
   },
   {
    "id": "D_CSM_mom_L7",
+   "paused": true,
    "hold_hours": 168,
-   "why": "poredak unutar grupe, momentum 7 d (preko korpe t=2,65, slabo)"
+   "why": "poredak unutar grupe, momentum 7 d (preko korpe t=2,65, slabo). Pauzirano 2026-11-15: unapred negativno na svim horizontima (H7 -1,16%, E7 -0,72%, n=106), uzivo 6 trejdova -32,54 USD; i dalje se meri"
   },
   {
    "id": "FADE_L24_z2.5",
