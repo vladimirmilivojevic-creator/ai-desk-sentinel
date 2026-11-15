@@ -1,0 +1,21 @@
+{
+  "_comment": "Unapred upisan plan studije kratke strane Jezgra (zarada na padu). Upisano i objavljeno PRE pokretanja; varijante i pravilo odluke se posle rezultata ne menjaju. Razlog: vlasnik 2026-11-15 trazi da sistem zaradjuje i kad trziste pada.",
+  "registered_utc": "2026-11-15T22:45:00Z",
+  "engine": "lab/core.py (isti motor kao Jezgro v1: horizonti 14/28/56/112, rizik jednak po kovanici, ciljana volatilnost 20%, nedeljno, trosak 0,095% po strani), uz fonding (kratka strana prima, duga placa)",
+  "data": "Binance perpetuali, lokalni kes, univerzum kakav je bio tog dana: top 12 po prosecnom dolarskom prometu 30 dana, ukljucuje ugasene kovanice; od 2021-06-01",
+  "variants": {
+    "A_long": "samo dugo (Jezgro, osnova)",
+    "B_ls": "dugo i kratko simetricno (isti motor, long_only=false)",
+    "C_short": "samo kratko: kratko kad je cena ispod cene pre L dana",
+    "D_short_btc": "samo kratko, i to samo kad je i BTC na istom horizontu u padu (filter trzista)",
+    "E_combo": "A + 0,5 x D (kratka strana na pola rizika, uz filter trzista)",
+    "F_combo": "A + 0,5 x C (kratka strana na pola rizika, bez filtera)"
+  },
+  "periods": ["2021-06..2022-12", "2023..2024", "2025..danas", "sve"],
+  "decision_rule": {
+    "adopt_short_sleeve_in_paper_if": "kratka noga sama (C ili D) ima Sharpe > 0 na celom uzorku posle troska i fondinga I kombinacija (F ili E) ima Sharpe ne manji od osnove A I najveci pad kombinacije nije gori od osnove za vise od 3 procentna poena",
+    "choose": "ona od E/F koja ispunjava uslov i ima veci Sharpe na celom uzorku; ako nijedna ne ispunjava, kratka strana se NE uvodi u Jezgro (ostaje senka) i to se kaze vlasniku",
+    "tested_variants_count": 6,
+    "note": "Sest varijanti na istom uzorku: razlika u Sharpe-u manja od oko 0,2 je u sumu. Period 2022 i 2025-2026 su padovi, pa kratka strana tu MORA da izgleda dobro; odlucuje ceo uzorak, ne ti periodi."
+  }
+}
