@@ -57,6 +57,22 @@ class SleevesTests(unittest.TestCase):
         finally:
             SL.load_cfg = orig
 
+    def test_publish_weights_adds_full_weights_only_for_flagged_sleeve(self):
+        prices, ds = fake_prices()
+        rows = {s: [(time_d, r["c"]) for time_d, r in zip(ds, v)] for s, v in prices.items()}
+        now_ms = int(dt.datetime.fromisoformat(ds[-1]).replace(tzinfo=dt.timezone.utc).timestamp() * 1000) + 90000000
+        scfg = {"t0_candle": ds[-20], "universes": {"major12": list(prices)},
+                "sleeves": [{"id": "A", "text": "a", "universe": "major12", "mode": "trend", "lookbacks": [14, 28], "long_only": False, "target_vol": 0.2, "publish_weights": True},
+                            {"id": "B", "text": "b", "universe": "major12", "mode": "trend", "lookbacks": [14, 28], "long_only": True, "target_vol": 0.2}]}
+        out = {x["id"]: x for x in SL.compute_all(scfg, K.load_cfg(), rows, None, now_ms)}
+        self.assertNotIn("error", out["A"])
+        self.assertIsInstance(out["A"]["weights"], dict)
+        self.assertTrue(out["A"]["weights"])
+        self.assertTrue(any(v < 0 for v in out["A"]["weights"].values()))
+        self.assertIn("weights_date", out["A"])
+        self.assertNotIn("weights", out["B"])
+        self.assertTrue([x for x in SL.load_cfg()["sleeves"] if x["id"] == "S13_fundfade_wide30_7d"][0].get("publish_weights"))
+
     def test_main_never_raises(self):
         with tempfile.TemporaryDirectory() as d:
             old = SL.core.fetch_rows

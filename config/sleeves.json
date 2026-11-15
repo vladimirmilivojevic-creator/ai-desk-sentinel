@@ -23,7 +23,7 @@
     {"id": "S10_ma_20_50", "text": "presek proseka 20/50 na 12", "universe": "major12", "mode": "trend", "lookbacks": [[20, 50]], "long_only": true, "target_vol": 0.20},
     {"id": "S11_csm_wide30_k4", "text": "poredak neutralno 30, k=4", "universe": "wide30", "mode": "csm", "lookbacks": [7, 14, 28], "csm_k": 4, "long_only": false, "target_vol": 0.20},
     {"id": "S12_csm_wide30_k6_slow", "text": "poredak neutralno 30, k=6, spori", "universe": "wide30", "mode": "csm", "lookbacks": [14, 28, 56], "csm_k": 6, "long_only": false, "target_vol": 0.20},
-    {"id": "S13_fundfade_wide30_7d", "text": "poredak po fondingu (7 d): kratko najvisi, dugo najnizi, 30 kovanica", "universe": "wide30", "mode": "fundrank", "lookbacks": [7], "csm_k": 4, "long_only": false, "target_vol": 0.20, "t0_candle": "2026-11-07"},
+    {"id": "S13_fundfade_wide30_7d", "text": "poredak po fondingu (7 d): kratko najvisi, dugo najnizi, 30 kovanica", "universe": "wide30", "mode": "fundrank", "lookbacks": [7], "csm_k": 4, "long_only": false, "target_vol": 0.20, "t0_candle": "2026-11-07", "publish_weights": true},
     {"id": "S14_fundfade_wide30_3d", "text": "poredak po fondingu (3 d), k=6", "universe": "wide30", "mode": "fundrank", "lookbacks": [3], "csm_k": 6, "long_only": false, "target_vol": 0.20, "t0_candle": "2026-11-07"}
   ]
 }

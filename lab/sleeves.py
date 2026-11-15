@@ -45,6 +45,8 @@ def compute_all(scfg, base, rows, fund_rows, now_ms):
             sh = res["shadow"]
             row.update({"ret_pct": sh["ret_pct"], "maxdd_pct": sh["maxdd_pct"], "days": sh["days"], "gross": res["gross"], "btc_pct": sh["btc_pct"],
                         "top": sorted(res["weights"].items(), key=lambda kv: -abs(kv[1]))[:4]})
+            if sl.get("publish_weights"):  # rukavac koji paper desk izvrsava (ai-desk scripts/core_desk.py): pune tezine, ne samo prve cetiri
+                row.update({"weights": res["weights"], "weights_date": res["weights_date"], "next_rebalance_candle": res["next_rebalance_candle"]})
         out.append(row)
     return out
 
