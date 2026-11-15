@@ -1,5 +1,5 @@
 {
- "updated_utc": "2026-11-14T07:00:08Z",
+ "updated_utc": "2026-11-15T07:11:18Z",
  "rules": {
   "stocks:SPIKE_UP:10d:long": {
    "universe": "stocks",
@@ -645,7 +645,7 @@
     "mean_ex_best": null,
     "sim_n": 2,
     "sim_mean": -0.582,
-    "pending": 0
+    "pending": 1
    }
   },
   "crypto:SPIKE_DN:14d:short": {
@@ -691,7 +691,7 @@
     "mean_ex_best": null,
     "sim_n": 2,
     "sim_mean": 1.2027,
-    "pending": 1
+    "pending": 2
    }
   },
   "crypto:SPIKE_DN:28d:short": {
@@ -737,7 +737,7 @@
     "mean_ex_best": null,
     "sim_n": 1,
     "sim_mean": 25.3681,
-    "pending": 1
+    "pending": 2
    }
   },
   "alts:LOWVOL:4w:long": {
@@ -941,15 +941,15 @@
    ],
    "forward": {
     "n": 5,
-    "mean": 11.3429,
-    "t": 1.5,
-    "abs_mean": 17.985,
-    "stress_mean": 11.0729,
-    "median": 0.7695,
-    "mean_ex_best": 4.3666,
+    "mean": 11.7289,
+    "t": 1.58,
+    "abs_mean": 19.4868,
+    "stress_mean": 11.4589,
+    "median": 2.6995,
+    "mean_ex_best": 4.8491,
     "sim_n": 5,
-    "sim_mean": 7.9739,
-    "pending": 4
+    "sim_mean": 9.4758,
+    "pending": 3
    }
   },
   "alts:SPIKE_DN:7d:short": {
@@ -995,7 +995,7 @@
     "mean_ex_best": null,
     "sim_n": 4,
     "sim_mean": 26.4877,
-    "pending": 1
+    "pending": 2
    }
   }
  }
