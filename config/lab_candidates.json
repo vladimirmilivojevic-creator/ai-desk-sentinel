@@ -1,1 +1,61 @@
-{"candidates": []}
+{
+ "candidates": [
+  {
+   "family": "TREND",
+   "params": {},
+   "source": "https://www.journals.vu.lt/BATP/en/article/view/44540",
+   "rationale": "Daje smer-po-aktivu naspram CSM koji lab već testira; parametre (horizont, volatilnostno skaliranje) određuje vlasnik pri unosu u lab; samo istorijska provera sa Bonferroni korekcijom.",
+   "added": "2026-10-10"
+  },
+  {
+   "family": "MOM",
+   "params": {
+    "L": 126,
+    "z": 0.5,
+    "fade": false
+   },
+   "source": "https://www.cxoadvisory.com/?p=30654",
+   "rationale": "Dugi horizont (oko 6 meseci) smanjuje obrt i trošak; proveriti samo kao jedan unapred registrovan test, ne kao skeniranje horizonata.",
+   "added": "2026-10-12"
+  },
+  {
+   "family": "DON",
+   "params": {
+    "N": 20,
+    "fade": false
+   },
+   "source": "https://abarbon.com/papers/catching-crypto-trends",
+   "rationale": "Proveriti jedan clan ansambla (N=20) istorijski uz trosak 0.23% i Bonferroni; ansambl i volatilnosno skaliranje nisu parametri porodice.",
+   "added": "2026-10-19"
+  },
+  {
+   "family": "MOM",
+   "params": {
+    "L": 30,
+    "z": 1.0,
+    "fade": false
+   },
+   "source": "https://acfr.aut.ac.nz/__data/assets/pdf_file/0009/918729/Time_Series_and_Cross_Sectional_Momentum_in_the_Cryptocurrency_Market_with_IA.pdf",
+   "rationale": "Duzi horizont momentuma (30 dana) kao kontrola protiv 7/14-dnevnih; test da li prednost opstaje posle troska.",
+   "added": "2026-10-19"
+  },
+  {
+   "family": "FUND",
+   "params": {
+    "thr": 0.0001
+   },
+   "source": "https://www.sharpe.ai/learn/crypto-funding-rate-tracker",
+   "rationale": "Slab izvor (vodic, bez uzorka); vredi samo kao jeftina istorijska provera praga finansiranja 0.01% po periodu, ne kao tvrdnja.",
+   "added": "2026-10-19"
+  },
+  {
+   "family": "BTCLEAD",
+   "params": {
+    "z": 1.5
+   },
+   "source": "https://arxiv.org/pdf/1706.07216",
+   "rationale": "Satna BTC-vodi-alt pravila su već odbačena (docs/dokazi.md); predlog samo ako lab može da testira na manje likvidnim altovima sa pravim troškom. Slab dokaz (rad iz 2017).",
+   "added": "2026-10-20"
+  }
+ ]
+}

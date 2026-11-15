@@ -1,0 +1,241 @@
+{
+ "note": "Presuda uvoza predloga AI-ja (desk/explorer/candidates.json u ai-desk). 'u laboratoriji' = meri se unapred svakog sata pod navedenim id-jem (lab/stats.json); 'odbijeno' = nije uvezeno, razlog je naveden. Predlog bez porodice (family null) trazi novu porodicu pravila ili motor rukavaca: odluka coveka.",
+ "in_lab": 6,
+ "rejected": 22,
+ "ideas": [
+  {
+   "date": "2026-10-07",
+   "family": "CSM",
+   "params": {
+    "L": 14,
+    "hold_days": 14
+   },
+   "status": "odbijeno",
+   "reason": "parametar 'hold_days' ne postoji u porodici CSM"
+  },
+  {
+   "date": "2026-10-07",
+   "family": null,
+   "params": {},
+   "status": "odbijeno",
+   "reason": "porodica null (traži novu porodicu: odluka čoveka)"
+  },
+  {
+   "date": "2026-10-08",
+   "family": "FUND",
+   "params": {
+    "z": 2.0,
+    "fade": false
+   },
+   "status": "odbijeno",
+   "reason": "parametar 'z' ne postoji u porodici FUND"
+  },
+  {
+   "date": "2026-10-08",
+   "family": null,
+   "params": {},
+   "status": "odbijeno",
+   "reason": "porodica null (traži novu porodicu: odluka čoveka)"
+  },
+  {
+   "date": "2026-10-09",
+   "family": null,
+   "params": {},
+   "status": "odbijeno",
+   "reason": "porodica null (traži novu porodicu: odluka čoveka)"
+  },
+  {
+   "date": "2026-10-09",
+   "family": null,
+   "params": {},
+   "status": "odbijeno",
+   "reason": "porodica null (traži novu porodicu: odluka čoveka)"
+  },
+  {
+   "date": "2026-10-10",
+   "family": "TREND",
+   "params": {},
+   "status": "u laboratoriji",
+   "variant": "CAND_TREND_"
+  },
+  {
+   "date": "2026-10-10",
+   "family": null,
+   "params": {},
+   "status": "odbijeno",
+   "reason": "porodica null (traži novu porodicu: odluka čoveka)"
+  },
+  {
+   "date": "2026-10-12",
+   "family": "TREND",
+   "params": {
+    "fast": 20,
+    "slow": 100
+   },
+   "status": "odbijeno",
+   "reason": "parametar 'fast' ne postoji u porodici TREND"
+  },
+  {
+   "date": "2026-10-12",
+   "family": "MOM",
+   "params": {
+    "L": 126,
+    "z": 0.5,
+    "fade": false
+   },
+   "status": "u laboratoriji",
+   "variant": "CAND_MOM_L126_fadeFalse_z0.5"
+  },
+  {
+   "date": "2026-10-13",
+   "family": "TREND",
+   "params": {
+    "fast": 50,
+    "slow": 200
+   },
+   "status": "odbijeno",
+   "reason": "parametar 'fast' ne postoji u porodici TREND"
+  },
+  {
+   "date": "2026-10-13",
+   "family": "FUND",
+   "params": {
+    "z": 2.0,
+    "fade": true
+   },
+   "status": "odbijeno",
+   "reason": "parametar 'z' ne postoji u porodici FUND"
+  },
+  {
+   "date": "2026-10-14",
+   "family": "CSM",
+   "params": {
+    "L": 7,
+    "hold_days": 7,
+    "short_only": true
+   },
+   "status": "odbijeno",
+   "reason": "parametar 'hold_days' ne postoji u porodici CSM"
+  },
+  {
+   "date": "2026-10-14",
+   "family": null,
+   "params": {},
+   "status": "odbijeno",
+   "reason": "porodica null (traži novu porodicu: odluka čoveka)"
+  },
+  {
+   "date": "2026-10-17",
+   "family": null,
+   "params": {},
+   "status": "odbijeno",
+   "reason": "porodica null (traži novu porodicu: odluka čoveka)"
+  },
+  {
+   "date": "2026-10-18",
+   "family": null,
+   "params": {},
+   "status": "odbijeno",
+   "reason": "porodica null (traži novu porodicu: odluka čoveka)"
+  },
+  {
+   "date": "2026-10-19",
+   "family": "DON",
+   "params": {
+    "N": 20,
+    "fade": false
+   },
+   "status": "u laboratoriji",
+   "variant": "CAND_DON_N20_fadeFalse"
+  },
+  {
+   "date": "2026-10-19",
+   "family": "MOM",
+   "params": {
+    "L": 30,
+    "z": 1.0,
+    "fade": false
+   },
+   "status": "u laboratoriji",
+   "variant": "CAND_MOM_L30_fadeFalse_z1.0"
+  },
+  {
+   "date": "2026-10-19",
+   "family": "FUND",
+   "params": {
+    "thr": 0.0001
+   },
+   "status": "u laboratoriji",
+   "variant": "CAND_FUND_thr0.0001"
+  },
+  {
+   "date": "2026-10-20",
+   "family": null,
+   "params": {},
+   "status": "odbijeno",
+   "reason": "porodica null (traži novu porodicu: odluka čoveka)"
+  },
+  {
+   "date": "2026-10-20",
+   "family": "BTCLEAD",
+   "params": {
+    "z": 1.5
+   },
+   "status": "u laboratoriji",
+   "variant": "CAND_BTCLEAD_z1.5"
+  },
+  {
+   "date": "2026-10-21",
+   "family": null,
+   "params": {},
+   "status": "odbijeno",
+   "reason": "porodica null (traži novu porodicu: odluka čoveka)"
+  },
+  {
+   "date": "2026-10-28",
+   "family": null,
+   "params": {},
+   "status": "odbijeno",
+   "reason": "porodica null (traži novu porodicu: odluka čoveka)"
+  },
+  {
+   "date": "2026-10-29",
+   "family": null,
+   "params": {},
+   "status": "odbijeno",
+   "reason": "porodica null (traži novu porodicu: odluka čoveka)"
+  },
+  {
+   "date": "2026-10-31",
+   "family": null,
+   "params": {},
+   "status": "odbijeno",
+   "reason": "porodica null (traži novu porodicu: odluka čoveka)"
+  },
+  {
+   "date": "2026-10-31",
+   "family": null,
+   "params": {},
+   "status": "odbijeno",
+   "reason": "porodica null (traži novu porodicu: odluka čoveka)"
+  },
+  {
+   "date": "2026-11-08",
+   "family": null,
+   "params": {},
+   "status": "odbijeno",
+   "reason": "porodica null (traži novu porodicu: odluka čoveka)"
+  },
+  {
+   "date": "2026-11-08",
+   "family": null,
+   "params": {
+    "signal": "trend_vol_target",
+    "universe": "top20_by_volume",
+    "long_only": false
+   },
+   "status": "odbijeno",
+   "reason": "porodica null (traži novu porodicu: odluka čoveka)"
+  }
+ ]
+}
