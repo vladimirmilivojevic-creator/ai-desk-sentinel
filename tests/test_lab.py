@@ -316,6 +316,18 @@ class CandidateImportTests(unittest.TestCase):
         finally:
             candidates_import.MAX_CANDIDATES = old
 
+    def test_status_rows_give_a_verdict_for_every_proposal(self):
+        props = [{"family": "MOM", "params": {"L": 96, "z": 2.0, "fade": False}, "date": "2026-11-08", "rationale": "tekst se ne prenosi"},
+                 {"family": None, "params": {"signal": "ma_cross"}, "date": "2026-10-31"}, {"family": "MOM", "params": {"evil": 1}}, "smece"]
+        merged, n, _ = candidates_import.merge([], props)
+        rows = candidates_import.status_rows(merged, props)
+        self.assertEqual(len(rows), 4)
+        self.assertEqual(rows[0]["status"], "u laboratoriji")
+        self.assertEqual(rows[0]["variant"], rules.candidate_variants(merged)[0][0])  # isti id pod kojim ga laboratorija meri
+        self.assertEqual([r["status"] for r in rows[1:]], ["odbijeno"] * 3)
+        self.assertIn("porodica null", rows[1]["reason"])
+        self.assertNotIn("rationale", rows[0])
+
 
 class RandTests(unittest.TestCase):
     def test_placebo_is_deterministic_and_rate_matches(self):

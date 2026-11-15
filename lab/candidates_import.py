@@ -65,6 +65,26 @@ def merge(existing, proposals):
     return out, ok_n, bad
 
 
+def status_rows(merged, proposals):
+    """Presuda uvoza za SVAKI predlog (da rutina ucenja vidi sta se desilo sa njenom idejom i ne predlaze isto ponovo):
+    'u laboratoriji' (meri se unapred pod id-jem CAND_...), ili 'odbijeno' sa razlogom. Tekst predloga se ne prenosi, samo porodica, parametri i datum."""
+    have = {(x["family"], json.dumps(x["params"], sort_keys=True)) for x in merged}
+    rows = []
+    for c in proposals:
+        fam = c.get("family") if isinstance(c, dict) else None
+        params = c.get("params", {}) if isinstance(c, dict) else {}
+        row = {"date": str(c.get("date", ""))[:10] if isinstance(c, dict) else "", "family": fam if isinstance(fam, str) else None,
+               "params": params if isinstance(params, dict) else {}}
+        good, why = validate(c)
+        if good and (fam, json.dumps(params, sort_keys=True)) in have:
+            clean = {k: v for k, v in params.items() if isinstance(v, (int, float, bool, str))}
+            row.update(status="u laboratoriji", variant="CAND_%s_%s" % (fam, "_".join("%s%s" % (k, clean[k]) for k in sorted(clean))))
+        else:
+            row.update(status="odbijeno", reason=why if not good else "dostignut najveći broj kandidata (%d)" % MAX_CANDIDATES)
+        rows.append(row)
+    return rows
+
+
 def main():
     if len(sys.argv) < 2:
         print(__doc__)
@@ -82,9 +102,20 @@ def main():
     for b in bad:
         print(" -", b)
     if "--apply" in sys.argv:
-        with open(OUT, "w", encoding="utf-8") as f:
+        with open(OUT, "w", encoding="utf-8", newline="\n") as f:
             json.dump({"candidates": merged}, f, ensure_ascii=False, indent=1)
+            f.write("\n")
         print("upisano u", OUT)
+    if "--status" in sys.argv:
+        path = sys.argv[sys.argv.index("--status") + 1]
+        rows = status_rows(merged, proposals)
+        with open(path, "w", encoding="utf-8", newline="\n") as f:
+            json.dump({"note": "Presuda uvoza predloga AI-ja (desk/explorer/candidates.json u ai-desk). 'u laboratoriji' = meri se unapred svakog sata pod navedenim id-jem (lab/stats.json); "
+                               "'odbijeno' = nije uvezeno, razlog je naveden. Predlog bez porodice (family null) trazi novu porodicu pravila ili motor rukavaca: odluka coveka.",
+                       "in_lab": sum(1 for r in rows if r["status"] == "u laboratoriji"), "rejected": sum(1 for r in rows if r["status"] == "odbijeno"), "ideas": rows},
+                      f, ensure_ascii=False, indent=1)
+            f.write("\n")
+        print("presude u", path)
     return 0
 
 
