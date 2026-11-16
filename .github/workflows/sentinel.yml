@@ -108,6 +108,15 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
 
+      - name: Okidanje rutine skokova (posle objave stanja, samo ID-jevi dogadjaja)
+        if: github.event.inputs.dry != 'true'
+        continue-on-error: true
+        timeout-minutes: 2
+        env:
+          JUMP_FIRE_URL: ${{ secrets.JUMP_FIRE_URL }}
+          JUMP_FIRE_TOKEN: ${{ secrets.JUMP_FIRE_TOKEN }}
+        run: python -m lab.jump_fire --state _state
+
       - name: Cuvar Lovca (GitHub kasni ili preskace zakazane pokrete; ovde se krug ponovo pokrece ako je radar stariji od 25 h)
         if: github.event.inputs.dry != 'true'
         continue-on-error: true

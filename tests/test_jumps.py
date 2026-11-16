@@ -122,6 +122,50 @@ class JumpTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d2:
             self.assertEqual(J.run(d2, cfg=CFG, ctx={}, now_ms=T0, log=lambda m: None)["events"], 0)
 
+    def test_fire_queue_only_for_liquid_burst_up_once_and_with_daily_cap(self):
+        from lab import jump_fire as JF
+        with tempfile.TemporaryDirectory() as d:
+            t = T0
+            for i in range(13):  # W skace +25% (OI 15M), DN pada -25%, THIN skace ali je OI ispod 1M
+                up, dn = (100.0, 100.0) if i < 12 else (125.0, 75.0)
+                res = J.run(d, cfg=CFG, ctx=ctx_of(W=(up, 15e6), DN=(dn, 15e6), THIN=(up, 5e5), CALM=(100.0, 80e6)), now_ms=t + i * 5 * MIN, log=lambda m: None)
+            self.assertEqual(res["new"], 3)
+            self.assertEqual(res["fire_queued"], 1)
+            pend = read_json(os.path.join(d, "jumps", "pending_fire.json"))
+            self.assertEqual(pend["payload"]["kind"], "jump")
+            self.assertEqual(len(pend["payload"]["ids"]), 1)
+            self.assertTrue(pend["payload"]["ids"][0].startswith("W@"))
+            sent = []
+            now = t + 12 * 5 * MIN + 2 * MIN
+            r = JF.run(d, now_ms=now, fire=lambda p: (sent.append(p) or True, "okinuto"))
+            self.assertTrue(r["fired"])
+            self.assertEqual(sent, [{"kind": "jump", "ids": pend["payload"]["ids"]}])
+            self.assertFalse(JF.run(d, now_ms=now + 20 * MIN, fire=lambda p: (True, "x"))["fired"])  # star red se ne salje
+            res2 = J.run(d, cfg=CFG, ctx=ctx_of(W=(126.0, 15e6)), now_ms=t + 13 * 5 * MIN, log=lambda m: None)
+            self.assertEqual(res2["fire_queued"], 0)
+            self.assertFalse(os.path.exists(os.path.join(d, "jumps", "pending_fire.json")))  # sledeci krug brise red: nema dvostrukog okidanja
+            self.assertEqual(read_json(os.path.join(d, "jumps", "fire_log.json"))["count"], 1)
+        ev = {"id": "X@2026-11-16T10:00:00Z", "dir": "up", "trigger": "burst", "oi_usd": 5e6}
+        with tempfile.TemporaryDirectory() as d3:
+            cap = dict(CFG, fire=dict(CFG["fire"], max_per_day=1))
+            self.assertEqual(J.queue_fire(d3, [ev], cap, T0, log=lambda m: None), 1)
+            self.assertEqual(J.queue_fire(d3, [dict(ev, id="Y@2026-11-16T11:00:00Z")], cap, T0 + 60 * MIN, log=lambda m: None), 0)  # dnevni plafon
+            self.assertEqual(J.queue_fire(d3, [ev], dict(CFG, fire={"enabled": False}), T0 + 86400000 * 2, log=lambda m: None), 0)
+            self.assertEqual(J.fire_candidates([dict(ev, trigger="ramp"), dict(ev, dir="down")], CFG), [])
+            self.assertEqual(JF.run(d3, now_ms=T0)["why"], "nema reda")
+
+    def test_fire_without_secrets_does_nothing(self):
+        from sentinel import notify
+        old = {k: os.environ.pop(k, None) for k in ("JUMP_FIRE_URL", "JUMP_FIRE_TOKEN")}
+        try:
+            ok, info = notify.fire_brain({"kind": "jump", "ids": ["a"]}, url_env="JUMP_FIRE_URL", token_env="JUMP_FIRE_TOKEN")
+            self.assertFalse(ok)
+            self.assertIn("JUMP_FIRE_URL", info)
+        finally:
+            for k, v in old.items():
+                if v is not None:
+                    os.environ[k] = v
+
 
 if __name__ == "__main__":
     unittest.main()

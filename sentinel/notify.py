@@ -20,11 +20,11 @@ def telegram(text, dry=False):
         return False, "telegram greska: %s" % e
 
 
-def fire_brain(payload, dry=False):
-    """POST na /fire routine 'desk-shock'. Samo ID-jevi i sha12, nikad tekst vesti."""
-    url, token = os.environ.get("FIRE_URL"), os.environ.get("FIRE_TOKEN")
+def fire_brain(payload, dry=False, url_env="FIRE_URL", token_env="FIRE_TOKEN"):
+    """POST na /fire rutine (podrazumevano 'desk-shock'; radar skokova koristi JUMP_FIRE_URL/JUMP_FIRE_TOKEN). Samo ID-jevi i sha12, nikad tekst vesti."""
+    url, token = os.environ.get(url_env), os.environ.get(token_env)
     if not url or not token:
-        return False, "FIRE_URL/FIRE_TOKEN nisu podeseni"
+        return False, "%s/%s nisu podeseni" % (url_env, token_env)
     if dry:
         return True, "dry"
     body = {"text": json.dumps(payload, separators=(",", ":"))}

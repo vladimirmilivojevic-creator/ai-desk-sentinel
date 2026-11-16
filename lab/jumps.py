@@ -167,6 +167,39 @@ def summarize(events, cfg):
     return out
 
 
+def fire_candidates(new, cfg):
+    """Dogadjaji koji smeju da probude rutinu: samo oni za koje radar ima trag (nagli skok NAGORE u prozoru 'burst') i dovoljno otvorenog interesa."""
+    f = cfg.get("fire") or {}
+    if not f.get("enabled"):
+        return []
+    return [e for e in new if e["dir"] == f.get("dir", "up") and e["trigger"] == f.get("trigger", "burst") and e["oi_usd"] >= f.get("min_oi_usd", 1e6)]
+
+
+def queue_fire(d, new, cfg, now_ms, log=print):
+    """Red za okidanje rutine skokova (lab/jump_fire.py ga salje POSLE objave stanja, da rutina zatekne dogadjaj na grani state).
+    Red vazi samo za krug u kome je nastao: svaki krug prvo brise stari red, pa se isti dogadjaj nikad ne salje dvaput.
+    Dnevni plafon stiti potrosnju tokena. U redu su samo ID-jevi dogadjaja."""
+    path = os.path.join(d, "pending_fire.json")
+    if os.path.exists(path):
+        os.remove(path)
+    cand = fire_candidates(new, cfg)
+    if not cand:
+        return 0
+    day = iso(now_ms)[:10]
+    fl = _load(os.path.join(d, "fire_log.json"), {})
+    if fl.get("date") != day:
+        fl = {"date": day, "count": 0, "ids": []}
+    if fl["count"] >= (cfg.get("fire") or {}).get("max_per_day", 6):
+        log("skok: dnevni plafon okidanja dostignut, %d dogadjaja ostaje za redovan krug Istrazivaca" % len(cand))
+        return 0
+    ids = [e["id"] for e in cand][:5]
+    fl["count"] += 1
+    fl["ids"] = (fl["ids"] + ids)[-50:]
+    _save(os.path.join(d, "fire_log.json"), fl)
+    _save(path, {"created_ms": now_ms, "created": iso(now_ms), "payload": {"kind": "jump", "ids": ids}})
+    return len(ids)
+
+
 def run(state_dir, cfg=None, ctx=None, now_ms=None, log=print, listings=False):
     cfg = cfg or load_cfg()
     now_ms = now_ms or int(time.time() * 1000)
@@ -190,6 +223,10 @@ def run(state_dir, cfg=None, ctx=None, now_ms=None, log=print, listings=False):
     for e in new:
         log("skok: %s %s %+.1f%% (%s), OI $%.1fM" % (e["coin"], e["trigger"], e["ret_pct"], e["dir"], e["oi_usd"] / 1e6))
     res = {"ok": True, "coins": len(snap), "new": len(new), "events": len(events)}
+    try:
+        res["fire_queued"] = queue_fire(d, new, cfg, now_ms, log)
+    except Exception as e:  # noqa: BLE001  # okidanje nikad ne sme da obori radar
+        res["fire_queued"] = "greska: %s" % type(e).__name__
     if listings:  # radar listinga koristi iste cene (bez dodatnih poziva) i nikad ne sme da obori radar skokova
         try:
             from . import listings as L
