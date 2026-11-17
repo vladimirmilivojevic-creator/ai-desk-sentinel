@@ -1,5 +1,5 @@
 {
- "updated_utc": "2026-11-17T08:20:55Z",
+ "updated_utc": "2026-11-17T08:28:25Z",
  "rules": {
   "stocks:SPIKE_UP:10d:long": {
    "universe": "stocks",
