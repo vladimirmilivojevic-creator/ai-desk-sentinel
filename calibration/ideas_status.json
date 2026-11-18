@@ -303,6 +303,5 @@
    "status": "odbijeno",
    "reason": "porodica null (traži novu porodicu: odluka čoveka)"
   }
- ],
- "history_note": "Istorijska provera: 200 dana, trosak 0.23% po krugu, 123 testova u istom pokretanju (prag za tvrdnju uz toliko testova je z oko 3.54, pa je 'nagovestaj' samo razlog da se ideja prati, ne dokaz)."
+ ]
 }
