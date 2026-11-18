@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-17T08:28:25Z",
+ "generated_utc": "2026-11-18T07:55:50Z",
  "rules": [
   {
    "rule": "alts:LOWVOL:4w:long",
@@ -69,6 +69,110 @@
     "exec_n": 36,
     "exec_mean": -2.8607,
     "exec_t": -1.72
+   }
+  },
+  {
+   "rule": "alts:SPIKE_UP:3d:short",
+   "status": "nagovestaj",
+   "universe": "alts",
+   "family": "SPIKE_UP",
+   "kind": "event",
+   "side": "short",
+   "signal_date": "2026-11-17",
+   "valid_from_utc": "2026-11-18T00:00:00Z",
+   "valid_until_utc": "2026-11-19T06:00:00Z",
+   "hold_hours": 72,
+   "picks": [
+    {
+     "ticker": "LUNCUSDT",
+     "symbol": "kLUNC",
+     "score": 9.4044,
+     "px": 0.0,
+     "atr_pct": 6.79,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
+    }
+   ],
+   "forward": {
+    "n": 6,
+    "mean": 12.9857,
+    "t": 2.09,
+    "abs_mean": 17.778,
+    "stress_mean": 12.7157,
+    "median": 6.9984,
+    "mean_ex_best": 7.7655,
+    "sim_n": 6,
+    "sim_mean": 4.2796,
+    "pending": 1
+   },
+   "study": {
+    "n": 323,
+    "mean": 1.9866,
+    "median": 2.8266,
+    "mean_ex_best": 1.8785,
+    "t": 4.12,
+    "p": 4e-05,
+    "t_train": 4.88,
+    "t_test": 1.23,
+    "recent_mean": 4.5691,
+    "stress_mean": 1.7166,
+    "abs_mean": 2.4622,
+    "fdr": true,
+    "exec_n": 77,
+    "exec_mean": -1.6283,
+    "exec_t": -1.13
+   }
+  },
+  {
+   "rule": "alts:SPIKE_UP:7d:short",
+   "status": "nagovestaj",
+   "universe": "alts",
+   "family": "SPIKE_UP",
+   "kind": "event",
+   "side": "short",
+   "signal_date": "2026-11-17",
+   "valid_from_utc": "2026-11-18T00:00:00Z",
+   "valid_until_utc": "2026-11-19T06:00:00Z",
+   "hold_hours": 168,
+   "picks": [
+    {
+     "ticker": "LUNCUSDT",
+     "symbol": "kLUNC",
+     "score": 9.4044,
+     "px": 0.0,
+     "atr_pct": 6.79,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
+    }
+   ],
+   "forward": {
+    "n": 6,
+    "mean": 14.3638,
+    "t": 2.17,
+    "abs_mean": 22.845,
+    "stress_mean": 14.0938,
+    "median": 9.2332,
+    "mean_ex_best": 9.3708,
+    "sim_n": 6,
+    "sim_mean": 8.2543,
+    "pending": 2
+   },
+   "study": {
+    "n": 321,
+    "mean": 1.9395,
+    "median": 3.6522,
+    "mean_ex_best": 1.81,
+    "t": 3.18,
+    "p": 0.00147,
+    "t_train": 2.46,
+    "t_test": 2.02,
+    "recent_mean": 6.164,
+    "stress_mean": 1.6695,
+    "abs_mean": 2.3319,
+    "fdr": true,
+    "exec_n": 77,
+    "exec_mean": -3.1599,
+    "exec_t": -1.23
    }
   },
   {
@@ -172,11 +276,11 @@
      "tp_pct": 36.0
     },
     {
-     "ticker": "XLMUSDT",
-     "symbol": "XLM",
-     "score": -0.178654,
-     "px": 0.1416,
-     "atr_pct": 6.79,
+     "ticker": "AVAXUSDT",
+     "symbol": "AVAX",
+     "score": -0.188208,
+     "px": 7.311,
+     "atr_pct": 8.65,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
@@ -312,11 +416,11 @@
      "tp_pct": 36.0
     },
     {
-     "ticker": "INJUSDT",
-     "symbol": "INJ",
-     "score": -0.197027,
-     "px": 7.185,
-     "atr_pct": 8.78,
+     "ticker": "TIAUSDT",
+     "symbol": "TIA",
+     "score": -0.31053,
+     "px": 0.4747,
+     "atr_pct": 10.39,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
@@ -452,11 +556,11 @@
      "tp_pct": 36.0
     },
     {
-     "ticker": "PUMPUSDT",
-     "symbol": "PUMP",
-     "score": -0.069475,
-     "px": 0.003,
-     "atr_pct": 12.88,
+     "ticker": "TIAUSDT",
+     "symbol": "TIA",
+     "score": -0.072996,
+     "px": 0.3616,
+     "atr_pct": 13.65,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
@@ -592,11 +696,11 @@
      "tp_pct": 36.0
     },
     {
-     "ticker": "PUMPUSDT",
-     "symbol": "PUMP",
-     "score": -0.069475,
-     "px": 0.003,
-     "atr_pct": 12.88,
+     "ticker": "TIAUSDT",
+     "symbol": "TIA",
+     "score": -0.072996,
+     "px": 0.3616,
+     "atr_pct": 13.65,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
