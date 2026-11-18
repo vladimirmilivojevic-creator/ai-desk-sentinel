@@ -2,7 +2,8 @@ name: ideas
 
 # Petlja ucenja bez rucnog rada: predlozi koje AI rutina ucenja upise u ai-desk (desk/explorer/candidates.json) stizu preko grane feed,
 # ovde se proveravaju (samo poznate porodice pravila i brojevi, nikad kod) i uvoze u config/lab_candidates.json. Od tog trenutka ih laboratorija
-# meri unapred svakog sata (senka, bez trgovanja). Presuda za svaki predlog ide u calibration/ideas_status.json. Bez AI-ja, bez tajni, ne trguje.
+# meri unapred svakog sata (senka, bez trgovanja). Presuda za svaki predlog ide u calibration/ideas_status.json, a za uvezene i istorijska presuda
+# (200 dana, prinos preko korpe posle troska). Bez AI-ja, bez tajni, ne trguje.
 on:
   schedule:
     - cron: "20 4 * * *"
@@ -18,7 +19,7 @@ concurrency:
 jobs:
   ideas:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 35
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -34,12 +35,26 @@ jobs:
             echo "nema candidates.json na grani feed"
             echo "have=no" >> "$GITHUB_OUTPUT"
           fi
+      - name: Sacuvaj ranije istorijske presude
+        if: steps.fetch.outputs.have == 'yes'
+        run: cp calibration/ideas_status.json /tmp/ideas_prev.json 2>/dev/null || echo "{}" > /tmp/ideas_prev.json
       - name: Uvoz u laboratoriju i presude
         if: steps.fetch.outputs.have == 'yes'
-        run: python -m lab.candidates_import /tmp/candidates.json --apply --status calibration/ideas_status.json
+        run: python -m lab.candidates_import /tmp/candidates.json --apply --status calibration/ideas_status.json --keep-history /tmp/ideas_prev.json
       - name: Testovi pravila (uvezeni kandidati ne smeju da obore laboratoriju)
         if: steps.fetch.outputs.have == 'yes'
         run: python -m unittest tests.test_lab -q
+      - name: Treba li istorijska provera
+        id: need
+        if: steps.fetch.outputs.have == 'yes'
+        run: echo "bt=$(python -m lab.ideas_verdict calibration/ideas_status.json --need)" >> "$GITHUB_OUTPUT"
+      - name: Istorijska provera uvezenih ideja (oko 8 minuta, zaseban izlaz, ne dira referentnu proveru laboratorije)
+        if: steps.need.outputs.bt == 'yes'
+        continue-on-error: true
+        timeout-minutes: 20
+        run: |
+          python -m lab.backtest /tmp/ideas_backtest.json /tmp/ideas_backtest.md > /dev/null
+          python -m lab.ideas_verdict calibration/ideas_status.json /tmp/ideas_backtest.json
       - name: Objavi na main
         if: steps.fetch.outputs.have == 'yes'
         run: |

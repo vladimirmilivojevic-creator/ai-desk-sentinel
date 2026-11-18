@@ -109,6 +109,15 @@ def main():
     if "--status" in sys.argv:
         path = sys.argv[sys.argv.index("--status") + 1]
         rows = status_rows(merged, proposals)
+        if "--keep-history" in sys.argv:  # istorijska presuda (lab.ideas_verdict) se ne racuna ponovo svaki dan: prenosi se iz ranijeg fajla po id-ju varijante
+            try:
+                with open(sys.argv[sys.argv.index("--keep-history") + 1], encoding="utf-8") as f:
+                    prev = {r.get("variant"): r.get("history") for r in json.load(f).get("ideas", []) if r.get("variant") and r.get("history")}
+            except (OSError, ValueError, IndexError, AttributeError):
+                prev = {}
+            for r in rows:
+                if r.get("variant") in prev:
+                    r["history"] = prev[r["variant"]]
         with open(path, "w", encoding="utf-8", newline="\n") as f:
             json.dump({"note": "Presuda uvoza predloga AI-ja (desk/explorer/candidates.json u ai-desk). 'u laboratoriji' = meri se unapred svakog sata pod navedenim id-jem (lab/stats.json); "
                                "'odbijeno' = nije uvezeno, razlog je naveden. Predlog bez porodice (family null) trazi novu porodicu pravila ili motor rukavaca: odluka coveka.",
