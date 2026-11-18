@@ -56,7 +56,18 @@
    "family": "TREND",
    "params": {},
    "status": "u laboratoriji",
-   "variant": "CAND_TREND_"
+   "variant": "CAND_TREND_",
+   "history": {
+    "test": "E24",
+    "n": 7210,
+    "mean_pct": -0.1933,
+    "t": -3.76,
+    "t_train": -2.77,
+    "t_test": -2.21,
+    "verdict": "palo na istoriji (preko korpe posle troska nije pozitivno sa t >= 2 u oba dela vremena)",
+    "generated_utc": "2026-11-18T12:53:35Z",
+    "k_tests": 123
+   }
   },
   {
    "date": "2026-10-10",
@@ -84,7 +95,18 @@
     "fade": false
    },
    "status": "u laboratoriji",
-   "variant": "CAND_MOM_L126_fadeFalse_z0.5"
+   "variant": "CAND_MOM_L126_fadeFalse_z0.5",
+   "history": {
+    "test": "E24",
+    "n": 7765,
+    "mean_pct": -0.1941,
+    "t": -4.44,
+    "t_train": -1.84,
+    "t_test": -3.68,
+    "verdict": "palo na istoriji (preko korpe posle troska nije pozitivno sa t >= 2 u oba dela vremena)",
+    "generated_utc": "2026-11-18T12:53:35Z",
+    "k_tests": 123
+   }
   },
   {
    "date": "2026-10-13",
@@ -146,7 +168,18 @@
     "fade": false
    },
    "status": "u laboratoriji",
-   "variant": "CAND_DON_N20_fadeFalse"
+   "variant": "CAND_DON_N20_fadeFalse",
+   "history": {
+    "test": "E24",
+    "n": 7790,
+    "mean_pct": -0.1866,
+    "t": -5.18,
+    "t_train": -3.48,
+    "t_test": -3.97,
+    "verdict": "palo na istoriji (preko korpe posle troska nije pozitivno sa t >= 2 u oba dela vremena)",
+    "generated_utc": "2026-11-18T12:53:35Z",
+    "k_tests": 123
+   }
   },
   {
    "date": "2026-10-19",
@@ -157,7 +190,18 @@
     "fade": false
    },
    "status": "u laboratoriji",
-   "variant": "CAND_MOM_L30_fadeFalse_z1.0"
+   "variant": "CAND_MOM_L30_fadeFalse_z1.0",
+   "history": {
+    "test": "E24",
+    "n": 4039,
+    "mean_pct": -0.2019,
+    "t": -2.35,
+    "t_train": -1.54,
+    "t_test": -2.26,
+    "verdict": "palo na istoriji (preko korpe posle troska nije pozitivno sa t >= 2 u oba dela vremena)",
+    "generated_utc": "2026-11-18T12:53:35Z",
+    "k_tests": 123
+   }
   },
   {
    "date": "2026-10-19",
@@ -166,7 +210,18 @@
     "thr": 0.0001
    },
    "status": "u laboratoriji",
-   "variant": "CAND_FUND_thr0.0001"
+   "variant": "CAND_FUND_thr0.0001",
+   "history": {
+    "test": "E24",
+    "n": 489,
+    "mean_pct": -0.4708,
+    "t": -2.74,
+    "t_train": -1.87,
+    "t_test": -2.77,
+    "verdict": "palo na istoriji (preko korpe posle troska nije pozitivno sa t >= 2 u oba dela vremena)",
+    "generated_utc": "2026-11-18T12:53:35Z",
+    "k_tests": 123
+   }
   },
   {
    "date": "2026-10-20",
@@ -182,7 +237,18 @@
     "z": 1.5
    },
    "status": "u laboratoriji",
-   "variant": "CAND_BTCLEAD_z1.5"
+   "variant": "CAND_BTCLEAD_z1.5",
+   "history": {
+    "test": "E24",
+    "n": 669,
+    "mean_pct": -0.0762,
+    "t": 0.25,
+    "t_train": 0.03,
+    "t_test": 0.31,
+    "verdict": "palo na istoriji (preko korpe posle troska nije pozitivno sa t >= 2 u oba dela vremena)",
+    "generated_utc": "2026-11-18T12:53:35Z",
+    "k_tests": 123
+   }
   },
   {
    "date": "2026-10-21",
@@ -237,5 +303,6 @@
    "status": "odbijeno",
    "reason": "porodica null (traži novu porodicu: odluka čoveka)"
   }
- ]
+ ],
+ "history_note": "Istorijska provera: 200 dana, trosak 0.23% po krugu, 123 testova u istom pokretanju (prag za tvrdnju uz toliko testova je z oko 3.54, pa je 'nagovestaj' samo razlog da se ideja prati, ne dokaz)."
 }
