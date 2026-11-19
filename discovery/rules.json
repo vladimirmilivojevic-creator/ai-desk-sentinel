@@ -1,5 +1,5 @@
 {
- "updated_utc": "2026-11-18T12:02:05Z",
+ "updated_utc": "2026-11-19T07:56:00Z",
  "rules": {
   "stocks:SPIKE_UP:10d:long": {
    "universe": "stocks",
@@ -703,7 +703,7 @@
     "mean_ex_best": null,
     "sim_n": 2,
     "sim_mean": 1.2027,
-    "pending": 2
+    "pending": 1
    }
   },
   "crypto:SPIKE_DN:28d:short": {
@@ -1006,16 +1006,16 @@
     ]
    ],
    "forward": {
-    "n": 4,
-    "mean": 19.0765,
-    "t": 5.99,
-    "abs_mean": 26.4877,
-    "stress_mean": 18.8065,
-    "median": 17.3179,
-    "mean_ex_best": null,
-    "sim_n": 4,
-    "sim_mean": 26.4877,
-    "pending": 3
+    "n": 5,
+    "mean": 18.1072,
+    "t": 6.84,
+    "abs_mean": 26.3025,
+    "stress_mean": 17.8372,
+    "median": 16.8156,
+    "mean_ex_best": 15.5826,
+    "sim_n": 5,
+    "sim_mean": 26.3025,
+    "pending": 2
    }
   }
  }
