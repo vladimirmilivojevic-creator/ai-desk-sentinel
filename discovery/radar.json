@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-19T07:56:00Z",
+ "generated_utc": "2026-11-20T07:44:50Z",
  "rules": [
   {
    "rule": "alts:LOWVOL:4w:long",
@@ -23,20 +23,20 @@
      "tp_pct": 36.0
     },
     {
+     "ticker": "ETCUSDT",
+     "symbol": "ETC",
+     "score": -0.035027,
+     "px": 7.15,
+     "atr_pct": 4.55,
+     "stop_pct": 11.36,
+     "tp_pct": 34.08
+    },
+    {
      "ticker": "CRVUSDT",
      "symbol": "CRV",
      "score": -0.044135,
      "px": 0.2793,
      "atr_pct": 8.74,
-     "stop_pct": 12.0,
-     "tp_pct": 36.0
-    },
-    {
-     "ticker": "ICPUSDT",
-     "symbol": "ICP",
-     "score": -0.045206,
-     "px": 2.534,
-     "atr_pct": 5.77,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
@@ -84,6 +84,15 @@
    "hold_hours": 168,
    "picks": [
     {
+     "ticker": "INITUSDT",
+     "symbol": "INIT",
+     "score": -0.606862,
+     "px": 0.108,
+     "atr_pct": 53.52,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
+    },
+    {
      "ticker": "TRUMPUSDT",
      "symbol": "TRUMP",
      "score": -0.45081,
@@ -98,15 +107,6 @@
      "score": -0.450455,
      "px": 0.0447,
      "atr_pct": 11.84,
-     "stop_pct": 12.0,
-     "tp_pct": 36.0
-    },
-    {
-     "ticker": "ENAUSDT",
-     "symbol": "ENA",
-     "score": -0.421078,
-     "px": 0.1214,
-     "atr_pct": 12.58,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
@@ -224,6 +224,15 @@
    "hold_hours": 336,
    "picks": [
     {
+     "ticker": "INITUSDT",
+     "symbol": "INIT",
+     "score": -0.606862,
+     "px": 0.108,
+     "atr_pct": 53.52,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
+    },
+    {
      "ticker": "TRUMPUSDT",
      "symbol": "TRUMP",
      "score": -0.45081,
@@ -238,15 +247,6 @@
      "score": -0.450455,
      "px": 0.0447,
      "atr_pct": 11.84,
-     "stop_pct": 12.0,
-     "tp_pct": 36.0
-    },
-    {
-     "ticker": "ENAUSDT",
-     "symbol": "ENA",
-     "score": -0.421078,
-     "px": 0.1214,
-     "atr_pct": 12.58,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
@@ -312,11 +312,11 @@
      "tp_pct": 36.0
     },
     {
-     "ticker": "INJUSDT",
-     "symbol": "INJ",
-     "score": -0.197027,
-     "px": 7.185,
-     "atr_pct": 8.78,
+     "ticker": "APTUSDT",
+     "symbol": "APT",
+     "score": -0.258889,
+     "px": 0.6295,
+     "atr_pct": 8.53,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
@@ -434,6 +434,15 @@
    "hold_hours": 168,
    "picks": [
     {
+     "ticker": "INITUSDT",
+     "symbol": "INIT",
+     "score": -0.143278,
+     "px": 0.108,
+     "atr_pct": 53.52,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
+    },
+    {
      "ticker": "NEARUSDT",
      "symbol": "NEAR",
      "score": -0.074437,
@@ -448,15 +457,6 @@
      "score": -0.069475,
      "px": 0.003,
      "atr_pct": 12.88,
-     "stop_pct": 12.0,
-     "tp_pct": 36.0
-    },
-    {
-     "ticker": "ENAUSDT",
-     "symbol": "ENA",
-     "score": -0.068646,
-     "px": 0.1214,
-     "atr_pct": 12.58,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
@@ -574,6 +574,15 @@
    "hold_hours": 336,
    "picks": [
     {
+     "ticker": "INITUSDT",
+     "symbol": "INIT",
+     "score": -0.143278,
+     "px": 0.108,
+     "atr_pct": 53.52,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
+    },
+    {
      "ticker": "NEARUSDT",
      "symbol": "NEAR",
      "score": -0.074437,
@@ -588,15 +597,6 @@
      "score": -0.069475,
      "px": 0.003,
      "atr_pct": 12.88,
-     "stop_pct": 12.0,
-     "tp_pct": 36.0
-    },
-    {
-     "ticker": "ENAUSDT",
-     "symbol": "ENA",
-     "score": -0.068646,
-     "px": 0.1214,
-     "atr_pct": 12.58,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
@@ -769,53 +769,6 @@
     "exec_n": 77,
     "exec_mean": -3.2992,
     "exec_t": -1.12
-   }
-  },
-  {
-   "rule": "stocks:SPIKE_UP:10d:long",
-   "status": "nagovestaj",
-   "universe": "stocks",
-   "family": "SPIKE_UP",
-   "kind": "event",
-   "side": "long",
-   "signal_date": "2026-11-18",
-   "valid_from_utc": "2026-11-19T14:30:00Z",
-   "valid_until_utc": "2026-11-20T20:30:00Z",
-   "hold_hours": 336,
-   "picks": [
-    {
-     "ticker": "TTWO",
-     "symbol": "xyz:TTWO",
-     "score": 3.2153,
-     "px": 216.61,
-     "atr_pct": 6.01,
-     "stop_pct": 12.0,
-     "tp_pct": 36.0
-    }
-   ],
-   "forward": {
-    "n": 0,
-    "mean": null,
-    "t": null,
-    "stress_mean": null,
-    "pending": 1
-   },
-   "study": {
-    "n": 95,
-    "mean": 5.8246,
-    "median": 1.1362,
-    "mean_ex_best": 4.6316,
-    "t": 3.02,
-    "p": 0.00253,
-    "t_train": 2.31,
-    "t_test": 1.93,
-    "recent_mean": -1.3495,
-    "stress_mean": 5.5546,
-    "abs_mean": 7.8756,
-    "fdr": true,
-    "exec_n": null,
-    "exec_mean": null,
-    "exec_t": null
    }
   }
  ]
