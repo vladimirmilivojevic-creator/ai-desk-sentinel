@@ -1,0 +1,292 @@
+[
+ {
+  "date": "2026-10-07",
+  "source_url": "https://eprints.soton.ac.uk/434719/1/Momentum_trading_in_cryptocurrencies_Short_term_returns_and_diversification_benefits.pdf",
+  "claim_as_stated_by_source": "Maksimalan momentum efekat u kripto-u pri sortiranju, držanju i rebalansu od dve nedelje; nakon 4-6 nedelja počinje obrtanje (prema rezultatu pretrage; izvor nije čitan u celini).",
+  "family": "CSM",
+  "params": {
+   "L": 14,
+   "hold_days": 14
+  },
+  "rationale": "Poklapa se sa lab nagoveštajem D_CSM_mom_L14 na 14 d; predlog je samo provera istorije sa Bonferroni korekcijom.",
+  "status": "predlog"
+ },
+ {
+  "date": "2026-10-07",
+  "source_url": "https://arxiv.org/pdf/2212.06888",
+  "claim_as_stated_by_source": "Odstupanja cena perpetual futures od cene bez arbitraze su velika u kripto-u i smanjuju se vremenom; strategija konvergencije daje visok Sharpe cak i uz najvise troskove na Binance-u (prema rezultatu pretrage; izvor nije citan u celini).",
+  "family": null,
+  "params": {},
+  "rationale": "treba novu porodicu: konvergencija baze/fundinga nije smer-prediktor; samo ideja za lab, bez predloga pravila.",
+  "status": "predlog"
+ },
+ {
+  "date": "2026-10-08",
+  "source_url": "https://www.arxiv.org/abs/1912.03270",
+  "claim_as_stated_by_source": "Funding rate perpetualnih ugovora je predvidljiv i može služiti kao indikator trenda (prema rezultatu pretrage; izvor nije čitan u celini).",
+  "family": "FUND",
+  "params": {
+   "z": 2.0,
+   "fade": false
+  },
+  "rationale": "Samo predlog za istorijsku proveru sa istim troškom i Bonferroni korekcijom; ne pravilo.",
+  "status": "predlog"
+ },
+ {
+  "date": "2026-10-08",
+  "source_url": "https://quantpedia.com/deconstructing-the-time-series-momentum-strategy/",
+  "claim_as_stated_by_source": "Prema sažetku Kim, Tse i Wald: rezultat time-series momentuma dolazi uglavnom iz skaliranja po volatilnosti, a ne iz signala; mesečna alfa pada sa 1.27% na 0.41% bez skaliranja (prema rezultatu pretrage; izvor nije čitan u celini; nije kripto).",
+  "family": null,
+  "params": {},
+  "rationale": "treba novu porodicu: poređenje istih dnevnih MOM pravila sa i bez skaliranja uloga po volatilnosti u istorijskoj proveri; samo ideja za lab.",
+  "status": "predlog"
+ },
+ {
+  "date": "2026-10-09",
+  "source_url": "https://acfr.aut.ac.nz/__data/assets/pdf_file/0009/918729/Time_Series_and_Cross_Sectional_Momentum_in_the_Cryptocurrency_Market_with_IA.pdf",
+  "claim_as_stated_by_source": "Prema rezultatu pretrage: studija kripto fjučersa navodi da obični momentum portfolio ne daje značajan prinos ni na jednom horizontu držanja, dok bazis i bazis-momentum portfolio ostaju profitabilni posle troškova, uz slabljenje od 1 dana do 1 meseca (izvor nije čitan u celini).",
+  "family": null,
+  "params": {},
+  "rationale": "treba novu porodicu: poredak po bazisu/fundingu unutar grupe; samo ideja za lab, istorijska provera sa istim troškom i Bonferroni korekcijom pre bilo čega drugog.",
+  "status": "predlog"
+ },
+ {
+  "date": "2026-10-09",
+  "source_url": "https://arxiv.org/pdf/2602.11708",
+  "claim_as_stated_by_source": "Prema rezultatu pretrage: preprint (nerecenziran) za kripto 2022-2024 navodi da trend sa skaliranjem po volatilnosti daje ~22.8% godišnje, Sharpe ~1.83, uz uračunate provizije, proklizavanje i funding, naspram ~0.5-0.65 za običan 1- i 3-mesečni TSMOM (izvor nije čitan u celini).",
+  "family": null,
+  "params": {},
+  "rationale": "treba novu porodicu: dnevni trend sa ulogom skaliranim po volatilnosti; kratak uzorak (3 godine, jedan režim), pa samo ideja za istorijsku proveru sa istim troškom i Bonferroni korekcijom.",
+  "status": "predlog"
+ },
+ {
+  "date": "2026-10-10",
+  "source_url": "https://www.journals.vu.lt/BATP/en/article/view/44540",
+  "claim_as_stated_by_source": "Studija 8 velikih kriptovaluta (2020-10/2025) navodi da vremenski momentum (TSMOM, po jednom aktivu) daje bolji prinos prilagođen riziku od poredka unutar grupe (CSM), a CSM ima veći pad (prema rezultatu pretrage; izvor nije čitan u celini).",
+  "family": "TREND",
+  "params": {},
+  "rationale": "Daje smer-po-aktivu naspram CSM koji lab već testira; parametre (horizont, volatilnostno skaliranje) određuje vlasnik pri unosu u lab; samo istorijska provera sa Bonferroni korekcijom.",
+  "status": "predlog"
+ },
+ {
+  "date": "2026-10-10",
+  "source_url": "https://acfr.aut.ac.nz/__data/assets/pdf_file/0009/918729/Time_Series_and_Cross_Sectional_Momentum_in_the_Cryptocurrency_Market_with_IA.pdf",
+  "claim_as_stated_by_source": "Han, Kang i Ryu: uz stvarne troškove i dnevne oscilacije mnogi statistički značajni momentum portfoliji gube značaj; dokaz za vremenski momentum je jak, za poredak unutar grupe slab (prema rezultatu pretrage; izvor nije čitan u celini).",
+  "family": null,
+  "params": {},
+  "rationale": "treba novu porodicu: opomena, ne pravilo. Lab već meri CSM preko korpe sa troškom; ovo je razlog za oprez prema D_CSM_mom_L14 (jedina 'slabo' nada).",
+  "status": "predlog"
+ },
+ {
+  "date": "2026-10-12",
+  "source_url": "https://arxiv.org/pdf/2602.11708",
+  "claim_as_stated_by_source": "Trend-following u kripto-u van uzorka (2022-2024) sa troškovima (taker 4 bps, proklizavanje, funding); adaptivna strategija Sharpe oko 2.4 prema 0.5-0.65 za proste mesečne/kvartalne TSMOM (prema rezultatu pretrage; izvor nije čitan u celini, preprint, tabela deluje nedosledno).",
+  "family": "TREND",
+  "params": {
+   "fast": 20,
+   "slow": 100
+  },
+  "rationale": "Spor trend (nedeljno/mesečno) je jedino što literatura vidi posle troškova; proveriti na dnevnim podacima uz Bonferroni. Parametri su ilustrativni i moraju se uskladiti sa definicijom TREND porodice u labu.",
+  "status": "predlog"
+ },
+ {
+  "date": "2026-10-12",
+  "source_url": "https://www.cxoadvisory.com/?p=30654",
+  "claim_as_stated_by_source": "Momentum robe posle procenjenih troškova ostaje profitabilan, ali testiranje mnogo formacionih i periodâ držanja na istom uzorku uvodi veliku pristrasnost (data snooping) (prema rezultatu pretrage; sažetak, izvor nije čitan u celini).",
+  "family": "MOM",
+  "params": {
+   "L": 126,
+   "z": 0.5,
+   "fade": false
+  },
+  "rationale": "Dugi horizont (oko 6 meseci) smanjuje obrt i trošak; proveriti samo kao jedan unapred registrovan test, ne kao skeniranje horizonata.",
+  "status": "predlog"
+ },
+ {
+  "date": "2026-10-13",
+  "source_url": "https://www.man.com/insights/in-crypto-we-trend",
+  "claim_as_stated_by_source": "Trend sistem sa 50/200-dnevnim prosecima na kripto korpi; po izvoru najbolji Sharpe kod oko 10-15 kovanica, a trošak potire dodatnu diverzifikaciju (prema rezultatu pretrage; izvor nije čitan u celini).",
+  "family": "TREND",
+  "params": {
+   "fast": 50,
+   "slow": 200
+  },
+  "rationale": "Spora varijanta već testiranog 20/100; samo istorijska provera sa Bonferroni korekcijom.",
+  "status": "predlog"
+ },
+ {
+  "date": "2026-10-13",
+  "source_url": "https://levolytics.substack.com/p/crypto-funding-rates-study",
+  "claim_as_stated_by_source": "Altkoini rastu kada je funding visok (momentum, ne kontra-efekat), po vendorskoj analizi; BitMEX izveštaj kaže da su ekstremi retki i kratkotrajni (prema rezultatu pretrage; slabi izvori).",
+  "family": "FUND",
+  "params": {
+   "z": 2.0,
+   "fade": true
+  },
+  "rationale": "Proverava suprotan smer od postojećeg FUND z2.0 fade=False; izvori su slabi, pa samo kao istorijska provera.",
+  "status": "predlog"
+ },
+ {
+  "date": "2026-10-14",
+  "source_url": "https://ar5iv.arxiv.org/html/1904.00890",
+  "claim_as_stated_by_source": "Zero-investment momentum strategije sa nedeljnim periodom gledanja daju oko 3% višak prinosa nedeljno (prema sekundarnom sažetku Liu i Tsyvinski u rezultatu pretrage; izvor nije čitan u celini); drugi radovi kažu da efekat gotovo nestaje posle troškova i da dolazi uglavnom iz short strane.",
+  "family": "CSM",
+  "params": {
+   "L": 7,
+   "hold_days": 7,
+   "short_only": true
+  },
+  "rationale": "Lab već ima D_CSM_mom_L7; predlog je samo da se istorijski proveri short strana posebno uz trošak 0,23% (unapred, short strana D_CSM_mom_L14 ima za sada bolji kontrafaktual od long strane, ali n<10).",
+  "status": "predlog"
+ },
+ {
+  "date": "2026-10-14",
+  "source_url": "https://papers.ssrn.com/abstract=2140091",
+  "claim_as_stated_by_source": "Varijanta vremenskog momentuma prilagođena korelacijama nadmašuje naivnu, naročito posle 2008, i rezultati ostaju posle troškova (prema rezultatu pretrage; izvor nije čitan u celini).",
+  "family": null,
+  "params": {},
+  "rationale": "treba novu porodicu: skaliranje pozicije volatilnošću i korelacijom portfolija; za sada samo ideja za lab.",
+  "status": "predlog"
+ },
+ {
+  "date": "2026-10-17",
+  "source_url": "https://oasisbr.ibict.br/vufind/Record/RCAP_d7bb213a57fd75819661e51bbab30106",
+  "claim_as_stated_by_source": "Prema rezultatu pretrage: poprečni (cross-sectional) momentum u kripto-u postoji i u uzorku i van njega, a skaliranje volatilnošću (GARCH) ga poboljšava; izvor je disertacija, nije čitan u celini. Drugi izvori iz iste pretrage kažu da je poprečni momentum slab kad se uračunaju troškovi.",
+  "family": null,
+  "params": {},
+  "rationale": "treba novu porodicu: skaliranje uloga volatilnošću nije parametar postojeće porodice. Samo ideja za lab; poređenje sa već praćenim D_CSM_mom_L7/L14 (vidi i izvor koji upozorava da efekat nestaje pri dužem držanju i uz troškove).",
+  "status": "predlog"
+ },
+ {
+  "date": "2026-10-18",
+  "source_url": "https://arxiv.org/pdf/2602.11708",
+  "claim_as_stated_by_source": "Vremenski momentum skaliran volatilnošću u kripto-u (van uzorka 2022-2024, uz provizije, proklizavanje i funding) ima Sharpe 1.83 naspram 0.65 za običan 1-mesečni; rad nije recenziran, a tabela prinosa deluje pogrešno označena (prema rezultatu pretrage, izvor nije čitan u celini).",
+  "family": null,
+  "params": {},
+  "rationale": "Skaliranje volatilnošću nije parametar nijedne porodice: treba novu porodicu. Predlog samo za istorijsku proveru sa Bonferroni korekcijom; izvor slab (preprint).",
+  "status": "predlog"
+ },
+ {
+  "date": "2026-10-19",
+  "source_url": "https://abarbon.com/papers/catching-crypto-trends",
+  "claim_as_stated_by_source": "Ansambl Donchian modela sa razlicitim lookback-ovima i volatilnoscu kao velicinom pozicije, na rotirajucem portfoliju top 20 kovanica, prijavljuje neto Sharpe iznad 1.5 i alfu oko 10.8% godisnje naspram BTC (radni rad, autori iz trend fonda, bez nezavisne replikacije)",
+  "family": "DON",
+  "params": {
+   "N": 20,
+   "fade": false
+  },
+  "rationale": "Proveriti jedan clan ansambla (N=20) istorijski uz trosak 0.23% i Bonferroni; ansambl i volatilnosno skaliranje nisu parametri porodice.",
+  "status": "predlog"
+ },
+ {
+  "date": "2026-10-19",
+  "source_url": "https://acfr.aut.ac.nz/__data/assets/pdf_file/0009/918729/Time_Series_and_Cross_Sectional_Momentum_in_the_Cryptocurrency_Market_with_IA.pdf",
+  "claim_as_stated_by_source": "Han, Kang, Ryu: vremenski momentum u kripto je jaci od poprecnog, ali mnogi momentum portfoliji gube znacajnost kad se uracunaju troskovi i dnevna kolebanja",
+  "family": "MOM",
+  "params": {
+   "L": 30,
+   "z": 1.0,
+   "fade": false
+  },
+  "rationale": "Duzi horizont momentuma (30 dana) kao kontrola protiv 7/14-dnevnih; test da li prednost opstaje posle troska.",
+  "status": "predlog"
+ },
+ {
+  "date": "2026-10-19",
+  "source_url": "https://www.sharpe.ai/learn/crypto-funding-rate-tracker",
+  "claim_as_stated_by_source": "Izvor tvrdi (bez podataka) da ekstremna stopa finansiranja moze biti kontra-signal; drugi izvori napominju da ekstremi traju u jakom trendu i da su se retko pojavljivali posle 2016",
+  "family": "FUND",
+  "params": {
+   "thr": 0.0001
+  },
+  "rationale": "Slab izvor (vodic, bez uzorka); vredi samo kao jeftina istorijska provera praga finansiranja 0.01% po periodu, ne kao tvrdnja.",
+  "status": "predlog"
+ },
+ {
+  "date": "2026-10-20",
+  "source_url": "https://fairfield.elsevierpure.com/en/publications/cryptocurrency-return-reversals/",
+  "claim_as_stated_by_source": "Povrati kriptovaluta se preokreću na dnevnom, nedeljnom i mesečnom horizontu, najviše kod malih i manje likvidnih kovanica (200 kovanica, 2015-2019).",
+  "family": null,
+  "params": {},
+  "rationale": "treba novu porodicu: preokret samo u donjem delu univerzuma po prometu, dnevni horizont. Novi razlog u odnosu na odbačena satna pravila: drugi horizont i drugi deo univerzuma; trošak je tu najveći pa test mora imati point-in-time univerzum, fonding, placebo i podelu razvoj/test.",
+  "status": "predlog"
+ },
+ {
+  "date": "2026-10-20",
+  "source_url": "https://arxiv.org/pdf/1706.07216",
+  "claim_as_stated_by_source": "BTC u kratkom roku utiče na većinu altkoina; kašnjenje je veće kod manje likvidnih.",
+  "family": "BTCLEAD",
+  "params": {
+   "z": 1.5
+  },
+  "rationale": "Satna BTC-vodi-alt pravila su već odbačena (docs/dokazi.md); predlog samo ako lab može da testira na manje likvidnim altovima sa pravim troškom. Slab dokaz (rad iz 2017).",
+  "status": "predlog"
+ },
+ {
+  "date": "2026-10-21",
+  "source_url": "https://arxiv.org/pdf/2602.11708",
+  "claim_as_stated_by_source": "Vremenski momentum skaliran volatilnošću ima Sharpe 1,83 naspram 0,54-0,65 za običan 1- i 3-mesečni momentum, uz taker proviziju 4 bps, proklizavanje i fonding, uzorak van razvoja 2022-2024 (prema rezultatu pretrage; izvor nije čitan u celini; autori porede sopstvene strategije, nije nezavisna potvrda).",
+  "family": null,
+  "params": {},
+  "rationale": "treba novu porodicu: skaliranje veličine pozicije volatilnošću nije parametar postojeće porodice. Provera po docs/standard-dokaza.md: point-in-time univerzum, fonding, placebo sa istom mehanikom, podela razvoj/test, broj probanih varijanti. Srodno već odbačenom 'Makro trend' i 'Trend long/short' u docs/dokazi.md, pa je novi razlog samo skaliranje volatilnošću.",
+  "status": "predlog"
+ },
+ {
+  "date": "2026-10-28",
+  "source_url": "https://arxiv.org/pdf/2212.06888",
+  "claim_as_stated_by_source": "Rezultat pretrage: studija kripto futures-a nalazi da long-short korpa po bazisu i bazis-momentumu daje značajan višak prinosa posle troškova, uglavnom sa long noge, dok momentum nije značajan (izvor nije čitan u celini).",
+  "family": null,
+  "params": {},
+  "rationale": "treba novu porodicu: poredak unutar grupe po bazisu/bazis-momentumu, samo long noga; docs/dokazi.md već ima 'poredak po bazisu/fundingu' kao predlog bez testa. Test po standardu: point-in-time univerzum, fonding, placebo, podela razvoj/test.",
+  "status": "predlog"
+ },
+ {
+  "date": "2026-10-29",
+  "source_url": "https://arxiv.org/pdf/2602.11708",
+  "claim_as_stated_by_source": "Predprint (2026): trend-following sa volatilnim ciljem 10% na kripto, uz taker proviziju 4 bps, proklizavanje i fonding, van uzorka 2022-2024 daje Sharpe 1.83 (brojke u tabeli deluju nedosledno, nije proveravano)",
+  "family": null,
+  "params": {},
+  "rationale": "treba novu porodicu: SLEEVE sa vremenskim momentumom skaliranim volatilnošću (npr. ciljna volatilnost 10%, mesečno prebalansiranje, samo dugo, univerzum tog dana top12 po prometu). Mora kroz docs/standard-dokaza.md (univerzum tog dana, fonding, placebo, razdvajanje razvoj/test); srodno je Jezgru pa može biti već pokriveno u docs/dokazi.md.",
+  "status": "predlog"
+ },
+ {
+  "date": "2026-10-31",
+  "source_url": "https://arxiv.org/pdf/2602.11708",
+  "claim_as_stated_by_source": "Preprint (nije recenzirano): TSMOM sa skaliranjem volatilnosti na kripto perpetualima, van uzorka 2022-2024, prinos 22.8% i Sharpe-tip 1.83 uz model troska (taker, proklizavanje, fonding).",
+  "family": null,
+  "params": {},
+  "rationale": "SLEEVE: nizak obrt, long/flat TSMOM sa skaliranjem volatilnosti; skaliranje volatilnosti i horizonti nisu parametri porodice, treba novu porodicu. Test po docs/standard-dokaza.md: PIT univerzum top12, fonding, placebo, podela razvoj/test. Bliska ideja (trend ansambl, Jezgro) je vec u docs/dokazi.md; novo je samo skaliranje volatilnosti, pa je ocekivanje skromno.",
+  "status": "predlog"
+ },
+ {
+  "date": "2026-10-31",
+  "source_url": "https://open.icm.edu.pl/items/2350d455-72e4-4845-a442-9c4024be7fb6/full",
+  "claim_as_stated_by_source": "Pregled kripto anomalija: tradabilne anomalije traze fokus na duge pozicije, troskove i teško trgovljive kovanice; momentum zahteva obrt do 85% nedeljno.",
+  "family": null,
+  "params": {},
+  "rationale": "Upozorenje, ne pravilo: Lovac LOWVOL short/long rezultati (alts, nagovestaj) idu protiv literature (Burggraf-Rudolf 2021: nema low-vol premije u kripto). Predlog: pre bilo kakvog prelaska u potvrdjeno, Lovac treba da prikaze rezultat samo za kovanice koje Liquid ima i sa strogim troskom. Treba novu porodicu/proveru, nista za trgovinu.",
+  "status": "predlog"
+ },
+ {
+  "date": "2026-11-08",
+  "source_url": "https://acfr.aut.ac.nz/__data/assets/pdf_file/0010/686755/6b-Yeguang-Chi.pdf",
+  "claim_as_stated_by_source": "Momentum iz robnih fjučersa ne daje statistički značajan prinos na kripto fjučersima; robustniji je signal basis-momentum, koji ostaje posle troškova ali nestaje kako se držanje produžava od jednog dana do mesec dana.",
+  "family": null,
+  "params": {},
+  "rationale": "Treba novu porodicu (basis-momentum nije u lab familijama). Slično je već odbačeno u docs/dokazi.md (carry/fonding 0 od 12; momentum slabo). Novi razlog: signal na bazi fjučers-spot, držanje do 1 dan, pa troškovi 0.19-0.23% verovatno ubijaju prednost; test tek uz PIT univerzum, fonding, placebo i podelu razvoj/test. Nije za trgovinu.",
+  "status": "predlog"
+ },
+ {
+  "date": "2026-11-08",
+  "source_url": "https://arxiv.org/pdf/2602.11708",
+  "claim_as_stated_by_source": "Trend-following sa adaptivnom konstrukcijom portfelja na kripto perpetualima, van uzorka 2022-2024, uz taker proviziju 4 bps, proklizavanje po obimu i fonding (preprint, nije recenzirano).",
+  "family": null,
+  "params": {
+   "signal": "trend_vol_target",
+   "universe": "top20_by_volume",
+   "long_only": false
+  },
+  "rationale": "SLEEVE nizak obrt, trošak i fonding su u modelu; treba novu porodicu. Test pod docs/standard-dokaza.md: PIT univerzum top20 po prometu, fonding, placebo, razvoj/test podela. Slično ranijem 'Jezgro' i trend-ansamblu iz docs/dokazi.md (Sharpe 0,28-0,47), pa novi razlog je samo dugo/kratko sa volatilnim ciljem.",
+  "status": "predlog"
+ }
+]
