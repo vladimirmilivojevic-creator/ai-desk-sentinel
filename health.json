@@ -1,0 +1,317 @@
+{
+ "hl_ctx_main": {
+  "fails": 0,
+  "ok": true,
+  "last_ok": "2026-11-21T12:45:27Z",
+  "last_err": null,
+  "ms": 196
+ },
+ "hl_ctx_xyz": {
+  "fails": 0,
+  "ok": true,
+  "last_ok": "2026-11-21T12:45:27Z",
+  "last_err": null,
+  "ms": 198
+ },
+ "hl_candles_BRENT": {
+  "fails": 0,
+  "ok": true,
+  "last_ok": "2026-11-21T12:45:27Z",
+  "last_err": null,
+  "ms": 196
+ },
+ "yahoo_BRENT": {
+  "fails": 0,
+  "ok": true,
+  "last_ok": "2026-11-21T12:45:27Z",
+  "last_err": null,
+  "ms": 83
+ },
+ "hl_candles_WTI": {
+  "fails": 0,
+  "ok": true,
+  "last_ok": "2026-11-21T12:45:27Z",
+  "last_err": null,
+  "ms": 191
+ },
+ "yahoo_WTI": {
+  "fails": 0,
+  "ok": true,
+  "last_ok": "2026-11-21T12:45:27Z",
+  "last_err": null,
+  "ms": 75
+ },
+ "hl_candles_GOLD": {
+  "fails": 0,
+  "ok": true,
+  "last_ok": "2026-11-21T12:45:27Z",
+  "last_err": null,
+  "ms": 192
+ },
+ "yahoo_GOLD": {
+  "fails": 0,
+  "ok": true,
+  "last_ok": "2026-11-21T12:45:27Z",
+  "last_err": null,
+  "ms": 92
+ },
+ "hl_candles_SP500": {
+  "fails": 0,
+  "ok": true,
+  "last_ok": "2026-11-21T12:45:28Z",
+  "last_err": null,
+  "ms": 324
+ },
+ "yahoo_SP500": {
+  "fails": 0,
+  "ok": true,
+  "last_ok": "2026-11-21T12:45:28Z",
+  "last_err": null,
+  "ms": 70
+ },
+ "hl_candles_NASDAQ": {
+  "fails": 0,
+  "ok": true,
+  "last_ok": "2026-11-21T12:45:28Z",
+  "last_err": null,
+  "ms": 332
+ },
+ "yahoo_NASDAQ": {
+  "fails": 0,
+  "ok": true,
+  "last_ok": "2026-11-21T12:45:28Z",
+  "last_err": null,
+  "ms": 53
+ },
+ "hl_candles_BTC": {
+  "fails": 0,
+  "ok": true,
+  "last_ok": "2026-11-21T12:45:28Z",
+  "last_err": null,
+  "ms": 213
+ },
+ "yahoo_BTC": {
+  "fails": 0,
+  "ok": true,
+  "last_ok": "2026-11-21T12:45:28Z",
+  "last_err": null,
+  "ms": 51
+ },
+ "hl_candles_ETH": {
+  "fails": 0,
+  "ok": true,
+  "last_ok": "2026-11-21T12:45:28Z",
+  "last_err": null,
+  "ms": 271
+ },
+ "yahoo_ETH": {
+  "fails": 0,
+  "ok": true,
+  "last_ok": "2026-11-21T12:45:28Z",
+  "last_err": null,
+  "ms": 62
+ },
+ "yahoo_VIX": {
+  "fails": 0,
+  "ok": true,
+  "last_ok": "2026-11-21T12:45:28Z",
+  "last_err": null,
+  "ms": 54
+ },
+ "yahoo_DXY": {
+  "fails": 0,
+  "ok": true,
+  "last_ok": "2026-11-21T12:45:28Z",
+  "last_err": null,
+  "ms": 56
+ },
+ "gnews_0": {
+  "fails": 0,
+  "ok": true,
+  "last_ok": "2026-11-21T12:45:28Z",
+  "last_err": null,
+  "ms": 231
+ },
+ "gnews_1": {
+  "fails": 0,
+  "ok": true,
+  "last_ok": "2026-11-21T12:45:28Z",
+  "last_err": null,
+  "ms": 215
+ },
+ "gnews_2": {
+  "fails": 0,
+  "ok": true,
+  "last_ok": "2026-11-21T12:45:28Z",
+  "last_err": null,
+  "ms": 265
+ },
+ "gnews_3": {
+  "fails": 0,
+  "ok": true,
+  "last_ok": "2026-11-21T12:45:28Z",
+  "last_err": null,
+  "ms": 197
+ },
+ "rss_BBC": {
+  "fails": 0,
+  "ok": true,
+  "last_ok": "2026-11-21T12:45:28Z",
+  "last_err": null,
+  "ms": 235
+ },
+ "rss_Al Jazeera": {
+  "fails": 0,
+  "ok": true,
+  "last_ok": "2026-11-21T12:45:28Z",
+  "last_err": null,
+  "ms": 99
+ },
+ "official_Federal Reserve": {
+  "fails": 0,
+  "ok": true,
+  "last_ok": "2026-11-21T12:45:28Z",
+  "last_err": null,
+  "ms": 42
+ },
+ "official_EIA": {
+  "fails": 0,
+  "ok": true,
+  "last_ok": "2026-11-21T12:45:28Z",
+  "last_err": null,
+  "ms": 67
+ },
+ "polymarket": {
+  "fails": 0,
+  "ok": true,
+  "last_ok": "2026-11-21T12:45:28Z",
+  "last_err": null,
+  "ms": 267
+ },
+ "hl_vol_BRENT": {
+  "fails": 0,
+  "ok": true,
+  "last_ok": "2026-11-20T13:35:27Z",
+  "last_err": null,
+  "ms": 538
+ },
+ "hl_vol_WTI": {
+  "fails": 0,
+  "ok": true,
+  "last_ok": "2026-11-20T13:35:27Z",
+  "last_err": null,
+  "ms": 288
+ },
+ "hl_vol_GOLD": {
+  "fails": 0,
+  "ok": true,
+  "last_ok": "2026-11-20T13:35:27Z",
+  "last_err": null,
+  "ms": 196
+ },
+ "hl_vol_SP500": {
+  "fails": 0,
+  "ok": true,
+  "last_ok": "2026-11-20T13:35:27Z",
+  "last_err": null,
+  "ms": 266
+ },
+ "hl_vol_NASDAQ": {
+  "fails": 0,
+  "ok": true,
+  "last_ok": "2026-11-20T13:35:27Z",
+  "last_err": null,
+  "ms": 615
+ },
+ "hl_vol_BTC": {
+  "fails": 0,
+  "ok": true,
+  "last_ok": "2026-11-20T13:35:28Z",
+  "last_err": null,
+  "ms": 684
+ },
+ "hl_vol_ETH": {
+  "fails": 0,
+  "ok": true,
+  "last_ok": "2026-11-20T13:35:28Z",
+  "last_err": null,
+  "ms": 541
+ },
+ "yahoo_OVX": {
+  "fails": 0,
+  "ok": true,
+  "last_ok": "2026-11-21T12:45:28Z",
+  "last_err": null,
+  "ms": 59
+ },
+ "yahoo_GVZ": {
+  "fails": 0,
+  "ok": true,
+  "last_ok": "2026-11-21T12:45:28Z",
+  "last_err": null,
+  "ms": 53
+ },
+ "rss_Guardian": {
+  "fails": 0,
+  "ok": true,
+  "last_ok": "2026-11-21T12:45:28Z",
+  "last_err": null,
+  "ms": 27
+ },
+ "rss_France 24": {
+  "fails": 0,
+  "ok": true,
+  "last_ok": "2026-11-21T12:45:28Z",
+  "last_err": null,
+  "ms": 70
+ },
+ "rss_CNBC": {
+  "fails": 0,
+  "ok": true,
+  "last_ok": "2026-11-21T12:45:28Z",
+  "last_err": null,
+  "ms": 263
+ },
+ "rss_OilPrice": {
+  "fails": 0,
+  "ok": true,
+  "last_ok": "2026-11-21T12:45:28Z",
+  "last_err": null,
+  "ms": 211
+ },
+ "rss_NPR": {
+  "fails": 0,
+  "ok": true,
+  "last_ok": "2026-11-21T12:45:28Z",
+  "last_err": null,
+  "ms": 60
+ },
+ "rss_Kyiv Independent": {
+  "fails": 0,
+  "ok": true,
+  "last_ok": "2026-11-21T12:45:28Z",
+  "last_err": null,
+  "ms": 159
+ },
+ "rss_MarketWatch": {
+  "fails": 0,
+  "ok": true,
+  "last_ok": "2026-11-21T12:45:28Z",
+  "last_err": null,
+  "ms": 163
+ },
+ "official_State Department": {
+  "fails": 0,
+  "ok": true,
+  "last_ok": "2026-11-21T12:45:28Z",
+  "last_err": null,
+  "ms": 68
+ },
+ "official_Bank of England": {
+  "fails": 0,
+  "ok": true,
+  "last_ok": "2026-11-21T12:45:28Z",
+  "last_err": null,
+  "ms": 468
+ }
+}
