@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-21T07:41:35Z",
+ "generated_utc": "2026-11-22T07:26:53Z",
  "rules": [
   {
    "rule": "alts:LOWVOL:4w:long",
@@ -14,40 +14,40 @@
    "hold_hours": 672,
    "picks": [
     {
-     "ticker": "LDOUSDT",
-     "symbol": "LDO",
-     "score": -0.053983,
-     "px": 0.3421,
-     "atr_pct": 7.36,
+     "ticker": "GRAMUSDT",
+     "symbol": "GRAM",
+     "score": -0.031872,
+     "px": 1.217,
+     "atr_pct": 5.04,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     },
     {
-     "ticker": "BLURUSDT",
-     "symbol": "BLUR",
-     "score": -0.065619,
-     "px": 0.0079,
-     "atr_pct": 13.12,
+     "ticker": "CRVUSDT",
+     "symbol": "CRV",
+     "score": -0.044135,
+     "px": 0.2793,
+     "atr_pct": 8.74,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     },
     {
-     "ticker": "INITUSDT",
-     "symbol": "INIT",
-     "score": -0.070217,
-     "px": 0.187,
-     "atr_pct": 17.88,
+     "ticker": "ETHFIUSDT",
+     "symbol": "ETHFI",
+     "score": -0.051629,
+     "px": 0.6154,
+     "atr_pct": 8.2,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
    ],
    "forward": {
     "n": 1,
-    "mean": -1.4087,
+    "mean": 2.6731,
     "t": null,
     "abs_mean": -20.5799,
-    "stress_mean": -1.6787,
-    "median": -1.4087,
+    "stress_mean": 2.4031,
+    "median": 2.6731,
     "mean_ex_best": null,
     "sim_n": 1,
     "sim_mean": -12.43,
@@ -312,11 +312,11 @@
      "tp_pct": 36.0
     },
     {
-     "ticker": "TIAUSDT",
-     "symbol": "TIA",
-     "score": -0.31053,
-     "px": 0.4747,
-     "atr_pct": 10.39,
+     "ticker": "INJUSDT",
+     "symbol": "INJ",
+     "score": -0.197027,
+     "px": 7.185,
+     "atr_pct": 8.78,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
@@ -452,11 +452,11 @@
      "tp_pct": 36.0
     },
     {
-     "ticker": "TIAUSDT",
-     "symbol": "TIA",
-     "score": -0.072996,
-     "px": 0.3616,
-     "atr_pct": 13.65,
+     "ticker": "PUMPUSDT",
+     "symbol": "PUMP",
+     "score": -0.069475,
+     "px": 0.003,
+     "atr_pct": 12.88,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
@@ -592,11 +592,11 @@
      "tp_pct": 36.0
     },
     {
-     "ticker": "TIAUSDT",
-     "symbol": "TIA",
-     "score": -0.072996,
-     "px": 0.3616,
-     "atr_pct": 13.65,
+     "ticker": "PUMPUSDT",
+     "symbol": "PUMP",
+     "score": -0.069475,
+     "px": 0.003,
+     "atr_pct": 12.88,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
