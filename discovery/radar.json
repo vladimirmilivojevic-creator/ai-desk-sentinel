@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-22T11:49:59Z",
+ "generated_utc": "2026-11-23T08:12:44Z",
  "rules": [
   {
    "rule": "alts:LOWVOL:4w:long",
@@ -14,29 +14,29 @@
    "hold_hours": 672,
    "picks": [
     {
+     "ticker": "WLFIUSDT",
+     "symbol": "WLFI",
+     "score": -0.020116,
+     "px": 0.0499,
+     "atr_pct": 4.08,
+     "stop_pct": 10.2,
+     "tp_pct": 30.6
+    },
+    {
+     "ticker": "SHIBUSDT",
+     "symbol": "kSHIB",
+     "score": -0.031612,
+     "px": 0.0,
+     "atr_pct": 4.49,
+     "stop_pct": 11.22,
+     "tp_pct": 33.66
+    },
+    {
      "ticker": "GRAMUSDT",
      "symbol": "GRAM",
      "score": -0.031872,
      "px": 1.217,
      "atr_pct": 5.04,
-     "stop_pct": 12.0,
-     "tp_pct": 36.0
-    },
-    {
-     "ticker": "CRVUSDT",
-     "symbol": "CRV",
-     "score": -0.044135,
-     "px": 0.2793,
-     "atr_pct": 8.74,
-     "stop_pct": 12.0,
-     "tp_pct": 36.0
-    },
-    {
-     "ticker": "ETHFIUSDT",
-     "symbol": "ETHFI",
-     "score": -0.051629,
-     "px": 0.6154,
-     "atr_pct": 8.2,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
@@ -78,49 +78,49 @@
    "family": "BRK20",
    "kind": "rank",
    "side": "short",
-   "signal_date": "2026-11-15",
-   "valid_from_utc": "2026-11-16T00:00:00Z",
-   "valid_until_utc": "2026-11-17T06:00:00Z",
+   "signal_date": "2026-11-22",
+   "valid_from_utc": "2026-11-23T00:00:00Z",
+   "valid_until_utc": "2026-11-24T06:00:00Z",
    "hold_hours": 168,
    "picks": [
     {
-     "ticker": "INITUSDT",
-     "symbol": "INIT",
-     "score": -0.606862,
-     "px": 0.108,
-     "atr_pct": 53.52,
-     "stop_pct": 12.0,
-     "tp_pct": 36.0
-    },
-    {
      "ticker": "TRUMPUSDT",
      "symbol": "TRUMP",
-     "score": -0.45081,
-     "px": 0.949,
-     "atr_pct": 12.36,
+     "score": -0.445625,
+     "px": 0.887,
+     "atr_pct": 8.72,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     },
     {
-     "ticker": "XPLUSDT",
-     "symbol": "XPL",
-     "score": -0.450455,
-     "px": 0.0447,
-     "atr_pct": 11.84,
+     "ticker": "ENAUSDT",
+     "symbol": "ENA",
+     "score": -0.440331,
+     "px": 0.1013,
+     "atr_pct": 11.33,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
+    },
+    {
+     "ticker": "PUMPUSDT",
+     "symbol": "PUMP",
+     "score": -0.398058,
+     "px": 0.0026,
+     "atr_pct": 11.72,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
    ],
    "forward": {
-    "n": 6,
-    "mean": 1.2974,
+    "n": 7,
+    "mean": 1.1065,
     "t": 0.84,
-    "abs_mean": 9.054,
-    "stress_mean": 1.0274,
-    "median": 0.189,
-    "mean_ex_best": 0.2448,
-    "sim_n": 6,
-    "sim_mean": 8.4793,
+    "abs_mean": 8.9966,
+    "stress_mean": 0.8365,
+    "median": -0.0386,
+    "mean_ex_best": 0.1976,
+    "sim_n": 7,
+    "sim_mean": 6.9445,
     "pending": 1
    },
    "study": {
@@ -224,15 +224,6 @@
    "hold_hours": 336,
    "picks": [
     {
-     "ticker": "INITUSDT",
-     "symbol": "INIT",
-     "score": -0.606862,
-     "px": 0.108,
-     "atr_pct": 53.52,
-     "stop_pct": 12.0,
-     "tp_pct": 36.0
-    },
-    {
      "ticker": "TRUMPUSDT",
      "symbol": "TRUMP",
      "score": -0.45081,
@@ -247,6 +238,15 @@
      "score": -0.450455,
      "px": 0.0447,
      "atr_pct": 11.84,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
+    },
+    {
+     "ticker": "ENAUSDT",
+     "symbol": "ENA",
+     "score": -0.421078,
+     "px": 0.1214,
+     "atr_pct": 12.58,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
@@ -358,49 +358,49 @@
    "family": "LOWVOL",
    "kind": "rank",
    "side": "long",
-   "signal_date": "2026-11-15",
-   "valid_from_utc": "2026-11-16T00:00:00Z",
-   "valid_until_utc": "2026-11-17T06:00:00Z",
+   "signal_date": "2026-11-22",
+   "valid_from_utc": "2026-11-23T00:00:00Z",
+   "valid_until_utc": "2026-11-24T06:00:00Z",
    "hold_hours": 168,
    "picks": [
     {
      "ticker": "TRXUSDT",
      "symbol": "TRX",
-     "score": -0.017383,
-     "px": 0.3054,
-     "atr_pct": 1.32,
-     "stop_pct": 3.31,
-     "tp_pct": 9.93
+     "score": -0.017666,
+     "px": 0.3057,
+     "atr_pct": 1.59,
+     "stop_pct": 3.97,
+     "tp_pct": 11.91
     },
     {
      "ticker": "BTCUSDT",
      "symbol": "BTC",
-     "score": -0.021561,
-     "px": 65351.05,
-     "atr_pct": 4.63,
-     "stop_pct": 11.58,
-     "tp_pct": 34.74
+     "score": -0.0194,
+     "px": 61271.08,
+     "atr_pct": 5.31,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
     },
     {
      "ticker": "BNBUSDT",
      "symbol": "BNB",
-     "score": -0.022293,
-     "px": 596.79,
-     "atr_pct": 4.5,
-     "stop_pct": 11.24,
-     "tp_pct": 33.72
+     "score": -0.022862,
+     "px": 559.59,
+     "atr_pct": 5.33,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
     }
    ],
    "forward": {
-    "n": 6,
-    "mean": 3.5877,
-    "t": 2.89,
-    "abs_mean": -4.1689,
-    "stress_mean": 3.3177,
-    "median": 2.9699,
-    "mean_ex_best": 2.7546,
-    "sim_n": 6,
-    "sim_mean": -4.5483,
+    "n": 7,
+    "mean": 3.6817,
+    "t": 3.49,
+    "abs_mean": -4.2084,
+    "stress_mean": 3.4117,
+    "median": 3.1232,
+    "mean_ex_best": 3.0031,
+    "sim_n": 7,
+    "sim_mean": -5.0262,
     "pending": 1
    },
    "study": {
@@ -428,49 +428,49 @@
    "family": "LOWVOL",
    "kind": "rank",
    "side": "short",
-   "signal_date": "2026-11-15",
-   "valid_from_utc": "2026-11-16T00:00:00Z",
-   "valid_until_utc": "2026-11-17T06:00:00Z",
+   "signal_date": "2026-11-22",
+   "valid_from_utc": "2026-11-23T00:00:00Z",
+   "valid_until_utc": "2026-11-24T06:00:00Z",
    "hold_hours": 168,
    "picks": [
     {
-     "ticker": "INITUSDT",
-     "symbol": "INIT",
-     "score": -0.143278,
-     "px": 0.108,
-     "atr_pct": 53.52,
+     "ticker": "PUMPUSDT",
+     "symbol": "PUMP",
+     "score": -0.068872,
+     "px": 0.0026,
+     "atr_pct": 11.72,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     },
     {
      "ticker": "NEARUSDT",
      "symbol": "NEAR",
-     "score": -0.074437,
-     "px": 3.216,
-     "atr_pct": 10.6,
+     "score": -0.063991,
+     "px": 2.986,
+     "atr_pct": 10.78,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     },
     {
-     "ticker": "PUMPUSDT",
-     "symbol": "PUMP",
-     "score": -0.069475,
-     "px": 0.003,
-     "atr_pct": 12.88,
+     "ticker": "ENAUSDT",
+     "symbol": "ENA",
+     "score": -0.061862,
+     "px": 0.1013,
+     "atr_pct": 11.33,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
    ],
    "forward": {
-    "n": 6,
-    "mean": 1.6824,
-    "t": 1.03,
-    "abs_mean": 9.439,
-    "stress_mean": 1.4124,
-    "median": 1.3173,
-    "mean_ex_best": 0.6746,
-    "sim_n": 6,
-    "sim_mean": 7.5168,
+    "n": 7,
+    "mean": 2.0716,
+    "t": 1.45,
+    "abs_mean": 9.9616,
+    "stress_mean": 1.8016,
+    "median": 2.0723,
+    "mean_ex_best": 1.2967,
+    "sim_n": 7,
+    "sim_mean": 6.7546,
     "pending": 1
    },
    "study": {
@@ -574,15 +574,6 @@
    "hold_hours": 336,
    "picks": [
     {
-     "ticker": "INITUSDT",
-     "symbol": "INIT",
-     "score": -0.143278,
-     "px": 0.108,
-     "atr_pct": 53.52,
-     "stop_pct": 12.0,
-     "tp_pct": 36.0
-    },
-    {
      "ticker": "NEARUSDT",
      "symbol": "NEAR",
      "score": -0.074437,
@@ -597,6 +588,15 @@
      "score": -0.069475,
      "px": 0.003,
      "atr_pct": 12.88,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
+    },
+    {
+     "ticker": "ENAUSDT",
+     "symbol": "ENA",
+     "score": -0.068646,
+     "px": 0.1214,
+     "atr_pct": 12.58,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
