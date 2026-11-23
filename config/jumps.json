@@ -39,6 +39,8 @@
   "trigger": "burst",
   "min_oi_usd": 1000000,
   "max_per_day": 6,
-  "_comment": "Od 2026-11-16 (odluka vlasnika): nagli skok NAGORE (burst) na instrumentu sa OI bar $1M budi rutinu skokova u ai-desk (JUMP_FIRE_URL), da probni short posle skoka udje za nekoliko minuta umesto do 6 sati kasnije. Ne menja nista u merenju radara (pragovi i ishodi ostaju isti). Najvise 6 okidanja dnevno."
+  "_comment": "Od 2026-11-16 (odluka vlasnika): nagli skok NAGORE (burst) na instrumentu sa OI bar $1M budi rutinu skokova u ai-desk (JUMP_FIRE_URL), da probni short posle skoka udje za nekoliko minuta umesto do 6 sati kasnije. Ne menja nista u merenju radara (pragovi i ishodi ostaju isti). Najvise 6 okidanja dnevno.",
+  "stocks": false,
+  "_comment_stocks": "2026-11-23: akcije (xyz:) ne bude rutinu skokova. Toga dana je 16 akcija skocilo u istom satu posle makro vesti (NVDA +25% za dan): to nije skok tanke kovanice, a kratko protiv takvog pomeranja nema dokaz. Akcije se i dalje mere (summary: burst/up/akcije)."
  }
 }

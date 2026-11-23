@@ -153,7 +153,8 @@ def summarize(events, cfg):
     """{"trigger/dir/thin": {"n": broj dogadjaja, "60": {...}, "240": {...}, "1440": {...}}} za 'prati' (neto) i srednji vrh/dno."""
     groups = {}
     for e in events:
-        for key in ("all", "%s/%s" % (e["trigger"], e["dir"]), "%s/%s/%s" % (e["trigger"], e["dir"], "tanko" if e["thin"] else "likvidno")):
+        cls = "akcije" if str(e["coin"]).startswith("xyz:") else "kripto"  # akcije i kripto se mere odvojeno (2026-11-23: skok akcija posle vesti nije isto sto i skok tanke kovanice)
+        for key in ("all", "%s/%s" % (e["trigger"], e["dir"]), "%s/%s/%s" % (e["trigger"], e["dir"], "tanko" if e["thin"] else "likvidno"), "%s/%s/%s" % (e["trigger"], e["dir"], cls)):
             groups.setdefault(key, []).append(e)
     out = {}
     for key, es in sorted(groups.items()):
@@ -172,7 +173,9 @@ def fire_candidates(new, cfg):
     f = cfg.get("fire") or {}
     if not f.get("enabled"):
         return []
-    return [e for e in new if e["dir"] == f.get("dir", "up") and e["trigger"] == f.get("trigger", "burst") and e["oi_usd"] >= f.get("min_oi_usd", 1e6)]
+    stocks_ok = f.get("stocks", False)  # od 2026-11-23 rutina se ne budi za akcije: Istrazivac ih na skoku ne trguje (vesti, mere se odvojeno)
+    return [e for e in new if e["dir"] == f.get("dir", "up") and e["trigger"] == f.get("trigger", "burst") and e["oi_usd"] >= f.get("min_oi_usd", 1e6)
+            and (stocks_ok or not str(e["coin"]).startswith("xyz:"))]
 
 
 def queue_fire(d, new, cfg, now_ms, log=print):

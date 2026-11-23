@@ -145,14 +145,23 @@ class JumpTests(unittest.TestCase):
             self.assertEqual(res2["fire_queued"], 0)
             self.assertFalse(os.path.exists(os.path.join(d, "jumps", "pending_fire.json")))  # sledeci krug brise red: nema dvostrukog okidanja
             self.assertEqual(read_json(os.path.join(d, "jumps", "fire_log.json"))["count"], 1)
-        ev = {"id": "X@2026-11-16T10:00:00Z", "dir": "up", "trigger": "burst", "oi_usd": 5e6}
+        ev = {"id": "X@2026-11-16T10:00:00Z", "coin": "X", "dir": "up", "trigger": "burst", "oi_usd": 5e6}
         with tempfile.TemporaryDirectory() as d3:
             cap = dict(CFG, fire=dict(CFG["fire"], max_per_day=1))
             self.assertEqual(J.queue_fire(d3, [ev], cap, T0, log=lambda m: None), 1)
             self.assertEqual(J.queue_fire(d3, [dict(ev, id="Y@2026-11-16T11:00:00Z")], cap, T0 + 60 * MIN, log=lambda m: None), 0)  # dnevni plafon
             self.assertEqual(J.queue_fire(d3, [ev], dict(CFG, fire={"enabled": False}), T0 + 86400000 * 2, log=lambda m: None), 0)
             self.assertEqual(J.fire_candidates([dict(ev, trigger="ramp"), dict(ev, dir="down")], CFG), [])
+            self.assertEqual(J.fire_candidates([dict(ev, coin="xyz:NVDA")], CFG), [])  # akcije ne bude rutinu
+            self.assertEqual(len(J.fire_candidates([dict(ev, coin="HYPE")], CFG)), 1)
             self.assertEqual(JF.run(d3, now_ms=T0)["why"], "nema reda")
+
+    def test_summary_splits_stocks_and_crypto(self):
+        ev = [{"coin": "xyz:NVDA", "trigger": "burst", "dir": "up", "thin": False, "peak_pct": 1.0, "trough_pct": -1.0, "out": {"60": {"gross": 1.0}, "240": None, "1440": None}},
+              {"coin": "HYPE", "trigger": "burst", "dir": "up", "thin": False, "peak_pct": 1.0, "trough_pct": -1.0, "out": {"60": {"gross": -2.0}, "240": None, "1440": None}}]
+        s = J.summarize(ev, CFG)
+        self.assertEqual(s["burst/up/akcije"]["events"], 1)
+        self.assertEqual(s["burst/up/kripto"]["events"], 1)
 
     def test_fire_without_secrets_does_nothing(self):
         from sentinel import notify

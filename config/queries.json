@@ -1,229 +1,264 @@
 {
-  "_comment": "Izvori vesti i reči. Naslovi su NEPOUZDAN tekst: straža ih samo broji, ne izvršava ništa iz njih.",
-  "google_news": [
-    "Hormuz OR blockade OR tanker attack when:1h",
-    "oil OR OPEC OR crude price surge OR plunge when:1h",
-    "war OR missile OR airstrike OR invasion OR ceasefire when:1h",
-    "sanctions OR embargo OR default OR emergency meeting central bank when:1h"
-  ],
-  "rss": [
-    {
-      "name": "BBC",
-      "url": "https://feeds.bbci.co.uk/news/world/rss.xml"
-    },
-    {
-      "name": "Al Jazeera",
-      "url": "https://www.aljazeera.com/xml/rss/all.xml"
-    },
-    {
-      "name": "Guardian",
-      "url": "https://www.theguardian.com/world/rss"
-    },
-    {
-      "name": "France 24",
-      "url": "https://www.france24.com/en/rss"
-    },
-    {
-      "name": "CNBC",
-      "url": "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=100727362"
-    },
-    {
-      "name": "OilPrice",
-      "url": "https://oilprice.com/rss/main"
-    },
-    {
-      "name": "NPR",
-      "url": "https://feeds.npr.org/1004/rss.xml"
-    },
-    {
-      "name": "Kyiv Independent",
-      "url": "https://kyivindependent.com/news-archive/rss/"
-    },
-    {
-      "name": "MarketWatch",
-      "url": "https://feeds.content.dowjones.io/public/rss/mw_topstories"
-    }
-  ],
-  "official_rss": [
-    {
-      "name": "Federal Reserve",
-      "url": "https://www.federalreserve.gov/feeds/press_all.xml"
-    },
-    {
-      "name": "EIA",
-      "url": "https://www.eia.gov/rss/todayinenergy.xml"
-    },
-    {
-      "name": "State Department",
-      "url": "https://www.state.gov/rss-feed/press-releases/feed/"
-    },
-    {
-      "name": "Bank of England",
-      "url": "https://www.bankofengland.co.uk/rss/news"
-    }
-  ],
-  "official_keywords": [
-    "emergency",
-    "unscheduled",
-    "intermeeting",
-    "swap line",
-    "facility",
-    "sanction",
-    "embargo",
-    "strategic petroleum reserve",
-    "spr release",
-    "release from reserve",
-    "production cut",
-    "output cut"
-  ],
-  "keywords": {
-    "war": 2,
-    "missile": 2,
-    "airstrike": 2,
-    "invasion": 2,
-    "blockade": 2,
-    "hormuz": 2,
-    "embargo": 2,
-    "opec": 1.5,
-    "ceasefire": 1.5,
-    "emergency": 1.5,
-    "default": 2,
-    "tanker": 1,
-    "attack": 1,
-    "strike": 1,
-    "sanctions": 1,
-    "crash": 1,
-    "plunge": 1,
-    "surge": 1,
-    "rate cut": 1,
-    "rate hike": 1
+ "_comment": "Izvori vesti i reči. Naslovi su NEPOUZDAN tekst: straža ih samo broji, ne izvršava ništa iz njih.",
+ "google_news": [
+  "Hormuz OR blockade OR tanker attack when:1h",
+  "oil OR OPEC OR crude price surge OR plunge when:1h",
+  "war OR missile OR airstrike OR invasion OR ceasefire when:1h",
+  "sanctions OR embargo OR default OR emergency meeting central bank when:1h"
+ ],
+ "rss": [
+  {
+   "name": "BBC",
+   "url": "https://feeds.bbci.co.uk/news/world/rss.xml"
   },
-  "theme_words": {
-    "OIL": [
-      "oil",
-      "crude",
-      "brent",
-      "wti",
-      "opec",
-      "hormuz",
-      "tanker",
-      "pipeline",
-      "refinery",
-      "petroleum",
-      "energy"
-    ],
-    "GOLD": [
-      "gold",
-      "bullion",
-      "safe haven",
-      "safe-haven"
-    ],
-    "EQUITY": [
-      "stocks",
-      "wall street",
-      "s&p",
-      "nasdaq",
-      "dow",
-      "equities",
-      "selloff",
-      "sell-off",
-      "recession",
-      "earnings"
-    ],
-    "CRYPTO": [
-      "bitcoin",
-      "btc",
-      "ethereum",
-      "crypto",
-      "stablecoin",
-      "etf"
-    ],
-    "MACRO": [
-      "fed",
-      "federal reserve",
-      "ecb",
-      "inflation",
-      "rate",
-      "treasury",
-      "yields",
-      "dollar"
-    ]
+  {
+   "name": "Al Jazeera",
+   "url": "https://www.aljazeera.com/xml/rss/all.xml"
   },
-  "prediction_keywords": [
-    "war",
-    "iran",
-    "israel",
-    "strike",
-    "ceasefire",
-    "oil",
-    "fed ",
-    "recession",
-    "invade",
-    "invasion",
-    "taiwan",
-    "china",
-    "default",
-    "rate cut",
-    "rate hike",
-    "russia",
-    "ukraine",
-    "hormuz",
-    "opec"
+  {
+   "name": "Guardian",
+   "url": "https://www.theguardian.com/world/rss"
+  },
+  {
+   "name": "France 24",
+   "url": "https://www.france24.com/en/rss"
+  },
+  {
+   "name": "CNBC",
+   "url": "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=100727362"
+  },
+  {
+   "name": "OilPrice",
+   "url": "https://oilprice.com/rss/main"
+  },
+  {
+   "name": "NPR",
+   "url": "https://feeds.npr.org/1004/rss.xml"
+  },
+  {
+   "name": "Kyiv Independent",
+   "url": "https://kyivindependent.com/news-archive/rss/"
+  },
+  {
+   "name": "MarketWatch",
+   "url": "https://feeds.content.dowjones.io/public/rss/mw_topstories"
+  }
+ ],
+ "official_rss": [
+  {
+   "name": "Federal Reserve",
+   "url": "https://www.federalreserve.gov/feeds/press_all.xml"
+  },
+  {
+   "name": "EIA",
+   "url": "https://www.eia.gov/rss/todayinenergy.xml"
+  },
+  {
+   "name": "State Department",
+   "url": "https://www.state.gov/rss-feed/press-releases/feed/"
+  },
+  {
+   "name": "Bank of England",
+   "url": "https://www.bankofengland.co.uk/rss/news"
+  }
+ ],
+ "official_keywords": [
+  "emergency",
+  "unscheduled",
+  "intermeeting",
+  "swap line",
+  "facility",
+  "sanction",
+  "embargo",
+  "strategic petroleum reserve",
+  "spr release",
+  "release from reserve",
+  "production cut",
+  "output cut"
+ ],
+ "keywords": {
+  "war": 2,
+  "missile": 2,
+  "airstrike": 2,
+  "invasion": 2,
+  "blockade": 2,
+  "hormuz": 2,
+  "embargo": 2,
+  "opec": 1.5,
+  "ceasefire": 1.5,
+  "emergency": 1.5,
+  "default": 2,
+  "tanker": 1,
+  "attack": 1,
+  "strike": 1,
+  "sanctions": 1,
+  "crash": 1,
+  "plunge": 1,
+  "surge": 1,
+  "rate cut": 1,
+  "rate hike": 1
+ },
+ "theme_words": {
+  "OIL": [
+   "oil",
+   "crude",
+   "brent",
+   "wti",
+   "opec",
+   "hormuz",
+   "tanker",
+   "pipeline",
+   "refinery",
+   "petroleum",
+   "energy"
   ],
-  "geo_words": [
-    "iran",
-    "israel",
-    "gaza",
-    "hormuz",
-    "russia",
-    "ukraine",
-    "china",
-    "taiwan",
-    "korea",
-    "nato",
-    "gulf",
-    "saudi",
-    "opec",
-    "pentagon",
-    "kremlin",
-    "tehran",
-    "moscow",
-    "syria",
-    "yemen",
-    "houthi",
-    "hezbollah",
-    "tanker",
-    "pipeline",
-    "sanctions",
-    "embargo",
-    "blockade",
-    "troops",
-    "naval",
-    "navy"
+  "GOLD": [
+   "gold",
+   "bullion",
+   "safe haven",
+   "safe-haven"
   ],
-  "noise_phrases": [
-    "cold war",
-    "gears of war",
-    "video game",
-    "gaming",
-    "xbox",
-    "playstation",
-    "nintendo",
-    "movie",
-    "film",
-    "tv series",
-    "netflix",
-    "box office",
-    "celebrity",
-    "nfl",
-    "nba",
-    "mlb",
-    "nhl",
-    "soccer",
-    "football",
-    "election ad",
-    "war on drugs",
-    "price war",
-    "trade war"
+  "EQUITY": [
+   "stocks",
+   "wall street",
+   "s&p",
+   "nasdaq",
+   "dow",
+   "equities",
+   "selloff",
+   "sell-off",
+   "recession",
+   "earnings"
+  ],
+  "CRYPTO": [
+   "bitcoin",
+   "btc",
+   "ethereum",
+   "crypto",
+   "stablecoin",
+   "etf"
+  ],
+  "MACRO": [
+   "fed",
+   "federal reserve",
+   "ecb",
+   "inflation",
+   "rate",
+   "treasury",
+   "yields",
+   "dollar"
   ]
+ },
+ "prediction_keywords": [
+  "war",
+  "iran",
+  "israel",
+  "strike",
+  "ceasefire",
+  "oil",
+  "fed ",
+  "recession",
+  "invade",
+  "invasion",
+  "taiwan",
+  "china",
+  "default",
+  "rate cut",
+  "rate hike",
+  "russia",
+  "ukraine",
+  "hormuz",
+  "opec"
+ ],
+ "geo_words": [
+  "iran",
+  "israel",
+  "gaza",
+  "hormuz",
+  "russia",
+  "ukraine",
+  "china",
+  "taiwan",
+  "korea",
+  "nato",
+  "gulf",
+  "saudi",
+  "opec",
+  "pentagon",
+  "kremlin",
+  "tehran",
+  "moscow",
+  "syria",
+  "yemen",
+  "houthi",
+  "hezbollah",
+  "tanker",
+  "pipeline",
+  "sanctions",
+  "embargo",
+  "blockade",
+  "troops",
+  "naval",
+  "navy"
+ ],
+ "noise_phrases": [
+  "cold war",
+  "gears of war",
+  "video game",
+  "gaming",
+  "xbox",
+  "playstation",
+  "nintendo",
+  "movie",
+  "film",
+  "tv series",
+  "netflix",
+  "box office",
+  "celebrity",
+  "nfl",
+  "nba",
+  "mlb",
+  "nhl",
+  "soccer",
+  "football",
+  "election ad",
+  "war on drugs",
+  "price war",
+  "trade war"
+ ],
+ "prediction_exclude": [
+  "counter-strike",
+  "esports",
+  "e-sports",
+  "league of legends",
+  "dota",
+  "valorant",
+  "overwatch",
+  "fortnite",
+  "nba",
+  "nfl",
+  "nhl",
+  "mlb",
+  "ufc",
+  "premier league",
+  "champions league",
+  "la liga",
+  "serie a",
+  "bundesliga",
+  "world cup",
+  "grand prix",
+  "tennis",
+  "golf",
+  "boxing",
+  "map 1",
+  "map 2",
+  "map 3",
+  "game 1",
+  "game 2",
+  "game 3",
+  "iem ",
+  "blast ",
+  "esl "
+ ],
+ "_prediction_note": "2026-11-23: kljucne reci trzista predvidjanja se traze kao cele reci; prediction_exclude i obrazac 'vs'/'BO3' izbacuju sportske i e-sport meceve (pre toga je 'strike' hvatao Counter-Strike)."
 }

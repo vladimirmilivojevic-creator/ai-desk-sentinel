@@ -134,6 +134,22 @@ class TierTests(unittest.TestCase):
         self.assertEqual(scoring.prediction_signal(mk, hist, NOW, CFG, Q), [])
 
 
+class PredictionRelevanceTests(unittest.TestCase):
+    def test_esports_and_sports_matches_are_not_macro(self):
+        Qx = Q  # config/queries.json vec ima prediction_exclude
+        for txt in ("Counter-Strike: Natus Vincere vs Team Falcons (BO3) - IEM Beijing Group A", "Counter-Strike: FURIA vs Natus Vincere - Map 2 Winner",
+                    "Will the Lakers beat the Celtics?", "Strike Force vs Oil Kings"):
+            self.assertFalse(scoring.prediction_relevant(txt, Qx), txt)
+        for txt in ("Will Iran close Hormuz?", "US strike on Iran by December 31?", "Fed rate cut in December?", "Will OPEC cut production?"):
+            self.assertTrue(scoring.prediction_relevant(txt, Qx), txt)
+        self.assertFalse(scoring.prediction_relevant("Will the oilers win?", Qx))  # 'oil' samo kao cela rec
+
+    def test_esports_mover_never_reaches_signal(self):
+        hist = {"9": [[NOW - 3000, 0.30]]}
+        mk = [{"id": "9", "q": "Counter-Strike: Legacy vs B8 (BO3) - IEM Beijing Group A", "p": 0.80, "vol24": 900000.0}]
+        self.assertEqual(scoring.prediction_signal(mk, hist, NOW, CFG, Q), [])
+
+
 class HeadlineCalibrationTests(unittest.TestCase):
     def test_entertainment_and_noise_are_ignored(self):
         items = [news("Gears of War: E-Day - Surviving the First Night of war", "XBOX Wire"),

@@ -179,14 +179,25 @@ def official_signal(items, now, cfg, q):
     return hits
 
 
+def prediction_relevant(question, q):
+    """Da li je trziste predvidjanja makro/geo tema. Kljucne reci se traze kao CELE reci (2026-11-23: 'strike' je hvatao 'Counter-Strike'
+    e-sport utakmice, koje su onda budile porodicu M i podizale alarm teme), a pitanja sportskih i e-sport meceva se odbacuju."""
+    import re
+    ql = " " + re.sub(r"[^a-z0-9 ]+", " ", (question or "").lower()) + " "
+    raw = (question or "").lower()
+    if any(x in raw for x in q.get("prediction_exclude", [])):
+        return False
+    if re.search(r"\bvs\.?\b|\bbo[1357]\b", raw):  # mecevi: 'A vs B', 'BO3'
+        return False
+    return any((" %s " % k.strip()) in ql for k in q["prediction_keywords"])
+
+
 def prediction_signal(markets, hist, now, cfg, q):
     """Azurira istoriju (hist se menja) i vraca trzista sa pomakom >= min_delta za ~ref_min minuta."""
     pc = cfg["prediction"]
-    kws = q["prediction_keywords"]
     movers = []
     for m in markets:
-        ql = m["q"].lower() + " "
-        if not any(k in ql for k in kws):
+        if not prediction_relevant(m["q"], q):
             continue
         h = hist.setdefault(m["id"], [])
         h.append([now, m["p"]])
