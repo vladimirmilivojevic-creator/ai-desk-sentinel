@@ -1,7 +1,7 @@
 {
  "note": "Presuda uvoza predloga AI-ja (desk/explorer/candidates.json u ai-desk). 'u laboratoriji' = meri se unapred svakog sata pod navedenim id-jem (lab/stats.json); 'odbijeno' = nije uvezeno, razlog je naveden. Predlog bez porodice (family null) trazi novu porodicu pravila ili motor rukavaca: odluka coveka.",
  "in_lab": 6,
- "rejected": 22,
+ "rejected": 23,
  "ideas": [
   {
    "date": "2026-10-07",
@@ -299,6 +299,19 @@
     "signal": "trend_vol_target",
     "universe": "top20_by_volume",
     "long_only": false
+   },
+   "status": "odbijeno",
+   "reason": "porodica null (traži novu porodicu: odluka čoveka)"
+  },
+  {
+   "date": "2026-11-23",
+   "family": null,
+   "params": {
+    "signal": "xs_momentum_weekly",
+    "lookback_days": 14,
+    "hold_days": 7,
+    "universe": "top12_by_volume_point_in_time",
+    "long_only": true
    },
    "status": "odbijeno",
    "reason": "porodica null (traži novu porodicu: odluka čoveka)"
