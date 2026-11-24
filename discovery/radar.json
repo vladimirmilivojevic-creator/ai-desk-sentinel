@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-23T08:12:44Z",
+ "generated_utc": "2026-11-24T09:12:59Z",
  "rules": [
   {
    "rule": "alts:LOWVOL:4w:long",
@@ -294,6 +294,15 @@
    "hold_hours": 672,
    "picks": [
     {
+     "ticker": "STRKUSDT",
+     "symbol": "STRK",
+     "score": -0.506404,
+     "px": 0.0428,
+     "atr_pct": 10.96,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
+    },
+    {
      "ticker": "WLDUSDT",
      "symbol": "WLD",
      "score": -0.332993,
@@ -303,20 +312,11 @@
      "tp_pct": 36.0
     },
     {
-     "ticker": "FETUSDT",
-     "symbol": "FET",
-     "score": -0.244517,
-     "px": 0.1619,
-     "atr_pct": 7.36,
-     "stop_pct": 12.0,
-     "tp_pct": 36.0
-    },
-    {
-     "ticker": "INJUSDT",
-     "symbol": "INJ",
-     "score": -0.197027,
-     "px": 7.185,
-     "atr_pct": 8.78,
+     "ticker": "APTUSDT",
+     "symbol": "APT",
+     "score": -0.258889,
+     "px": 0.6295,
+     "atr_pct": 8.53,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
@@ -714,6 +714,15 @@
    "hold_hours": 672,
    "picks": [
     {
+     "ticker": "STRKUSDT",
+     "symbol": "STRK",
+     "score": -0.126719,
+     "px": 0.0428,
+     "atr_pct": 10.96,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
+    },
+    {
      "ticker": "ARBUSDT",
      "symbol": "ARB",
      "score": -0.078286,
@@ -728,15 +737,6 @@
      "score": -0.074855,
      "px": 4.289,
      "atr_pct": 9.54,
-     "stop_pct": 12.0,
-     "tp_pct": 36.0
-    },
-    {
-     "ticker": "PUMPUSDT",
-     "symbol": "PUMP",
-     "score": -0.069713,
-     "px": 0.0042,
-     "atr_pct": 10.13,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
