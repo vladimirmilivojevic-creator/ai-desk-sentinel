@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-25T09:08:19Z",
+ "generated_utc": "2026-11-25T13:18:44Z",
  "rules": [
   {
    "rule": "alts:LOWVOL:4w:long",
@@ -66,9 +66,9 @@
     "stress_mean": 1.8856,
     "abs_mean": 4.7478,
     "fdr": true,
-    "exec_n": 0,
-    "exec_mean": null,
-    "exec_t": null
+    "exec_n": 5,
+    "exec_mean": -9.1671,
+    "exec_t": -1.5
    }
   },
   {
@@ -125,20 +125,20 @@
    },
    "study": {
     "n": 323,
-    "mean": 1.5635,
-    "median": 1.6532,
-    "mean_ex_best": 1.4873,
-    "t": 5.48,
+    "mean": 1.567,
+    "median": 1.6797,
+    "mean_ex_best": 1.4908,
+    "t": 5.49,
     "p": 0.0,
-    "t_train": 3.67,
-    "t_test": 4.39,
-    "recent_mean": 2.8182,
-    "stress_mean": 1.2935,
-    "abs_mean": 1.6019,
+    "t_train": 3.55,
+    "t_test": 4.61,
+    "recent_mean": 2.8013,
+    "stress_mean": 1.297,
+    "abs_mean": 1.6493,
     "fdr": true,
-    "exec_n": 321,
-    "exec_mean": 0.3388,
-    "exec_t": 1.0
+    "exec_n": 310,
+    "exec_mean": 0.449,
+    "exec_t": 1.4
    }
   },
   {
@@ -206,9 +206,9 @@
     "stress_mean": 1.5276,
     "abs_mean": 1.6407,
     "fdr": true,
-    "exec_n": 160,
-    "exec_mean": 0.4565,
-    "exec_t": 0.54
+    "exec_n": 154,
+    "exec_mean": 0.3449,
+    "exec_t": 0.47
    }
   },
   {
@@ -276,9 +276,9 @@
     "stress_mean": 2.9764,
     "abs_mean": 3.4032,
     "fdr": true,
-    "exec_n": 160,
-    "exec_mean": 0.4196,
-    "exec_t": 0.5
+    "exec_n": 154,
+    "exec_mean": 0.4038,
+    "exec_t": 0.49
    }
   },
   {
@@ -346,9 +346,9 @@
     "stress_mean": 4.8602,
     "abs_mean": 4.6018,
     "fdr": true,
-    "exec_n": 79,
-    "exec_mean": 1.7745,
-    "exec_t": 1.25
+    "exec_n": 76,
+    "exec_mean": 2.3456,
+    "exec_t": 1.77
    }
   },
   {
@@ -404,21 +404,21 @@
     "pending": 1
    },
    "study": {
-    "n": 318,
-    "mean": 0.5482,
-    "median": 0.5916,
-    "mean_ex_best": 0.4665,
-    "t": 2.01,
-    "p": 0.04443,
-    "t_train": 0.7,
-    "t_test": 2.52,
-    "recent_mean": 0.9503,
-    "stress_mean": 0.2782,
-    "abs_mean": 0.6025,
+    "n": 319,
+    "mean": 0.5529,
+    "median": 0.5967,
+    "mean_ex_best": 0.4715,
+    "t": 2.04,
+    "p": 0.04135,
+    "t_train": 0.74,
+    "t_test": 2.5,
+    "recent_mean": 0.9789,
+    "stress_mean": 0.2829,
+    "abs_mean": 0.5797,
     "fdr": false,
-    "exec_n": 312,
-    "exec_mean": -0.4012,
-    "exec_t": -1.14
+    "exec_n": 306,
+    "exec_mean": -0.3581,
+    "exec_t": -1.13
    }
   },
   {
@@ -474,21 +474,21 @@
     "pending": 1
    },
    "study": {
-    "n": 318,
-    "mean": 1.4176,
-    "median": 1.6011,
-    "mean_ex_best": 1.3492,
-    "t": 3.61,
-    "p": 0.00031,
-    "t_train": 1.59,
-    "t_test": 4.57,
-    "recent_mean": 4.3031,
-    "stress_mean": 1.1476,
-    "abs_mean": 1.3633,
+    "n": 319,
+    "mean": 1.4117,
+    "median": 1.593,
+    "mean_ex_best": 1.3436,
+    "t": 3.6,
+    "p": 0.00032,
+    "t_train": 1.57,
+    "t_test": 4.62,
+    "recent_mean": 4.1779,
+    "stress_mean": 1.1417,
+    "abs_mean": 1.3848,
     "fdr": true,
-    "exec_n": 312,
-    "exec_mean": -0.4018,
-    "exec_t": -0.89
+    "exec_n": 306,
+    "exec_mean": -0.151,
+    "exec_t": -0.34
    }
   },
   {
@@ -556,9 +556,9 @@
     "stress_mean": 1.0207,
     "abs_mean": 1.4132,
     "fdr": true,
-    "exec_n": 156,
-    "exec_mean": -0.5125,
-    "exec_t": -0.7
+    "exec_n": 152,
+    "exec_mean": -0.5636,
+    "exec_t": -0.87
    }
   },
   {
@@ -626,9 +626,9 @@
     "stress_mean": 3.2418,
     "abs_mean": 3.3892,
     "fdr": true,
-    "exec_n": 156,
-    "exec_mean": -0.4497,
-    "exec_t": -0.41
+    "exec_n": 152,
+    "exec_mean": -0.2007,
+    "exec_t": -0.18
    }
   },
   {
@@ -696,9 +696,9 @@
     "stress_mean": 2.688,
     "abs_mean": 4.1551,
     "fdr": true,
-    "exec_n": 77,
-    "exec_mean": 0.1767,
-    "exec_t": 0.08
+    "exec_n": 75,
+    "exec_mean": -0.2224,
+    "exec_t": -0.12
    }
   },
   {
@@ -766,9 +766,9 @@
     "stress_mean": 4.1397,
     "abs_mean": 3.2126,
     "fdr": true,
-    "exec_n": 77,
-    "exec_mean": -2.086,
-    "exec_t": -0.85
+    "exec_n": 75,
+    "exec_mean": -1.0324,
+    "exec_t": -0.47
    }
   }
  ]
