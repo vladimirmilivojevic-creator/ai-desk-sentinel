@@ -1,5 +1,5 @@
 {
- "updated_utc": "2026-11-25T13:18:44Z",
+ "updated_utc": "2026-11-26T08:53:13Z",
  "rules": {
   "stocks:SPIKE_UP:10d:long": {
    "universe": "stocks",
@@ -911,7 +911,7 @@
     "mean_ex_best": 2.6809,
     "sim_n": 7,
     "sim_mean": -1.0021,
-    "pending": 0
+    "pending": 1
    }
   },
   "alts:SPIKE_UP:7d:short": {
@@ -977,7 +977,7 @@
     "mean_ex_best": 0.831,
     "sim_n": 7,
     "sim_mean": 1.1767,
-    "pending": 0
+    "pending": 1
    }
   },
   "alts:SPIKE_DN:7d:short": {

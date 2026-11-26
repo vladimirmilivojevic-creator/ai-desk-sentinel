@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-25T13:18:44Z",
+ "generated_utc": "2026-11-26T08:53:13Z",
  "rules": [
   {
    "rule": "alts:LOWVOL:4w:long",
@@ -13,15 +13,6 @@
    "valid_until_utc": "2026-11-03T06:00:00Z",
    "hold_hours": 672,
    "picks": [
-    {
-     "ticker": "WLFIUSDT",
-     "symbol": "WLFI",
-     "score": -0.020116,
-     "px": 0.0499,
-     "atr_pct": 4.08,
-     "stop_pct": 10.2,
-     "tp_pct": 30.6
-    },
     {
      "ticker": "SHIBUSDT",
      "symbol": "kSHIB",
@@ -37,6 +28,15 @@
      "score": -0.031872,
      "px": 1.217,
      "atr_pct": 5.04,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
+    },
+    {
+     "ticker": "CRVUSDT",
+     "symbol": "CRV",
+     "score": -0.044135,
+     "px": 0.2793,
+     "atr_pct": 8.74,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
@@ -69,6 +69,110 @@
     "exec_n": 5,
     "exec_mean": -9.1671,
     "exec_t": -1.5
+   }
+  },
+  {
+   "rule": "alts:SPIKE_UP:3d:short",
+   "status": "kandidat",
+   "universe": "alts",
+   "family": "SPIKE_UP",
+   "kind": "event",
+   "side": "short",
+   "signal_date": "2026-11-25",
+   "valid_from_utc": "2026-11-26T00:00:00Z",
+   "valid_until_utc": "2026-11-27T06:00:00Z",
+   "hold_hours": 72,
+   "picks": [
+    {
+     "ticker": "BLURUSDT",
+     "symbol": "BLUR",
+     "score": 5.3891,
+     "px": 0.0109,
+     "atr_pct": 8.88,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
+    }
+   ],
+   "forward": {
+    "n": 7,
+    "mean": 5.4977,
+    "t": 1.15,
+    "abs_mean": 10.2011,
+    "stress_mean": 5.2277,
+    "median": 6.4375,
+    "mean_ex_best": 2.6809,
+    "sim_n": 7,
+    "sim_mean": -1.0021,
+    "pending": 1
+   },
+   "study": {
+    "n": 322,
+    "mean": 1.9033,
+    "median": 2.7414,
+    "mean_ex_best": 1.7947,
+    "t": 3.97,
+    "p": 7e-05,
+    "t_train": 4.79,
+    "t_test": 1.08,
+    "recent_mean": 4.0392,
+    "stress_mean": 1.6333,
+    "abs_mean": 2.3457,
+    "fdr": true,
+    "exec_n": 16,
+    "exec_mean": 0.6348,
+    "exec_t": 0.32
+   }
+  },
+  {
+   "rule": "alts:SPIKE_UP:7d:short",
+   "status": "kandidat",
+   "universe": "alts",
+   "family": "SPIKE_UP",
+   "kind": "event",
+   "side": "short",
+   "signal_date": "2026-11-25",
+   "valid_from_utc": "2026-11-26T00:00:00Z",
+   "valid_until_utc": "2026-11-27T06:00:00Z",
+   "hold_hours": 168,
+   "picks": [
+    {
+     "ticker": "BLURUSDT",
+     "symbol": "BLUR",
+     "score": 5.3891,
+     "px": 0.0109,
+     "atr_pct": 8.88,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
+    }
+   ],
+   "forward": {
+    "n": 7,
+    "mean": 4.0526,
+    "t": 0.82,
+    "abs_mean": 12.6006,
+    "stress_mean": 3.7826,
+    "median": 2.7765,
+    "mean_ex_best": 0.831,
+    "sim_n": 7,
+    "sim_mean": 1.1767,
+    "pending": 1
+   },
+   "study": {
+    "n": 321,
+    "mean": 1.9564,
+    "median": 3.6439,
+    "mean_ex_best": 1.8269,
+    "t": 3.2,
+    "p": 0.00137,
+    "t_train": 2.45,
+    "t_test": 2.06,
+    "recent_mean": 5.9416,
+    "stress_mean": 1.6864,
+    "abs_mean": 2.2834,
+    "fdr": true,
+    "exec_n": 16,
+    "exec_mean": 1.233,
+    "exec_t": 0.35
    }
   },
   {
@@ -154,6 +258,15 @@
    "hold_hours": 336,
    "picks": [
     {
+     "ticker": "TRXUSDT",
+     "symbol": "TRX",
+     "score": -0.133371,
+     "px": 0.3054,
+     "atr_pct": 1.32,
+     "stop_pct": 3.31,
+     "tp_pct": 9.93
+    },
+    {
      "ticker": "GRAMUSDT",
      "symbol": "GRAM",
      "score": -0.135266,
@@ -168,15 +281,6 @@
      "score": -0.157286,
      "px": 6.992,
      "atr_pct": 10.52,
-     "stop_pct": 12.0,
-     "tp_pct": 36.0
-    },
-    {
-     "ticker": "AVAXUSDT",
-     "symbol": "AVAX",
-     "score": -0.188208,
-     "px": 7.311,
-     "atr_pct": 8.65,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
@@ -294,6 +398,15 @@
    "hold_hours": 672,
    "picks": [
     {
+     "ticker": "STRKUSDT",
+     "symbol": "STRK",
+     "score": -0.506404,
+     "px": 0.0428,
+     "atr_pct": 10.96,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
+    },
+    {
      "ticker": "WLDUSDT",
      "symbol": "WLD",
      "score": -0.332993,
@@ -308,15 +421,6 @@
      "score": -0.244517,
      "px": 0.1619,
      "atr_pct": 7.36,
-     "stop_pct": 12.0,
-     "tp_pct": 36.0
-    },
-    {
-     "ticker": "INJUSDT",
-     "symbol": "INJ",
-     "score": -0.197027,
-     "px": 7.185,
-     "atr_pct": 8.78,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
@@ -364,6 +468,15 @@
    "hold_hours": 168,
    "picks": [
     {
+     "ticker": "TRXUSDT",
+     "symbol": "TRX",
+     "score": -0.017666,
+     "px": 0.3057,
+     "atr_pct": 1.59,
+     "stop_pct": 3.97,
+     "tp_pct": 11.91
+    },
+    {
      "ticker": "BTCUSDT",
      "symbol": "BTC",
      "score": -0.0194,
@@ -378,15 +491,6 @@
      "score": -0.022862,
      "px": 559.59,
      "atr_pct": 5.33,
-     "stop_pct": 12.0,
-     "tp_pct": 36.0
-    },
-    {
-     "ticker": "ETHUSDT",
-     "symbol": "ETH",
-     "score": -0.026552,
-     "px": 1724.33,
-     "atr_pct": 6.73,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
@@ -504,6 +608,15 @@
    "hold_hours": 336,
    "picks": [
     {
+     "ticker": "TRXUSDT",
+     "symbol": "TRX",
+     "score": -0.017383,
+     "px": 0.3054,
+     "atr_pct": 1.32,
+     "stop_pct": 3.31,
+     "tp_pct": 9.93
+    },
+    {
      "ticker": "BTCUSDT",
      "symbol": "BTC",
      "score": -0.021561,
@@ -520,15 +633,6 @@
      "atr_pct": 4.5,
      "stop_pct": 11.24,
      "tp_pct": 33.72
-    },
-    {
-     "ticker": "ETHUSDT",
-     "symbol": "ETH",
-     "score": -0.02688,
-     "px": 1835.35,
-     "atr_pct": 6.56,
-     "stop_pct": 12.0,
-     "tp_pct": 36.0
     }
    ],
    "forward": {
@@ -644,6 +748,15 @@
    "hold_hours": 672,
    "picks": [
     {
+     "ticker": "TRXUSDT",
+     "symbol": "TRX",
+     "score": -0.017375,
+     "px": 0.3132,
+     "atr_pct": 3.36,
+     "stop_pct": 8.4,
+     "tp_pct": 25.2
+    },
+    {
      "ticker": "BTCUSDT",
      "symbol": "BTC",
      "score": -0.018558,
@@ -660,15 +773,6 @@
      "atr_pct": 3.45,
      "stop_pct": 8.63,
      "tp_pct": 25.89
-    },
-    {
-     "ticker": "BNBUSDT",
-     "symbol": "BNB",
-     "score": -0.021681,
-     "px": 712.69,
-     "atr_pct": 3.28,
-     "stop_pct": 8.19,
-     "tp_pct": 24.57
     }
    ],
    "forward": {
@@ -714,6 +818,15 @@
    "hold_hours": 672,
    "picks": [
     {
+     "ticker": "STRKUSDT",
+     "symbol": "STRK",
+     "score": -0.126719,
+     "px": 0.0428,
+     "atr_pct": 10.96,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
+    },
+    {
      "ticker": "ARBUSDT",
      "symbol": "ARB",
      "score": -0.078286,
@@ -728,15 +841,6 @@
      "score": -0.074855,
      "px": 4.289,
      "atr_pct": 9.54,
-     "stop_pct": 12.0,
-     "tp_pct": 36.0
-    },
-    {
-     "ticker": "PUMPUSDT",
-     "symbol": "PUMP",
-     "score": -0.069713,
-     "px": 0.0042,
-     "atr_pct": 10.13,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
