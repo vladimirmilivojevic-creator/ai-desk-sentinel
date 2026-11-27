@@ -1,413 +1,389 @@
 {
- "generated_utc": "2026-11-26T08:53:13Z",
+ "generated_utc": "2026-11-27T09:04:03Z",
  "universes": {
   "stocks": [
    {
     "sym": "xyz:TSLA",
     "yahoo": "TSLA",
-    "vol24": 44182723.0,
+    "vol24": 23196131.0,
     "bars": 1506
    },
    {
     "sym": "xyz:NVDA",
     "yahoo": "NVDA",
-    "vol24": 467273937.0,
+    "vol24": 178331826.0,
     "bars": 1506
    },
    {
     "sym": "xyz:HOOD",
     "yahoo": "HOOD",
-    "vol24": 7436294.0,
+    "vol24": 1501438.0,
     "bars": 1339
    },
    {
     "sym": "xyz:INTC",
     "yahoo": "INTC",
-    "vol24": 31098013.0,
+    "vol24": 8572722.0,
     "bars": 1506
    },
    {
     "sym": "xyz:PLTR",
     "yahoo": "PLTR",
-    "vol24": 3659589.0,
+    "vol24": 2614979.0,
     "bars": 1506
    },
    {
     "sym": "xyz:COIN",
     "yahoo": "COIN",
-    "vol24": 7425274.0,
+    "vol24": 2785311.0,
     "bars": 1413
    },
    {
     "sym": "xyz:META",
     "yahoo": "META",
-    "vol24": 31000069.0,
+    "vol24": 11551614.0,
     "bars": 1506
    },
    {
     "sym": "xyz:AAPL",
     "yahoo": "AAPL",
-    "vol24": 65804569.0,
+    "vol24": 16212280.0,
     "bars": 1506
    },
    {
     "sym": "xyz:MSFT",
     "yahoo": "MSFT",
-    "vol24": 14784615.0,
+    "vol24": 6536311.0,
     "bars": 1506
    },
    {
     "sym": "xyz:ORCL",
     "yahoo": "ORCL",
-    "vol24": 7321364.0,
+    "vol24": 2929139.0,
     "bars": 1506
    },
    {
     "sym": "xyz:GOOGL",
     "yahoo": "GOOGL",
-    "vol24": 93279871.0,
+    "vol24": 36428244.0,
     "bars": 1506
    },
    {
     "sym": "xyz:AMZN",
     "yahoo": "AMZN",
-    "vol24": 14172355.0,
+    "vol24": 6677267.0,
     "bars": 1506
    },
    {
     "sym": "xyz:AMD",
     "yahoo": "AMD",
-    "vol24": 38455974.0,
+    "vol24": 29555557.0,
     "bars": 1506
    },
    {
     "sym": "xyz:MU",
     "yahoo": "MU",
-    "vol24": 204749503.0,
+    "vol24": 88847899.0,
     "bars": 1506
    },
    {
     "sym": "xyz:MSTR",
     "yahoo": "MSTR",
-    "vol24": 20294719.0,
+    "vol24": 13285266.0,
     "bars": 1506
    },
    {
     "sym": "xyz:NFLX",
     "yahoo": "NFLX",
-    "vol24": 3673079.0,
+    "vol24": 768677.0,
     "bars": 1506
    },
    {
     "sym": "xyz:COST",
     "yahoo": "COST",
-    "vol24": 3040416.0,
+    "vol24": 700871.0,
     "bars": 1506
    },
    {
     "sym": "xyz:LLY",
     "yahoo": "LLY",
-    "vol24": 2714123.0,
+    "vol24": 597858.0,
     "bars": 1506
    },
    {
     "sym": "xyz:TSM",
     "yahoo": "TSM",
-    "vol24": 7785107.0,
+    "vol24": 3995304.0,
     "bars": 1506
    },
    {
     "sym": "xyz:RIVN",
     "yahoo": "RIVN",
-    "vol24": 185039.0,
+    "vol24": 46627.0,
     "bars": 1266
    },
    {
     "sym": "xyz:BABA",
     "yahoo": "BABA",
-    "vol24": 2057673.0,
+    "vol24": 3228718.0,
     "bars": 1506
    },
    {
     "sym": "xyz:USAR",
     "yahoo": "USAR",
-    "vol24": 2163236.0,
+    "vol24": 572630.0,
     "bars": 846
    },
    {
     "sym": "xyz:CRWV",
     "yahoo": "CRWV",
-    "vol24": 15236521.0,
+    "vol24": 3817137.0,
     "bars": 419
    },
    {
     "sym": "xyz:URNM",
     "yahoo": "URNM",
-    "vol24": 146829.0,
+    "vol24": 50483.0,
     "bars": 1506
    },
    {
     "sym": "xyz:GME",
     "yahoo": "GME",
-    "vol24": 1985001.0,
+    "vol24": 281240.0,
     "bars": 1506
    },
    {
     "sym": "xyz:EWY",
     "yahoo": "EWY",
-    "vol24": 37891096.0,
+    "vol24": 26119331.0,
     "bars": 1506
    },
    {
     "sym": "xyz:EWJ",
     "yahoo": "EWJ",
-    "vol24": 780590.0,
+    "vol24": 189019.0,
     "bars": 1506
    },
    {
     "sym": "xyz:HIMS",
     "yahoo": "HIMS",
-    "vol24": 1003891.0,
+    "vol24": 243446.0,
     "bars": 1506
    },
    {
     "sym": "xyz:LITE",
     "yahoo": "LITE",
-    "vol24": 5161181.0,
+    "vol24": 1265616.0,
     "bars": 1506
    },
    {
     "sym": "xyz:XLE",
     "yahoo": "XLE",
-    "vol24": 306303.0,
+    "vol24": 158151.0,
     "bars": 1506
    },
    {
     "sym": "xyz:BX",
     "yahoo": "BX",
-    "vol24": 326804.0,
+    "vol24": 16964.0,
     "bars": 1506
    },
    {
     "sym": "xyz:MRVL",
     "yahoo": "MRVL",
-    "vol24": 11353314.0,
+    "vol24": 4604311.0,
     "bars": 1506
    },
    {
     "sym": "xyz:RKLB",
     "yahoo": "RKLB",
-    "vol24": 10572839.0,
+    "vol24": 2016732.0,
     "bars": 1506
    },
    {
     "sym": "xyz:EWZ",
     "yahoo": "EWZ",
-    "vol24": 2974729.0,
+    "vol24": 4961742.0,
     "bars": 1506
    },
    {
     "sym": "xyz:ZM",
     "yahoo": "ZM",
-    "vol24": 258241.0,
+    "vol24": 24409.0,
     "bars": 1506
    },
    {
     "sym": "xyz:EBAY",
     "yahoo": "EBAY",
-    "vol24": 295646.0,
+    "vol24": 15527.0,
     "bars": 1506
    },
    {
     "sym": "xyz:ARM",
     "yahoo": "ARM",
-    "vol24": 8287749.0,
+    "vol24": 1732388.0,
     "bars": 804
    },
    {
     "sym": "xyz:EWT",
     "yahoo": "EWT",
-    "vol24": 750494.0,
+    "vol24": 210593.0,
     "bars": 1506
    },
    {
     "sym": "xyz:ASML",
     "yahoo": "ASML",
-    "vol24": 1029740.0,
+    "vol24": 2212564.0,
     "bars": 1506
    },
    {
     "sym": "xyz:BB",
     "yahoo": "BB",
-    "vol24": 2222293.0,
+    "vol24": 611726.0,
     "bars": 1506
    },
    {
     "sym": "xyz:DELL",
     "yahoo": "DELL",
-    "vol24": 21278256.0,
+    "vol24": 2609088.0,
     "bars": 1506
    },
    {
     "sym": "xyz:IBM",
     "yahoo": "IBM",
-    "vol24": 4370241.0,
+    "vol24": 390101.0,
     "bars": 1506
    },
    {
     "sym": "xyz:AVGO",
     "yahoo": "AVGO",
-    "vol24": 4751794.0,
+    "vol24": 1625886.0,
     "bars": 1506
    },
    {
     "sym": "xyz:NOW",
     "yahoo": "NOW",
-    "vol24": 140835.0,
+    "vol24": 143351.0,
     "bars": 1506
    },
    {
     "sym": "xyz:NBIS",
     "yahoo": "NBIS",
-    "vol24": 65242815.0,
+    "vol24": 29307259.0,
     "bars": 527
    },
    {
     "sym": "xyz:WDC",
     "yahoo": "WDC",
-    "vol24": 2283062.0,
+    "vol24": 1381295.0,
     "bars": 1506
    },
    {
     "sym": "xyz:NOK",
     "yahoo": "NOK",
-    "vol24": 232332.0,
+    "vol24": 84864.0,
     "bars": 1506
    },
    {
     "sym": "xyz:SMH",
     "yahoo": "SMH",
-    "vol24": 1595631.0,
+    "vol24": 398467.0,
     "bars": 1506
    },
    {
     "sym": "xyz:BE",
     "yahoo": "BE",
-    "vol24": 5626394.0,
+    "vol24": 1281813.0,
     "bars": 1506
    },
    {
     "sym": "xyz:QCOM",
     "yahoo": "QCOM",
-    "vol24": 772567.0,
+    "vol24": 716728.0,
     "bars": 1506
    },
    {
     "sym": "xyz:AMAT",
     "yahoo": "AMAT",
-    "vol24": 1316414.0,
+    "vol24": 742902.0,
     "bars": 1506
-   },
-   {
-    "sym": "xyz:KSTR",
-    "yahoo": "KSTR",
-    "vol24": 147615.0,
-    "bars": 1463
    },
    {
     "sym": "xyz:GEV",
     "yahoo": "GEV",
-    "vol24": 156306.0,
+    "vol24": 90244.0,
     "bars": 670
-   },
-   {
-    "sym": "xyz:KORU",
-    "yahoo": "KORU",
-    "vol24": 38990909.0,
-    "bars": 1506
-   },
-   {
-    "sym": "xyz:SOXL",
-    "yahoo": "SOXL",
-    "vol24": 456042196.0,
-    "bars": 1506
    },
    {
     "sym": "xyz:IREN",
     "yahoo": "IREN",
-    "vol24": 11004360.0,
+    "vol24": 2587460.0,
     "bars": 1261
    },
    {
     "sym": "xyz:NET",
     "yahoo": "NET",
-    "vol24": 474077.0,
+    "vol24": 80593.0,
     "bars": 1506
    },
    {
     "sym": "xyz:CRWD",
     "yahoo": "CRWD",
-    "vol24": 1183699.0,
+    "vol24": 450990.0,
     "bars": 1506
    },
    {
     "sym": "xyz:RDDT",
     "yahoo": "RDDT",
-    "vol24": 335216.0,
+    "vol24": 226654.0,
     "bars": 674
    },
    {
     "sym": "xyz:AAOI",
     "yahoo": "AAOI",
-    "vol24": 2790628.0,
+    "vol24": 686036.0,
     "bars": 1506
    },
    {
     "sym": "xyz:MRNA",
     "yahoo": "MRNA",
-    "vol24": 5064392.0,
+    "vol24": 2107262.0,
     "bars": 1506
    },
    {
     "sym": "xyz:TLT",
     "yahoo": "TLT",
-    "vol24": 1274800.0,
+    "vol24": 331304.0,
     "bars": 1506
    },
    {
     "sym": "xyz:LRCX",
     "yahoo": "LRCX",
-    "vol24": 241822.0,
+    "vol24": 257573.0,
     "bars": 1506
    },
    {
     "sym": "xyz:GLW",
     "yahoo": "GLW",
-    "vol24": 90499.0,
+    "vol24": 22301.0,
     "bars": 1506
    },
    {
     "sym": "xyz:TTWO",
     "yahoo": "TTWO",
-    "vol24": 1908151.0,
+    "vol24": 832362.0,
     "bars": 1506
-   },
-   {
-    "sym": "xyz:MUU",
-    "yahoo": "MUU",
-    "vol24": 2054087.0,
-    "bars": 534
    },
    {
     "sym": "xyz:PANW",
     "yahoo": "PANW",
-    "vol24": 187135.0,
+    "vol24": 141970.0,
     "bars": 1506
    },
    {
     "sym": "xyz:TQQQ",
     "yahoo": "TQQQ",
-    "vol24": 485050.0,
+    "vol24": 191926.0,
     "bars": 1506
    }
   ],
@@ -416,7 +392,7 @@
     "sym": "AAVEUSDT",
     "ex": "AAVE",
     "tradable": true,
-    "bars": 2233
+    "bars": 2234
    },
    {
     "sym": "ADAUSDT",
@@ -428,24 +404,24 @@
     "sym": "ARBUSDT",
     "ex": "ARB",
     "tradable": true,
-    "bars": 1344
+    "bars": 1345
    },
    {
     "sym": "ASTERUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 416
+    "bars": 417
    },
    {
     "sym": "AVAXUSDT",
     "ex": "AVAX",
     "tradable": true,
-    "bars": 2256
+    "bars": 2257
    },
    {
     "sym": "BCHUSDT",
-    "ex": "BCH",
-    "tradable": true,
+    "ex": null,
+    "tradable": false,
     "bars": 2299
    },
    {
@@ -470,7 +446,7 @@
     "sym": "ENAUSDT",
     "ex": "ENA",
     "tradable": true,
-    "bars": 968
+    "bars": 969
    },
    {
     "sym": "ETHUSDT",
@@ -488,31 +464,31 @@
     "sym": "FILUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 2233
+    "bars": 2234
    },
    {
     "sym": "GRAMUSDT",
     "ex": "GRAM",
     "tradable": true,
-    "bars": 147
+    "bars": 148
    },
    {
     "sym": "HBARUSDT",
-    "ex": null,
-    "tradable": false,
+    "ex": "HBAR",
+    "tradable": true,
     "bars": 2299
    },
    {
     "sym": "INITUSDT",
-    "ex": null,
-    "tradable": false,
-    "bars": 581
+    "ex": "INIT",
+    "tradable": true,
+    "bars": 582
    },
    {
     "sym": "INJUSDT",
     "ex": "INJ",
     "tradable": true,
-    "bars": 2227
+    "bars": 2228
    },
    {
     "sym": "LINKUSDT",
@@ -530,19 +506,19 @@
     "sym": "MMTUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 387
+    "bars": 388
    },
    {
     "sym": "NEARUSDT",
     "ex": "NEAR",
     "tradable": true,
-    "bars": 2234
+    "bars": 2235
    },
    {
     "sym": "ONDOUSDT",
     "ex": "ONDO",
     "tradable": true,
-    "bars": 594
+    "bars": 595
    },
    {
     "sym": "ONEUSDT",
@@ -554,49 +530,49 @@
     "sym": "PEPEUSDT",
     "ex": "kPEPE",
     "tradable": true,
-    "bars": 1301
+    "bars": 1302
    },
    {
     "sym": "PUMPUSDT",
     "ex": "PUMP",
     "tradable": true,
-    "bars": 441
+    "bars": 442
    },
    {
     "sym": "QNTUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 1946
+    "bars": 1947
    },
    {
     "sym": "SOLUSDT",
     "ex": "SOL",
     "tradable": true,
-    "bars": 2298
+    "bars": 2299
    },
    {
     "sym": "SOXSBUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 120
+    "bars": 121
    },
    {
     "sym": "SUIUSDT",
     "ex": "SUI",
     "tradable": true,
-    "bars": 1303
+    "bars": 1304
    },
    {
     "sym": "TAOUSDT",
     "ex": "TAO",
     "tradable": true,
-    "bars": 959
+    "bars": 960
    },
    {
     "sym": "TRUMPUSDT",
     "ex": "TRUMP",
     "tradable": true,
-    "bars": 676
+    "bars": 677
    },
    {
     "sym": "TRXUSDT",
@@ -608,31 +584,31 @@
     "sym": "UNIUSDT",
     "ex": "UNI",
     "tradable": true,
-    "bars": 2261
+    "bars": 2262
    },
    {
     "sym": "WLDUSDT",
     "ex": "WLD",
     "tradable": true,
-    "bars": 1221
+    "bars": 1222
    },
    {
     "sym": "WLFIUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 451
+    "bars": 452
    },
    {
     "sym": "XLMUSDT",
-    "ex": "XLM",
-    "tradable": true,
+    "ex": null,
+    "tradable": false,
     "bars": 2299
    },
    {
     "sym": "XPLUSDT",
     "ex": "XPL",
     "tradable": true,
-    "bars": 427
+    "bars": 428
    },
    {
     "sym": "XRPUSDT",
@@ -650,7 +626,7 @@
     "sym": "ZROUSDT",
     "ex": "ZRO",
     "tradable": true,
-    "bars": 889
+    "bars": 890
    }
   ],
   "alts": [
@@ -658,37 +634,37 @@
     "sym": "0GUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 430
+    "bars": 431
    },
    {
     "sym": "ACEUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 1074
+    "bars": 1075
    },
    {
     "sym": "ACTUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 745
+    "bars": 746
    },
    {
     "sym": "AEROUSDT",
     "ex": "AERO",
     "tradable": true,
-    "bars": 132
+    "bars": 133
    },
    {
     "sym": "AIGENSYNUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 196
+    "bars": 197
    },
    {
     "sym": "AIUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 1057
+    "bars": 1058
    },
    {
     "sym": "ALGOUSDT",
@@ -700,25 +676,25 @@
     "sym": "ALTUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 1036
+    "bars": 1037
    },
    {
     "sym": "APEUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 1715
+    "bars": 1716
    },
    {
     "sym": "APTUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 1499
+    "bars": 1500
    },
    {
     "sym": "ARUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 2022
+    "bars": 2023
    },
    {
     "sym": "ATOMUSDT",
@@ -730,103 +706,97 @@
     "sym": "ATUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 364
+    "bars": 365
    },
    {
     "sym": "AVAUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 2193
+    "bars": 2194
    },
    {
     "sym": "BABYUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 595
-   },
-   {
-    "sym": "BANKUSDT",
-    "ex": null,
-    "tradable": false,
-    "bars": 378
+    "bars": 596
    },
    {
     "sym": "BARDUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 434
+    "bars": 435
    },
    {
     "sym": "BEAMXUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 1108
+    "bars": 1109
    },
    {
     "sym": "BERAUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 658
+    "bars": 659
    },
    {
     "sym": "BLURUSDT",
     "ex": "BLUR",
     "tradable": true,
-    "bars": 1098
+    "bars": 1099
    },
    {
     "sym": "BMTUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 618
+    "bars": 619
    },
    {
     "sym": "BONKUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 1077
+    "bars": 1078
    },
    {
     "sym": "BREVUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 324
+    "bars": 325
    },
    {
     "sym": "CAKEUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 2106
+    "bars": 2107
    },
    {
     "sym": "CELOUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 2151
+    "bars": 2152
    },
    {
     "sym": "CFGUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 255
+    "bars": 256
    },
    {
     "sym": "CHIPUSDT",
     "ex": "CHIP",
     "tradable": true,
-    "bars": 219
+    "bars": 220
    },
    {
     "sym": "CRVUSDT",
     "ex": "CRV",
     "tradable": true,
-    "bars": 2294
+    "bars": 2295
    },
    {
     "sym": "CYBERUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 1199
+    "bars": 1200
    },
    {
     "sym": "DASHUSDT",
@@ -838,31 +808,31 @@
     "sym": "DODOUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 2106
+    "bars": 2107
    },
    {
     "sym": "DOTUSDT",
     "ex": "DOT",
     "tradable": true,
-    "bars": 2291
+    "bars": 2292
    },
    {
     "sym": "EIGENUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 786
+    "bars": 787
    },
    {
     "sym": "ENSOUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 408
+    "bars": 409
    },
    {
     "sym": "ERAUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 497
+    "bars": 498
    },
    {
     "sym": "ETCUSDT",
@@ -874,49 +844,49 @@
     "sym": "ETHFIUSDT",
     "ex": "ETHFI",
     "tradable": true,
-    "bars": 983
+    "bars": 984
    },
    {
     "sym": "FFUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 423
+    "bars": 424
    },
    {
     "sym": "FLOKIUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 1301
+    "bars": 1302
    },
    {
     "sym": "GALAUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 1900
+    "bars": 1901
    },
    {
     "sym": "GIGGLEUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 397
+    "bars": 398
    },
    {
     "sym": "GTCUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 1995
+    "bars": 1996
    },
    {
     "sym": "HAEDALUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 554
+    "bars": 555
    },
    {
     "sym": "HMSTRUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 791
+    "bars": 792
    },
    {
     "sym": "HOTUSDT",
@@ -928,43 +898,43 @@
     "sym": "HUMAUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 549
+    "bars": 550
    },
    {
     "sym": "ICPUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 2025
+    "bars": 2026
    },
    {
     "sym": "INTWBUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 127
+    "bars": 128
    },
    {
     "sym": "JSTUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 2298
+    "bars": 2299
    },
    {
     "sym": "JTOUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 1085
+    "bars": 1086
    },
    {
     "sym": "JUPUSDT",
     "ex": "JUP",
     "tradable": true,
-    "bars": 1030
+    "bars": 1031
    },
    {
     "sym": "KATUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 253
+    "bars": 254
    },
    {
     "sym": "KAVAUSDT",
@@ -976,25 +946,25 @@
     "sym": "KERNELUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 591
+    "bars": 592
    },
    {
     "sym": "KITEUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 388
+    "bars": 389
    },
    {
     "sym": "LDOUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 1662
+    "bars": 1663
    },
    {
     "sym": "LISTAUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 889
+    "bars": 890
    },
    {
     "sym": "LSKUSDT",
@@ -1006,217 +976,223 @@
     "sym": "LUNCUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 1539
+    "bars": 1540
    },
    {
     "sym": "MANTRAUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 267
+    "bars": 268
    },
    {
     "sym": "MEGAUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 210
+    "bars": 211
    },
    {
     "sym": "METUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 378
+    "bars": 379
    },
    {
     "sym": "MITOUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 454
+    "bars": 455
    },
    {
     "sym": "MORPHOUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 419
+    "bars": 420
    },
    {
     "sym": "MUBARAKUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 609
+    "bars": 610
    },
    {
     "sym": "NIGHTUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 260
+    "bars": 261
    },
    {
     "sym": "NILUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 612
+    "bars": 613
    },
    {
     "sym": "OPGUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 188
+    "bars": 189
    },
    {
     "sym": "OPUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 1639
+    "bars": 1640
    },
    {
     "sym": "ORCAUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 720
+    "bars": 721
    },
    {
     "sym": "ORDIUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 1115
+    "bars": 1116
    },
    {
     "sym": "PARTIUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 611
+    "bars": 612
    },
    {
     "sym": "PENDLEUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 1242
+    "bars": 1243
    },
    {
     "sym": "PENGUUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 709
+    "bars": 710
    },
    {
     "sym": "PHAUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 1980
+    "bars": 1981
    },
    {
     "sym": "PLUMEUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 465
+    "bars": 466
    },
    {
     "sym": "POLUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 804
+    "bars": 805
    },
    {
     "sym": "PROMUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 1350
+    "bars": 1351
    },
    {
     "sym": "PYTHUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 1028
+    "bars": 1029
    },
    {
     "sym": "RAREUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 1872
+    "bars": 1873
    },
    {
     "sym": "RAYUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 1934
+    "bars": 1935
    },
    {
     "sym": "RENDERUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 853
-   },
-   {
-    "sym": "REZUSDT",
-    "ex": null,
-    "tradable": false,
-    "bars": 940
+    "bars": 854
    },
    {
     "sym": "RSRUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 2282
+    "bars": 2283
    },
    {
     "sym": "RUNEUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 2274
+    "bars": 2275
    },
    {
     "sym": "SAGAUSDT",
+    "ex": "SAGA",
+    "tradable": true,
+    "bars": 962
+   },
+   {
+    "sym": "SAHARAUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 961
+    "bars": 519
    },
    {
     "sym": "SANDUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 2295
+    "bars": 2296
    },
    {
     "sym": "SEIUSDT",
-    "ex": null,
-    "tradable": false,
-    "bars": 1199
+    "ex": "SEI",
+    "tradable": true,
+    "bars": 1200
    },
    {
     "sym": "SENTUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 308
+    "bars": 309
    },
    {
     "sym": "SHELLUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 637
+    "bars": 638
    },
    {
     "sym": "SHIBUSDT",
-    "ex": "kSHIB",
-    "tradable": true,
-    "bars": 2026
+    "ex": null,
+    "tradable": false,
+    "bars": 2027
    },
    {
     "sym": "SKYUSDT",
     "ex": "SKY",
     "tradable": true,
-    "bars": 435
+    "bars": 436
    },
    {
     "sym": "SOPHUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 547
+    "bars": 548
+   },
+   {
+    "sym": "SSVUSDT",
+    "ex": null,
+    "tradable": false,
+    "bars": 1372
    },
    {
     "sym": "STRKUSDT",
-    "ex": "STRK",
-    "tradable": true,
-    "bars": 1010
+    "ex": null,
+    "tradable": false,
+    "bars": 1011
    },
    {
     "sym": "STXUSDT",
@@ -1228,67 +1204,67 @@
     "sym": "SUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 679
+    "bars": 680
    },
    {
     "sym": "SYRUPUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 569
+    "bars": 570
    },
    {
     "sym": "TIAUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 1122
+    "bars": 1123
    },
    {
     "sym": "TSTUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 655
+    "bars": 656
    },
    {
     "sym": "TUTUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 609
+    "bars": 610
    },
    {
     "sym": "USUALUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 737
+    "bars": 738
    },
    {
     "sym": "VIRTUALUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 594
+    "bars": 595
    },
    {
     "sym": "WIFUSDT",
-    "ex": null,
-    "tradable": false,
-    "bars": 996
+    "ex": "WIF",
+    "tradable": true,
+    "bars": 997
    },
    {
     "sym": "WUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 967
+    "bars": 968
    },
    {
     "sym": "YBUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 407
+    "bars": 408
    },
    {
     "sym": "ZAMAUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 297
+    "bars": 298
    },
    {
     "sym": "ZENUSDT",
@@ -1306,13 +1282,13 @@
     "sym": "ZKCUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 437
+    "bars": 438
    },
    {
     "sym": "ZKUSDT",
     "ex": null,
     "tradable": false,
-    "bars": 892
+    "bars": 893
    }
   ],
   "commodities": [
