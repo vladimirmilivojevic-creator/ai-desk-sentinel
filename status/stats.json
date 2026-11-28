@@ -1,0 +1,428 @@
+{
+ "updated": "2026-11-28T18:55:24Z",
+ "open": 7,
+ "closed": 80,
+ "min_n": 10,
+ "stats": {
+  "EQUITY": {
+   "h4": {
+    "n": 40,
+    "mean_follow": 0.506,
+    "pos_share": 0.62,
+    "enough": true
+   },
+   "h24": {
+    "n": 40,
+    "mean_follow": 0.389,
+    "pos_share": 0.6,
+    "enough": true
+   },
+   "h72": {
+    "n": 38,
+    "mean_follow": 0.386,
+    "pos_share": 0.61,
+    "enough": true
+   }
+  },
+  "EQUITY|potvrdjeno": {
+   "h4": {
+    "n": 26,
+    "mean_follow": 0.413,
+    "pos_share": 0.58,
+    "enough": true
+   },
+   "h24": {
+    "n": 26,
+    "mean_follow": 0.544,
+    "pos_share": 0.62,
+    "enough": true
+   },
+   "h72": {
+    "n": 24,
+    "mean_follow": 0.975,
+    "pos_share": 0.67,
+    "enough": true
+   }
+  },
+  "EQUITY|sa vescu": {
+   "h4": {
+    "n": 16,
+    "mean_follow": 0.268,
+    "pos_share": 0.56,
+    "enough": true
+   },
+   "h24": {
+    "n": 16,
+    "mean_follow": 0.397,
+    "pos_share": 0.5,
+    "enough": true
+   },
+   "h72": {
+    "n": 16,
+    "mean_follow": 0.485,
+    "pos_share": 0.56,
+    "enough": true
+   }
+  },
+  "SVE|sa vescu": {
+   "h4": {
+    "n": 28,
+    "mean_follow": -0.037,
+    "pos_share": 0.43,
+    "enough": true
+   },
+   "h24": {
+    "n": 28,
+    "mean_follow": 0.521,
+    "pos_share": 0.57,
+    "enough": true
+   },
+   "h72": {
+    "n": 28,
+    "mean_follow": 0.767,
+    "pos_share": 0.61,
+    "enough": true
+   }
+  },
+  "SVE": {
+   "h4": {
+    "n": 87,
+    "mean_follow": 0.079,
+    "pos_share": 0.51,
+    "enough": true
+   },
+   "h24": {
+    "n": 87,
+    "mean_follow": 0.143,
+    "pos_share": 0.56,
+    "enough": true
+   },
+   "h72": {
+    "n": 80,
+    "mean_follow": -0.247,
+    "pos_share": 0.53,
+    "enough": true
+   }
+  },
+  "GOLD": {
+   "h4": {
+    "n": 17,
+    "mean_follow": -0.088,
+    "pos_share": 0.35,
+    "enough": true
+   },
+   "h24": {
+    "n": 17,
+    "mean_follow": 0.506,
+    "pos_share": 0.59,
+    "enough": true
+   },
+   "h72": {
+    "n": 14,
+    "mean_follow": -0.154,
+    "pos_share": 0.43,
+    "enough": true
+   }
+  },
+  "GOLD|potvrdjeno": {
+   "h4": {
+    "n": 12,
+    "mean_follow": -0.363,
+    "pos_share": 0.25,
+    "enough": true
+   },
+   "h24": {
+    "n": 12,
+    "mean_follow": 0.296,
+    "pos_share": 0.5,
+    "enough": true
+   },
+   "h72": {
+    "n": 10,
+    "mean_follow": -0.538,
+    "pos_share": 0.4,
+    "enough": true
+   }
+  },
+  "GOLD|bez vesti": {
+   "h4": {
+    "n": 11,
+    "mean_follow": 0.195,
+    "pos_share": 0.55,
+    "enough": true
+   },
+   "h24": {
+    "n": 11,
+    "mean_follow": 0.946,
+    "pos_share": 0.73,
+    "enough": true
+   },
+   "h72": {
+    "n": 8,
+    "mean_follow": 0.195,
+    "pos_share": 0.5,
+    "enough": false
+   }
+  },
+  "SVE|bez vesti": {
+   "h4": {
+    "n": 59,
+    "mean_follow": 0.134,
+    "pos_share": 0.54,
+    "enough": true
+   },
+   "h24": {
+    "n": 59,
+    "mean_follow": -0.037,
+    "pos_share": 0.56,
+    "enough": true
+   },
+   "h72": {
+    "n": 52,
+    "mean_follow": -0.793,
+    "pos_share": 0.48,
+    "enough": true
+   }
+  },
+  "OIL": {
+   "h4": {
+    "n": 17,
+    "mean_follow": 0.017,
+    "pos_share": 0.53,
+    "enough": true
+   },
+   "h24": {
+    "n": 17,
+    "mean_follow": 0.592,
+    "pos_share": 0.59,
+    "enough": true
+   },
+   "h72": {
+    "n": 17,
+    "mean_follow": 0.036,
+    "pos_share": 0.59,
+    "enough": true
+   }
+  },
+  "OIL|potvrdjeno": {
+   "h4": {
+    "n": 12,
+    "mean_follow": 0.072,
+    "pos_share": 0.5,
+    "enough": true
+   },
+   "h24": {
+    "n": 12,
+    "mean_follow": -0.114,
+    "pos_share": 0.5,
+    "enough": true
+   },
+   "h72": {
+    "n": 12,
+    "mean_follow": -1.283,
+    "pos_share": 0.5,
+    "enough": true
+   }
+  },
+  "OIL|sa vescu": {
+   "h4": {
+    "n": 6,
+    "mean_follow": -0.279,
+    "pos_share": 0.5,
+    "enough": false
+   },
+   "h24": {
+    "n": 6,
+    "mean_follow": 1.676,
+    "pos_share": 1.0,
+    "enough": false
+   },
+   "h72": {
+    "n": 6,
+    "mean_follow": 2.904,
+    "pos_share": 1.0,
+    "enough": false
+   }
+  },
+  "EQUITY|nepotvrdjeno": {
+   "h4": {
+    "n": 14,
+    "mean_follow": 0.679,
+    "pos_share": 0.71,
+    "enough": true
+   },
+   "h24": {
+    "n": 14,
+    "mean_follow": 0.102,
+    "pos_share": 0.57,
+    "enough": true
+   },
+   "h72": {
+    "n": 14,
+    "mean_follow": -0.623,
+    "pos_share": 0.5,
+    "enough": true
+   }
+  },
+  "EQUITY|bez vesti": {
+   "h4": {
+    "n": 24,
+    "mean_follow": 0.665,
+    "pos_share": 0.67,
+    "enough": true
+   },
+   "h24": {
+    "n": 24,
+    "mean_follow": 0.385,
+    "pos_share": 0.67,
+    "enough": true
+   },
+   "h72": {
+    "n": 22,
+    "mean_follow": 0.314,
+    "pos_share": 0.64,
+    "enough": true
+   }
+  },
+  "OIL|bez vesti": {
+   "h4": {
+    "n": 11,
+    "mean_follow": 0.178,
+    "pos_share": 0.55,
+    "enough": true
+   },
+   "h24": {
+    "n": 11,
+    "mean_follow": 0.002,
+    "pos_share": 0.36,
+    "enough": true
+   },
+   "h72": {
+    "n": 11,
+    "mean_follow": -1.529,
+    "pos_share": 0.36,
+    "enough": true
+   }
+  },
+  "GOLD|sa vescu": {
+   "h4": {
+    "n": 6,
+    "mean_follow": -0.606,
+    "pos_share": 0.0,
+    "enough": false
+   },
+   "h24": {
+    "n": 6,
+    "mean_follow": -0.302,
+    "pos_share": 0.33,
+    "enough": false
+   },
+   "h72": {
+    "n": 6,
+    "mean_follow": -0.618,
+    "pos_share": 0.33,
+    "enough": false
+   }
+  },
+  "OIL|nepotvrdjeno": {
+   "h4": {
+    "n": 5,
+    "mean_follow": -0.117,
+    "pos_share": 0.6,
+    "enough": false
+   },
+   "h24": {
+    "n": 5,
+    "mean_follow": 2.288,
+    "pos_share": 0.8,
+    "enough": false
+   },
+   "h72": {
+    "n": 5,
+    "mean_follow": 3.2,
+    "pos_share": 0.8,
+    "enough": false
+   }
+  },
+  "GOLD|nepotvrdjeno": {
+   "h4": {
+    "n": 5,
+    "mean_follow": 0.573,
+    "pos_share": 0.6,
+    "enough": false
+   },
+   "h24": {
+    "n": 5,
+    "mean_follow": 1.009,
+    "pos_share": 0.8,
+    "enough": false
+   },
+   "h72": {
+    "n": 4,
+    "mean_follow": 0.807,
+    "pos_share": 0.5,
+    "enough": false
+   }
+  },
+  "CRYPTO": {
+   "h4": {
+    "n": 13,
+    "mean_follow": -0.938,
+    "pos_share": 0.31,
+    "enough": true
+   },
+   "h24": {
+    "n": 13,
+    "mean_follow": -1.679,
+    "pos_share": 0.38,
+    "enough": true
+   },
+   "h72": {
+    "n": 11,
+    "mean_follow": -2.992,
+    "pos_share": 0.27,
+    "enough": true
+   }
+  },
+  "CRYPTO|potvrdjeno": {
+   "h4": {
+    "n": 13,
+    "mean_follow": -0.938,
+    "pos_share": 0.31,
+    "enough": true
+   },
+   "h24": {
+    "n": 13,
+    "mean_follow": -1.679,
+    "pos_share": 0.38,
+    "enough": true
+   },
+   "h72": {
+    "n": 11,
+    "mean_follow": -2.992,
+    "pos_share": 0.27,
+    "enough": true
+   }
+  },
+  "CRYPTO|bez vesti": {
+   "h4": {
+    "n": 13,
+    "mean_follow": -0.938,
+    "pos_share": 0.31,
+    "enough": true
+   },
+   "h24": {
+    "n": 13,
+    "mean_follow": -1.679,
+    "pos_share": 0.38,
+    "enough": true
+   },
+   "h72": {
+    "n": 11,
+    "mean_follow": -2.992,
+    "pos_share": 0.27,
+    "enough": true
+   }
+  }
+ }
+}
