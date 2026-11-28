@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-27T09:04:03Z",
+ "generated_utc": "2026-11-28T08:25:51Z",
  "rules": [
   {
    "rule": "alts:LOWVOL:4w:long",
@@ -23,20 +23,20 @@
      "tp_pct": 36.0
     },
     {
+     "ticker": "RENDERUSDT",
+     "symbol": "RENDER",
+     "score": -0.041865,
+     "px": 1.591,
+     "atr_pct": 6.62,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
+    },
+    {
      "ticker": "CRVUSDT",
      "symbol": "CRV",
      "score": -0.044135,
      "px": 0.2793,
      "atr_pct": 8.74,
-     "stop_pct": 12.0,
-     "tp_pct": 36.0
-    },
-    {
-     "ticker": "SKYUSDT",
-     "symbol": "SKY",
-     "score": -0.045319,
-     "px": 0.0677,
-     "atr_pct": 5.77,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
@@ -72,110 +72,6 @@
    }
   },
   {
-   "rule": "alts:SPIKE_UP:3d:short",
-   "status": "kandidat",
-   "universe": "alts",
-   "family": "SPIKE_UP",
-   "kind": "event",
-   "side": "short",
-   "signal_date": "2026-11-26",
-   "valid_from_utc": "2026-11-27T00:00:00Z",
-   "valid_until_utc": "2026-11-28T06:00:00Z",
-   "hold_hours": 72,
-   "picks": [
-    {
-     "ticker": "SEIUSDT",
-     "symbol": "SEI",
-     "score": 6.188,
-     "px": 0.0387,
-     "atr_pct": 8.54,
-     "stop_pct": 12.0,
-     "tp_pct": 36.0
-    }
-   ],
-   "forward": {
-    "n": 7,
-    "mean": 5.4977,
-    "t": 1.15,
-    "abs_mean": 10.2011,
-    "stress_mean": 5.2277,
-    "median": 6.4375,
-    "mean_ex_best": 2.6809,
-    "sim_n": 7,
-    "sim_mean": -1.0021,
-    "pending": 2
-   },
-   "study": {
-    "n": 322,
-    "mean": 1.9033,
-    "median": 2.7414,
-    "mean_ex_best": 1.7947,
-    "t": 3.97,
-    "p": 7e-05,
-    "t_train": 4.79,
-    "t_test": 1.08,
-    "recent_mean": 4.0392,
-    "stress_mean": 1.6333,
-    "abs_mean": 2.3457,
-    "fdr": true,
-    "exec_n": 16,
-    "exec_mean": 0.6348,
-    "exec_t": 0.32
-   }
-  },
-  {
-   "rule": "alts:SPIKE_UP:7d:short",
-   "status": "kandidat",
-   "universe": "alts",
-   "family": "SPIKE_UP",
-   "kind": "event",
-   "side": "short",
-   "signal_date": "2026-11-26",
-   "valid_from_utc": "2026-11-27T00:00:00Z",
-   "valid_until_utc": "2026-11-28T06:00:00Z",
-   "hold_hours": 168,
-   "picks": [
-    {
-     "ticker": "SEIUSDT",
-     "symbol": "SEI",
-     "score": 6.188,
-     "px": 0.0387,
-     "atr_pct": 8.54,
-     "stop_pct": 12.0,
-     "tp_pct": 36.0
-    }
-   ],
-   "forward": {
-    "n": 7,
-    "mean": 4.0526,
-    "t": 0.82,
-    "abs_mean": 12.6006,
-    "stress_mean": 3.7826,
-    "median": 2.7765,
-    "mean_ex_best": 0.831,
-    "sim_n": 7,
-    "sim_mean": 1.1767,
-    "pending": 2
-   },
-   "study": {
-    "n": 321,
-    "mean": 1.9564,
-    "median": 3.6439,
-    "mean_ex_best": 1.8269,
-    "t": 3.2,
-    "p": 0.00137,
-    "t_train": 2.45,
-    "t_test": 2.06,
-    "recent_mean": 5.9416,
-    "stress_mean": 1.6864,
-    "abs_mean": 2.2834,
-    "fdr": true,
-    "exec_n": 16,
-    "exec_mean": 1.233,
-    "exec_t": 0.35
-   }
-  },
-  {
    "rule": "crypto:BRK20:1w:short",
    "status": "kandidat",
    "universe": "crypto",
@@ -197,20 +93,20 @@
      "tp_pct": 36.0
     },
     {
-     "ticker": "TRUMPUSDT",
-     "symbol": "TRUMP",
-     "score": -0.445625,
-     "px": 0.887,
-     "atr_pct": 8.72,
-     "stop_pct": 12.0,
-     "tp_pct": 36.0
-    },
-    {
      "ticker": "ENAUSDT",
      "symbol": "ENA",
      "score": -0.440331,
      "px": 0.1013,
      "atr_pct": 11.33,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
+    },
+    {
+     "ticker": "PUMPUSDT",
+     "symbol": "PUMP",
+     "score": -0.398058,
+     "px": 0.0026,
+     "atr_pct": 11.72,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
@@ -337,20 +233,20 @@
      "tp_pct": 36.0
     },
     {
-     "ticker": "TRUMPUSDT",
-     "symbol": "TRUMP",
-     "score": -0.45081,
-     "px": 0.949,
-     "atr_pct": 12.36,
-     "stop_pct": 12.0,
-     "tp_pct": 36.0
-    },
-    {
      "ticker": "XPLUSDT",
      "symbol": "XPL",
      "score": -0.450455,
      "px": 0.0447,
      "atr_pct": 11.84,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
+    },
+    {
+     "ticker": "ENAUSDT",
+     "symbol": "ENA",
+     "score": -0.421078,
+     "px": 0.1214,
+     "atr_pct": 12.58,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
@@ -398,6 +294,15 @@
    "hold_hours": 672,
    "picks": [
     {
+     "ticker": "STRKUSDT",
+     "symbol": "STRK",
+     "score": -0.506404,
+     "px": 0.0428,
+     "atr_pct": 10.96,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
+    },
+    {
      "ticker": "WLDUSDT",
      "symbol": "WLD",
      "score": -0.332993,
@@ -412,15 +317,6 @@
      "score": -0.244517,
      "px": 0.1619,
      "atr_pct": 7.36,
-     "stop_pct": 12.0,
-     "tp_pct": 36.0
-    },
-    {
-     "ticker": "INJUSDT",
-     "symbol": "INJ",
-     "score": -0.197027,
-     "px": 7.185,
-     "atr_pct": 8.78,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
@@ -818,6 +714,15 @@
    "hold_hours": 672,
    "picks": [
     {
+     "ticker": "STRKUSDT",
+     "symbol": "STRK",
+     "score": -0.126719,
+     "px": 0.0428,
+     "atr_pct": 10.96,
+     "stop_pct": 12.0,
+     "tp_pct": 36.0
+    },
+    {
      "ticker": "ARBUSDT",
      "symbol": "ARB",
      "score": -0.078286,
@@ -832,15 +737,6 @@
      "score": -0.074855,
      "px": 4.289,
      "atr_pct": 9.54,
-     "stop_pct": 12.0,
-     "tp_pct": 36.0
-    },
-    {
-     "ticker": "PUMPUSDT",
-     "symbol": "PUMP",
-     "score": -0.069713,
-     "px": 0.0042,
-     "atr_pct": 10.13,
      "stop_pct": 12.0,
      "tp_pct": 36.0
     }
